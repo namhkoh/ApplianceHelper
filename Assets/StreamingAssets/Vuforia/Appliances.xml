@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="Edited_Panel" size="0.110000 0.067125" />
+    <ImageTarget name="Blue_Panel" size="0.090000 0.064082" />
+    <ImageTarget name="side_control" size="0.150000 0.074464" />
+    <ImageTarget name="microwave_panel" size="0.090000 0.186074" />
+  </Tracking>
+</QCARConfig>

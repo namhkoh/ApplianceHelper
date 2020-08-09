@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="exitButton">Exit</string>
+    <string name="appliance_image">appliance_image</string>
+    <string name="microwave_panel">"microwave panel "</string>
+    <string name="lcd_text">00:00</string>
+</resources>

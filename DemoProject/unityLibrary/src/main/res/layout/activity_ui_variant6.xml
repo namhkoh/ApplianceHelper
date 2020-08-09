@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/microwave_panel_view"
+    android:layout_width="300dp"
+    android:layout_height="730dp"
+    android:layout_gravity="center"
+    android:background="@drawable/microwave_full_panel"
+    tools:context=".uiVariant6">
+
+
+    <TextView
+        android:id="@+id/lcd_text"
+        android:maxLength="10"
+        android:layout_width="259dp"
+        android:layout_height="102dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/lcd_text"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/alt_txt"
+        android:maxLength="10"
+        android:layout_width="259dp"
+        android:layout_height="102dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        android:text="@string/alt_txt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/microwave_popcorn"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
+        android:alpha="1"
+        android:text="@string/microwave_popcorn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lcd_text" />
+
+    <Button
+        android:id="@+id/microwave_soften"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:alpha="1"
+        android:text="@string/microwave_soften"
+        app:layout_constraintStart_toEndOf="@+id/microwave_reheat"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_pizza" />
+
+    <Button
+        android:id="@+id/microwave_cook"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="24dp"
+        android:alpha="1"
+        android:text="@string/microwave_cook"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_popcorn" />
+
+    <Button
+        android:id="@+id/microwave_reheat"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:alpha="1"
+        android:text="@string/microwave_reheat"
+        app:layout_constraintStart_toEndOf="@+id/microwave_cook"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_potato" />
+
+    <Button
+        android:id="@+id/microwave_cooktime"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="24dp"
+        android:alpha="1"
+        android:text="@string/microwave_cooktime"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_cook" />
+
+    <Button
+        android:id="@+id/microwave_1"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:alpha="1"
+        android:text="@string/microwave_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_cooktime" />
+
+    <Button
+        android:id="@+id/microwave_4"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="24dp"
+        android:alpha="1"
+        android:text="@string/microwave_4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_1" />
+
+    <Button
+        android:id="@+id/microwave_7"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="24dp"
+        android:alpha="1"
+        android:text="@string/microwave_7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_4" />
+
+    <Button
+        android:id="@+id/microwave_start"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="46dp"
+        android:alpha="1"
+        android:text="@string/microwave_start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_timer" />
+
+    <Button
+        android:id="@+id/microwave_30sec"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="46dp"
+        android:alpha="1"
+        android:text="@string/microwave_30sec"
+        app:layout_constraintStart_toEndOf="@+id/microwave_start"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_0" />
+
+    <Button
+        android:id="@+id/microwave_cancel"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="46dp"
+        android:alpha="1"
+        android:text="@string/microwave_cancel"
+        app:layout_constraintStart_toEndOf="@+id/microwave_30sec"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_clock" />
+
+    <Button
+        android:id="@+id/microwave_timer"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="24dp"
+        android:alpha="1"
+        android:text="@string/microwave_timer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_7" />
+
+    <Button
+        android:id="@+id/microwave_8"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:alpha="1"
+        android:text="@string/microwave_8"
+        app:layout_constraintStart_toEndOf="@+id/microwave_7"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_5" />
+
+    <Button
+        android:id="@+id/microwave_0"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:alpha="1"
+        android:text="@string/microwave_0"
+        app:layout_constraintStart_toEndOf="@+id/microwave_7"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_8" />
+
+    <Button
+        android:id="@+id/microwave_clock"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:alpha="1"
+        android:text="@string/microwave_clock"
+        app:layout_constraintStart_toEndOf="@+id/microwave_0"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_9" />
+
+    <Button
+        android:id="@+id/microwave_9"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:alpha="1"
+        android:text="@string/microwave_9"
+        app:layout_constraintStart_toEndOf="@+id/microwave_8"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_6" />
+
+    <Button
+        android:id="@+id/microwave_5"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:alpha="1"
+        android:text="@string/microwave_5"
+        app:layout_constraintStart_toEndOf="@+id/microwave_4"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_2" />
+
+    <Button
+        android:id="@+id/microwave_6"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:alpha="1"
+        android:text="@string/microwave_6"
+        app:layout_constraintStart_toEndOf="@+id/microwave_5"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_3" />
+
+    <Button
+        android:id="@+id/microwave_2"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="20dp"
+        android:alpha="1"
+        android:text="@string/microwave_2"
+        app:layout_constraintStart_toEndOf="@+id/microwave_1"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_cookpower" />
+
+    <Button
+        android:id="@+id/microwave_3"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="20dp"
+        android:alpha="1"
+        android:text="@string/microwave_3"
+        app:layout_constraintStart_toEndOf="@+id/microwave_2"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_defrost" />
+
+    <Button
+        android:id="@+id/microwave_cookpower"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:alpha="1"
+        android:text="@string/microwave_cookpower"
+        app:layout_constraintStart_toEndOf="@+id/microwave_cooktime"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_reheat" />
+
+    <Button
+        android:id="@+id/microwave_defrost"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:alpha="1"
+        android:text="@string/microwave_defrost"
+        app:layout_constraintStart_toEndOf="@+id/microwave_cookpower"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_soften" />
+
+    <Button
+        android:id="@+id/microwave_potato"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="36dp"
+        android:alpha="1"
+        android:text="@string/microwave_potato"
+        app:layout_constraintStart_toEndOf="@+id/microwave_popcorn"
+        app:layout_constraintTop_toBottomOf="@+id/lcd_text" />
+
+    <Button
+        android:id="@+id/microwave_pizza"
+        android:layout_width="85dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="36dp"
+        android:alpha="1"
+        android:text="@string/microwave_pizza"
+        app:layout_constraintStart_toEndOf="@+id/microwave_potato"
+        app:layout_constraintTop_toBottomOf="@+id/lcd_text" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="309dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:background="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_start" />
+
+    <Button
+        android:id="@+id/Next"
+        android:layout_width="82dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="5dp"
+        android:gravity="center"
+        android:text="@string/nextActivity"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_cancel" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
