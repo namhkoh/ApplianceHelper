@@ -6,377 +6,377 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="24"
-8-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml
+8-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml
+9-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml
 10
 11    <uses-feature android:glEsVersion="0x00030000" />
-11-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:181:5-54
-11-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:181:19-51
+11-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:181:5-54
+11-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:181:19-51
 12    <uses-feature
-12-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:182:5-184:36
+12-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:182:5-184:36
 13        android:name="android.hardware.camera"
-13-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:183:9-47
+13-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:183:9-47
 14        android:required="false" />
-14-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:184:9-33
+14-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:184:9-33
 15    <uses-feature
-15-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:185:5-187:36
+15-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:185:5-187:36
 16        android:name="android.hardware.camera.autofocus"
-16-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:186:9-57
+16-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:186:9-57
 17        android:required="false" />
-17-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:187:9-33
+17-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:187:9-33
 18    <uses-feature
-18-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:188:5-190:36
+18-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:188:5-190:36
 19        android:name="android.hardware.camera.front"
-19-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:189:9-53
+19-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:189:9-53
 20        android:required="false" />
-20-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:190:9-33
+20-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:190:9-33
 21    <uses-feature
-21-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:191:5-193:36
+21-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:191:5-193:36
 22        android:name="android.hardware.microphone"
-22-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:192:9-51
+22-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:192:9-51
 23        android:required="false" />
-23-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:193:9-33
+23-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:193:9-33
 24    <uses-feature
-24-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:194:5-196:36
+24-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:194:5-196:36
 25        android:name="android.hardware.touchscreen"
-25-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:195:9-52
+25-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:195:9-52
 26        android:required="false" />
-26-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:196:9-33
+26-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:196:9-33
 27    <uses-feature
-27-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:197:5-199:36
+27-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:197:5-199:36
 28        android:name="android.hardware.touchscreen.multitouch"
-28-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:198:9-63
+28-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:198:9-63
 29        android:required="false" />
-29-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:199:9-33
+29-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:199:9-33
 30    <uses-feature
-30-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:201:5-203:36
+30-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:201:5-203:36
 31        android:name="android.hardware.touchscreen.multitouch.distinct"
-31-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:202:9-72
+31-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:202:9-72
 32        android:required="false" />
-32-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:203:9-33
+32-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:203:9-33
 33
 34    <uses-permission android:name="android.permission.INTERNET" />
-34-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:204:5-67
-34-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:204:22-64
+34-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:204:5-67
+34-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:204:22-64
 35    <uses-permission android:name="android.permission.CAMERA" />
-35-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:205:5-65
-35-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:205:22-62
+35-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:205:5-65
+35-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:205:22-62
 36    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-36-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:206:5-71
-36-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:206:22-68
+36-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:206:5-71
+36-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:206:22-68
 37    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-37-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:207:5-80
-37-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:207:22-77
+37-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:207:5-80
+37-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:207:22-77
 38    <uses-permission android:name="android.permission.BLUETOOTH" />
-38-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:209:5-68
-38-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:209:22-65
+38-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:209:5-68
+38-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:209:22-65
 39
 40    <application>
-40-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:5:5-180:19
+40-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:5:5-180:19
 41        <activity
-41-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:6:9-16:20
+41-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:6:9-16:20
 42            android:name="com.unity3d.player.uiVariant6Oven"
-42-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:7:13-43
+42-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:7:13-43
 43            android:label="Oven"
-43-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:8:13-33
+43-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:8:13-33
 44            android:theme="@style/Theme.AppCompat.Light" >
-44-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:9:13-57
+44-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:9:13-57
 45            <intent-filter>
-45-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:10:13-15:29
+45-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:10:13-15:29
 46
 47                <!-- <action android:name="android.intent.action.MAIN" /> -->
 48
 49                <category android:name="android.intent.category.LAUNCHER" />
-49-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:17-77
-49-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:27-74
+49-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:17-77
+49-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:27-74
 50            </intent-filter>
 51        </activity>
 52        <activity
-52-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:17:9-27:20
+52-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:17:9-27:20
 53            android:name="com.unity3d.player.TaskInstructionActivity"
-53-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:18:13-52
+53-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:18:13-52
 54            android:label="Task"
-54-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:19:13-33
+54-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:19:13-33
 55            android:theme="@style/Theme.AppCompat.Light" >
-55-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:20:13-57
+55-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:20:13-57
 56            <intent-filter>
-56-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:10:13-15:29
+56-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:10:13-15:29
 57
 58                <!-- <action android:name="android.intent.action.MAIN" /> -->
 59
 60                <category android:name="android.intent.category.LAUNCHER" />
-60-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:17-77
-60-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:27-74
+60-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:17-77
+60-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:27-74
 61            </intent-filter>
 62        </activity>
 63        <activity
-63-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:28:9-38:20
+63-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:28:9-38:20
 64            android:name="com.unity3d.player.UserSurveyActivity"
-64-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:29:13-47
+64-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:29:13-47
 65            android:label="Survey"
-65-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:30:13-35
+65-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:30:13-35
 66            android:theme="@style/Theme.AppCompat.Light" >
-66-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:31:13-57
+66-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:31:13-57
 67            <intent-filter>
-67-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:10:13-15:29
+67-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:10:13-15:29
 68
 69                <!-- <action android:name="android.intent.action.MAIN" /> -->
 70
 71                <category android:name="android.intent.category.LAUNCHER" />
-71-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:17-77
-71-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:27-74
+71-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:17-77
+71-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:27-74
 72            </intent-filter>
 73        </activity>
 74        <activity
-74-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:39:9-48:20
+74-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:39:9-48:20
 75            android:name="com.unity3d.player.UserConsentActivity"
-75-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:40:13-48
+75-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:40:13-48
 76            android:label="@string/app_title"
-76-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:41:13-46
+76-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:41:13-46
 77            android:theme="@style/Theme.AppCompat.Light" >
-77-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:42:13-57
+77-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:42:13-57
 78            <intent-filter>
-78-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:43:13-47:29
+78-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:43:13-47:29
 79                <action android:name="android.intent.action.MAIN" />
-79-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:44:17-69
-79-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:44:25-66
+79-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:44:17-69
+79-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:44:25-66
 80
 81                <category android:name="android.intent.category.LAUNCHER" />
-81-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:17-77
-81-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:27-74
+81-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:17-77
+81-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:27-74
 82            </intent-filter>
 83        </activity>
 84        <activity
-84-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:49:9-60:20
+84-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:49:9-60:20
 85            android:name="com.unity3d.player.uiVariant6"
-85-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:50:13-39
+85-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:50:13-39
 86            android:label="UI Variant 6"
-86-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:51:13-41
+86-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:51:13-41
 87            android:parentActivityName="com.unity3d.player.uiMenu"
-87-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:52:13-49
+87-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:52:13-49
 88            android:theme="@style/Theme.AppCompat.Light" >
-88-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:53:13-57
+88-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:53:13-57
 89            <intent-filter>
-89-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:10:13-15:29
+89-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:10:13-15:29
 90
 91                <!-- <action android:name="android.intent.action.MAIN" /> -->
 92
 93                <category android:name="android.intent.category.LAUNCHER" />
-93-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:17-77
-93-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:27-74
+93-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:17-77
+93-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:27-74
 94            </intent-filter>
 95        </activity>
 96        <activity
-96-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:61:9-72:20
+96-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:61:9-72:20
 97            android:name="com.unity3d.player.uiVariant3"
-97-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:62:13-39
+97-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:62:13-39
 98            android:label="UI Variant 3"
-98-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:63:13-41
+98-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:63:13-41
 99            android:parentActivityName="com.unity3d.player.uiMenu"
-99-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:64:13-49
+99-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:64:13-49
 100            android:theme="@style/Theme.AppCompat.Light" >
-100-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:65:13-57
+100-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:65:13-57
 101            <intent-filter>
-101-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:10:13-15:29
+101-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:10:13-15:29
 102
 103                <!-- <action android:name="android.intent.action.MAIN" /> -->
 104
 105                <category android:name="android.intent.category.LAUNCHER" />
-105-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:17-77
-105-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:27-74
+105-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:17-77
+105-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:27-74
 106            </intent-filter>
 107        </activity>
 108        <activity
-108-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:73:9-84:20
+108-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:73:9-84:20
 109            android:name="com.unity3d.player.uiVariant2"
-109-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:74:13-39
+109-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:74:13-39
 110            android:label="UI Variant 2"
-110-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:75:13-41
+110-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:75:13-41
 111            android:parentActivityName="com.unity3d.player.uiMenu"
-111-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:76:13-49
+111-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:76:13-49
 112            android:theme="@style/Theme.AppCompat.Light" >
-112-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:77:13-57
+112-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:77:13-57
 113            <intent-filter>
-113-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:10:13-15:29
+113-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:10:13-15:29
 114
 115                <!-- <action android:name="android.intent.action.MAIN" /> -->
 116
 117                <category android:name="android.intent.category.LAUNCHER" />
-117-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:17-77
-117-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:27-74
+117-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:17-77
+117-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:27-74
 118            </intent-filter>
 119        </activity>
 120        <activity
-120-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:85:9-96:20
+120-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:85:9-96:20
 121            android:name="com.unity3d.player.uiVariant1"
-121-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:86:13-39
+121-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:86:13-39
 122            android:label="UI Variant 1"
-122-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:87:13-41
+122-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:87:13-41
 123            android:parentActivityName="com.unity3d.player.uiMenu"
-123-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:88:13-49
+123-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:88:13-49
 124            android:theme="@style/Theme.AppCompat.Light" >
-124-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:89:13-57
+124-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:89:13-57
 125            <intent-filter>
-125-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:10:13-15:29
+125-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:10:13-15:29
 126
 127                <!-- <action android:name="android.intent.action.MAIN" /> -->
 128
 129                <category android:name="android.intent.category.LAUNCHER" />
-129-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:17-77
-129-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:27-74
+129-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:17-77
+129-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:27-74
 130            </intent-filter>
 131        </activity>
 132        <activity
-132-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:97:9-119:20
+132-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:97:9-119:20
 133            android:name="com.unity3d.player.uiVariant4"
-133-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:98:13-39
+133-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:98:13-39
 134            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
-134-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:99:13-194
+134-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:99:13-194
 135            android:hardwareAccelerated="false"
-135-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:100:13-48
+135-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:100:13-48
 136            android:label="@string/app_title"
-136-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:101:13-46
+136-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:101:13-46
 137            android:launchMode="singleTask"
-137-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:102:13-44
+137-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:102:13-44
 138            android:parentActivityName="com.unity3d.player.uiMenu"
-138-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:103:13-49
+138-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:103:13-49
 139            android:screenOrientation="fullSensor"
-139-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:104:13-51
+139-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:104:13-51
 140            android:theme="@style/UnityThemeSelector" >
-140-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:105:13-54
+140-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:105:13-54
 141            <intent-filter>
-141-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:10:13-15:29
+141-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:10:13-15:29
 142
 143                <!-- <action android:name="android.intent.action.MAIN" /> -->
 144
 145                <category android:name="android.intent.category.LAUNCHER" />
-145-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:17-77
-145-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:27-74
+145-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:17-77
+145-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:27-74
 146            </intent-filter>
 147
 148            <meta-data
-148-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:113:13-115:40
+148-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:113:13-115:40
 149                android:name="unityplayer.uiVariant4"
-149-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:114:17-54
+149-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:114:17-54
 150                android:value="true" />
-150-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:115:17-37
+150-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:115:17-37
 151            <meta-data
-151-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:116:13-118:40
+151-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:116:13-118:40
 152                android:name="android.notch_support"
-152-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:117:17-53
+152-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:117:17-53
 153                android:value="true" />
-153-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:118:17-37
+153-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:118:17-37
 154        </activity>
 155        <activity
-155-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:120:9-131:20
+155-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:120:9-131:20
 156            android:name="com.unity3d.player.StartScreen"
-156-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:121:13-40
+156-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:121:13-40
 157            android:label="@string/app_title"
-157-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:122:13-46
+157-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:122:13-46
 158            android:parentActivityName="com.unity3d.player.UserConsentActivity"
-158-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:123:13-62
+158-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:123:13-62
 159            android:theme="@style/Theme.AppCompat.Light" >
-159-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:124:13-57
+159-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:124:13-57
 160            <intent-filter>
-160-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:10:13-15:29
+160-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:10:13-15:29
 161
 162                <!-- <action android:name="android.intent.action.MAIN" /> -->
 163
 164                <category android:name="android.intent.category.LAUNCHER" />
-164-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:17-77
-164-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:27-74
+164-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:17-77
+164-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:27-74
 165            </intent-filter>
 166        </activity>
 167        <activity
-167-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:132:9-140:20
+167-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:132:9-140:20
 168            android:name="com.unity3d.player.uiMenu"
-168-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:133:13-35
+168-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:133:13-35
 169            android:label="@string/app_title"
-169-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:134:13-46
+169-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:134:13-46
 170            android:parentActivityName="com.unity3d.player.StartScreen"
-170-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:135:13-54
+170-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:135:13-54
 171            android:theme="@style/Theme.AppCompat.Light" >
-171-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:136:13-57
+171-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:136:13-57
 172            <intent-filter>
-172-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:10:13-15:29
+172-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:10:13-15:29
 173                <category android:name="android.intent.category.LAUNCHER" />
-173-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:17-77
-173-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:27-74
+173-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:17-77
+173-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:27-74
 174            </intent-filter>
 175        </activity>
 176        <activity
-176-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:141:9-163:20
+176-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:141:9-163:20
 177            android:name="com.unity3d.player.UnityPlayerActivity"
-177-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:142:13-48
+177-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:142:13-48
 178            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
-178-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:143:13-194
+178-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:143:13-194
 179            android:hardwareAccelerated="false"
-179-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:144:13-48
+179-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:144:13-48
 180            android:label="@string/app_title"
-180-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:145:13-46
+180-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:145:13-46
 181            android:launchMode="singleTask"
-181-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:146:13-44
+181-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:146:13-44
 182            android:parentActivityName="com.unity3d.player.uiMenu"
-182-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:147:13-49
+182-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:147:13-49
 183            android:screenOrientation="fullSensor"
-183-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:148:13-51
+183-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:148:13-51
 184            android:theme="@style/UnityThemeSelector" >
-184-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:149:13-54
+184-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:149:13-54
 185            <intent-filter>
-185-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:10:13-15:29
+185-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:10:13-15:29
 186
 187                <!-- <action android:name="android.intent.action.MAIN" /> -->
 188
 189                <category android:name="android.intent.category.LAUNCHER" />
-189-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:17-77
-189-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:27-74
+189-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:17-77
+189-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:27-74
 190            </intent-filter>
 191
 192            <meta-data
-192-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:157:13-159:40
+192-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:157:13-159:40
 193                android:name="unityplayer.UnityActivity"
-193-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:158:17-57
+193-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:158:17-57
 194                android:value="true" />
-194-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:159:17-37
+194-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:159:17-37
 195            <meta-data
-195-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:116:13-118:40
+195-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:116:13-118:40
 196                android:name="android.notch_support"
-196-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:117:17-53
+196-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:117:17-53
 197                android:value="true" />
-197-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:118:17-37
+197-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:118:17-37
 198        </activity>
 199
 200        <meta-data
-200-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:165:9-167:33
+200-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:165:9-167:33
 201            android:name="unity.splash-mode"
-201-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:166:13-45
+201-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:166:13-45
 202            android:value="0" />
-202-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:167:13-30
+202-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:167:13-30
 203        <meta-data
-203-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:168:9-170:36
+203-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:168:9-170:36
 204            android:name="unity.splash-enable"
-204-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:169:13-47
+204-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:169:13-47
 205            android:value="True" />
-205-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:170:13-33
+205-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:170:13-33
 206        <meta-data
-206-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:171:9-173:50
+206-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:171:9-173:50
 207            android:name="notch.config"
-207-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:172:13-40
+207-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:172:13-40
 208            android:value="portrait|landscape" />
-208-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:173:13-47
+208-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:173:13-47
 209        <meta-data
-209-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:174:9-176:68
+209-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:174:9-176:68
 210            android:name="unity.build-id"
-210-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:175:13-42
+210-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:175:13-42
 211            android:value="73f6a8b2-f392-40cd-9d87-54c652241962" />
-211-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:176:13-65
+211-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:176:13-65
 212        <meta-data
-212-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:177:9-179:40
+212-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:177:9-179:40
 213            android:name="com.google.ar.core"
-213-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:178:13-46
+213-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:178:13-46
 214            android:value="optional" />
-214-->C:\Users\nam.koh\Documents\GitHub\AR_AI_DEV\DemoProject\unityLibrary\src\main\AndroidManifest.xml:179:13-37
+214-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:179:13-37
 215    </application>
 216
 217</manifest>
