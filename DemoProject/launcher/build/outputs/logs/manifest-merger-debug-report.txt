@@ -4,7 +4,7 @@ ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher
 INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:3:1-6:12
 INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:3:1-6:12
 INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:3:1-6:12
-MERGED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-217:12
+MERGED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-224:12
 MERGED from [:VuforiaWrapper:] /Users/lucaskoh/.gradle/caches/transforms-2/files-2.1/18867f9859ef11376ee16f70f6a485ee/jetified-VuforiaWrapper/AndroidManifest.xml:2:1-14:12
 MERGED from [:libnilu] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/libnilu/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-12:12
 MERGED from [org.pytorch:pytorch_android:1.4.0] /Users/lucaskoh/.gradle/caches/transforms-2/files-2.1/10279ddce8b0e264129b6bebbc0376a6/jetified-pytorch_android-1.4.0/AndroidManifest.xml:2:1-10:12
@@ -55,6 +55,8 @@ INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launc
 		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:3:148-188
 supports-screens
 ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:4:3-163
+MERGED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-16:24
+MERGED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-16:24
 	android:largeScreens
 		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:4:78-105
 	android:smallScreens
@@ -67,8 +69,8 @@ ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher
 		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:4:135-160
 application
 ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:5:3-86
-MERGED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:40:5-215:19
-MERGED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:40:5-215:19
+MERGED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:47:5-222:19
+MERGED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:47:5-222:19
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/lucaskoh/.gradle/caches/transforms-2/files-2.1/75baa063235eedb7ab2cc635bdb88d73/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/lucaskoh/.gradle/caches/transforms-2/files-2.1/75baa063235eedb7ab2cc635bdb88d73/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
 MERGED from [androidx.core:core:1.1.0] /Users/lucaskoh/.gradle/caches/transforms-2/files-2.1/76f2b6439d16df60df3177021482ee5a/core-1.1.0/AndroidManifest.xml:24:5-89
@@ -152,266 +154,266 @@ INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launc
 		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml
 		INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml
 uses-feature#0x00030000
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-54
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:5-54
 	android:glEsVersion
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:19-51
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:19-51
 uses-feature#android.hardware.camera
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-14:36
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:5-21:36
 MERGED from [:VuforiaWrapper:] /Users/lucaskoh/.gradle/caches/transforms-2/files-2.1/18867f9859ef11376ee16f70f6a485ee/jetified-VuforiaWrapper/AndroidManifest.xml:7:5-60
 MERGED from [:VuforiaWrapper:] /Users/lucaskoh/.gradle/caches/transforms-2/files-2.1/18867f9859ef11376ee16f70f6a485ee/jetified-VuforiaWrapper/AndroidManifest.xml:7:5-60
 	android:required
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:9-33
-		MERGED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:12:5-14:36
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:21:9-33
+		MERGED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:19:5-21:36
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:9-47
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:20:9-47
 uses-feature#android.hardware.camera.autofocus
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-17:36
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:22:5-24:36
 	android:required
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:9-33
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:24:9-33
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:9-57
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:23:9-57
 uses-feature#android.hardware.camera.front
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:5-20:36
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:5-27:36
 	android:required
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:20:9-33
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:9-33
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:9-53
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:9-53
 uses-feature#android.hardware.microphone
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:21:5-23:36
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:28:5-30:36
 	android:required
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:23:9-33
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:30:9-33
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:22:9-51
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:29:9-51
 uses-feature#android.hardware.touchscreen
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:24:5-26:36
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:31:5-33:36
 	android:required
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:9-33
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:33:9-33
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:9-52
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:32:9-52
 uses-feature#android.hardware.touchscreen.multitouch
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:5-29:36
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:34:5-36:36
 	android:required
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:29:9-33
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:36:9-33
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:28:9-63
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:35:9-63
 uses-feature#android.hardware.touchscreen.multitouch.distinct
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:30:5-32:36
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:37:5-39:36
 	android:required
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:32:9-33
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:39:9-33
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:31:9-72
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:38:9-72
 uses-permission#android.permission.INTERNET
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:34:5-67
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:41:5-67
 MERGED from [:VuforiaWrapper:] /Users/lucaskoh/.gradle/caches/transforms-2/files-2.1/18867f9859ef11376ee16f70f6a485ee/jetified-VuforiaWrapper/AndroidManifest.xml:9:5-67
 MERGED from [:VuforiaWrapper:] /Users/lucaskoh/.gradle/caches/transforms-2/files-2.1/18867f9859ef11376ee16f70f6a485ee/jetified-VuforiaWrapper/AndroidManifest.xml:9:5-67
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:34:22-64
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:41:22-64
 uses-permission#android.permission.CAMERA
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:35:5-65
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:42:5-65
 MERGED from [:VuforiaWrapper:] /Users/lucaskoh/.gradle/caches/transforms-2/files-2.1/18867f9859ef11376ee16f70f6a485ee/jetified-VuforiaWrapper/AndroidManifest.xml:10:5-65
 MERGED from [:VuforiaWrapper:] /Users/lucaskoh/.gradle/caches/transforms-2/files-2.1/18867f9859ef11376ee16f70f6a485ee/jetified-VuforiaWrapper/AndroidManifest.xml:10:5-65
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:35:22-62
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:42:22-62
 uses-permission#android.permission.RECORD_AUDIO
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:36:5-71
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:43:5-71
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:36:22-68
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:43:22-68
 uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:37:5-80
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:44:5-80
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:37:22-77
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:44:22-77
 uses-permission#android.permission.BLUETOOTH
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:38:5-68
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:45:5-68
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:38:22-65
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:45:22-65
 activity#com.unity3d.player.uiVariant6Oven
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:41:9-51:20
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:48:9-58:20
 	android:label
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:43:13-33
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:50:13-33
 	android:theme
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:44:13-57
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:51:13-57
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:42:13-61
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:49:13-61
 intent-filter#category:name:android.intent.category.LAUNCHER
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:45:13-50:29
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:52:13-57:29
 category#android.intent.category.LAUNCHER
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:49:17-77
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:17-77
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:49:27-74
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:27-74
 activity#com.unity3d.player.TaskInstructionActivity
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:52:9-62:20
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:59:9-69:20
 	android:label
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:54:13-33
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:61:13-33
 	android:theme
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:55:13-57
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:62:13-57
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:53:13-70
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:60:13-70
 activity#com.unity3d.player.UserSurveyActivity
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:63:9-73:20
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:70:9-80:20
 	android:label
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:65:13-35
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:72:13-35
 	android:theme
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:66:13-57
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:73:13-57
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:64:13-65
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:71:13-65
 activity#com.unity3d.player.UserConsentActivity
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:74:9-83:20
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:81:9-90:20
 	android:label
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:76:13-46
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:83:13-46
 	android:theme
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:77:13-57
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:84:13-57
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:75:13-66
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:82:13-66
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:78:13-82:29
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:85:13-89:29
 action#android.intent.action.MAIN
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:79:17-69
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:86:17-69
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:79:25-66
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:86:25-66
 activity#com.unity3d.player.uiVariant6
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:84:9-95:20
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:91:9-102:20
 	android:parentActivityName
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:87:13-67
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:94:13-67
 	android:label
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:86:13-41
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:93:13-41
 	android:theme
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:88:13-57
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:95:13-57
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:85:13-57
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:92:13-57
 activity#com.unity3d.player.uiVariant3
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:96:9-107:20
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:103:9-114:20
 	android:parentActivityName
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:99:13-67
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:106:13-67
 	android:label
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:98:13-41
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:105:13-41
 	android:theme
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:100:13-57
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:107:13-57
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:97:13-57
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:104:13-57
 activity#com.unity3d.player.uiVariant2
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:108:9-119:20
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:115:9-126:20
 	android:parentActivityName
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:111:13-67
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:118:13-67
 	android:label
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:110:13-41
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:117:13-41
 	android:theme
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:112:13-57
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:119:13-57
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:109:13-57
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:116:13-57
 activity#com.unity3d.player.uiVariant1
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:120:9-131:20
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:127:9-138:20
 	android:parentActivityName
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:123:13-67
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:130:13-67
 	android:label
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:122:13-41
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:129:13-41
 	android:theme
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:124:13-57
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:131:13-57
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:121:13-57
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:128:13-57
 activity#com.unity3d.player.uiVariant4
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:132:9-154:20
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:139:9-161:20
 	android:screenOrientation
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:139:13-51
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:146:13-51
 	android:parentActivityName
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:138:13-67
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:145:13-67
 	android:label
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:136:13-46
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:143:13-46
 	android:launchMode
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:137:13-44
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:144:13-44
 	android:hardwareAccelerated
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:135:13-48
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:142:13-48
 	android:configChanges
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:134:13-194
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:141:13-194
 	android:theme
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:140:13-54
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:147:13-54
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:133:13-57
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:140:13-57
 meta-data#unityplayer.uiVariant4
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:148:13-150:40
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:155:13-157:40
 	android:value
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:150:17-37
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:157:17-37
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:149:17-54
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:156:17-54
 meta-data#android.notch_support
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:151:13-153:40
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:158:13-160:40
 	android:value
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:153:17-37
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:160:17-37
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:152:17-53
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:159:17-53
 activity#com.unity3d.player.StartScreen
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:155:9-166:20
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:162:9-173:20
 	android:parentActivityName
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:158:13-80
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:165:13-80
 	android:label
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:157:13-46
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:164:13-46
 	android:theme
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:159:13-57
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:166:13-57
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:156:13-58
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:163:13-58
 activity#com.unity3d.player.uiMenu
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:167:9-175:20
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:174:9-182:20
 	android:parentActivityName
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:170:13-72
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:177:13-72
 	android:label
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:169:13-46
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:176:13-46
 	android:theme
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:171:13-57
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:178:13-57
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:168:13-53
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:175:13-53
 activity#com.unity3d.player.UnityPlayerActivity
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:176:9-198:20
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:183:9-205:20
 	android:screenOrientation
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:183:13-51
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:190:13-51
 	android:parentActivityName
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:182:13-67
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:189:13-67
 	android:label
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:180:13-46
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:187:13-46
 	android:launchMode
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:181:13-44
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:188:13-44
 	android:hardwareAccelerated
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:179:13-48
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:186:13-48
 	android:configChanges
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:178:13-194
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:185:13-194
 	android:theme
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:184:13-54
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:191:13-54
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:177:13-66
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:184:13-66
 meta-data#unityplayer.UnityActivity
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:192:13-194:40
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:199:13-201:40
 	android:value
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:194:17-37
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:201:17-37
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:193:17-57
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:200:17-57
 meta-data#unity.splash-mode
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:200:9-202:33
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:207:9-209:33
 	android:value
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:202:13-30
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:209:13-30
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:201:13-45
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:208:13-45
 meta-data#unity.splash-enable
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:203:9-205:36
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:210:9-212:36
 	android:value
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:205:13-33
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:212:13-33
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:204:13-47
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:211:13-47
 meta-data#notch.config
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:206:9-208:50
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:213:9-215:50
 	android:value
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:208:13-47
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:215:13-47
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:207:13-40
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:214:13-40
 meta-data#unity.build-id
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:209:9-211:68
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:216:9-218:68
 	android:value
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:211:13-65
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:218:13-65
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:210:13-42
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:217:13-42
 meta-data#com.google.ar.core
-ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:212:9-214:40
+ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:219:9-221:40
 	android:value
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:214:13-37
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:221:13-37
 	android:name
-		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:213:13-46
+		ADDED from [:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:220:13-46
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [:VuforiaWrapper:] /Users/lucaskoh/.gradle/caches/transforms-2/files-2.1/18867f9859ef11376ee16f70f6a485ee/jetified-VuforiaWrapper/AndroidManifest.xml:11:5-79
 	android:name

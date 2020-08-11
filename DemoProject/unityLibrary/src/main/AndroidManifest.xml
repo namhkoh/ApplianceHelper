@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.unity3d.player">
 
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true">
+    </supports-screens>
+
     <application>
         <activity
             android:name=".uiVariant6Oven"
