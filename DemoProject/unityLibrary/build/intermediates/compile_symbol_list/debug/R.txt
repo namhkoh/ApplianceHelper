@@ -136,6 +136,7 @@ int attr contentPaddingLeft 0x0
 int attr contentPaddingRight 0x0
 int attr contentPaddingTop 0x0
 int attr controlBackground 0x0
+int attr coordinatorLayoutStyle 0x0
 int attr customNavigationLayout 0x0
 int attr defaultQueryHint 0x0
 int attr dialogCornerRadius 0x0
@@ -191,8 +192,12 @@ int attr indeterminateProgressStyle 0x0
 int attr initialActivityCount 0x0
 int attr isLightTheme 0x0
 int attr itemPadding 0x0
+int attr keylines 0x0
 int attr lastBaselineToBottomHeight 0x0
 int attr layout 0x0
+int attr layout_anchor 0x0
+int attr layout_anchorGravity 0x0
+int attr layout_behavior 0x0
 int attr layout_constrainedHeight 0x0
 int attr layout_constrainedWidth 0x0
 int attr layout_constraintBaseline_creator 0x0
@@ -234,6 +239,7 @@ int attr layout_constraintWidth_default 0x0
 int attr layout_constraintWidth_max 0x0
 int attr layout_constraintWidth_min 0x0
 int attr layout_constraintWidth_percent 0x0
+int attr layout_dodgeInsetEdges 0x0
 int attr layout_editor_absoluteX 0x0
 int attr layout_editor_absoluteY 0x0
 int attr layout_goneMarginBottom 0x0
@@ -242,6 +248,8 @@ int attr layout_goneMarginLeft 0x0
 int attr layout_goneMarginRight 0x0
 int attr layout_goneMarginStart 0x0
 int attr layout_goneMarginTop 0x0
+int attr layout_insetEdge 0x0
+int attr layout_keyline 0x0
 int attr layout_optimizationLevel 0x0
 int attr lineHeight 0x0
 int attr listChoiceBackgroundIndicator 0x0
@@ -306,6 +314,7 @@ int attr spinnerStyle 0x0
 int attr splitTrack 0x0
 int attr srcCompat 0x0
 int attr state_above_anchor 0x0
+int attr statusBarBackground 0x0
 int attr subMenuArrow 0x0
 int attr submitBackground 0x0
 int attr subtitle 0x0
@@ -1030,6 +1039,18 @@ int string abc_activity_chooser_view_see_all 0x0
 int string abc_activitychooserview_choose_application 0x0
 int string abc_capital_off 0x0
 int string abc_capital_on 0x0
+int string abc_font_family_body_1_material 0x0
+int string abc_font_family_body_2_material 0x0
+int string abc_font_family_button_material 0x0
+int string abc_font_family_caption_material 0x0
+int string abc_font_family_display_1_material 0x0
+int string abc_font_family_display_2_material 0x0
+int string abc_font_family_display_3_material 0x0
+int string abc_font_family_display_4_material 0x0
+int string abc_font_family_headline_material 0x0
+int string abc_font_family_menu_material 0x0
+int string abc_font_family_subhead_material 0x0
+int string abc_font_family_title_material 0x0
 int string abc_menu_alt_shortcut_label 0x0
 int string abc_menu_ctrl_shortcut_label 0x0
 int string abc_menu_delete_shortcut_label 0x0
@@ -1050,6 +1071,7 @@ int string abc_shareactionprovider_share_with 0x0
 int string abc_shareactionprovider_share_with_application 0x0
 int string abc_toolbar_collapse_description 0x0
 int string alt_txt 0x0
+int string app_name 0x0
 int string app_title 0x0
 int string appliance_image 0x0
 int string consentTitle 0x0
@@ -1467,6 +1489,7 @@ int style Widget_AppCompat_Toolbar 0x0
 int style Widget_AppCompat_Toolbar_Button_Navigation 0x0
 int style Widget_Compat_NotificationActionContainer 0x0
 int style Widget_Compat_NotificationActionText 0x0
+int style Widget_Support_CoordinatorLayout 0x0
 int[] styleable ActionBar { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable ActionBar_background 0
 int styleable ActionBar_backgroundSplit 1
@@ -1872,6 +1895,17 @@ int styleable ConstraintSet_layout_goneMarginLeft 76
 int styleable ConstraintSet_layout_goneMarginRight 77
 int styleable ConstraintSet_layout_goneMarginStart 78
 int styleable ConstraintSet_layout_goneMarginTop 79
+int[] styleable CoordinatorLayout { 0x0, 0x0 }
+int styleable CoordinatorLayout_keylines 0
+int styleable CoordinatorLayout_statusBarBackground 1
+int[] styleable CoordinatorLayout_Layout { 0x10100b3, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+int styleable CoordinatorLayout_Layout_android_layout_gravity 0
+int styleable CoordinatorLayout_Layout_layout_anchor 1
+int styleable CoordinatorLayout_Layout_layout_anchorGravity 2
+int styleable CoordinatorLayout_Layout_layout_behavior 3
+int styleable CoordinatorLayout_Layout_layout_dodgeInsetEdges 4
+int styleable CoordinatorLayout_Layout_layout_insetEdge 5
+int styleable CoordinatorLayout_Layout_layout_keyline 6
 int[] styleable DrawerArrowToggle { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable DrawerArrowToggle_arrowHeadLength 0
 int styleable DrawerArrowToggle_arrowShaftLength 1
