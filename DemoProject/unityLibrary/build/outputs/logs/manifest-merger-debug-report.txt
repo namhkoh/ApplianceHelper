@@ -1,303 +1,303 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:2:1-218:12
-INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:2:1-218:12
-INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:2:1-218:12
-INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:2:1-218:12
-INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:2:1-218:12
-INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:2:1-218:12
-INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:2:1-218:12
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:2:1-218:12
+INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:2:1-218:12
+INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:2:1-218:12
+INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:2:1-218:12
+INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:2:1-218:12
+INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:2:1-218:12
+INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:2:1-218:12
 	package
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:3:5-33
-		INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:3:5-33
+		INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml
+		INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:2:1-218:12
-		INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml
+		INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:2:1-218:12
+		INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml
 	android:versionCode
-		INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:2:1-218:12
-		INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml
+		INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:2:1-218:12
+		INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:2:11-69
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:2:11-69
 supports-screens
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:5:5-10:24
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:5:5-10:24
 	android:largeScreens
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:6:9-36
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:6:9-36
 	android:smallScreens
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:8:9-36
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:8:9-36
 	android:normalScreens
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:7:9-37
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:7:9-37
 	android:xlargeScreens
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:9:9-37
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:9:9-37
 application
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:12:5-187:19
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:12:5-187:19
 activity#com.unity3d.player.uiVariant6Oven
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:13:9-23:20
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:13:9-23:20
 	android:label
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:15:13-33
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:15:13-33
 	android:theme
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:16:13-57
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:16:13-57
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:14:13-43
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:14:13-43
 intent-filter#category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:17:13-22:29
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:17:13-22:29
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:21:17-77
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:21:17-77
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:21:27-74
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:21:27-74
 activity#com.unity3d.player.TaskInstructionActivity
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:24:9-34:20
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:24:9-34:20
 	android:label
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:26:13-33
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:26:13-33
 	android:theme
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:27:13-57
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:27:13-57
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:25:13-52
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:25:13-52
 activity#com.unity3d.player.UserSurveyActivity
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:35:9-45:20
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:35:9-45:20
 	android:label
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:37:13-35
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:37:13-35
 	android:theme
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:38:13-57
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:38:13-57
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:36:13-47
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:36:13-47
 activity#com.unity3d.player.UserConsentActivity
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:46:9-55:20
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:46:9-55:20
 	android:label
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:48:13-46
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:48:13-46
 	android:theme
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:49:13-57
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:49:13-57
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:47:13-48
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:47:13-48
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:50:13-54:29
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:50:13-54:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:51:17-69
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:51:17-69
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:51:25-66
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:51:25-66
 activity#com.unity3d.player.uiVariant6
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:56:9-67:20
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:56:9-67:20
 	android:parentActivityName
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:59:13-49
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:59:13-49
 	android:label
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:58:13-41
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:58:13-41
 	android:theme
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:60:13-57
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:60:13-57
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:57:13-39
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:57:13-39
 activity#com.unity3d.player.uiVariant3
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:68:9-79:20
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:68:9-79:20
 	android:parentActivityName
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:71:13-49
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:71:13-49
 	android:label
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:70:13-41
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:70:13-41
 	android:theme
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:72:13-57
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:72:13-57
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:69:13-39
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:69:13-39
 activity#com.unity3d.player.uiVariant2
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:80:9-91:20
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:80:9-91:20
 	android:parentActivityName
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:83:13-49
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:83:13-49
 	android:label
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:82:13-41
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:82:13-41
 	android:theme
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:84:13-57
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:84:13-57
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:81:13-39
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:81:13-39
 activity#com.unity3d.player.uiVariant1
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:92:9-103:20
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:92:9-103:20
 	android:parentActivityName
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:95:13-49
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:95:13-49
 	android:label
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:94:13-41
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:94:13-41
 	android:theme
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:96:13-57
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:96:13-57
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:93:13-39
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:93:13-39
 activity#com.unity3d.player.uiVariant4
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:104:9-126:20
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:104:9-126:20
 	android:screenOrientation
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:111:13-51
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:111:13-51
 	android:parentActivityName
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:110:13-49
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:110:13-49
 	android:label
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:108:13-46
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:108:13-46
 	android:launchMode
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:109:13-44
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:109:13-44
 	android:hardwareAccelerated
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:107:13-48
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:107:13-48
 	android:configChanges
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:106:13-194
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:106:13-194
 	android:theme
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:112:13-54
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:112:13-54
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:105:13-39
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:105:13-39
 meta-data#unityplayer.uiVariant4
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:120:13-122:40
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:120:13-122:40
 	android:value
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:122:17-37
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:122:17-37
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:121:17-54
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:121:17-54
 meta-data#android.notch_support
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:123:13-125:40
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:123:13-125:40
 	android:value
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:125:17-37
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:125:17-37
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:124:17-53
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:124:17-53
 activity#com.unity3d.player.StartScreen
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:127:9-138:20
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:127:9-138:20
 	android:parentActivityName
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:130:13-62
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:130:13-62
 	android:label
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:129:13-46
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:129:13-46
 	android:theme
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:131:13-57
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:131:13-57
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:128:13-40
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:128:13-40
 activity#com.unity3d.player.uiMenu
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:139:9-147:20
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:139:9-147:20
 	android:parentActivityName
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:142:13-54
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:142:13-54
 	android:label
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:141:13-46
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:141:13-46
 	android:theme
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:143:13-57
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:143:13-57
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:140:13-35
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:140:13-35
 activity#com.unity3d.player.UnityPlayerActivity
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:148:9-170:20
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:148:9-170:20
 	android:screenOrientation
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:155:13-51
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:155:13-51
 	android:parentActivityName
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:154:13-49
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:154:13-49
 	android:label
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:152:13-46
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:152:13-46
 	android:launchMode
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:153:13-44
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:153:13-44
 	android:hardwareAccelerated
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:151:13-48
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:151:13-48
 	android:configChanges
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:150:13-194
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:150:13-194
 	android:theme
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:156:13-54
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:156:13-54
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:149:13-48
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:149:13-48
 meta-data#unityplayer.UnityActivity
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:164:13-166:40
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:164:13-166:40
 	android:value
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:166:17-37
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:166:17-37
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:165:17-57
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:165:17-57
 meta-data#unity.splash-mode
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:172:9-174:33
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:172:9-174:33
 	android:value
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:174:13-30
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:174:13-30
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:173:13-45
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:173:13-45
 meta-data#unity.splash-enable
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:175:9-177:36
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:175:9-177:36
 	android:value
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:177:13-33
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:177:13-33
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:176:13-47
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:176:13-47
 meta-data#notch.config
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:178:9-180:50
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:178:9-180:50
 	android:value
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:180:13-47
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:180:13-47
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:179:13-40
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:179:13-40
 meta-data#unity.build-id
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:181:9-183:68
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:181:9-183:68
 	android:value
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:183:13-65
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:183:13-65
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:182:13-42
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:182:13-42
 meta-data#com.google.ar.core
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:184:9-186:40
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:184:9-186:40
 	android:value
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:186:13-37
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:186:13-37
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:185:13-46
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:185:13-46
 uses-feature#0x00030000
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:188:5-54
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:188:5-54
 	android:glEsVersion
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:188:19-51
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:188:19-51
 uses-feature#android.hardware.camera
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:189:5-191:36
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:189:5-191:36
 	android:required
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:191:9-33
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:191:9-33
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:190:9-47
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:190:9-47
 uses-feature#android.hardware.camera.autofocus
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:192:5-194:36
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:192:5-194:36
 	android:required
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:194:9-33
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:194:9-33
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:193:9-57
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:193:9-57
 uses-feature#android.hardware.camera.front
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:195:5-197:36
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:195:5-197:36
 	android:required
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:197:9-33
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:197:9-33
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:196:9-53
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:196:9-53
 uses-feature#android.hardware.microphone
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:198:5-200:36
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:198:5-200:36
 	android:required
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:200:9-33
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:200:9-33
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:199:9-51
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:199:9-51
 uses-feature#android.hardware.touchscreen
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:201:5-203:36
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:201:5-203:36
 	android:required
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:203:9-33
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:203:9-33
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:202:9-52
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:202:9-52
 uses-feature#android.hardware.touchscreen.multitouch
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:204:5-206:36
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:204:5-206:36
 	android:required
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:206:9-33
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:206:9-33
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:205:9-63
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:205:9-63
 uses-feature#android.hardware.touchscreen.multitouch.distinct
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:208:5-210:36
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:208:5-210:36
 	android:required
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:210:9-33
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:210:9-33
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:209:9-72
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:209:9-72
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:211:5-67
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:211:5-67
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:211:22-64
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:211:22-64
 uses-permission#android.permission.CAMERA
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:212:5-65
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:212:5-65
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:212:22-62
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:212:22-62
 uses-permission#android.permission.RECORD_AUDIO
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:213:5-71
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:213:5-71
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:213:22-68
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:213:22-68
 uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:214:5-80
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:214:5-80
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:214:22-77
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:214:22-77
 uses-permission#android.permission.BLUETOOTH
-ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:216:5-68
+ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:216:5-68
 	android:name
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml:216:22-65
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml:216:22-65
 uses-sdk
-INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml
-INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml
-INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml
-INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml
+INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml
+INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml
+INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml
+INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml
+		INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml
+		INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml
-		ADDED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\src\main\AndroidManifest.xml
+		INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml
+		ADDED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml
+		INJECTED from /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/src/main/AndroidManifest.xml
