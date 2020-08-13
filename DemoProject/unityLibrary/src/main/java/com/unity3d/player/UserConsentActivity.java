@@ -42,7 +42,8 @@ public class UserConsentActivity extends AppCompatActivity {
         String file_name = Utilities.assetFilePath(getApplicationContext(), model_file);
         Log.d("2",file_name);
 
-        NiluLibProcess.init(filePath,file_name);
+        // Commented due to error.
+        //NiluLibProcess.init(filePath,file_name);
 
         acceptConsent = findViewById(R.id.acceptConsent);
         acceptConsent.setOnClickListener(v -> {
