@@ -1,4 +1,4 @@
-package com.company;
+package com.aic.libnilu.nlu;
 
 public class StringNode implements PropertyNode{
 

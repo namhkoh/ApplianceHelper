@@ -8,407 +8,407 @@
 8
 9    <uses-sdk
 10        android:minSdkVersion="24"
-10-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml
+10-->C:\Users\l.kwon\ApplianceHelper\DemoProject\launcher\src\main\AndroidManifest.xml
 11        android:targetSdkVersion="29" />
-11-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml
+11-->C:\Users\l.kwon\ApplianceHelper\DemoProject\launcher\src\main\AndroidManifest.xml
 12
 13    <supports-screens
-13-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:4:3-163
+13-->C:\Users\l.kwon\ApplianceHelper\DemoProject\launcher\src\main\AndroidManifest.xml:4:3-163
 14        android:anyDensity="true"
-14-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:4:135-160
+14-->C:\Users\l.kwon\ApplianceHelper\DemoProject\launcher\src\main\AndroidManifest.xml:4:135-160
 15        android:largeScreens="true"
-15-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:4:78-105
+15-->C:\Users\l.kwon\ApplianceHelper\DemoProject\launcher\src\main\AndroidManifest.xml:4:78-105
 16        android:normalScreens="true"
-16-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:4:49-77
+16-->C:\Users\l.kwon\ApplianceHelper\DemoProject\launcher\src\main\AndroidManifest.xml:4:49-77
 17        android:smallScreens="true"
-17-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:4:21-48
+17-->C:\Users\l.kwon\ApplianceHelper\DemoProject\launcher\src\main\AndroidManifest.xml:4:21-48
 18        android:xlargeScreens="true" />
-18-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:4:106-134
+18-->C:\Users\l.kwon\ApplianceHelper\DemoProject\launcher\src\main\AndroidManifest.xml:4:106-134
 19
 20    <uses-feature android:glEsVersion="0x00030000" />
-20-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:5-54
-20-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:19-51
+20-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:5-54
+20-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:19-51
 21    <uses-feature
-21-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:5-21:36
+21-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:5-21:36
 22        android:name="android.hardware.camera"
-22-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:20:9-47
+22-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:9-47
 23        android:required="true" />
-23-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:21:9-33
+23-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:9-33
 24    <uses-feature
-24-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:22:5-24:36
+24-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:5-24:36
 25        android:name="android.hardware.camera.autofocus"
-25-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:23:9-57
+25-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:23:9-57
 26        android:required="false" />
-26-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:24:9-33
+26-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:24:9-33
 27    <uses-feature
-27-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:5-27:36
+27-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:25:5-27:36
 28        android:name="android.hardware.camera.front"
-28-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:9-53
+28-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:26:9-53
 29        android:required="false" />
-29-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:9-33
+29-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:27:9-33
 30    <uses-feature
-30-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:28:5-30:36
+30-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:28:5-30:36
 31        android:name="android.hardware.microphone"
-31-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:29:9-51
+31-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:29:9-51
 32        android:required="false" />
-32-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:30:9-33
+32-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:30:9-33
 33    <uses-feature
-33-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:31:5-33:36
+33-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:31:5-33:36
 34        android:name="android.hardware.touchscreen"
-34-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:32:9-52
+34-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:32:9-52
 35        android:required="false" />
-35-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:33:9-33
+35-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:33:9-33
 36    <uses-feature
-36-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:34:5-36:36
+36-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:34:5-36:36
 37        android:name="android.hardware.touchscreen.multitouch"
-37-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:35:9-63
+37-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:35:9-63
 38        android:required="false" />
-38-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:36:9-33
+38-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:36:9-33
 39    <uses-feature
-39-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:37:5-39:36
+39-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:37:5-39:36
 40        android:name="android.hardware.touchscreen.multitouch.distinct"
-40-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:38:9-72
+40-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:38:9-72
 41        android:required="false" />
-41-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:39:9-33
+41-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:39:9-33
 42
 43    <uses-permission android:name="android.permission.INTERNET" />
-43-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:41:5-67
-43-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:41:22-64
+43-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:41:5-67
+43-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:41:22-64
 44    <uses-permission android:name="android.permission.CAMERA" />
-44-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:42:5-65
-44-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:42:22-62
+44-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:42:5-65
+44-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:42:22-62
 45    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-45-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:43:5-71
-45-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:43:22-68
+45-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:43:5-71
+45-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:43:22-68
 46    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-46-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:44:5-80
-46-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:44:22-77
+46-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:44:5-80
+46-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:44:22-77
 47    <uses-permission android:name="android.permission.BLUETOOTH" />
-47-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:45:5-68
-47-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:45:22-65
+47-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:45:5-68
+47-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:45:22-65
 48    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-48-->[:VuforiaWrapper:] /Users/lucaskoh/.gradle/caches/transforms-2/files-2.1/18867f9859ef11376ee16f70f6a485ee/jetified-VuforiaWrapper/AndroidManifest.xml:11:5-79
-48-->[:VuforiaWrapper:] /Users/lucaskoh/.gradle/caches/transforms-2/files-2.1/18867f9859ef11376ee16f70f6a485ee/jetified-VuforiaWrapper/AndroidManifest.xml:11:22-76
+48-->[:VuforiaWrapper:] C:\Users\l.kwon\.gradle\caches\transforms-2\files-2.1\18867f9859ef11376ee16f70f6a485ee\jetified-VuforiaWrapper\AndroidManifest.xml:11:5-79
+48-->[:VuforiaWrapper:] C:\Users\l.kwon\.gradle\caches\transforms-2\files-2.1\18867f9859ef11376ee16f70f6a485ee\jetified-VuforiaWrapper\AndroidManifest.xml:11:22-76
 49    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-49-->[:VuforiaWrapper:] /Users/lucaskoh/.gradle/caches/transforms-2/files-2.1/18867f9859ef11376ee16f70f6a485ee/jetified-VuforiaWrapper/AndroidManifest.xml:12:5-81
-49-->[:VuforiaWrapper:] /Users/lucaskoh/.gradle/caches/transforms-2/files-2.1/18867f9859ef11376ee16f70f6a485ee/jetified-VuforiaWrapper/AndroidManifest.xml:12:22-78
+49-->[:VuforiaWrapper:] C:\Users\l.kwon\.gradle\caches\transforms-2\files-2.1\18867f9859ef11376ee16f70f6a485ee\jetified-VuforiaWrapper\AndroidManifest.xml:12:5-81
+49-->[:VuforiaWrapper:] C:\Users\l.kwon\.gradle\caches\transforms-2\files-2.1\18867f9859ef11376ee16f70f6a485ee\jetified-VuforiaWrapper\AndroidManifest.xml:12:22-78
 50    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 51    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 52
 53    <application
-53-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:5:3-86
+53-->C:\Users\l.kwon\ApplianceHelper\DemoProject\launcher\src\main\AndroidManifest.xml:5:3-86
 54        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-54-->[androidx.core:core:1.1.0] /Users/lucaskoh/.gradle/caches/transforms-2/files-2.1/76f2b6439d16df60df3177021482ee5a/core-1.1.0/AndroidManifest.xml:24:18-86
+54-->[androidx.core:core:1.1.0] C:\Users\l.kwon\.gradle\caches\transforms-2\files-2.1\76f2b6439d16df60df3177021482ee5a\core-1.1.0\AndroidManifest.xml:24:18-86
 55        android:debuggable="true"
 56        android:extractNativeLibs="false"
 57        android:icon="@mipmap/sample_icon"
-57-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:5:49-83
+57-->C:\Users\l.kwon\ApplianceHelper\DemoProject\launcher\src\main\AndroidManifest.xml:5:49-83
 58        android:label="@string/app_name"
-58-->/Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/launcher/src/main/AndroidManifest.xml:5:16-48
+58-->C:\Users\l.kwon\ApplianceHelper\DemoProject\launcher\src\main\AndroidManifest.xml:5:16-48
 59        android:testOnly="true" >
 60        <activity
-60-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:48:9-58:20
+60-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:48:9-58:20
 61            android:name="com.unity3d.player.uiVariant6Oven"
-61-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:49:13-61
+61-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:49:13-61
 62            android:label="Oven"
-62-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:50:13-33
+62-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:50:13-33
 63            android:theme="@style/Theme.AppCompat.Light" >
-63-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:51:13-57
+63-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:51:13-57
 64            <intent-filter>
-64-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:52:13-57:29
+64-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:52:13-57:29
 65
 66                <!-- <action android:name="android.intent.action.MAIN" /> -->
 67
 68                <category android:name="android.intent.category.LAUNCHER" />
-68-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:17-77
-68-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:27-74
+68-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:17-77
+68-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:27-74
 69            </intent-filter>
 70        </activity>
 71        <activity
-71-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:59:9-69:20
+71-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:59:9-69:20
 72            android:name="com.unity3d.player.TaskInstructionActivity"
-72-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:60:13-70
+72-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:60:13-70
 73            android:label="Task"
-73-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:61:13-33
+73-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:61:13-33
 74            android:theme="@style/Theme.AppCompat.Light" >
-74-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:62:13-57
+74-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:62:13-57
 75            <intent-filter>
-75-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:52:13-57:29
+75-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:52:13-57:29
 76
 77                <!-- <action android:name="android.intent.action.MAIN" /> -->
 78
 79                <category android:name="android.intent.category.LAUNCHER" />
-79-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:17-77
-79-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:27-74
+79-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:17-77
+79-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:27-74
 80            </intent-filter>
 81        </activity>
 82        <activity
-82-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:70:9-80:20
+82-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:70:9-80:20
 83            android:name="com.unity3d.player.UserSurveyActivity"
-83-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:71:13-65
+83-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:71:13-65
 84            android:label="Survey"
-84-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:72:13-35
+84-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:72:13-35
 85            android:theme="@style/Theme.AppCompat.Light" >
-85-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:73:13-57
+85-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:73:13-57
 86            <intent-filter>
-86-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:52:13-57:29
+86-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:52:13-57:29
 87
 88                <!-- <action android:name="android.intent.action.MAIN" /> -->
 89
 90                <category android:name="android.intent.category.LAUNCHER" />
-90-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:17-77
-90-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:27-74
+90-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:17-77
+90-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:27-74
 91            </intent-filter>
 92        </activity>
 93        <activity
-93-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:81:9-90:20
+93-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:81:9-90:20
 94            android:name="com.unity3d.player.UserConsentActivity"
-94-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:82:13-66
+94-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:82:13-66
 95            android:label="@string/app_title"
-95-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:83:13-46
+95-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:83:13-46
 96            android:theme="@style/Theme.AppCompat.Light" >
-96-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:84:13-57
+96-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:84:13-57
 97            <intent-filter>
-97-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:85:13-89:29
+97-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:85:13-89:29
 98                <action android:name="android.intent.action.MAIN" />
-98-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:86:17-69
-98-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:86:25-66
+98-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:86:17-69
+98-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:86:25-66
 99
 100                <category android:name="android.intent.category.LAUNCHER" />
-100-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:17-77
-100-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:27-74
+100-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:17-77
+100-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:27-74
 101            </intent-filter>
 102        </activity>
 103        <activity
-103-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:91:9-102:20
+103-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:91:9-102:20
 104            android:name="com.unity3d.player.uiVariant6"
-104-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:92:13-57
+104-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:92:13-57
 105            android:label="UI Variant 6"
-105-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:93:13-41
+105-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:93:13-41
 106            android:parentActivityName="com.unity3d.player.uiMenu"
-106-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:94:13-67
+106-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:94:13-67
 107            android:theme="@style/Theme.AppCompat.Light" >
-107-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:95:13-57
+107-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:95:13-57
 108            <intent-filter>
-108-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:52:13-57:29
+108-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:52:13-57:29
 109
 110                <!-- <action android:name="android.intent.action.MAIN" /> -->
 111
 112                <category android:name="android.intent.category.LAUNCHER" />
-112-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:17-77
-112-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:27-74
+112-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:17-77
+112-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:27-74
 113            </intent-filter>
 114        </activity>
 115        <activity
-115-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:103:9-114:20
+115-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:103:9-114:20
 116            android:name="com.unity3d.player.uiVariant3"
-116-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:104:13-57
+116-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:104:13-57
 117            android:label="UI Variant 3"
-117-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:105:13-41
+117-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:105:13-41
 118            android:parentActivityName="com.unity3d.player.uiMenu"
-118-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:106:13-67
+118-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:106:13-67
 119            android:theme="@style/Theme.AppCompat.Light" >
-119-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:107:13-57
+119-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:107:13-57
 120            <intent-filter>
-120-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:52:13-57:29
+120-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:52:13-57:29
 121
 122                <!-- <action android:name="android.intent.action.MAIN" /> -->
 123
 124                <category android:name="android.intent.category.LAUNCHER" />
-124-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:17-77
-124-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:27-74
+124-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:17-77
+124-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:27-74
 125            </intent-filter>
 126        </activity>
 127        <activity
-127-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:115:9-126:20
+127-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:115:9-126:20
 128            android:name="com.unity3d.player.uiVariant2"
-128-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:116:13-57
+128-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:116:13-57
 129            android:label="UI Variant 2"
-129-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:117:13-41
+129-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:117:13-41
 130            android:parentActivityName="com.unity3d.player.uiMenu"
-130-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:118:13-67
+130-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:118:13-67
 131            android:theme="@style/Theme.AppCompat.Light" >
-131-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:119:13-57
+131-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:119:13-57
 132            <intent-filter>
-132-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:52:13-57:29
+132-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:52:13-57:29
 133
 134                <!-- <action android:name="android.intent.action.MAIN" /> -->
 135
 136                <category android:name="android.intent.category.LAUNCHER" />
-136-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:17-77
-136-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:27-74
+136-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:17-77
+136-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:27-74
 137            </intent-filter>
 138        </activity>
 139        <activity
-139-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:127:9-138:20
+139-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:127:9-138:20
 140            android:name="com.unity3d.player.uiVariant1"
-140-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:128:13-57
+140-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:128:13-57
 141            android:label="UI Variant 1"
-141-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:129:13-41
+141-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:129:13-41
 142            android:parentActivityName="com.unity3d.player.uiMenu"
-142-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:130:13-67
+142-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:130:13-67
 143            android:theme="@style/Theme.AppCompat.Light" >
-143-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:131:13-57
+143-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:131:13-57
 144            <intent-filter>
-144-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:52:13-57:29
+144-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:52:13-57:29
 145
 146                <!-- <action android:name="android.intent.action.MAIN" /> -->
 147
 148                <category android:name="android.intent.category.LAUNCHER" />
-148-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:17-77
-148-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:27-74
+148-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:17-77
+148-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:27-74
 149            </intent-filter>
 150        </activity>
 151        <activity
-151-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:139:9-161:20
+151-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:139:9-161:20
 152            android:name="com.unity3d.player.uiVariant4"
-152-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:140:13-57
+152-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:140:13-57
 153            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
-153-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:141:13-194
+153-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:141:13-194
 154            android:hardwareAccelerated="false"
-154-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:142:13-48
+154-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:142:13-48
 155            android:label="@string/app_title"
-155-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:143:13-46
+155-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:143:13-46
 156            android:launchMode="singleTask"
-156-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:144:13-44
+156-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:144:13-44
 157            android:parentActivityName="com.unity3d.player.uiMenu"
-157-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:145:13-67
+157-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:145:13-67
 158            android:screenOrientation="fullSensor"
-158-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:146:13-51
+158-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:146:13-51
 159            android:theme="@style/UnityThemeSelector" >
-159-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:147:13-54
+159-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:147:13-54
 160            <intent-filter>
-160-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:52:13-57:29
+160-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:52:13-57:29
 161
 162                <!-- <action android:name="android.intent.action.MAIN" /> -->
 163
 164                <category android:name="android.intent.category.LAUNCHER" />
-164-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:17-77
-164-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:27-74
+164-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:17-77
+164-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:27-74
 165            </intent-filter>
 166
 167            <meta-data
-167-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:155:13-157:40
+167-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:155:13-157:40
 168                android:name="unityplayer.uiVariant4"
-168-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:156:17-54
+168-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:156:17-54
 169                android:value="true" />
-169-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:157:17-37
+169-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:157:17-37
 170            <meta-data
-170-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:158:13-160:40
+170-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:158:13-160:40
 171                android:name="android.notch_support"
-171-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:159:17-53
+171-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:159:17-53
 172                android:value="true" />
-172-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:160:17-37
+172-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:160:17-37
 173        </activity>
 174        <activity
-174-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:162:9-173:20
+174-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:162:9-173:20
 175            android:name="com.unity3d.player.StartScreen"
-175-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:163:13-58
+175-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:163:13-58
 176            android:label="@string/app_title"
-176-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:164:13-46
+176-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:164:13-46
 177            android:parentActivityName="com.unity3d.player.UserConsentActivity"
-177-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:165:13-80
+177-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:165:13-80
 178            android:theme="@style/Theme.AppCompat.Light" >
-178-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:166:13-57
+178-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:166:13-57
 179            <intent-filter>
-179-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:52:13-57:29
+179-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:52:13-57:29
 180
 181                <!-- <action android:name="android.intent.action.MAIN" /> -->
 182
 183                <category android:name="android.intent.category.LAUNCHER" />
-183-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:17-77
-183-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:27-74
+183-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:17-77
+183-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:27-74
 184            </intent-filter>
 185        </activity>
 186        <activity
-186-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:174:9-182:20
+186-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:174:9-182:20
 187            android:name="com.unity3d.player.uiMenu"
-187-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:175:13-53
+187-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:175:13-53
 188            android:label="@string/app_title"
-188-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:176:13-46
+188-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:176:13-46
 189            android:parentActivityName="com.unity3d.player.StartScreen"
-189-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:177:13-72
+189-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:177:13-72
 190            android:theme="@style/Theme.AppCompat.Light" >
-190-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:178:13-57
+190-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:178:13-57
 191            <intent-filter>
-191-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:52:13-57:29
+191-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:52:13-57:29
 192                <category android:name="android.intent.category.LAUNCHER" />
-192-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:17-77
-192-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:27-74
+192-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:17-77
+192-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:27-74
 193            </intent-filter>
 194        </activity>
 195        <activity
-195-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:183:9-205:20
+195-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:183:9-205:20
 196            android:name="com.unity3d.player.UnityPlayerActivity"
-196-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:184:13-66
+196-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:184:13-66
 197            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
-197-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:185:13-194
+197-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:185:13-194
 198            android:hardwareAccelerated="false"
-198-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:186:13-48
+198-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:186:13-48
 199            android:label="@string/app_title"
-199-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:187:13-46
+199-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:187:13-46
 200            android:launchMode="singleTask"
-200-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:188:13-44
+200-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:188:13-44
 201            android:parentActivityName="com.unity3d.player.uiMenu"
-201-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:189:13-67
+201-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:189:13-67
 202            android:screenOrientation="fullSensor"
-202-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:190:13-51
+202-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:190:13-51
 203            android:theme="@style/UnityThemeSelector" >
-203-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:191:13-54
+203-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:191:13-54
 204            <intent-filter>
-204-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:52:13-57:29
+204-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:52:13-57:29
 205
 206                <!-- <action android:name="android.intent.action.MAIN" /> -->
 207
 208                <category android:name="android.intent.category.LAUNCHER" />
-208-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:17-77
-208-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:27-74
+208-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:17-77
+208-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:27-74
 209            </intent-filter>
 210
 211            <meta-data
-211-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:199:13-201:40
+211-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:199:13-201:40
 212                android:name="unityplayer.UnityActivity"
-212-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:200:17-57
+212-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:200:17-57
 213                android:value="true" />
-213-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:201:17-37
+213-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:201:17-37
 214            <meta-data
-214-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:158:13-160:40
+214-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:158:13-160:40
 215                android:name="android.notch_support"
-215-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:159:17-53
+215-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:159:17-53
 216                android:value="true" />
-216-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:160:17-37
+216-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:160:17-37
 217        </activity>
 218
 219        <meta-data
-219-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:207:9-209:33
+219-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:207:9-209:33
 220            android:name="unity.splash-mode"
-220-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:208:13-45
+220-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:208:13-45
 221            android:value="0" />
-221-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:209:13-30
+221-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:209:13-30
 222        <meta-data
-222-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:210:9-212:36
+222-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:210:9-212:36
 223            android:name="unity.splash-enable"
-223-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:211:13-47
+223-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:211:13-47
 224            android:value="True" />
-224-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:212:13-33
+224-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:212:13-33
 225        <meta-data
-225-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:213:9-215:50
+225-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:213:9-215:50
 226            android:name="notch.config"
-226-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:214:13-40
+226-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:214:13-40
 227            android:value="portrait|landscape" />
-227-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:215:13-47
+227-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:215:13-47
 228        <meta-data
-228-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:216:9-218:68
+228-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:216:9-218:68
 229            android:name="unity.build-id"
-229-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:217:13-42
+229-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:217:13-42
 230            android:value="73f6a8b2-f392-40cd-9d87-54c652241962" />
-230-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:218:13-65
+230-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:218:13-65
 231        <meta-data
-231-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:219:9-221:40
+231-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:219:9-221:40
 232            android:name="com.google.ar.core"
-232-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:220:13-46
+232-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:220:13-46
 233            android:value="optional" />
-233-->[:unityLibrary] /Users/lucaskoh/Documents/GitHub/ApplianceHelper/DemoProject/unityLibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:221:13-37
+233-->[:unityLibrary] C:\Users\l.kwon\ApplianceHelper\DemoProject\unityLibrary\build\intermediates\library_manifest\debug\AndroidManifest.xml:221:13-37
 234    </application>
 235
 236</manifest>

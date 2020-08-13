@@ -1,4 +1,8 @@
-package com.company;
+package com.aic.libnilu.nlu;
+
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.List;
 
@@ -24,7 +28,8 @@ public class MainManager {
      * @param filename The file that has all the data stored.
      * @return A response object containing information about the solution.
      */
-    public static ResponseObject getAnswer(String question, String filename) throws Exception {
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static ResponseObject getAnswer(String question, String filename) {
 
         try {
             knowledge = new KnowledgeBase();

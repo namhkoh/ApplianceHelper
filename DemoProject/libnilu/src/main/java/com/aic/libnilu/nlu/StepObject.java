@@ -1,4 +1,4 @@
-package com.company;
+package com.aic.libnilu.nlu;
 
 /**
  * The class that represents a single step of the solution.

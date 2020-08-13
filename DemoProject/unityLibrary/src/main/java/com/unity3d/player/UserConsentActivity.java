@@ -19,6 +19,8 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
+import com.aic.libnilu.*;
+
 public class UserConsentActivity extends AppCompatActivity {
 
     private String testId;
@@ -30,6 +32,17 @@ public class UserConsentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_consent);
         testIDInput = findViewById(R.id.InputTestID);
+
+        Log.d("Start","Hello");
+        String assetName = "video_demo_data.txt";
+        String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
+        Log.d("1",filePath);
+
+        String model_file = "model_tiny_default_1d_assert_15.pt";
+        String file_name = Utilities.assetFilePath(getApplicationContext(), model_file);
+        Log.d("2",file_name);
+
+        NiluLibProcess.init(filePath,file_name);
 
         acceptConsent = findViewById(R.id.acceptConsent);
         acceptConsent.setOnClickListener(v -> {

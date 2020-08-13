@@ -1,4 +1,4 @@
-package com.company;
+package com.aic.libnilu.nlu;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

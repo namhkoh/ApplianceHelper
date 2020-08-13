@@ -18,6 +18,10 @@ allprojects {
         jcenter()
         flatDir {
             dirs "${project(':unityLibrary').projectDir}/libs"
+            dirs "${project(':libnilu').projectDir}/libs"
+        }
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
         }
     }
 }

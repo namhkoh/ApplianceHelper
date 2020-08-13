@@ -1,4 +1,8 @@
-package com.company;
+package com.aic.libnilu.nlu;
+
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +23,7 @@ public class NLU {
      * @param question The question that was given as input.
      * @return The value of the slot
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static String getAppliance(KnowledgeBase knowledge, String question) throws Exception {
         String appliance = "Appliance not found";
         try {
@@ -36,6 +41,7 @@ public class NLU {
      * @param question The question that was given as input.
      * @return The value of the intent
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static String getIntent(KnowledgeBase knowledge, String question) throws Exception {
         String intent;
         try {
@@ -53,6 +59,7 @@ public class NLU {
      * @param question The question that was given as input.
      * @return The value of the slot
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static List<String> getSlot(KnowledgeBase knowledge, String question) throws Exception{
         List<String> slot;
         try {
@@ -70,6 +77,7 @@ public class NLU {
      * @param question The question that was given as input.
      * @return The value of the slot
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static List<String> getSlotName(KnowledgeBase knowledge, String question) throws Exception {
         List<String> slot_name;
         try {
