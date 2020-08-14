@@ -46,22 +46,37 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     startActivity(intent1);
                     break;
                 case "uiVariant2":
+                    Log.e("taskInstruction", String.valueOf(index));
+                    TaskInstructionActivity.indexBundle.putInt("index", index);
+                    index++;
                     Intent intent2 = new Intent(getApplicationContext(), uiVariant2.class);
                     startActivity(intent2);
                     break;
                 case "uiVariant3":
+                    Log.e("taskInstruction", String.valueOf(index));
+                    TaskInstructionActivity.indexBundle.putInt("index", index);
+                    index++;
                     Intent intent3 = new Intent(getApplicationContext(), uiVariant3.class);
                     startActivity(intent3);
                     break;
                 case "uiVariant4":
+                    Log.e("taskInstruction", String.valueOf(index));
+                    TaskInstructionActivity.indexBundle.putInt("index", index);
+                    index++;
                     Intent intent4 = new Intent(getApplicationContext(), uiVariant4.class);
                     startActivity(intent4);
                     break;
                 case "UnityPlayerActivity":
+                    Log.e("taskInstruction", String.valueOf(index));
+                    TaskInstructionActivity.indexBundle.putInt("index", index);
+                    index++;
                     Intent intent5 = new Intent(getApplicationContext(), UnityPlayerActivity.class);
                     startActivity(intent5);
                     break;
                 case "uiVariant6":
+                    Log.e("taskInstruction", String.valueOf(index));
+                    TaskInstructionActivity.indexBundle.putInt("index", index);
+                    index++;
                     Intent intent6 = new Intent(getApplicationContext(), uiVariant6.class);
                     startActivity(intent6);
                     break;
