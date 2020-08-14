@@ -7,25 +7,46 @@
     android:layout_height="match_parent"
     tools:context=".uiVariant6Oven" >
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/placeholder"
-        android:textColor="#000000"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="306dp"
-        android:layout_marginTop="662dp"
+        android:layout_marginStart="312dp"
+        android:layout_marginTop="20dp"
         android:text="@string/nextActivity"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/oven_panel_3" />
+
+    <ImageView
+        android:id="@+id/oven_panel_1"
+        android:layout_width="417dp"
+        android:layout_height="210dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:contentDescription="@string/placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/oven_panel_1" />
+
+    <ImageView
+        android:id="@+id/oven_panel_2"
+        android:layout_width="407dp"
+        android:layout_height="233dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:contentDescription="@string/placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oven_panel_1"
+        app:srcCompat="@drawable/oven_panel_2" />
+
+    <ImageView
+        android:id="@+id/oven_panel_3"
+        android:layout_width="419dp"
+        android:layout_height="189dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:contentDescription="@string/placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oven_panel_2"
+        app:srcCompat="@drawable/oven_panel_3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
