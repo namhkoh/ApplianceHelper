@@ -38,7 +38,7 @@ public class UserConsentActivity extends AppCompatActivity {
         String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
         Log.d("1",filePath);
 
-        String model_file = "model_tiny_default_1d_assert_15.pt";
+        String model_file = "model_tiny_ascii.pt";
         String file_name = Utilities.assetFilePath(getApplicationContext(), model_file);
         Log.d("2",file_name);
 

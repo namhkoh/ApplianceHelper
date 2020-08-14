@@ -18,6 +18,7 @@ import org.pytorch.Module;
 import org.pytorch.Tensor;
 
 import java.lang.ref.WeakReference;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -202,33 +203,46 @@ public class InferenceTask implements Callable<InferenceTask.InferenceResult> {
     {
         // for (int i=0;i<20;i++) {
         Map<String,IValue> data_map = new HashMap<String, IValue>();
-        long[] tokens = {101,  2097,  1045,  2022,  2583,  2000,  2224, 17767,  1999,  1996, 17428,   102};
-        long[] segments = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        long[] selects = {1,  2,  3,  4,  5,  6,  7,  8,  9, 10};
-        long[]  copies = {0, 1,  2,  3,  4,  5,  6,  7,  8,  9};
-        long[]  masks = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-        long[]  lengths = {10};
+//        long[] tokens = {101,  2097,  1045,  2022,  2583,  2000,  2224, 17767,  1999,  1996, 17428,   102};
+//        long[] segments = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+//        long[] selects = {1,  2,  3,  4,  5,  6,  7,  8,  9, 10};
+//        long[]  copies = {0, 1,  2,  3,  4,  5,  6,  7,  8,  9};
+//        long[]  masks = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+//        long[]  lengths = {10};
+//
+//        final long[] shape = new long[]{1, 12};
+//        final long[] shape_10 = new long[]{1, 10};
+//        final long[] shape_1 = new long[]{1, 1};
+//        final Tensor tokens_inputTensor = Tensor.fromBlob(tokens, shape);
+//        final Tensor segments_inputTensor = Tensor.fromBlob(segments, shape);
+//        final Tensor selects_inputTensor = Tensor.fromBlob(selects, shape_10);
+//        final Tensor copies_inputTensor = Tensor.fromBlob(copies, shape_10);
+//        final Tensor masks_inputTensor = Tensor.fromBlob(masks, shape);
+//        final Tensor lengths_inputTensor = Tensor.fromBlob(lengths, shape_1);
+//
+//        data_map.put("tokens",IValue.from(tokens_inputTensor));
+//        data_map.put("segments",IValue.from(segments_inputTensor));
+//        data_map.put("selects", IValue.from(selects_inputTensor));
+//        data_map.put("copies",IValue.from(copies_inputTensor));
+//        data_map.put("masks",IValue.from(masks_inputTensor));
+//        data_map.put("lengths",IValue.from(lengths_inputTensor));
 
-        final long[] shape = new long[]{1, 12};
-        final long[] shape_10 = new long[]{1, 10};
-        final long[] shape_1 = new long[]{1, 1};
-        final Tensor tokens_inputTensor = Tensor.fromBlob(tokens, shape);
-        final Tensor segments_inputTensor = Tensor.fromBlob(segments, shape);
-        final Tensor selects_inputTensor = Tensor.fromBlob(selects, shape_10);
-        final Tensor copies_inputTensor = Tensor.fromBlob(copies, shape_10);
-        final Tensor masks_inputTensor = Tensor.fromBlob(masks, shape);
-        final Tensor lengths_inputTensor = Tensor.fromBlob(lengths, shape_1);
+        byte[] ascii = "will i be able to use porcelain in the oven".getBytes(StandardCharsets.US_ASCII);
+        System.out.println("ascii"+ascii);
+        int[] data = new int[ascii.length];
+        for(int i = 0; i < ascii.length; i++){
+            data[i] = (int)ascii[i];
+        }
 
-        data_map.put("tokens",IValue.from(tokens_inputTensor));
-        data_map.put("segments",IValue.from(segments_inputTensor));
-        data_map.put("selects", IValue.from(selects_inputTensor));
-        data_map.put("copies",IValue.from(copies_inputTensor));
-        data_map.put("masks",IValue.from(masks_inputTensor));
-        data_map.put("lengths",IValue.from(lengths_inputTensor));
+        System.out.println(Arrays.toString(data));
 
-        final IValue[] outputs = mModule.forward(IValue.dictStringKeyFrom(data_map)).toTuple();
+        final long[] shape = new long[]{1, data.length};
+        final Tensor inputTensor = Tensor.fromBlob(data, shape);
 
-        return null;
+        final IValue[] outputs = mModule.forward(IValue.from(inputTensor)).toTuple();
+
+        System.out.println("outputs"+outputs);
+
 
 //        if (mModule == null)
 //            mModule = load();
@@ -236,19 +250,69 @@ public class InferenceTask implements Callable<InferenceTask.InferenceResult> {
 //        final Tensor inputTensor = Tensor.fromBlob(data, shape);
 //        final IValue[] outputs = mModule.forward(IValue.from(inputTensor)).toTuple();
 //        float[] scores = new float[outputs.length];
-//        if(outputs.length>1) {
-//            for (IValue output : outputs
-//            ) {
-//                final Tensor oTensor = output.toTensor();
-//                scores = oTensor.getDataAsFloatArray();
+        float[] scores = new float[outputs.length];
+        if(outputs.length>1) {
+            Boolean class_predict;
+            int p = 0;
+            for (IValue output : outputs
+            ) {
+                final Tensor oTensor = output.toTensor();
+                p++;
+                scores = oTensor.getDataAsFloatArray();
+                System.out.println("Scores"+scores);
+                System.out.println(scores.length);
+                int maxAt = 0;
+                for(int i=0; i < scores.length; i++){
+                    System.out.print(scores[i] + " ");
+                }
+                System.out.println();
+                if(p == 1){
+                    int[] max_slot = {0,0,0,0,0,0,0,0,0,0};
+                    float[][] slot_2d = new float[10][24];
+                    for(int i=0; i < scores.length; i++){
+                        slot_2d[i / 24][i % 24] = scores[i];
+                    }
+                    System.out.println("------");
+                    for(int i = 0; i<10; i++)
+                    {
+                        for(int j = 0; j<24; j++)
+                        {
+                            System.out.print(slot_2d[i][j]);
+                            max_slot[i] = slot_2d[i][j] > slot_2d[i][max_slot[i]] ? j : max_slot[i];
+                        }
+                        System.out.println();
+                    }
+                    System.out.println(Arrays.toString(max_slot));
+                }
+
+                if(p == 2){
+                    for(int i=0; i < scores.length; i++){
+                        maxAt = scores[i] > scores[maxAt] ? i : maxAt;
+                    }
+                }
+                System.out.print("Max Index: "+maxAt);
+                System.out.println();
+            }
+        }
+        else
+        {
+            final Tensor oTensor = outputs[0].toTensor();
+            scores = oTensor.getDataAsFloatArray();
+            System.out.println("Scores:"+scores);
+        }
+//        return scores;
+
+//        for(int i = 0; i < scores.length; i++){
+////            System.out.println(scores);
+//            System.out.println(scores[0]);
+////            System.out.println(scores.getClass());
+//            for(int j = 0; j < scores; j++){
+//                System.out.println(scores.length);
+//                System.out.println(scores[j]);
 //            }
 //        }
-//        else
-//        {
-//            final Tensor oTensor = outputs[0].toTensor();
-//            scores = oTensor.getDataAsFloatArray();
-//        }
-//        return scores;
+
+        return null;
     }
 
     private synchronized Module load(String load)
