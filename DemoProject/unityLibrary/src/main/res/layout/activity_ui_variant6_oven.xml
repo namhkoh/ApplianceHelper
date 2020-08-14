@@ -72,90 +72,100 @@
 
     <Button
         android:id="@+id/oven_1"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:text="@string/oven_button"
         app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
         app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
 
     <Button
         android:id="@+id/oven_2"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="28dp"
         android:text="@string/oven_button"
         app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
         app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
 
     <Button
         android:id="@+id/oven_3"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="28dp"
         android:text="@string/oven_button"
         app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
         app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
 
     <Button
         android:id="@+id/oven_4"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="72dp"
         android:text="@string/oven_button"
         app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
         app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
 
     <Button
         android:id="@+id/oven_5"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="76dp"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="72dp"
         android:text="@string/oven_button"
         app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
         app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
 
     <Button
         android:id="@+id/oven_6"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="76dp"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="72dp"
         android:text="@string/oven_button"
         app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
         app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
 
     <Button
         android:id="@+id/oven_7"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="116dp"
         android:text="@string/oven_button"
         app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
         app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
 
     <Button
         android:id="@+id/oven_8"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="128dp"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="116dp"
         android:text="@string/oven_button"
         app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
         app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
 
     <Button
         android:id="@+id/oven_9"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="128dp"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="116dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
+
+    <Button
+        android:id="@+id/oven_0"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="160dp"
         android:text="@string/oven_button"
         app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
         app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
