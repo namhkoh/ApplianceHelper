@@ -51,6 +51,7 @@
     <string name="nameField">Please enter your name in the field below</string>
     <string name="nextActivity">Next</string>
     <string name="nps_text">How likely is it that you would recommend our appliance helper to a friend or colleague?</string>
+    <string name="placeholder">OVEN PANEL</string>
     <string name="speech_handler">speechHandler</string>
     <string name="submitButton">Submit</string>
     <string name="testIdField">Please enter testID in the field below</string>
