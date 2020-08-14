@@ -77,4 +77,6 @@
 
     <string name="final_feedback_title">(Optional) Please enter any additional feedback.</string>
     <string name="final_feedback">Enter feedback</string>
+
+    <string name="placeholder">OVEN PANEL</string>
 </resources>
