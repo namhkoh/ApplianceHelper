@@ -61,10 +61,10 @@
         app:srcCompat="@drawable/oven_panel_3" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/oven_cooktime"
         android:layout_width="65dp"
         android:layout_height="47dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="188dp"
         android:text="@string/oven_button"
         app:layout_constraintLeft_toLeftOf="@id/oven_panel_2"
