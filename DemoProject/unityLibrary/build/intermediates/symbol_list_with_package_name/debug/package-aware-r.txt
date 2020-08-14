@@ -717,6 +717,9 @@ drawable oven_3_button
 drawable oven_cancel_button
 drawable oven_cooktime_button
 drawable oven_frozen_button
+drawable oven_panel_1
+drawable oven_panel_2
+drawable oven_panel_3
 drawable oven_start_button
 drawable round_active
 drawable round_default
@@ -865,6 +868,7 @@ id microwave_start
 id microwave_timer
 id multiply
 id net_promoter_score
+id next
 id nextActivity
 id none
 id normal
@@ -1118,6 +1122,7 @@ string microwave_timer
 string nameField
 string nextActivity
 string nps_text
+string placeholder
 string search_menu_title
 string speech_handler
 string status_bar_notification_info_overflow

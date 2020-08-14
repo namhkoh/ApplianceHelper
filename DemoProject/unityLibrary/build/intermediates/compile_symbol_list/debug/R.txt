@@ -716,6 +716,9 @@ int drawable oven_3_button 0x0
 int drawable oven_cancel_button 0x0
 int drawable oven_cooktime_button 0x0
 int drawable oven_frozen_button 0x0
+int drawable oven_panel_1 0x0
+int drawable oven_panel_2 0x0
+int drawable oven_panel_3 0x0
 int drawable oven_start_button 0x0
 int drawable round_active 0x0
 int drawable round_default 0x0
@@ -864,6 +867,7 @@ int id microwave_start 0x0
 int id microwave_timer 0x0
 int id multiply 0x0
 int id net_promoter_score 0x0
+int id next 0x0
 int id nextActivity 0x0
 int id none 0x0
 int id normal 0x0
@@ -1117,6 +1121,7 @@ int string microwave_timer 0x0
 int string nameField 0x0
 int string nextActivity 0x0
 int string nps_text 0x0
+int string placeholder 0x0
 int string search_menu_title 0x0
 int string speech_handler 0x0
 int string status_bar_notification_info_overflow 0x0
