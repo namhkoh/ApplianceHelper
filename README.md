@@ -39,3 +39,9 @@
 
 - The AR components are handled by the Vuforia SDK with Unity.
 - The Dialog and Front-end components are integrated in Android Studios.
+
+## TODO
+
+- Finalize logic behind oven panel.
+- Instantiate user management system. 
+- Overall user testing mock flow 
