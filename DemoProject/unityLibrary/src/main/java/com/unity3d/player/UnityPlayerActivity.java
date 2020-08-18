@@ -45,11 +45,18 @@ import com.company.MainManager;
 import com.company.ResponseObject;
 import com.company.StepObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Array;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class UnityPlayerActivity extends Activity implements IUnityPlayerLifecycleEvents
@@ -106,11 +113,14 @@ public class UnityPlayerActivity extends Activity implements IUnityPlayerLifecyc
 
         Button exit = (Button) findViewById(R.id.exit);
         exit.setOnClickListener(v -> quitUnityActivity());
+        Button next = findViewById(R.id.next);
+        next.setOnClickListener(v -> enterFeedback());
         SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
         final EditText editText = findViewById(R.id.editText);
         ViewCompat.animate(SpeechBtn ).setStartDelay(delayVal).alpha(1).setDuration(4000).setInterpolator(new DecelerateInterpolator(1.2f)).start();
         ViewCompat.animate(editText ).setStartDelay(delayVal).alpha(1).setDuration(4000).setInterpolator(new DecelerateInterpolator(1.2f)).start();
         ViewCompat.animate(exit).setStartDelay(delayVal).alpha(1).setDuration(4000).setInterpolator(new DecelerateInterpolator(1.2f)).start();
+        ViewCompat.animate(next).setStartDelay(delayVal).alpha(1).setDuration(4000).setInterpolator(new DecelerateInterpolator(1.2f)).start();
         // SPEECH TO TEXT START
         final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -279,6 +289,39 @@ public class UnityPlayerActivity extends Activity implements IUnityPlayerLifecyc
             }
         });
         lvSteps.setAdapter(adapter);
+    }
+
+    private void enterFeedback() {
+        int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        String incoming_indexString = String.valueOf(incoming_index);
+        HashMap<String, String> tmpHash = getData();
+        if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
+            Intent intent = new Intent(this, uiVariant6.class);
+            startActivity(intent);
+        } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")){
+            Intent intent = new Intent(this, uiVariant6Oven.class);
+            startActivity(intent);
+        } else {
+            return;
+        }
+        Log.e("entering feedback", "enter");
+    }
+
+    private HashMap<String, String> getData() {
+        InputStream ls = getResources().openRawResource(R.raw.file2);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(ls, StandardCharsets.UTF_8));
+        String line = "";
+        HashMap<String, String> resultList = new HashMap<String, String>();
+        try {
+            while ((line = reader.readLine()) != null) {
+                String[] tokens = line.split("\t");
+                resultList.put(tokens[0], tokens[1]);
+            }
+        } catch (IOException e) {
+            Log.wtf("TaskInstructionActivity", "Error reading data file on line" + line, e);
+            e.printStackTrace();
+        }
+        return resultList;
     }
 
     private void refreshAR(String item, String appliance) {

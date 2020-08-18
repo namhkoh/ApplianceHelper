@@ -20,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -33,8 +34,15 @@ import androidx.core.content.ContextCompat;
 import com.company.MainManager;
 import com.company.ResponseObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Objects;
 
 public class uiVariant3 extends AppCompatActivity {
     private ImageButton SpeechBtn;
@@ -53,6 +61,8 @@ public class uiVariant3 extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         checkPermission();
         SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
+        Button next = findViewById(R.id.next);
+        next.setOnClickListener(v -> enterFeedback());
         final EditText editText = findViewById(R.id.editText);
         // SPEECH TO TEXT START
         final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
@@ -195,6 +205,39 @@ public class uiVariant3 extends AppCompatActivity {
                 return item;
             }
         };
+    }
+
+    private void enterFeedback() {
+        int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        String incoming_indexString = String.valueOf(incoming_index);
+        HashMap<String, String> tmpHash = getData();
+        if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
+            Intent intent = new Intent(this, uiVariant6.class);
+            startActivity(intent);
+        } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")){
+            Intent intent = new Intent(this, uiVariant6Oven.class);
+            startActivity(intent);
+        } else {
+            return;
+        }
+        Log.e("entering feedback", "enter");
+    }
+
+    private HashMap<String, String> getData() {
+        InputStream ls = getResources().openRawResource(R.raw.file2);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(ls, StandardCharsets.UTF_8));
+        String line = "";
+        HashMap<String, String> resultList = new HashMap<String, String>();
+        try {
+            while ((line = reader.readLine()) != null) {
+                String[] tokens = line.split("\t");
+                resultList.put(tokens[0], tokens[1]);
+            }
+        } catch (IOException e) {
+            Log.wtf("TaskInstructionActivity", "Error reading data file on line" + line, e);
+            e.printStackTrace();
+        }
+        return resultList;
     }
 
     private TextToSpeech textToSpeech;
