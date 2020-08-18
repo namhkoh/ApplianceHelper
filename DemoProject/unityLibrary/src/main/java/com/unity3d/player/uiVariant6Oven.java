@@ -122,6 +122,22 @@ public class uiVariant6Oven extends AppCompatActivity {
             }
         });
 
+        Button startOven = findViewById(R.id.oven_start);
+        startOven.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //insert method
+            }
+        });
+
+        Button cancelOven = findViewById(R.id.oven_cancel);
+        cancelOven.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //insert method
+            }
+        });
+
     }
 
     private void nextActivity() {
