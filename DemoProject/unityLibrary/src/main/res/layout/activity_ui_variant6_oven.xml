@@ -170,4 +170,24 @@
         app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
         app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
 
+    <Button
+        android:id="@+id/oven_start"
+        android:layout_width="57dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="216dp"
+        android:layout_marginTop="152dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
+
+    <Button
+        android:id="@+id/oven_cancel"
+        android:layout_width="57dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="288dp"
+        android:layout_marginTop="152dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

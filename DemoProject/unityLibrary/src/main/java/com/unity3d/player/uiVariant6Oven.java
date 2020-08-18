@@ -24,12 +24,104 @@ public class uiVariant6Oven extends AppCompatActivity {
         setContentView(R.layout.activity_ui_variant6_oven);
 
         Button next = findViewById(R.id.next);
-        next.setOnClickListener(new View.OnClickListener() {
+        next.setOnClickListener(v -> nextActivity());
+
+        Button frozenBake = findViewById(R.id.oven_frozen);
+        frozenBake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nextActivity();
+                //insert method
             }
         });
+
+        Button cookTime = findViewById(R.id.oven_cooktime);
+        cookTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //insert method
+            }
+        });
+
+        Button o0 = findViewById(R.id.oven_0);
+        o0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //insert method
+            }
+        });
+
+        Button o1 = findViewById(R.id.oven_1);
+        o1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //insert method
+            }
+        });
+
+        Button o2 = findViewById(R.id.oven_2);
+        o2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //insert method
+            }
+        });
+
+        Button o3 = findViewById(R.id.oven_3);
+        o3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //insert method
+            }
+        });
+
+        Button o4 = findViewById(R.id.oven_4);
+        o4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //insert method
+            }
+        });
+
+        Button o5 = findViewById(R.id.oven_5);
+        o5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //insert method
+            }
+        });
+
+        Button o6 = findViewById(R.id.oven_6);
+        o6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //insert method
+            }
+        });
+
+        Button o7 = findViewById(R.id.oven_7);
+        o7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //insert method
+            }
+        });
+
+        Button o8 = findViewById(R.id.oven_8);
+        o8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //insert method
+            }
+        });
+
+        Button o9 = findViewById(R.id.oven_9);
+        o9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //insert method
+            }
+        });
+
     }
 
     private void nextActivity() {
