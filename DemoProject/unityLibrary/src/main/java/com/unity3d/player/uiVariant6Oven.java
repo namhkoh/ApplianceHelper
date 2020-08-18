@@ -26,19 +26,19 @@ public class uiVariant6Oven extends AppCompatActivity {
         Button next = findViewById(R.id.next);
         next.setOnClickListener(v -> nextActivity());
 
-        Button frozenBake = findViewById(R.id.oven_frozen);
-        frozenBake.setOnClickListener(new View.OnClickListener() {
+        Button frozenBakeBtn = findViewById(R.id.oven_frozen);
+        frozenBakeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //insert method
+                frozenBake();
             }
         });
 
-        Button cookTime = findViewById(R.id.oven_cooktime);
-        cookTime.setOnClickListener(new View.OnClickListener() {
+        Button cookTimeBtn = findViewById(R.id.oven_cooktime);
+        cookTimeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //insert method
+                cookTime();
             }
         });
 
@@ -46,7 +46,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         o0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //insert method
+                press0();
             }
         });
 
@@ -54,7 +54,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         o1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //insert method
+                press1();
             }
         });
 
@@ -62,7 +62,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         o2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //insert method
+                press2();
             }
         });
 
@@ -70,7 +70,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         o3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //insert method
+                press3();
             }
         });
 
@@ -78,7 +78,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         o4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //insert method
+                press4();
             }
         });
 
@@ -86,7 +86,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         o5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //insert method
+                press5();
             }
         });
 
@@ -94,7 +94,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         o6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //insert method
+                press6();
             }
         });
 
@@ -102,7 +102,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         o7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //insert method
+                press7();
             }
         });
 
@@ -110,7 +110,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         o8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //insert method
+                press8();
             }
         });
 
@@ -118,27 +118,84 @@ public class uiVariant6Oven extends AppCompatActivity {
         o9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //insert method
+                press9();
             }
         });
 
-        Button startOven = findViewById(R.id.oven_start);
-        startOven.setOnClickListener(new View.OnClickListener() {
+        Button startOvenbtn = findViewById(R.id.oven_start);
+        startOvenbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //insert method
+                startOven();
             }
         });
 
-        Button cancelOven = findViewById(R.id.oven_cancel);
-        cancelOven.setOnClickListener(new View.OnClickListener() {
+        Button cancelOvenBtn = findViewById(R.id.oven_cancel);
+        cancelOvenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //insert method
+                cancelOven();
             }
         });
 
     }
+
+    private void frozenBake() {
+        Log.e("Button pressed","frozenBake");
+    }
+
+    private void cookTime() {
+        Log.e("Button pressed","cookTime");
+    }
+
+    private void startOven(){
+        Log.e("Button pressed","startOven");
+    }
+
+    private void cancelOven(){
+        Log.e("Button pressed","cancelOven");
+    }
+
+    private void press0(){
+        Log.e("Button pressed","0");
+    }
+
+    private void press1(){
+        Log.e("Button pressed","1");
+    }
+
+    private void press2(){
+        Log.e("Button pressed","2");
+    }
+
+    private void press3(){
+        Log.e("Button pressed","3");
+    }
+
+    private void press4(){
+        Log.e("Button pressed","4");
+    }
+
+    private void press5(){
+        Log.e("Button pressed","5");
+    }
+
+    private void press6(){
+        Log.e("Button pressed","6");
+    }
+
+    private void press7(){
+        Log.e("Button pressed","7");
+    }
+
+    private void press8(){
+        Log.e("Button pressed","8");
+    }
+
+    private void press9(){
+        Log.e("Button pressed","9");
+    }
+
 
     private void nextActivity() {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
