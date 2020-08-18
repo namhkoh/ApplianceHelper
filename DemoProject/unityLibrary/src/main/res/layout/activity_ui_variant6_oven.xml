@@ -190,4 +190,19 @@
         app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
         app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
 
+    <TextView
+        android:id="@+id/oven_panel_text"
+        android:layout_width="288dp"
+        android:layout_height="137dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:background="#242120"
+        android:gravity="center|center_horizontal"
+        android:text="@string/oven_panel_text"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_2"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
