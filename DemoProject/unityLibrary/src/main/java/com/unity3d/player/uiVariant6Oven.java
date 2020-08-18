@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class uiVariant6Oven extends AppCompatActivity {
@@ -138,6 +139,12 @@ public class uiVariant6Oven extends AppCompatActivity {
             }
         });
 
+        ArrayList<Button> allButtons = new ArrayList<Button>(Arrays.asList(
+                frozenBakeBtn,cookTimeBtn,o0,o1,o2,o3,o4,o5,o6,o7,o8,o9,startOvenbtn,cancelOvenBtn
+        ));
+        for (int i = 0; i < allButtons.size(); i++) {
+            allButtons.get(i).setAlpha(0);
+        }
     }
 
     private void frozenBake() {
@@ -225,5 +232,12 @@ public class uiVariant6Oven extends AppCompatActivity {
             e.printStackTrace();
         }
         return resultList;
+    }
+
+    private void setAlphaValue(int alpha){
+        ArrayList<Button> allButtons = new ArrayList<Button>(Arrays.asList());
+        for (int i = 0; i < allButtons.size(); i++) {
+            allButtons.get(i).setAlpha(0);
+        }
     }
 }
