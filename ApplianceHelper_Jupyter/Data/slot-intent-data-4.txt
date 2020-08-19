@@ -1,0 +1,9 @@
+0	oven	microwave										
+1	cook	oven	Food	foodType:fries	count:10							
+2	Step 1: Place the tray on rack position 3. 	No Button	Step 2: Select Air Fry mode. 	Air Fry	Step 3: Use the number pad to change the default temperature to 425 °F (30oz) 	Number Pad	Step 4: Set the cook time to 25 minutes.	Number Pad	Step 5: Tap START/SET	START/SET	"Step 6: When cooking is complete, tap OFF/CEAR and take out the food."	OFF/CLEAR
+1	code	oven	Code	codeNumber:c-d0								
+2	Problem: There is a short in the control key.	No Button	"Solution: Press OFF/CLEAR, and then restart the oven. If the problem persists, disconnect all power to the range for at least 30 seconds and then reconnect the power. If this does not solve the problem, call for service."	OFF/CLEAR								
+1	clean	oven	Cleanable	cleanType:cook-top								
+2	Step 1: Shake the cleawning cream well. Apply a few drops of cleaner directly to the cooktop. 	No Button	Step 2: Use a paper towel or a cleaning pad for ceramic cooktops to clean the entire cooktop surface. 	No Button	Step 3: Use a dry cloth or paper towel to remove all cleannig residue.	No Button						
+1	change	microwave	Feature	featureType:time								
+2	Press the Clock button	Clock	Use the number buttons to enter the current time. 	Number	Press the OK/START button.	OK/START						

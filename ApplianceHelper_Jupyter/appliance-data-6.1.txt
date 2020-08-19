@@ -1,0 +1,351 @@
+0	oven	microwave																				
+1	buy	oven	Part	partType:door																		
+2	Please call 000-0000-000	No Button																				
+1	buy	oven	Part	partType:light																		
+2	Please call 000-0000-001	No Button																				
+1	buy	oven	Part	partType:wirerack																		
+2	You can buy it from the Samsung Contact Center (1-800-726-7864)	No Button																				
+1	buy	oven	Part	partType:air-fry-tray																		
+2	You can buy it from the Samsung Contact Center (1-800-726-7864)	No Button																				
+1	buy	oven	Part	partType:storage-drawer																		
+2	You can buy it from the Samsung Contact Center (1-800-726-7864)	No Button																				
+1	buy	oven	Part	partType:graphite-lubricant																		
+2	You can buy it from the Samsung Contact Center (1-800-726-7864)	No Button																				
+1	clean	oven	Cleanable	cleanObject:cooktop																		
+2	Step 1: Shake the cleawning cream well. Apply a few drops of cleaner directly to the cooktop. 	No Button	Step 2. Use a paper towel or a cleaning pad for ceramic cooktops to clean the entire cooktop surface. 	No Button	Step 3: Use a dry cloth or paper towel to remove all cleannig residue. No need to rinse. 	No Button																
+1	clean	oven	Cleanable	cleanObject:cooktop-seal																		
+2	"To clean the seal around the edges of the glass, lay a wet cloth on it for a few minutes, then wipe clean with a nonabrasive cleaner."	No Button																				
+1	clean	oven	Cleanable	cleanObject:door-gasket																		
+2	"Do not clean the door gasket. The door gasket is essential for a good seal. Care should be taken not to rub, damage, or move the gasket."	No Button																				
+1	code	oven	Error	infoCode:c-d0																		
+2	Problem: There is a short in the control key. 	No Button	"Solution: Press OFF/CLEAR, and then restart the oven. If the problem persists, disconnect all power to the range for at least 30 seconds and then reconnect the power. If this does not solve the problem, call for service."	OFF/CLEAR																		
+1	code	oven	Error	infoCode:c-d1																		
+2	Problem: The door is misaligned.	No Button	"Solution: Press OFF/CLEAR, and then restart the oven. If the problem persists, disconnect all power to the range for at least 30 seconds and then reconnect the power. If this does not solve the problem, call for service."	OFF/CLEAR																		
+1	code	oven	Error	infoCode:c-F0																		
+2	Problem: This code occurs if communication between the Main and Sub PBA is interrupted.	No Button	"Solution: Press OFF/CLEAR, and then restart the oven. If the problem persists, disconnect all power to the range for at least 30 seconds and then reconnect the power. If this does not solve the problem, call for service."	OFF/CLEAR																		
+1	code	oven	Error	infoCode:c-20																		
+2	Problem: The oven sensor is open when the oven is operating.	No Button	"Solution: Press OFF/CLEAR, and then restart the oven. If the problem persists, disconnect all power to the range for at least 30 seconds and then reconnect the power. If this does not solve the problem, call for service."	OFF/CLEAR																		
+1	code	oven	Error	infoCode:c-21																		
+2	Problem: This code occurs if the internal temperature rises abnormally high.	No Button	"Solution: Press OFF/CLEAR, and then restart the oven. If the problem persists, disconnect all power to the range for at least 30 seconds and then reconnect the power. If this does not solve the problem, call for service."	OFF/CLEAR																		
+1	code	oven	Error	infoCode:c-22																		
+2	Problem: The sub PCB sensor is open when the oven is operating. There is a short in the sub PCB sensor. 	No Button	"Solution: Press OFF/CLEAR, and then restart the oven. If the problem persists, disconnect all power to the range for at least 30 seconds and then reconnect the power. If this does not solve the problem, call for service."	OFF/CLEAR																		
+1	code	oven	Error	infoCode:c-30																		
+2	Problem: The main PCB sensor is open when the oven is operating. There is a short in the main PCB sensor. 	No Button	"Solution: Press OFF/CLEAR, and then restart the oven. If the problem persists, disconnect all power to the range for at least 30 seconds and then reconnect the power. If this does not solve the problem, call for service."	OFF/CLEAR																		
+1	code	oven	Error	infoCode:c-31																		
+2	Problem: This code occurs if the PCB temperature rises abnormally high.	No Button	Solution: Call for service.	No Button																		
+1	code	oven	Error	infoCode:c-A2																		
+2	Problem: This code occurs if the sub PCB temperature rises abnormally high.	No Button	"Solution: Press OFF/CLEAR, check the vent. If the vent is closed, never block the vent by anything. After cooling the oven, restart the oven. If this does not solve the problem, call for service."	OFF/CLEAR																		
+1	code	oven	Error	infoCode:bAd-LInE																		
+2	Problem: This error message appears if the power cord is installed improperly.	No Button	"Solution: If the power connection is plugged in improperly, “bAd LinE” appears on the display. Reconnect the power connection properly, and the message disappears."	No Button																		
+1	appropriate	oven	Cookware	cookWare:glass																		
+2	Glass is a slow heat conductor. Not recommended for ceramic cooktop surfaces because it may scratch the surface	No Button																				
+1	appropriate	oven	Cookware	cookWare:enamelware																		
+2	Heating characteristics will vary depending on the base material. Porcelain enamel coating must be smooth to avoid scratching ceramic cooktops.	No Button																				
+1	appropriate	oven	Cookware	cookWare:cast-iron																		
+2	 A poor conductor; retains heat very well. Cooks evenly once cooking temperature is reached. Not recommended for use on ceramic cooktops.	No Button																				
+1	appropriate	oven	Cookware	cookWare:stainless-steel																		
+2	" Slow heat conductor with uneven cooking results. Is durable, easy to clean, and resists staining. "	No Button																				
+1	appropriate	oven	Cookware	cookWare:copper																		
+2	" Excellent heat conductor but discolors easily. May leave metal marks on ceramic glass (to remove, see above.) "	No Button																				
+1	appropriate	oven	Cookware	cookWare:aluminum																		
+2	"Excellent heat conductor. Some types of food will cause the aluminum to darken. (Anodized aluminum cookware resists staining & pitting). If aluminum pans are slid across the ceramic cooktop, they may leave metal marks that resemble scratches. Remove these marks as soon as the cooktop cools down. "	No Button																				
+1	remove	oven	Removeable	removeObject:rack																		
+2	Step 1. Pull the rack straight out until it stops. 	No Button	"Step 2. Lift up the front of the rack, and then pull it out."	No Button																		
+1	remove	oven	Removeable	removeObject:residue																		
+2	Step 1. Allow the cooktop to cool.	No Button	Step 2.  Spread a few drops of ceramic cooktop cleaner on the entire burned residue area.	No button	"Step 3. Using a cleaning pad for ceramic cooktops, rub the residue area, applying pressure as needed."	No Button	"Step 4.  If any residue remains, repeat the steps listed above as needed."	No Button	"Step 5: For additional protection, after all residue has been removed, polish the entire surface by applying ceramic cooktop cleaner with a paper towel."	No Button												
+1	remove	oven	Removeable	removeObject:stains																		
+2	Step 1. Allow the cooktop to cool.	No Button	Step 2.  Spread a few drops of ceramic cooktop cleaner on the entire burned residue area.	No button	"Step 3. Using a cleaning pad for ceramic cooktops, rub the residue area, applying pressure as needed."	No Button	"Step 4.  If any residue remains, repeat the steps listed above as needed."	No Button	"Step 5: For additional protection, after all residue has been removed, polish the entire surface by applying ceramic cooktop cleaner with a paper towel."	No Button												
+1	remove	oven	Removeable	removeObject:door																		
+2	Step 1. Open the door completely.	No Button	Step 2. Pull the hinge locks down toward the door frame to the unlocked position.about 5°	No Button	Step 3. Firmly grasp both sides of the door at the top.	No Button	"Step 4. Close the door to the door removal position, which is approximately 5 degrees from vertical."	No Button	Step 5. Lift door up and out until the hinge arm is clear of the slot	No Button												
+1	remove	oven	Removeable	removeObject:drawer																		
+2	Step 1. Slide open the drawer until it stops. 	No Button	"Step 2. Locate the roller guide clips on either side. Using both hands, pull down the left clip while lifting the right clip, and then remove the drawer."	No Button	"Step 3. Clean the drawer in warm, soapy water using a cloth or soft brush. Then, rinse and dry it thoroughly."	No Button																
+1	remove	oven	Removeable	removeObject:lights																		
+2	Step 1. Make sure the oven and the bulb are cool. 	No Button	Step 2. Unplug the range or disconnect the power.	No Button	Step 3. Turn the glass bulb cover in the back of the oven counterclockwise to remove. 	No Button	Step 4. Turn the bulb counterclockwise to remove it from its socket.	No Button														
+1	replace	oven	Replaceable	replaceObject:rack																		
+2	Step 1. Place the end of the rack on the support. 	No Button	Step 2. Tilt the front end up and push the rack in.	No Button																		
+1	replace	oven	Replaceable	replaceObject:door																		
+2	Step 1. Firmly grasp both sides of the door at the top.	No Button	"Step  2. With the door at the same angle as the removal position, slide the indentation of the hinge arm into the bottom edge of the hinge slot. The notch in the hinge arm must be fully inserted into the bottom of the slot."	No Button	"Step 3. Open the door fully. If the door will not open fully, the indentation is not inserted correctly in the bottom edge of the slot."	No Button	Step 4. Push the hinge locks up against the front frame of the oven cavity to the locked position.	No Button	Step 5. Close the oven door.	No Button												
+1	replace	oven	Replaceable	replaceObject:drawer																		
+2	Step 1. Slide open the drawer until it stops. 	No Button	"Step 2. Locate the roller guide clips on either side. Using both hands, pull down the left clip while lifting the right clip, and then remove the drawer."	No Button	"Step 3. Clean the drawer in warm, soapy water using a cloth or soft brush. Then, rinse and dry it thoroughly."	No Button	"Step 4. Put the drawer in the roller guides on either side, and then snap the clips into place."	No Button														
+1	replace	oven	Replaceable	replaceObject:lights																		
+2	Step 1. Make sure the oven and the bulb are cool. 	No Button	Step 2. Unplug the range or disconnect the power.	No Button	Step 3. Turn the glass bulb cover in the back of the oven counterclockwise to remove. 	No Button	Step 4. Turn the bulb counterclockwise to remove it from its socket.	No Button	"Step 5. Insert a new 40 watt appliance bulb, and then turn it clockwise to tighten. Replace the bulb cover by turning clockwise."	No Button	Step 6. Plug in the range or reconnect the power.	No Button										
+1	cook	oven	Food	foodType:hamburger																		
+2	Step 1. Press Broil once for high. 	Broil	"Step 2. To start broiling, press START/SET"	START/SET	Step 3. Broil one side for 3:20-3:40 minutes and the second side for 2:20-2:40 minutes.	No Button	Step 4. Press OFF/CLEAR once you have finished broiling. 	OFF/CLEAR														
+1	cook	oven	Food	foodType:beef-steak																		
+2	Step 1. Press Broil once for high. 	Broil	"Step 2. To start broiling, press START/SET"	START/SET	Step 3. Broil one side for 7:00-8:00 minutes and the second side for 6:00-7:00 minutes.	No Button	Step 4. Press OFF/CLEAR once you have finished broiling. 	OFF/CLEAR														
+1	cook	oven	Food	foodType:chicken-pieces																		
+2	Step 1. Press Broil once for high. 	Broil	"Step 2. To start broiling, press START/SET"	START/SET	Step 3. Broil one side for 15:00-16:00 minutes and the second side for 13:00-14:00 minutes.	No Button	Step 4. Press OFF/CLEAR once you have finished broiling. 	OFF/CLEAR														
+1	cook	oven	Food	foodType:pork-chops																		
+2	Step 1. Press Broil once for high. 	Broil	"Step 2. To start broiling, press START/SET"	START/SET	Step 3. Broil one side for 15:00-16:00 minutes and the second side for 13:00-14:00 minutes.	No Button	Step 4. Press OFF/CLEAR once you have finished broiling. 	OFF/CLEAR														
+1	cook	oven	Food	foodType:lamb-chops																		
+2	Step 1. Press Broil once for high. 	Broil	"Step 2. To start broiling, press START/SET"	START/SET	Step 3. Broil one side for 5:00-6:00 minutes and the second side for 4:00-5:00 minutes.	No Button	Step 4. Press OFF/CLEAR once you have finished broiling. 	OFF/CLEAR														
+1	cook	oven	Food	foodType:salmon-steak																		
+2	Step 1. Press Broil once for high. 	Broil	"Step 2. To start broiling, press START/SET"	START/SET	Step 3. Broil one side for 4:00-7:00 minutes and the second side for 3:00-6:00 minutes.	No Button	Step 4. Press OFF/CLEAR once you have finished broiling. 	OFF/CLEAR														
+1	cook	oven	Food	foodType:frozen-french-fries																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 25 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:frozen-tater-tots																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:frozen-hash-brown																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:frozen-potato-wedges																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:homemade-french-fries																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 400 F	Number Pad	Step 4. Set the cook time to 25 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:homemade-potato-wedges																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 25 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:frozen-chicken-nugets																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 400 F	Number Pad	Step 4. Set the cook time to 15 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:frozen-chicken-wings																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:frozen-onion-rings																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 400 F	Number Pad	Step 4. Set the cook time to 15 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:frozen-fish-fingers																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 18 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:frozen-chicken-strips																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:frozen-churros																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 18 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:fresh-drumsticks																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 30 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:fresh-chicken-wings																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 27 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:breaded-chicken-breast																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 450 F	Number Pad	Step 4. Set the cook time to 25 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:breaded-asparagus																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:breaded-egg-plants																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:breaded-mushroom																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:breaded-onions																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:breaded-cauliflower																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 400 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	cook	oven	Food	foodType:breaded-vegetable-mix																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	purpose	oven	Feature	purposeFeature:hot-surface-indicator																		
+2	The Hot surface indicator comes on when the unit is turned on or hot to the touch. Stays on even after the unit is turned off. Glows until the unit is cooled to approximately 150 F. 	No Button																				
+1	purpose	oven	Feature	purposeFeature:cooktop-lamp																		
+2	The lamp turns on when the surface control knobs are not in off position. The lamp turns off when the surface control knobs are in off position. 	No Button																				
+1	purpose	oven	Feature	purposeFeature:display																		
+2	"The display shows the time of day, oven temperature, whether the oven is in the bake, convection bake/roast, broil, or self-cleaning mode, and the time set for the timer or automatic oven operations. "	No Button																				
+1	purpose	oven	Feature	purposeFeature:convection-bake																		
+2	The convection bake button is used to select the convection bake function of the oven.	No Button																				
+1	purpose	oven	Feature	purposeFeature:convection-roast																		
+2	The convection roast button is used to select the convection roast function of the oven.	No Button																				
+1	purpose	oven	Feature	purposeFeature:bake																		
+2	The bake button is used to select the bake function of the oven.	No Button																				
+1	purpose	oven	Feature	purposeFeature:broil																		
+2	The broil button is used to select the broil function of the oven.	No Button																				
+1	purpose	oven	Feature	purposeFeature:air-fry																		
+2	The broil button is used to select the air fry function of the oven.	No Button																				
+1	purpose	oven	Feature	purposeFeature:keep-warm																		
+2	The keep warm button is used to select the keep warm function of the single oven to keep cooked foods warm. .	No Button																				
+1	purpose	oven	Feature	purposeFeature:bread-proof																		
+2	The Bread Proof button is used to select the bread proof function of the oven.	No Button																				
+1	purpose	oven	Feature	purposeFeature:dehydrate																		
+2	The Dehydrate button is used to select the dehydrate function of the oven.	No Button																				
+1	purpose	oven	Feature	purposeFeature:self-clean																		
+2	The Self Clean button is used to select the self cleaning function of the oven.	No Button																				
+1	purpose	oven	Feature	purposeFeature:steam-clean																		
+2	The Steam Clean button is used to select the steam cleaning function of the oven.	No Button																				
+1	purpose	oven	Feature	purposeFeature:timer																		
+2	The Timer button is used to set or cancel the kitchen timer. The kitchen timer does not start or stop cooking. Press and hold for 3 seconds to turn off the timer.	No Button																				
+1	purpose	oven	Feature	purposeFeature:cook-time																		
+2	Press and then use the number pad to set the amount of time you want your food to cook. The oven will shut off when the cooking time has run out. 	No Button																				
+1	purpose	oven	Feature	purposeFeature:delay-start																		
+2	"Press to set the oven to start and stop automatically at a time you set. (Bake, Conv.bake/Roast, Cooking Time, and self clean only.) "	No Button																				
+1	purpose	oven	Feature	purposeFeature:smart-control																		
+2	 Use to select the smart control feature. 	No Button																				
+1	purpose	oven	Feature	purposeFeature:number-pad																		
+2	"Use to set any function requiring numbers, such as the time of day on the clock, the timer, the oven temperature, the start time and length of operation for timed baking, etc. "	No Button																				
+1	purpose	oven	Feature	purposeFeature:lamp																		
+2	Press to turn the oven light on or off. 	No Button																				
+1	purpose	oven	Feature	purposeFeature:clock/setting																		
+2	Use to set the time of day. Use to bring up the user preference menu in the display. (Press for 3 seconds.) 	No Button																				
+1	purpose	oven	Feature	purposeFeature:start/set																		
+2	Use to start any cooking or cleaning function in the oven. 	No Button																				
+1	purpose	oven	Feature	purposeFeature:off/clear																		
+2	OFF / CLEAR: Press to cancel all oven operations except the clock and timer. Press to cancel a previously entered temperature or time.	No Button																				
+1	purpose	oven	Feature	purposeFeature:oven-lock																		
+2	Use to disable all oven functions.	No Button																				
+1	set	oven	Feature	setFeature:clock																		
+2	Step 1. Press the clock button.	Clock Button	Step 2. Press the clock button to select AM or PM.  (Skip this step on 24 hour display setting.) 	Clock Button	"Step 3. Enter the current time in hours and minutes on the number pad, e.g., 1, 3, 0, for 1:30."	Number Pad	Press the clock or start/set to save the changes.	Clock Button														
+1	set	oven	Feature	setFeature:kitchen-timer																		
+2	Press Timer	Timer Button	"Enter the amount of time you want using the number pad, e.g., 1, 5. The timer can be set for any amount of time from 1 minute to 9 hours and 59 minutes. If you make a mistake, press Timer, and then enter the amount of time again."	Timer Button	Press START/SET.	START/SET	"When the set time has elapsed, the oven will beep and the display will show ""End"" until you press the Timer pad. You can cancel the timer at any time by pressing Timer for 3 seconds."	Timer														
+1	set	oven	Feature	setFeature:timed-cooking																		
+2	"Start the cooking operation you want, e.g., Bake."	No Button	Press Cook Time.	Cook Time	"Enter the cooking time you want, e.g., 45 min, using the number pad. You can set the cooking time for any amount of time from 1 minute to 9 hours and 59 minutes."	Number Pad	"Press START/SET. The temperature display will start to change once the oven temperature reaches 175 °F. The oven will continue to cook until the set amount of time has elapsed, then turn off automatically unless you set the keep warm feature. (Refer to the section on the keep warm feature on page 37.)"	START/SET	You can cancel a cook time at any time by setting the cook time to 0 minutes. (Press Cook Time -> set cook time to 0 min -> press START/SET)	COOK TIME START/SET												
+1	set	oven	Feature	setFeature:delay-start																		
+2	Step 1. Position the oven rack(s) and place the food in the oven.	No Button	"Step 2. Press the pad for the cooking operation you want, e.g., Bake. "	No Button	"Step 3. Enter the temperature you want, e.g., 375 °F, using the number pad."	Number Pad	Step 4. Set the cooking time if you want. (Refer to the section on the timed cooking feature on page 29).	Number Pad	Step 5. Press Delay Start.	Delay Start	"Step 6. Enter the time you want the oven to turn on, e.g., 4:30, using the number pad"	Number Pad	"Step 7. Press START/SET. At the set time, a short beep will sound. The oven will begin to bake."	START/SET								
+1	set	oven	Feature	setFeature:bakimg																		
+2	Step 1. Press Bake.	Bake	"Step 2. Enter the temperature you want on the number pad, e.g., 3, 7, 5."	Number Pad	Step 3. Press START/SET. The temperature display will start to change once the oven temperature reaches 175 °F.	START/SET	"Step 4. If you want to cancel baking or if you have finished, press OFF/CLEAR."	OFF/CLEAR														
+1	set	oven	Feature	setFeature:convection-baking																		
+2	Step 1. Press Convection Bake	Convection Bake	"Step 2. Enter the temperature you want, e.g., 400 °F, using the number pad. "	Number Pad	Step 3. Press START/SET. The temperature display will start to change once the oven temperature reaches 175 °F. The range will beep several times when the oven reaches the adjusted oven temperature.	START/SET	"Step 4. To turn off or cancel convection baking, press OFF/CLEAR."	OFF/CLEAR														
+1	set	oven	Feature	setFeature:convection-roast																		
+2	Step 1. Press Convection Roast	Convection Roast	"Step 2. Enter the temperature you want, e.g., 400 °F, using the number pad. "	Number Pad	Step 3. Press START/SET. The temperature display will start to change once the oven temperature reaches 175 °F. The range will beep several times when the oven reaches the adjusted oven temperature.	START/SET	"Step 4. To turn off or cancel convection baking, press OFF/CLEAR."	OFF/CLEAR														
+1	set	oven	Feature	setFeature:broiling																		
+2	Step 1. Press Broil once for Hi or twice for Lo. 	Broil	"Step 2. To start broiling, press START/SET. Broil one side until the food is browned. Turn over and broil the other side."	START/SET	Step 3. Press OFF/CLEAR once you have finished cooking or if you want to cancel broiling.	OFF/CLEAR																
+1	set	oven	Feature	setFeature:air-fry																		
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry mode.	Air Fry	Step 3. Use the number pad to change the default temperature. Enter the suggested temperature for your food as recommended cooking guid.	Number Pad	"Step 4. Set the Cook Time or Delay Start, if necessary."	"COOK TIME, Delay Start"	Tap START/SET	START/SET	"When Cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR										
+1	set	oven	Feature	setFeature:smart-control																		
+2	Step 1. Download and open the SmartThings app on your smart device.	No Button	Step 2. Follow the app’s on-screen instructions to connect your range.	No Button	"Step 3. Once the process is complete, the connected icon located on your range displays and the app will confirm you are connected."	No Button	"Step 4. If the connection icon does not turn on, follow the instruction in the app to reconnect."	No Button														
+1	use	oven	Feature	useFeature:dehydrate																		
+2	Step 1. Press Dehydrate	Dehydrate	Step 2. Press START/SET	START/SET	Step 3. Press OFF/CLEAR at any time to turn off the Dehydrate feature.	No Button																
+1	use	oven	Feature	useFeature:bread-proof																		
+2	Step 1. Press Bread Proof	Bread Proof	Step 2. Press START/SET	START/SET	Step 3. Press OFF/CLEAR at any time to turn off the Bread Proof feature.	No Button																
+1	use	oven	Feature	useFeature:keep-warm																		
+2	Step 1. Press Keep Warm	Keep Warm	Step 2. Press START/SET	START/SET	Step 3. Press OFF/CLEAR at any time to turn off the Bread Proof feature.	No Button																
+1	use	oven	Feature	useFeature:temp-adjust																		
+2	"Step 1. Press the Options button for 3 seconds, and then press 1 on the number pad. "	Options	Step 2. Press Clock to select higher or lower than the current temperature. 	Clock Button	Step 3. Enter the adjustment you want to make using the number pad. 	Number Pad	Step 4. Press START/SET to save the changes. 	START/SET														
+1	use	oven	Feature	useFeature:temp-unit																		
+2	"Step 1. Press the Options button for 3 seconds, and then press 2 on the number pad. "	Options	Step 2. Press 1(Fahrenheit) or 2 (Celsius) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START/SET																
+1	use	oven	Feature	useFeature:auto-conversion																		
+2	"Step 1. Press the Options button for 3 seconds, and then press 3 on the number pad. "	Options	Step 2. Press 1(On) or 2 (Off) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START/SET																
+1	use	oven	Feature	useFeature:time-of-day																		
+2	"Step 1. Press the Options button for 3 seconds, and then press 4 on the number pad. "	Options	Step 2. Press 1(--Hr) or 2 (12Hr) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START/SET																
+1	use	oven	Feature	useFeature:12-hour-energy-saving																		
+2	"Step 1. Press the Options button for 3 seconds, and then press 5 on the number pad. "	Options	Step 2. Press 1(On) or 2 (Off) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START/SET																
+1	use	oven	Feature	useFeature:demo-mode																		
+2	"Step 1. Press the Options button for 3 seconds, and then press 6 on the number pad. "	Options	Step 2. Press 1(On) or 2 (Off) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START/SET																
+1	use	oven	Feature	useFeature:sabbath																		
+2	Step 1. Press Bake. 	Bake	Step 2. Enter the temperature youu want. 	Number Pad	Step 3. Press START/SET. The temperature display will start to change once the oven temperature reaches 175 F. 	START/SET	"Step 4. Press Bake and Timer at the same time for 3 seconds. The display will show SAb. Once SAb appears in the display, the oven will not beep or display any further changes. You may change the oven temperature once baking has started. Remember that the oven will not beep or display any further changes once the Sabbath feature is engaged."	"Bake, Timer"	"You can turn the oven off at any time by pressing OFF/CLEAR. This will turn only the oven off. If you want to deactivate the Sabbath feature, hold down Bake and Timer at the same time for 3 seconds. Sab will disappear from the display."	"OFF/CLEAR, Bake, Timer"												
+1	on	oven	Feature	onFeature:self-cleaning-cycle																		
+2	"Step 1. Select the length of time for the self-cleaning operation, e.g., 3 hours. Press Self Clean once for a 3 hour clean time, twice for a 5 hour clean time, or 3 times for a 2 hour clean time The default setting is 3 hours. "	Self Clean	Step 2. Press START/SET to start the self-cleaning cycle. The motor-driven door lock will engage automatically.	START/SET	"Step 3. When the self-cleaning cycle is done, End will appear in the display and the range will beep several times."	No Button																
+1	off	oven	Feature	offFeature:self-cleaning-cycle																		
+2	Step 1. Press OFF/CLEAR	OFF/CLEAR	Step 2. You will be able to open the oven door once the oven has cooled down for approximately 1 hour.	No Button																		
+1	on	oven	Feature	onFeature:sound																		
+2	"Step 1. Press the Options button for 3 seconds, and then press 6 on the number pad. "	Options	Step 2. Press 1(On) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START/SET																
+1	off	oven	Feature	offFeature:sound																		
+2	"Step 1. Press the Options button for 3 seconds, and then press 6 on the number pad. "	Options	Step 2. Press 1(Off) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START/SET																
+1	on	oven	Feature	onFeature:wifi																		
+2	"Step 1. Press the Options button for 3 seconds, and then press 7 on the number pad. "	Options	Step 2. Press 1(On) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START/SET																
+1	off	oven	Feature	offFeature:wifi																		
+2	"Step 1. Press the Options button for 3 seconds, and then press 7 on the number pad. "	Options	Step 2. Press 1(Off) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START/SET																
+1	set	oven	Feature	setFeature:steam-clean																		
+2	Step 1. Remove all accessories from the oven.	No Button	"Step 2. Pour approximately 10 oz. (300 ml) of water onto the bottom of the empty oven and then close the oven door. Use normal water only, not distilled water."	No Button	Step 3. Press Steam Clean.	Steam Clean	"Step 4. Press START/SET. When the operation is complete, the display will blink and a beep will sound."	START/SET	Step 5. Press OFF	OFF	Step 6. Clean the oven’s interior. There will be a significant amount of water remaining on the bottom of the oven after a steam-cleaning cycle. Remove the residual water with a sponge or soft dry cloth.	No Button										
+1	buy	microwave	Part	partType:glass-tray																		
+2	 You can buy it from the Samsung Contact Center (1-800-7267864).	No Button																				
+1	buy	microwave	Part	partType:roller-guide-ring																		
+2	 You can buy it from the Samsung Contact Center (1-800-7267864).	No Button																				
+1	buy	microwave	Part	partType:exhaust-adaptor																		
+2	 You can buy it from the Samsung Contact Center (1-800-7267864).	No Button																				
+1	buy	microwave	Part	partType:grease-filter																		
+2	 You can buy it from the Samsung Contact Center (1-800-7267864).	No Button																				
+1	buy	microwave	Part	partType:charcoal-filter																		
+2	 You can buy it from the Samsung Contact Center (1-800-7267864).	No Button																				
+1	buy	microwave	Part	partType:hardware-kit																		
+2	 You can buy it from the Samsung Contact Center (1-800-7267864).	No Button																				
+1	set	microwave	Feature	setFeature:clock																		
+2	Step 1. Press the clock button.	Clock Button	Step 2. Use the number buttons to enter the current time.	Number Pad	Step 3. Press the OK/START button	OK/START																
+1	use	microwave	Feature	useFeature:child-lock																		
+2	"If you want to activate or deactivate the child lock function, press the OK/START button for 3 seconds. "	No Button																				
+1	use	microwave	Feature	useFeature:kitchen-timer-button																		
+2	Step 1. Press the Kitchen Tmer button.	Kitchen Timer	Step 2. Use the number buttons to set the the length of time you want the timer to run. 	Number Pad	Press the OK/START button.	OK/START	Step 4. The display counts down and beeps when the time has elapsed.	No Button	Step 5. To cancel the timer setting: Press the STOP button once.	STOP												
+1	use	microwave	Feature	useFeature:add-30-sec																		
+2	"Step 1. Press the Add 30 sec button for each 30 seconds you want food to cook. For example, press it twice to cook for one minute, and then press the OK/START button to start cooking. "	"Add 30 sec, OK/START"	Step 2. Add 30 sec to the cooking program already in progress by pressing the Add 30 sec button for every additional 30 seconds you want to add. 	Add 30 sec																		
+1	use	microwave	Feature	useFeature:vent-buttons																		
+2	Step 1. Press the Hi/Lo button to set the speed level. 	Hi/Lo	Step 2. Press the vent button to turn the vent on. 	Vent Button.	Step 3. Press the vent button again to turn the vent off. 	Vent Button.																
+1	use	microwave	Feature	useFeature:light-button																		
+2	The light button allows you to select a light setting for your microwave. Press once for high press twice for low and press three times to turn the lights off. 	No Button																				
+1	cook	microwave	Food	foodType:Popcorn																		
+2	Press the Popcorn button once for a 3.5 oz. package and twice for a 3.0-3.5 oz. package. 	Popcorn	Heat only one microwave popcorn bag at this time. Be careful when removing and opening the heated bag from the oven. 	No Button	Let the oven cool for at least 5 minutes before using it again. 	No Button																
+1	cook	microwave	Food	foodType:beverage																		
+2	Step 1. Use a measuring cup or a mug. Do not cover. Place the beverage in the oven. 	Cook Button	 Step 2. Press the Cook button once. Ac-1 will be shown on the display.	No Button	"Step 3. After heating, stir well. Let oven cool for at least 5 minutes before using again."	No Button																
+1	cook	microwave	Food	foodType:bacon																		
+2	Step 1. Place two paper towels on a plate and arrange bacon on towels. Do not overlap. Cover with additional paper towel.	Cook Button	 Step 2. Press the Cook button twice. Ac-2 will be shown on the display.	No Button	Step 3. Remove the paper towels immediately after cooking. 	No Button																
+1	cook	microwave	Food	foodType:frozen-dinner																		
+2	Step 1. Remove food from outer wrapping and follow box instructions for covering and standing.	Cook Button	 Step 2. Press the Cook button three times. button t. Ac-3 will be shown on the display.	No Button	Step 3. Let the oven cool for at least 5 minutes before using again. 	No Button																
+1	cook	microwave	Food	foodType:frozen-breakfast																		
+2	"Step 1. Use this button for frozen sandwiches, breakfast entrees, pancakes, waffles, etc. Follow the package instructions for covering and standing. "	Cook Button	 Step 2. Press the Cook button four times. button t. Ac-4 will be shown on the display.	No Button	Step 3. Let the oven cool for at least 5 minutes before using again. 	No Button																
+1	cook	microwave	Food	foodType:fresh-vegetables																		
+2	"Step 1. Place 1 to 4 servings of fresh/frozen vegetables in a microwave-safe ceramic, glass, or plastic dish and add 2-4 Tbs. water. "	No Button	Step 2. Cover lid or vented plastic wrap to cook.	No Button	Step 3. Press the vegetable once. Fr-1 will be shown on the display.	Veggies	Step 4. Stir before letting stand for 3 to 5 minutes. Let oven cool for at least 5 minutes before using again. 	No Button														
+1	cook	microwave	Food	foodType:frozen-vegetables																		
+2	"Step 1. Place 1 to 4 servings of fresh/frozen vegetables in a microwave-safe ceramic, glass, or plastic dish and add 2-4 Tbs. water. "	No Button	Step 2. Cover lid or vented plastic wrap to cook.	No Button	Step 3. Press the vegetable twice. Fr-2 will be shown on the display.	Veggies	Step 4. Stir before letting stand for 3 to 5 minutes. Let oven cool for at least 5 minutes before using again. 	No Button														
+1	cook	microwave	Food	foodType:potato																		
+2	Step 1. Pierce each potato serveral times with a fork. Place them on a turntable in a spoke-like fashion.	No Button	Step 2. Press the Potato button once for 1 potato twice for two potatoes three times for 3 potatoes four times for four potatoes. 	Potato	"Step 3. After cooking, let the potatoes stand for 3-5 minutes. Let the oven cool for at least 5 minutes before using it again. "	No Button																
+1	cook	microwave	Food	foodType:pizza																		
+2	Step 1. Put 1-3 slices of pizza on a microwave-safe plate with the wide end of each slice toward the outside edge of the plate. Do not let the slices overlap. Do not cover. 	No Button	Step 2. Press the Pizza button once for 1 slice twice for two slices and three times for three slices.	Pizza	Step 3. Let the oven cool for at least 5 minutes before using again. 	No Button																
+1	use	microwave	Feature	useFeature:reheat																		
+2	"Step 1. Press the Reheat button once for a plate of food, twice for casserole, three times for pasta."	Reheat	Step 2. Press the button on the number according to the number of servings. (For two servings of pasta press the number 2 button)	Number Pad	Step 3. Press the OK/START button	OK/START	"Step 4. When the cooking time is over, the oven will beep 4 times and display End."	No Button														
+1	use	microwave	Feature	useFeature:auto-defrost																		
+2	Step 1. Press the Auto Defrost button.	Auto Defrost	Step 2. Use the number buttons to enter the weight. 	Number Pad	Step 3. Press the OK/START button	OK/START																
+1	use	microwave	Feature	useFeature:soften/melt																		
+2	Step 1. Touch the Soften/Melt button.	Soften/Melt	Step 2. Choose the food category by pressing the Soften/Melt button repeatedly.	Soften/Melt	"Step 3. If required, choose the food amount (1 or 2) by pressing a number button."	Number Pad	Step 4. Touch the OK/START button.	OK/START														
+1	use	microwave	Feature	useFeature:eco-mode																		
+2	"When you press the Eco button once, the display will go out and the microwave shifts to Eco mode which minimizes power useage. To cancel the Eco Mode, press the Eco button once again, or press any other button."	No Button																				
+1	appropriate	microwave	Cookware	cookWare:aluminum-foil																		
+2	Use with Caution: Can be used in small quantities to protect areas agains overcooking. Arcing can occur if the foil is too close to the oven wall or you use too much foil.	No Button																				
+1	appropriate	microwave	Cookware	cookWare:browning-plate																		
+2	Recommended to use: Do not preheat for more then eight minutes.	No Button																				
+1	appropriate	microwave	Cookware	cookWare:ceramic																		
+2	"Recommended to use: Porcelain, pottery, glazed earthenware, and bone china are usually suitable, unless decorated with a metal trim."	No Button																				
+1	appropriate	microwave	Cookware	cookWare:porcelain																		
+2	"Recommended to use: Porcelain, pottery, glazed earthenware, and bone china are usually suitable, unless decorated with a metal trim."	No Button																				
+1	appropriate	microwave	Cookware	cookWare:stoneware																		
+2	"Recommended to use: Porcelain, pottery, glazed earthenware, and bone china are usually suitable, unless decorated with a metal trim."	No Button																				
+1	appropriate	microwave	Cookware	cookWare:polyester-cardboard																		
+2	Recommened for use: Some frozen foods are packaged in these materials.	No Button																				
+1	appropriate	microwave	Cookware	cookWare:polyester-cup																		
+2	Recommened for use: Can be used to warm food. Overheating may cause the polystyrene to melt.	No Button																				
+1	appropriate	microwave	Cookware	cookWare:paper-bags																		
+2	Unsafe to use/Do not use: May catch fire. 	No Button																				
+1	appropriate	microwave	Cookware	cookWare:recycled-paper																		
+2	Unsafe to use/Do not use: May catch arcing	No Button																				
+1	appropriate	microwave	Cookware	cookWare:metal-trims																		
+2	Unsafe to use/Do not use: May catch arcing	No Button																				
+1	appropriate	microwave	Cookware	cookWare:glassware																		
+2	"Recommened for use: Can be used unless decorated with a metal trim. Delicate glass may break or crack if heated suddenly. Regular glass is too thin to be used in a microwave, and can shatter. "	No Button																				
+1	appropriate	microwave	Cookware	cookWare:metal																		
+2	Unsafe to use/Do not use: May cause arcing or fire.	No Button																				
+1	appropriate	microwave	Cookware	cookWare:paper																		
+2	"Recommended to use: For short cooking times and warming. Also to absorb excess moisture. Do not use recycled paper towels, which may contain metal and may catch fire or cause arcing."	No Button																				
+1	appropriate	microwave	Cookware	cookWare:plastic																		
+2	Recommened for use: Can be used if heat-resistant thermoplastic. Some plastics may warp or discolor at high temperatures. Do not use Melamine plastic.Can be used to retain moisture. Avoid wrapping the food too tightly. Take care when removing the film. Hot steam will escape.	No Button																				
+1	appropriate	microwave	Cookware	cookWare:thermometer																		
+2	Use only those marked “Microwave-safe” and follow the directions. Check the temperature in several places. You can use conventional thermometers on the food once the food has been removed from the oven.	No Button																				
+1	appropriate	microwave	Cookware	cookWare:straw																		
+2	"Use with caution: Use only for short-term heating, as these materials are flammable"	No Button																				
+1	appropriate	microwave	Cookware	cookWare:wicker																		
+2	"Use with caution: Use only for short-term heating, as these materials are flammable"	No Button																				
+1	appropriate	microwave	Cookware	cookWare:wood																		
+2	"Use with caution: Use only for short-term heating, as these materials are flammable"	No Button																				
+1	replace	microwave	Replaceable	replaceObject:cooktop																		
+2	Step 1. Unplug the oven or turn off the power at the main power supply.	No Button	Step 2. Remove the screw from the light cover and lower the cover.	No Button	Step 3. Replace the bulb with a 40 watt incandescent bulb.	No Button	Step 4. Replace the light cover and mounting screw.	No Button	Step 5. Turn the power back on at the main power supply or plug the microwave in. 	No Button												
+1	replace	microwave	Replaceable	replaceObject:night-light																		
+2	Step 1. Unplug the oven or turn off the power at the main power supply.	No Button	Step 2. Remove the screw from the light cover and lower the cover.	No Button	Step 3. Replace the bulb with a 40 watt incandescent bulb.	No Button	Step 4. Replace the light cover and mounting screw.	No Button	Step 5. Turn the power back on at the main power supply or plug the microwave in. 	No Button												
+1	replace	microwave	Replaceable	replaceObject:oven-light.																		
+2	Step 1. Unplug the oven or turn off the power at the main power supply.	No Button	Step 2. Open the door. 	No Button	Step 3. Remove the vent cover mounting screws (3 middle screws).	No Button	"Step 4. Slide the vent grille to the left, then pull it straight out."	No Button	"Step 5. Remove the charcoal filter, if present."	No Button	Step 6. Remove the cover by pushing the hook and pulling up the lever.	No Button	Step 7. Remove the bulb by turning it gently.	No Button	Step 8. Replace the bulb with a 40 watt appliance bulb.	No Button	Step 9. Replace the bulb holder	No button	Step 10. Replace the vent frille and the 3 screws.	No Button	Step 11. Turn the power back on or plug the microwave in. 	No Button
+1	replace	microwave	Replaceable	replaceObject:charcoal-filter.																		
+2	Step 1. Unplug the oven or turn off the power at the main power supply.	No Button	Step 2. Open the door.	No Button	Step 3. Remove the vent grille mounting screws (3 middle screws).	No Button	"Step 4. Slide the vent grille to the left, then pull it straight out."	No Button	"Step 5. Push the hook, and then remove the old filter."	No Button	Step 6. Slide a new charcoal filter into place. The filter should rest at the angle shown.	No Button	"Step 7. Replace the vent grille and 3 screws, and then close the door. Turn the power back on, and then set the clock."	No Button								
+1	clean	microwave	Cleanable	cleanObject:grease-filter																		
+2	"Step 1. To remove the filter, side it to the left using the tab. "	No Button	Step 2. Soak the grease filter in hot water and a mild detergent. Rinse well and shake to dry. Brishing the filter lightly can remvoe embeded dirt. Do not use ammonia or try to dry the grease filter in the microwave oven. The aluminum will darken. 	No Button	"Step 3. To re-install the filter, slide it into the frame slot on the left (or right), and then push it upwards and to the right (or left) to lock it."	No Button																
+1	set	microwave	Feature	setFeature:power-level																		
+2	Step 1. Use the number buttons to enter the cook time.	Number Pad	Step 2. Press the Power Level button (default 10)	Power Level	Step 3. Use the number buttons to enter the power level.	Number Pad	Step 4. Start again from stage 1 to cook with more then one cook stage. If not press the OK/START button.	OK/START	"Step 5. When the cooking time is over, then oven beeps four times and displays End. "	No Button												
+1	cook	microwave	Food	foodType:roast-beef																		
+2	Step 1. Use the number buttons to enter the cook time. 10-15 min./lb. for 145 °F - Rare 12-17 min./lb. for 160 °F - Medium 14-19 min./lb. for 170 °F - Well Done	Number Pad	Step 2. Press the Power Level button (default 10)	Power level	Step 3. Press the power level twice to set the power level to high. 	Number Pad	Step 4. Use the number buttons to enter the second cook time. 5-10 min./lb. for 145 °F - Rare 7-12 min./lb. for 160 °F - Medium 9-14 min./lb. for 170 °F - Well Done	Number Pad	Step 5. Press the Power Level button (default 10)	Power level	Step 6. Press 5 to set the power level to medium	Number Pad	Step 7. Press the OK/START button.	OK/START	"Step 8.  When the cooking time is over, the oven beeps four times and displays End."	No Button	Step 9. Place the roast fat-side down on the roasting rack and cover with wax paper. Turn over halfway through the cooking process. Let stand for 10 to 15 minutes	No Button				
+1	cook	microwave	Food	foodType:pork																		
+2	Step 1. Use the number buttons to enter 15-20 min./lb at 170 degrees Well Done.	Number Pad	Step 2. Press the Power Level button (default 10)	Step 2. Press the Power Level button (default 10)	Step 3. Press the power level twice to set the power level to high. 	Number Pad	Step 4. Use the number buttons to enter the second cook time. 10-15 min./lb. for 170 °F - Well Done	Number Pad	Step 5. Press the Power Level button (default 10)	Power level	Step 6. Press 5 to set the power level to medium	Number Pad	Step 7. Press the OK/START button.	OK/START	"Step 8.  When the cooking time is over, the oven beeps four times and displays End."	No Button	Step 9. Place the pork fat-side down on the roasting rack and cover with wax paper. Turn over halfway through cooking process. Let stand for 10 to 15 minutes.	No button				
+1	cook	microwave	Food	foodType:whole-chicken																		
+2	Step 1. Place the chicken breast-side down on the roasting rack. Cover with wax paper.	No Button	Step 2. Use the number buttons to enter 6-10 min./lb	Number Pad	Step 3. Press the Power Level button (default 10)	Power level	Step 3. Press 7 to set the power level to medium high.	Number Pad	Step 4. Press the OK/START button.	OK/START	Step 6. Turn over half way through cooking process. Cook until the juices run clear and the meat near the bone is no longer pink	No Button	"Step 7. When the cooking time is over, then oven beeps four times and displays End. "	No Button	Step 8. Let stand for 5-10 minutes.	No Button						
+1	cook	microwave	Food	foodType:chicken-pieces																		
+2	"Step 1. Place the chicken bone-side down on the dish, with the thickest portions towards the outside of the dish. Cover with wax paper. "	No Button	Step 2. Use the number buttons to enter 6-19 min./lb	Number Pad	Step 3. Press the Power Level button (default 10)	Power level	Step 3. Press 7 to set the power level to medium high.	Number Pad	Step 4. Press the OK/START button.	OK/START	Step 6. Turn over half way through cooking process. Cook until the juices run clear and the meat near the bone is no longer pink	No Button	"Step 7. When the cooking time is over, then oven beeps four times and displays End. "	No Button	Step 8. Let stand for 5-10 minutes.	No Button						
+1	cook	microwave	Food	foodType:tuna-steak																		
+2	Step 1. Arrange the steaks on a roasting rack with the meaty portions towards the outside of the rack. Cover with wax paper.	No Button	Step 2. Use the number buttons to enter 7-11 min./lb	Number Pad	Step 3. Press the Power Level button (default 10)	Power level	Step 3. Press 7 to set the power level to medium high.	Number Pad	Step 4. Press the OK/START button.	OK/START	Step 6. Turn them over halfway through the cooking process. Cook until the fish flakes easily with a fork.	No Button	"Step 7. When the cooking time is over, then oven beeps four times and displays End. "	No Button	Step 8. Let stand for 3-5 minutes.	No Button						
+1	cook	microwave	Food	foodType:salmon-steak																		
+2	Step 1. Arrange the steaks on a roasting rack with the meaty portions towards the outside of the rack. Cover with wax paper.	No Button	Step 2. Use the number buttons to enter 7-11 min./lb	Number Pad	Step 3. Press the Power Level button (default 10)	Power level	Step 3. Press 7 to set the power level to medium high.	Number Pad	Step 4. Press the OK/START button.	OK/START	Step 6. Turn them over halfway through the cooking process. Cook until the fish flakes easily with a fork.	No Button	"Step 7. When the cooking time is over, then oven beeps four times and displays End. "	No Button	Step 8. Let stand for 3-5 minutes.	No Button						
+1	cook	microwave	Food	foodType:salmon-fillets																		
+2	"Step 1. Arrange the fillets in a baking dish, tucking any thin pieces under. Cover with wax paper. "	No Button	Step 2. Use the number buttons to enter 4-8 min./lb	Number Pad	Step 3. Press the Power Level button (default 10)	Power level	Step 3. Press 7 to set the power level to medium high.	Number Pad	Step 4. Press the OK/START button.	OK/START	"Step 6. If the fillets are thicker than ½ in., turn them over halfway through the cooking process. Cook until the fish flakes easily with a fork."	No Button	"Step 7. When the cooking time is over, then oven beeps four times and displays End. "	No Button	Step 8. Let stand for 2-3 minutes.	No Button						
+1	cook	microwave	Food	foodType:shrimp																		
+2	Step 1. Arrange the shrimp in a baking dish without overlapping or layering them. Cover with wax paper.	No Button	Step 2. Use the number buttons to enter 4-8 min./lb	Number Pad	Step 3. Press the Power Level button (default 10)	Power level	Step 3. Press 7 to set the power level to medium high.	Number Pad	Step 4. Press the OK/START button.	OK/START	"Step 6. Cook until firm and opaque, stirring 2 or 3 times"	No Button	"Step 7. When the cooking time is over, then oven beeps four times and displays End. "	No Button	Step 8. Let stand for 5 minutes.	No Button						
+1	cook	microwave	Food	foodType:eggs																		
+2	You can use your microwave oven to cook eggs. Cook them until they are just set as they become tough if they are overcooked.	No Button																				
+1	cook	microwave	Food	foodType:vegetables																		
+2	"Vegetables should be washed prior to cooking. Usually, no extra water is needed. When cooking dense vegetables such as potatoes, carrots, and green beans, add about ¼ cup water."	No Button																				
+1	clean	oven	Cleanable	cleanObject:stainless-steel																		
+2	Step 1. Shake the bottle of STAINLESS STEEL APPLIANCE CLEANER or POLISH well.	No Button	Step 2. Place a small amount of STAINLESS STEEL APPLIANCE CLEANER or POLISH on a damp cloth or damp paper towel.	No Button	"Step 3. Clean a small area, rubbing with the grain of the stainless steel if applicable."	No Button	"Step 4. Dry and buff with a clean, dry paper towel or soft cloth."	No Button	Step 5. Repeat as necessary.	No Button												
+1	clean	oven	Cleanable	cleanObject:glass-cooktop																		
+2	"Step 1. Before using the cooktop for the first time, clean it with a ceramic cooktop cleaner. This helps protect the top and makes cleanup easier."	No Button	Step 2. Daily use of a ceramic cooktop cleaner will help keep the cooktop looking new.	No Button	Step 3. Shake the cleaning cream well. Apply a few drops of cleaner directly to the cooktop.	No Button	Step 4. Use a paper towel or a cleaning pad for ceramic cooktops to clean the entire cooktop surface.	No Button	Step 5. Use a dry cloth or paper towel to remove all cleaning residue. No need to rinse.	No Button												
+1	clean	oven	Cleanable	cleanObject:sugary-spills																		
+2	Step 1. Turn off all surface units. Remove hot pans.	No Button	"Step 2. Wearing an oven mitt, use a single-edge razor blade scraper to move the spill to a cool area of the cooktop. Remove the spill with paper towels."	No Button	Step 3. Any remaining spillover should be left until the surface of the cooktop has cooled.	No Button	Step 4. Don’t use the surface units again until all of the residue has been completely removed.	No Button														
+1	clean	oven	Cleanable	cleanObject:melted-plastic																		
+2	Step 1. Turn off all surface units. Remove hot pans.	No Button	"Step 2. Wearing an oven mitt, use a single-edge razor blade scraper to move the spill to a cool area of the cooktop. Remove the spill with paper towels."	No Button	Step 3. Any remaining spillover should be left until the surface of the cooktop has cooled.	No Button	Step 4. Don’t use the surface units again until all of the residue has been completely removed.	No Button														
