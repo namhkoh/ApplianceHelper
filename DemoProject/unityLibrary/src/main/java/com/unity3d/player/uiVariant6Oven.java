@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -151,6 +153,8 @@ public class uiVariant6Oven extends AppCompatActivity {
         }
     }
 
+    ArrayList<String> tmpList = new ArrayList<String>();
+
     private void frozenBake() {
         TextView ovenLcd = findViewById(R.id.oven_panel_text);
         lcdString = "Enter food code";
@@ -171,12 +175,24 @@ public class uiVariant6Oven extends AppCompatActivity {
         Log.e("Button pressed","cancelOven");
     }
 
+    private void update(String buttonValue) {
+        Log.e("Button added",buttonValue);
+        TextView ovenLcd = findViewById(R.id.oven_panel_text);
+        lcdString = " ";
+        lcdString = buttonValue;
+        ovenLcd.setText(lcdString);
+    }
+
     private void press0(){
         Log.e("Button pressed","0");
+        lcdString += "0";
+        update(lcdString);
     }
 
     private void press1(){
         Log.e("Button pressed","1");
+        lcdString += "1";
+        update(lcdString);
     }
 
     private void press2(){
@@ -184,19 +200,6 @@ public class uiVariant6Oven extends AppCompatActivity {
     }
 
     private void press3(){
-        Handler h = new Handler(getMainLooper());
-        TextView ovenLcd = findViewById(R.id.oven_panel_text);
-        lcdString = "3";
-        ovenLcd.setTextSize(30);
-        ovenLcd.setText(lcdString);
-        h.postDelayed(() -> {
-            lcdString = "";
-            lcdString = "3";
-            ovenLcd.setText(lcdString);
-        }, 3000);
-        lcdString = "";
-        lcdString = "Enter temperature";
-        ovenLcd.setText(lcdString);
         Log.e("Button pressed","3");
     }
 

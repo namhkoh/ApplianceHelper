@@ -202,6 +202,7 @@
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="40sp"
+        android:maxLength="6"
         app:layout_constraintLeft_toLeftOf="@id/oven_panel_2"
         app:layout_constraintTop_toTopOf="@id/oven_panel_2" />
 
