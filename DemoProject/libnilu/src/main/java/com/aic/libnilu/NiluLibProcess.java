@@ -18,29 +18,19 @@ public class NiluLibProcess {
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static void init(String filepath, String modelpath){
+    public static void init(String filepath, String modelpath, String vocabpath, String configpath){
         // Start her for any lib init's and post settings.
         Log.d("NLU","NLU");
         ResponseObject response = MainManager.getAnswer("How do I set the clock on the microwave?", filepath);
         response.printResponseSolution();
 
-//        byte[] ascii = "will i be able to use porcelain in the oven".getBytes(StandardCharsets.US_ASCII);
-//        System.out.println("ascii"+ascii);
-//        int[] arr = new int[ascii.length];
-//        for(int i = 0; i < ascii.length; i++){
-//            arr[i] = (int)ascii[i];
-//        }
-//
-//        System.out.println(Arrays.toString(arr));
-
-//        String asciiString = Arrays.toString(ascii);
-//        System.out.println("String"+asciiString);
-        //int[] arr = Stream.of(asciiString).mapToInt(Integer::parseInt).toArray();
-        //System.out.println("Int Array" + Arrays.toString(arr));
-
-
         InferenceTask inference = new InferenceTask(modelpath);
         inference.predict();
+
+        String question = "will i be able to use procelain in the oven";
+        RunTokenizer tokenizer = new RunTokenizer(configpath, vocabpath);
+        tokenizer.tokenize(question);
+        System.out.println(tokenizer.getTokens());
 
 
     }
