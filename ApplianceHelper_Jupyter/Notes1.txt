@@ -1,0 +1,34 @@
+Things to talk about & Things to do:
+
+1. Getting the data. 
+
+2. NLU - substitute with python
+
+3. Database to use. 
+
+4. How to deal with multiple steps. Step1 Step2 and so on. 
+ 
+5. Change github code so that it becomes convenient to use (Currenly just gives accuracy)
+
+Application -> library(jar file) -> interact with database -> return answer and show it to the user. 
+
+We need to manage Dialog in NLU system. Next step current step. 
+
+
+
+class Node {
+   private String name;
+   private Node parent
+   private HashMap<String, ArrayList<Node>> nodeChildren;
+   private HashMap<String, ArrayList<PropertyNode>>> propertyChildren;
+} 
+
+
+Node:Appliance (PropertyNode: applianceName -> Microwave), (childNodes: cook -> Node:Food)
+Node:Food (PropertyNode: foodType -> Potato), (childNodes: instructionStep -> Node: Step)
+Node:Step (PropertyNode: stepNumber -> 1, PropertyNode: stepText -> ..., PropertyNode: button -> Potato Button)
+
+
+We have intent: cook and slot:microwave (type applianceName) and slot:potato (type foodType).
+So you would go to the appliance node and first check if you have an appliance with an outgoing property edge applianceName:microwave, then you go to that node and check if the node has an outgoing intent edge cook and lastly if the node at the end of that edge has an outgoing property edge foodType:potato.
+So maybe a convention could be that property edges are slot name and child edge are intent name.

@@ -1,0 +1,245 @@
+	Unnamed: 0	_worker_id	edge	template	question_should_contain	question
+0	109	43844929	Does a certain feature exist?	Is there an @existFeature in the @appliance?	@existFeature @appliance	Do you know if @appliance has an @existFeature on it 
+1	110	43844929	Does a certain feature exist?	Is there an @existFeature in the @appliance?	@existFeature @appliance	Can you tell me if my @appliance has an @existFeature on it 
+2	111	43844929	Does a certain feature exist?	Is there an @existFeature in the @appliance?	@existFeature @appliance	Is there an @existFeature on my new @appliance 
+3	112	38202325	Does a certain feature exist?	Is there an @existFeature in the @appliance?	@existFeature @appliance	Is the @existFeature available on the @appliance 
+4	113	38202325	Does a certain feature exist?	Is there an @existFeature in the @appliance?	@existFeature @appliance	Does the @appliance offer an @exist Feature 
+5	114	38202325	Does a certain feature exist?	Is there an @existFeature in the @appliance?	@existFeature @appliance	Is the @existFeature found on the @appliance 
+6	115	18090380	Does a certain feature exist?	Is there an @existFeature in the @appliance?	@existFeature @appliance	Does a @existFeature exist in my @appliance 
+7	116	18090380	Does a certain feature exist?	Is there an @existFeature in the @appliance?	@existFeature @appliance	Does an @existFeature exist in my new @appliance 
+8	117	18090380	Does a certain feature exist?	Is there an @existFeature in the @appliance?	@existFeature @appliance	Does @existFeature exist in my @appliance 
+9	117	45901177	Does a certain feature exist?	Is there an @existFeature in the @appliance?	@existFeature @appliance	is there any @existfeature in the @appliance or 
+10	118	45901177	Does a certain feature exist?	Is there an @existFeature in the @appliance?	@existFeature @appliance	any chance there is @existfeature in the @appliance or 
+11	119	45901177	Does a certain feature exist?	Is there an @existFeature in the @appliance?	@existFeature @appliance	 or can I find any @existFeature in my appliance
+12	120	38202325	Does a certain feature exist?	Is there an @existFeature in the @appliance?	@existFeature @appliance	Is the @existFeature  available on my @appliance
+13	121	38202325	Does a certain feature exist?	Is there an @existFeature in the @appliance?	@existFeature @appliance	Does the @appliance  have an @existFeature
+14	122	38202325	Does a certain feature exist?	Is there an @existFeature in the @appliance?	@existFeature @appliance	Does the @appliance offer the @existFeature 
+15	123	45405037	Does a certain feature exist?	Is there an @existFeature in the @appliance?	@existFeature @appliance	Can I see an @existFeature in the @appliance 
+16	124	45405037	Does a certain feature exist?	Is there an @existFeature in the @appliance?	@existFeature @appliance	Can you find me an @existFeature in the @appliance 
+17	125	45405037	Does a certain feature exist?	Is there an @existFeature in the @appliance?	@existFeature @appliance	Will there be an @existFeature in the @appliance 
+18	22	43844929	appropriate kitchen untensils to use	Is it safe to use @cookWare in a @appliance?	@cookWare @appliance	What type of @cookWare should I avoid cooking with in my new @appliance 
+19	23	43844929	appropriate kitchen untensils to use	Is it safe to use @cookWare in a @appliance?	@cookWare @appliance	Is there any type of @cookWare I should avoid using when cooking on @appliance 
+20	24	43844929	appropriate kitchen untensils to use	Is it safe to use @cookWare in a @appliance?	@cookWare @appliance	Can you tell me if @cookWare is safe to use when cooking something in @appliance 
+21	25	38202325	appropriate kitchen untensils to use	Is it safe to use @cookWare in a @appliance?	@cookWare @appliance	Can I use the @cookWare  for my @appliance
+22	26	38202325	appropriate kitchen untensils to use	Is it safe to use @cookWare in a @appliance?	@cookWare @appliance	Is the @cookWare safe for use with the @appliance 
+23	27	38202325	appropriate kitchen untensils to use	Is it safe to use @cookWare in a @appliance?	@cookWare @appliance	Will the @cookWare be safe for use with the @appliance 
+24	27	45901177	appropriate kitchen untensils to use	Is it safe to use @cookWare in a @appliance?	@cookWare @appliance	Is @cookWare a high quality appliance or 
+25	28	45901177	appropriate kitchen untensils to use	Is it safe to use @cookWare in a @appliance?	@cookWare @appliance	is appliance of @cookWare good or 
+26	29	45901177	appropriate kitchen untensils to use	Is it safe to use @cookWare in a @appliance?	@cookWare @appliance	 or there is about @cookWare appliance
+27	30	38202325	appropriate kitchen untensils to use	Is it safe to use @cookWare in a @appliance?	@cookWare @appliance	Can I safely use @cookWare  on my @appliance
+28	31	38202325	appropriate kitchen untensils to use	Is it safe to use @cookWare in a @appliance?	@cookWare @appliance	Is the @cookWare safe for use with the @appliance 
+29	32	38202325	appropriate kitchen untensils to use	Is it safe to use @cookWare in a @appliance?	@cookWare @appliance	Will it be safe using the @cookWare  on the @appliance
+30	33	6367365	appropriate kitchen untensils to use	Is it safe to use @cookWare in a @appliance?	@cookWare @appliance	Will I be able to use @cookWare in the @appliance 
+31	34	6367365	appropriate kitchen untensils to use	Is it safe to use @cookWare in a @appliance?	@cookWare @appliance	Is the @appliance safe to use with @cookWare 
+32	35	6367365	appropriate kitchen untensils to use	Is it safe to use @cookWare in a @appliance?	@cookWare @appliance	Should I use the @cookWare in my @appliance 
+33	0	43844929	buy parts for appliance	Where can I buy a @partType for my @appliance?	@partType @appliance	Can you tell me which stores I can buy a @partType for my @appliance are located nearby 
+34	0	45405037	buy parts for appliance	Where can I buy a @partType for my @appliance?	@partType @appliance	Where can I get @partType  for my @appliance
+35	1	43844929	buy parts for appliance	Where can I buy a @partType for my @appliance?	@partType @appliance	What store carried @partType so I can buy it for my @appliance 
+36	1	45405037	buy parts for appliance	Where can I buy a @partType for my @appliance?	@partType @appliance	Where can I purchase @partType  from my @appliance
+37	2	43844929	buy parts for appliance	Where can I buy a @partType for my @appliance?	@partType @appliance	Can you tell me where I can get a new @partType for my @appliance 
+38	2	45405037	buy parts for appliance	Where can I buy a @partType for my @appliance?	@partType @appliance	Where can I gain a @partTpe  from my @appliance
+39	3	38202325	buy parts for appliance	Where can I buy a @partType for my @appliance?	@partType @appliance	Show me where to purchase an @partType for an @appliance 
+40	3	45901177	buy parts for appliance	Where can I buy a @partType for my @appliance?	@partType @appliance	I need to @partType for @appliance or 
+41	4	38202325	buy parts for appliance	Where can I buy a @partType for my @appliance?	@partType @appliance	Display places that sell @partType  for my @appliance
+42	4	45901177	buy parts for appliance	Where can I buy a @partType for my @appliance?	@partType @appliance	I need to @partType for my @appliance or 
+43	5	38202325	buy parts for appliance	Where can I buy a @partType for my @appliance?	@partType @appliance	I need to purchase an @partType  for my @appliance
+44	5	45901177	buy parts for appliance	Where can I buy a @partType for my @appliance?	@partType @appliance	looking to buy @partType for my @appliance or 
+45	6	18090380	buy parts for appliance	Where can I buy a @partType for my @appliance?	@partType @appliance	How do I buy a @partType for my @appliance 
+46	6	38202325	buy parts for appliance	Where can I buy a @partType for my @appliance?	@partType @appliance	Find a store that has @partType for sale for an @appliance 
+47	7	18090380	buy parts for appliance	Where can I buy a @partType for my @appliance?	@partType @appliance	How do I buy a new @partType for my toaster @appliance 
+48	7	38202325	buy parts for appliance	Where can I buy a @partType for my @appliance?	@partType @appliance	Who has an @partType  for an @appliance
+49	8	18090380	buy parts for appliance	Where can I buy a @partType for my @appliance?	@partType @appliance	Where can I buy a @partType for my @appliance 
+50	8	38202325	buy parts for appliance	Where can I buy a @partType for my @appliance?	@partType @appliance	Who has a  @partType for my @appliance
+51	9	43844929	clean part of a appliance	How do I clean the @cleanObject on the @appliance?	@cleanObject @appliance	Can you please tell me how to @cleanObject on this @appliance correctly 
+52	9	45901177	clean part of a appliance	How do I clean the @cleanObject on the @appliance?	@cleanObject @appliance	How do I clean the @cleanObject on the @appliance or 
+53	10	43844929	clean part of a appliance	How do I clean the @cleanObject on the @appliance?	@cleanObject @appliance	Would you mind telling me how to @cleanObject on this @appliance model please 
+54	10	45901177	clean part of a appliance	How do I clean the @cleanObject on the @appliance?	@cleanObject @appliance	How can I clean the @cleanObject on the @appliance or 
+55	11	43844929	clean part of a appliance	How do I clean the @cleanObject on the @appliance?	@cleanObject @appliance	Would you please tell me how to clean the @cleanObject on the @appliance 
+56	11	45901177	clean part of a appliance	How do I clean the @cleanObject on the @appliance?	@cleanObject @appliance	I want to clean the @cleanObject on the @appliance or 
+57	12	45405037	clean part of a appliance	How do I clean the @cleanObject on the @appliance?	@cleanObject @appliance	What are some ways to clean the  @cleanObject on the @appliance
+58	12	45405037	clean part of a appliance	How do I clean the @cleanObject on the @appliance?	@cleanObject @appliance	How do I wash the @cleanObject on the @applince 
+59	13	45405037	clean part of a appliance	How do I clean the @cleanObject on the @appliance?	@cleanObject @appliance	How many ways do I clean the  @cleanObject on the @appliance
+60	13	45405037	clean part of a appliance	How do I clean the @cleanObject on the @appliance?	@cleanObject @appliance	How do I unsoil the @cleanObject on the @appliance 
+61	14	45405037	clean part of a appliance	How do I clean the @cleanObject on the @appliance?	@cleanObject @appliance	Can you show me some ways to clean the  @cleanObject on the @appliance
+62	14	45405037	clean part of a appliance	How do I clean the @cleanObject on the @appliance?	@cleanObject @appliance	How do I make spotless @cleanObject on the @appliance 
+63	15	44751575	clean part of a appliance	How do I clean the @cleanObject on the @appliance?	@cleanObject @appliance	How often do i use @cleanObject on the @appliance '''
+64	16	44751575	clean part of a appliance	How do I clean the @cleanObject on the @appliance?	@cleanObject @appliance	How may i use @cleanObject for the @appliance '''
+65	17	44751575	clean part of a appliance	How do I clean the @cleanObject on the @appliance?	@cleanObject @appliance	How many time do i have to use @cleanObject for the @appliance '''
+66	15	43844929	error code on appliance screen	What does @infoCode mean on my @appliance?	@infoCode @appliance	What does this @infoCode mean that is popping up on @appliance 
+67	16	43844929	error code on appliance screen	What does @infoCode mean on my @appliance?	@infoCode @appliance	Can you tell me what @infoCode means It keeps popping up on my @appliance 
+68	17	43844929	error code on appliance screen	What does @infoCode mean on my @appliance?	@infoCode @appliance	@infoCode keeps popping up on my @appliance, can you tell me what it means 
+69	18	38202325	error code on appliance screen	What does @infoCode mean on my @appliance?	@infoCode @appliance	What is the meaning of the @infoCode on the @appliance 
+70	18	45914903	error code on appliance screen	What does @infoCode mean on my @appliance?	@infoCode @appliance	what is the @infoCode cause it appears on @appliance and it tells me that there is 
+71	19	38202325	error code on appliance screen	What does @infoCode mean on my @appliance?	@infoCode @appliance	Display the @infoCode meaning presented on my @appliance 
+72	19	45914903	error code on appliance screen	What does @infoCode mean on my @appliance?	@infoCode @appliance	I have an error called @infoCode on my @appliance and there is 
+73	20	38202325	error code on appliance screen	What does @infoCode mean on my @appliance?	@infoCode @appliance	What does the @infoCode  on the @appliance mean
+74	20	45914903	error code on appliance screen	What does @infoCode mean on my @appliance?	@infoCode @appliance	I have an error called @InfoCode which appears on @appliance and there is  there
+75	21	18090380	error code on appliance screen	What does @infoCode mean on my @appliance?	@infoCode @appliance	What does code @infoCode mean on my @appliance 
+76	21	45901177	error code on appliance screen	What does @infoCode mean on my @appliance?	@infoCode @appliance	What does @infoCode mean on my @appliance or 
+77	22	45901177	error code on appliance screen	What does @infoCode mean on my @appliance?	@infoCode @appliance	Why does @infoCode mean on my @appliance or 
+78	23	45901177	error code on appliance screen	What does @infoCode mean on my @appliance?	@infoCode @appliance	I want @infoCode mean on my @appliance or 
+79	24	38202325	error code on appliance screen	What does @infoCode mean on my @appliance?	@infoCode @appliance	What is the meaning for the @infoCode on the @appliance 
+80	25	38202325	error code on appliance screen	What does @infoCode mean on my @appliance?	@infoCode @appliance	Tell me the error code meaning of the @appliance  @infoCode
+81	26	38202325	error code on appliance screen	What does @infoCode mean on my @appliance?	@infoCode @appliance	What does it mean if my @appliance  has an @infoCode error
+82	46	43844929	how to cook food on an appliance	What must I do to cook @foodType with the @appliance?	@foodType @appliance	Can you tell me what I need to do to cook @foodType on the @appliance please 
+83	47	43844929	how to cook food on an appliance	What must I do to cook @foodType with the @appliance?	@foodType @appliance	Please tell me how to cook @foodType on the @appliance 
+84	48	43844929	how to cook food on an appliance	What must I do to cook @foodType with the @appliance?	@foodType @appliance	Would you please tell me how to cook @foodType on this @appliance I need to know 
+85	49	38202325	how to cook food on an appliance	What must I do to cook @foodType with the @appliance?	@foodType @appliance	How do I use the @foodType on the @appliance  to cook
+86	50	38202325	how to cook food on an appliance	What must I do to cook @foodType with the @appliance?	@foodType @appliance	Show me how to cook @foodType using the @appliance 
+87	51	38202325	how to cook food on an appliance	What must I do to cook @foodType with the @appliance?	@foodType @appliance	What do I do to cook @foodType on the @appliance 
+88	52	18090380	how to cook food on an appliance	What must I do to cook @foodType with the @appliance?	@foodType @appliance	How do I cook an @foodType on the @appliance 
+89	53	18090380	how to cook food on an appliance	What must I do to cook @foodType with the @appliance?	@foodType @appliance	How do I bake a @foodType in the @appliance tonight 
+90	54	18090380	how to cook food on an appliance	What must I do to cook @foodType with the @appliance?	@foodType @appliance	How do I roast a @foodType in the @appliance 
+91	54	45901177	how to cook food on an appliance	What must I do to cook @foodType with the @appliance?	@foodType @appliance	What must I do to cook @foodType with the @appliance or 
+92	55	45901177	how to cook food on an appliance	What must I do to cook @foodType with the @appliance?	@foodType @appliance	How must I do to cook @foodType with the @appliance or 
+93	56	45901177	how to cook food on an appliance	What must I do to cook @foodType with the @appliance?	@foodType @appliance	must I do to cook @foodType with the @appliance or 
+94	57	6367365	how to cook food on an appliance	What must I do to cook @foodType with the @appliance?	@foodType @appliance	How do I cook @foodType on the @appliance 
+95	58	6367365	how to cook food on an appliance	What must I do to cook @foodType with the @appliance?	@foodType @appliance	Could you explain how to cook @foodType using this @appliance 
+96	59	6367365	how to cook food on an appliance	What must I do to cook @foodType with the @appliance?	@foodType @appliance	Can you tell me how I can use @appliance to fix @foodType 
+97	60	44751575	how to cook food on an appliance	What must I do to cook @foodType with the @appliance?	@foodType @appliance	What can i do with @foodType on the @appliance@ ''''
+98	61	44751575	how to cook food on an appliance	What must I do to cook @foodType with the @appliance?	@foodType @appliance	How work @foodType with the @appliance 
+99	62	44751575	how to cook food on an appliance	What must I do to cook @foodType with the @appliance?	@foodType @appliance	How to i use @foodType on the @appliance 
+100	28	43844929	how to remove part from appliance	How do I remove @removeObject from the @appliance?	@removeObject @appliance	Tell me how to remove @removeObject from the @appliance please 
+101	29	43844929	how to remove part from appliance	How do I remove @removeObject from the @appliance?	@removeObject @appliance	Tell me how to go about removing @removeObject from the @appliance please 
+102	30	43844929	how to remove part from appliance	How do I remove @removeObject from the @appliance?	@removeObject @appliance	Tell me how I remove @removeObject from this @appliance correctly please 
+103	31	45405037	how to remove part from appliance	How do I remove @removeObject from the @appliance?	@removeObject @appliance	Can you show me how to remove  @removeObject from the @appliance
+104	32	45405037	how to remove part from appliance	How do I remove @removeObject from the @appliance?	@removeObject @appliance	What are ways to remove  @removeObject from the @appliance
+105	33	45405037	how to remove part from appliance	How do I remove @removeObject from the @appliance?	@removeObject @appliance	Can you help me find ways to remove  @removeObject from the @appliance
+106	34	38202325	how to remove part from appliance	How do I remove @removeObject from the @appliance?	@removeObject @appliance	Find me instructions for removing an @removeObject from @appliance 
+107	35	38202325	how to remove part from appliance	How do I remove @removeObject from the @appliance?	@removeObject @appliance	Display directions to remove @removeObject  from an @appliance
+108	36	38202325	how to remove part from appliance	How do I remove @removeObject from the @appliance?	@removeObject @appliance	Give me the proper way to remove an @removeObject  from my @appliance
+109	36	45901177	how to remove part from appliance	How do I remove @removeObject from the @appliance?	@removeObject @appliance	How do I remove @removeObject from the @appliance but 
+110	37	45901177	how to remove part from appliance	How do I remove @removeObject from the @appliance?	@removeObject @appliance	why do I remove @removeObject from the @appliance but 
+111	38	45901177	how to remove part from appliance	How do I remove @removeObject from the @appliance?	@removeObject @appliance	I wanna remove @removeObject from the @appliance but 
+112	39	45405037	how to remove part from appliance	How do I remove @removeObject from the @appliance?	@removeObject @appliance	How do I get rid of @removeObject from the @appliance 
+113	40	45405037	how to remove part from appliance	How do I remove @removeObject from the @appliance?	@removeObject @appliance	How do I take away @removeObject from the @appliance 
+114	41	45405037	how to remove part from appliance	How do I remove @removeObject from the @appliance?	@removeObject @appliance	How can I empty @removeObject from the @appliance 
+115	42	44751575	how to remove part from appliance	How do I remove @removeObject from the @appliance?	@removeObject @appliance	How it work @removeObject for the @appliance ''
+116	43	44751575	how to remove part from appliance	How do I remove @removeObject from the @appliance?	@removeObject @appliance	is there a way to @removeObject from the @appliance ''
+117	44	44751575	how to remove part from appliance	How do I remove @removeObject from the @appliance?	@removeObject @appliance	is it possible to @removeObject from the @appliance ''
+118	37	43844929	how to replace part from appliance	How do I reinstall @replaceObject from the @appliance?	@replaceObject @appliance	Can you please tell me how I reinstall @replaceObject from this @appliance 
+119	38	43844929	how to replace part from appliance	How do I reinstall @replaceObject from the @appliance?	@replaceObject @appliance	Tell me how I @replaceObject from this @appliance 
+120	39	43844929	how to replace part from appliance	How do I reinstall @replaceObject from the @appliance?	@replaceObject @appliance	Tell me how I can @replaceObject from the @appliance please 
+121	40	38202325	how to replace part from appliance	How do I reinstall @replaceObject from the @appliance?	@replaceObject @appliance	Show me how to replace the @replaceObject  on the @appliance
+122	41	38202325	how to replace part from appliance	How do I reinstall @replaceObject from the @appliance?	@replaceObject @appliance	What is the proper way to reinstall the @replaceObject on the @appliance 
+123	42	38202325	how to replace part from appliance	How do I reinstall @replaceObject from the @appliance?	@replaceObject @appliance	Give me directions on replacing the @replaceObject  for the @appliance
+124	43	18090380	how to replace part from appliance	How do I reinstall @replaceObject from the @appliance?	@replaceObject @appliance	How do I replace the @replaceObject on my @appliance 
+125	44	18090380	how to replace part from appliance	How do I reinstall @replaceObject from the @appliance?	@replaceObject @appliance	How do I install the @replaceObject in my @appliance 
+126	45	18090380	how to replace part from appliance	How do I reinstall @replaceObject from the @appliance?	@replaceObject @appliance	How do I replace the @replaceObject in my @appliance 
+127	45	45901177	how to replace part from appliance	How do I reinstall @replaceObject from the @appliance?	@replaceObject @appliance	How do I reinstall @replaceObject from the @appliance but 
+128	46	45901177	how to replace part from appliance	How do I reinstall @replaceObject from the @appliance?	@replaceObject @appliance	do I reinstall @replaceObject from the @appliance but 
+129	47	45901177	how to replace part from appliance	How do I reinstall @replaceObject from the @appliance?	@replaceObject @appliance	I want to reinstall @replaceObject from the @appliance but 
+130	48	44751575	how to replace part from appliance	How do I reinstall @replaceObject from the @appliance?	@replaceObject @appliance	How work @replaceObject for the @appliance 
+131	49	44751575	how to replace part from appliance	How do I reinstall @replaceObject from the @appliance?	@replaceObject @appliance	What can i do with @replaceObject with the @appliance ''''
+132	50	44751575	how to replace part from appliance	How do I reinstall @replaceObject from the @appliance?	@replaceObject @appliance	How to i use @replaceObject with the @appliance ''''
+133	51	6367365	how to replace part from appliance	How do I reinstall @replaceObject from the @appliance?	@replaceObject @appliance	How can I reinstall the @replaceObject in the @appliance 
+134	52	6367365	how to replace part from appliance	How do I reinstall @replaceObject from the @appliance?	@replaceObject @appliance	Would you tell me how to reinstall the @replaceObject for the @appliance 
+135	53	6367365	how to replace part from appliance	How do I reinstall @replaceObject from the @appliance?	@replaceObject @appliance	Can you show me how to reinstall the @replaceObject for the @appliance 
+136	64	43844929	how to set an appliance feature	How do I set the @setFeature feature on my @appliance?	@setFeature @appliance	Can you tell me how to set @setFeature on my new @appliance 
+137	65	43844929	how to set an appliance feature	How do I set the @setFeature feature on my @appliance?	@setFeature @appliance	I just got a new @appliance can you please tell me how to @setFeature on it 
+138	66	43844929	how to set an appliance feature	How do I set the @setFeature feature on my @appliance?	@setFeature @appliance	I need you to tell me how to @setFeature on my @appliance, please 
+139	67	38202325	how to set an appliance feature	How do I set the @setFeature feature on my @appliance?	@setFeature @appliance	What is the proper way to set the @setFeature  on the @appliance
+140	68	38202325	how to set an appliance feature	How do I set the @setFeature feature on my @appliance?	@setFeature @appliance	How do i do the @setupFeature setup  on my @appliance
+141	69	38202325	how to set an appliance feature	How do I set the @setFeature feature on my @appliance?	@setFeature @appliance	Show me instructions for setting the @setupFeature  on the @appliance
+142	70	18090380	how to set an appliance feature	How do I set the @setFeature feature on my @appliance?	@setFeature @appliance	How do I set the @setFeature on my @appliance 
+143	71	18090380	how to set an appliance feature	How do I set the @setFeature feature on my @appliance?	@setFeature @appliance	How do I set the @setFeature on my @appliance 
+144	72	18090380	how to set an appliance feature	How do I set the @setFeature feature on my @appliance?	@setFeature @appliance	How do I set my @setFeature in my @appliance 
+145	72	45901177	how to set an appliance feature	How do I set the @setFeature feature on my @appliance?	@setFeature @appliance	How do I set the @setFeature feature on my @appliance but 
+146	73	45901177	how to set an appliance feature	How do I set the @setFeature feature on my @appliance?	@setFeature @appliance	why do I set the @setFeature feature on my @appliance but 
+147	74	45901177	how to set an appliance feature	How do I set the @setFeature feature on my @appliance?	@setFeature @appliance	I wanna set the @setFeature feature on my @appliance but 
+148	75	45985904	how to set an appliance feature	How do I set the @setFeature feature on my @appliance?	@setFeature @appliance	Will youTell me How do I set the @ feature on my @appliance
+149	76	45985904	how to set an appliance feature	How do I set the @setFeature feature on my @appliance?	@setFeature @appliance	How do I set the @ feature on my @appliance
+150	77	45985904	how to set an appliance feature	How do I set the @setFeature feature on my @appliance?	@setFeature @appliance	Could you tell me how do I set the @ feature on my @appliance
+151	78	38202325	how to set an appliance feature	How do I set the @setFeature feature on my @appliance?	@setFeature @appliance	Show me how to setup the @setFeature on the @appliance 
+152	79	38202325	how to set an appliance feature	How do I set the @setFeature feature on my @appliance?	@setFeature @appliance	What is the proper way to set the @setFeature  on my @appliance
+153	80	38202325	how to set an appliance feature	How do I set the @setFeature feature on my @appliance?	@setFeature @appliance	I need to set the @setFeature  on my @appliance
+154	82	43844929	how to turn on/off a feature on an appliance.	How do I switch the @onoffFeature off on the @appliance?	@onoffFeature @appliance	How do turn off the @onoffFeature off on this @appliance please 
+155	83	43844929	how to turn on/off a feature on an appliance.	How do I switch the @onoffFeature off on the @appliance?	@onoffFeature @appliance	Can you tell me how I can switch off the @onoffFeature on this @appliance 
+156	84	43844929	how to turn on/off a feature on an appliance.	How do I switch the @onoffFeature off on the @appliance?	@onoffFeature @appliance	Tell me how I switch off the @onoffFeature on this new @appliance please 
+157	85	38202325	how to turn on/off a feature on an appliance.	How do I switch the @onoffFeature off on the @appliance?	@onoffFeature @appliance	What is the correct way to turn the @onoffFeature  on for the @appliance
+158	86	38202325	how to turn on/off a feature on an appliance.	How do I switch the @onoffFeature off on the @appliance?	@onoffFeature @appliance	How do I go about turning the @onoffFeature on  for my @appliance
+159	87	38202325	how to turn on/off a feature on an appliance.	How do I switch the @onoffFeature off on the @appliance?	@onoffFeature @appliance	Show how the @onoffFeature turns off on the @appliance 
+160	88	6367365	how to turn on/off a feature on an appliance.	How do I switch the @onoffFeature off on the @appliance?	@onoffFeature @appliance	On the @appliance how do I turn off the @onoffFeature 
+161	89	6367365	how to turn on/off a feature on an appliance.	How do I switch the @onoffFeature off on the @appliance?	@onoffFeature @appliance	How is the @onoffFeature turned on for the @appliance 
+162	90	6367365	how to turn on/off a feature on an appliance.	How do I switch the @onoffFeature off on the @appliance?	@onoffFeature @appliance	Could you show me how to use the @onoffFeature to turn off the @appliance 
+163	90	45901177	how to turn on/off a feature on an appliance.	How do I switch the @onoffFeature off on the @appliance?	@onoffFeature @appliance	How do I switch the @onoffFeature off on the @appliance but 
+164	91	45901177	how to turn on/off a feature on an appliance.	How do I switch the @onoffFeature off on the @appliance?	@onoffFeature @appliance	do I switch the @onoffFeature off on the @appliance but 
+165	92	45901177	how to turn on/off a feature on an appliance.	How do I switch the @onoffFeature off on the @appliance?	@onoffFeature @appliance	why do I switch the @onoffFeature off on the @appliance but 
+166	93	38202325	how to turn on/off a feature on an appliance.	How do I switch the @onoffFeature off on the @appliance?	@onoffFeature @appliance	I need to turn the @onoffFeature  on my @appliance to off
+167	94	38202325	how to turn on/off a feature on an appliance.	How do I switch the @onoffFeature off on the @appliance?	@onoffFeature @appliance	How do I turn on the @onoffFeature on my @appliance 
+168	95	38202325	how to turn on/off a feature on an appliance.	How do I switch the @onoffFeature off on the @appliance?	@onoffFeature @appliance	What do I do to switch on the @onoffFeature on the @appliance 
+169	96	45405037	how to turn on/off a feature on an appliance.	How do I switch the @onoffFeature off on the @appliance?	@onoffFeature @appliance	How do I turn the @onoffFeature off on the @appliance 
+170	97	45405037	how to turn on/off a feature on an appliance.	How do I switch the @onoffFeature off on the @appliance?	@onoffFeature @appliance	How do I shut the @onoffFeature off on the @appliance 
+171	98	45405037	how to turn on/off a feature on an appliance.	How do I switch the @onoffFeature off on the @appliance?	@onoffFeature @appliance	How do I stop the @onoffFeature on the @appliance 
+172	73	18090380	how to use an appliance feature	How can I use the @useFeature on the @appliance?	@useFeature @appliance	How do I use the @useFeature feature on my @appliance 
+173	74	18090380	how to use an appliance feature	How can I use the @useFeature on the @appliance?	@useFeature @appliance	How do I use the @useFeature feature on my @appliance 
+174	75	18090380	how to use an appliance feature	How can I use the @useFeature on the @appliance?	@useFeature @appliance	How do I use the @useFeature feature on my @appliance 
+175	76	43844929	how to use an appliance feature	How can I use the @useFeature on the @appliance?	@useFeature @appliance	I need to know how to use the @useFeature on this @appliance can you tell me 
+176	77	43844929	how to use an appliance feature	How can I use the @useFeature on the @appliance?	@useFeature @appliance	Can you please let me know how to @useFeature on this @appliance 
+177	78	43844929	how to use an appliance feature	How can I use the @useFeature on the @appliance?	@useFeature @appliance	Would you mind telling me how to @useFeature on this particular @appliance model 
+178	79	38202325	how to use an appliance feature	How can I use the @useFeature on the @appliance?	@useFeature @appliance	What is the proper way to use the @appliance  @useFeature
+179	80	38202325	how to use an appliance feature	How can I use the @useFeature on the @appliance?	@useFeature @appliance	Provide instructions for using the @useFeature on the @appliance 
+180	81	38202325	how to use an appliance feature	How can I use the @useFeature on the @appliance?	@useFeature @appliance	How is the @useFeature  on the @appliance utilized
+181	81	45901177	how to use an appliance feature	How can I use the @useFeature on the @appliance?	@useFeature @appliance	How can I use the @useFeature on the @appliance or 
+182	82	45901177	how to use an appliance feature	How can I use the @useFeature on the @appliance?	@useFeature @appliance	what can I use the @useFeature on the @appliance or 
+183	83	45901177	how to use an appliance feature	How can I use the @useFeature on the @appliance?	@useFeature @appliance	can I use the @useFeature on the @appliance or 
+184	84	45889062	how to use an appliance feature	How can I use the @useFeature on the @appliance?	@useFeature @appliance	do i need to use this keyboard on @useFeature on the @appliance
+185	85	45889062	how to use an appliance feature	How can I use the @useFeature on the @appliance?	@useFeature @appliance	I want to use the @useFeature on the @appliance screen 
+186	86	45889062	how to use an appliance feature	How can I use the @useFeature on the @appliance?	@useFeature @appliance	show me the shortcuts @useFeature on the @appliance 
+187	87	38202325	how to use an appliance feature	How can I use the @useFeature on the @appliance?	@useFeature @appliance	Show me how the @useFeature  works on the @appliance
+188	88	38202325	how to use an appliance feature	How can I use the @useFeature on the @appliance?	@useFeature @appliance	How can I use the @appliance  @useFeature
+189	89	38202325	how to use an appliance feature	How can I use the @useFeature on the @appliance?	@useFeature @appliance	What is the proper way to utilize the @useFeature on my @appliance 
+190	91	43844929	locate a specific part or button on the appliance	Where can I locate the @locateObject on the @appliance?	@locateObject @appliance	Where can I locate this @locateObject on the @appliance 
+191	92	43844929	locate a specific part or button on the appliance	Where can I locate the @locateObject on the @appliance?	@locateObject @appliance	Tell me where I can locate @locateObject on the @appliance please 
+192	93	43844929	locate a specific part or button on the appliance	Where can I locate the @locateObject on the @appliance?	@locateObject @appliance	Can you please tell me where I can locate @locateObject on my new @appliance 
+193	94	45405037	locate a specific part or button on the appliance	Where can I locate the @locateObject on the @appliance?	@locateObject @appliance	Where can I find the  @locateObject on the @appliance
+194	95	45405037	locate a specific part or button on the appliance	Where can I locate the @locateObject on the @appliance?	@locateObject @appliance	Where can I seek  @locateObject on the @appliance
+195	96	45405037	locate a specific part or button on the appliance	Where can I locate the @locateObject on the @appliance?	@locateObject @appliance	Where can I discover  @lcoateObject on the @appliance
+196	97	38202325	locate a specific part or button on the appliance	Where can I locate the @locateObject on the @appliance?	@locateObject @appliance	Find me the @appliance @LocateObject  location
+197	98	38202325	locate a specific part or button on the appliance	Where can I locate the @locateObject on the @appliance?	@locateObject @appliance	What is the location for the @LocateObject  on my @appliance
+198	99	38202325	locate a specific part or button on the appliance	Where can I locate the @locateObject on the @appliance?	@locateObject @appliance	Display the @LocateObject  location on my @appliance
+199	99	45901177	locate a specific part or button on the appliance	Where can I locate the @locateObject on the @appliance?	@locateObject @appliance	I want to @locateObject @appliance or 
+200	100	45901177	locate a specific part or button on the appliance	Where can I locate the @locateObject on the @appliance?	@locateObject @appliance	Am I allowed to @locateObject on @appliance or 
+201	101	45901177	locate a specific part or button on the appliance	Where can I locate the @locateObject on the @appliance?	@locateObject @appliance	Please May I @locateObject on @appliance or 
+202	102	38202325	locate a specific part or button on the appliance	Where can I locate the @locateObject on the @appliance?	@locateObject @appliance	Where can I find the @locateObject on the @appliance 
+203	103	38202325	locate a specific part or button on the appliance	Where can I locate the @locateObject on the @appliance?	@locateObject @appliance	What is the @locateObject  location on my @appliance
+204	104	38202325	locate a specific part or button on the appliance	Where can I locate the @locateObject on the @appliance?	@locateObject @appliance	Find me the location of the @locateObject  on the @appliance
+205	105	45405037	locate a specific part or button on the appliance	Where can I locate the @locateObject on the @appliance?	@locateObject @appliance	Where can I find the  @locateObject on the @appliance
+206	106	45405037	locate a specific part or button on the appliance	Where can I locate the @locateObject on the @appliance?	@locateObject @appliance	Where can I discover the  @locateObject on the @appliance
+207	107	45405037	locate a specific part or button on the appliance	Where can I locate the @locateObject on the @appliance?	@locateObject @appliance	Where can I hunt up the  @locateObject on the @appliance
+208	100	43844929	show the image of a part or button in an appliance	What does the @imageObject look like in the @appliance?	@imageObject @appliance	What does this @imageObject look like on my @appliance 
+209	101	43844929	show the image of a part or button in an appliance	What does the @imageObject look like in the @appliance?	@imageObject @appliance	Can you tell me how @imageObject looks on my @appliance please 
+210	102	43844929	show the image of a part or button in an appliance	What does the @imageObject look like in the @appliance?	@imageObject @appliance	What does @imageObject look like on the @appliance 
+211	103	38202325	show the image of a part or button in an appliance	What does the @imageObject look like in the @appliance?	@imageObject @appliance	Show me what the @appliance  @imageObject looks like
+212	104	38202325	show the image of a part or button in an appliance	What does the @imageObject look like in the @appliance?	@imageObject @appliance	Display an image of the @imageObject  on the @appliance
+213	105	38202325	show the image of a part or button in an appliance	What does the @imageObject look like in the @appliance?	@imageObject @appliance	Find me a picture of the @imageObject  on the @appliance
+214	106	18090380	show the image of a part or button in an appliance	What does the @imageObject look like in the @appliance?	@imageObject @appliance	What does the @imageObject look like on my @appliance 
+215	107	18090380	show the image of a part or button in an appliance	What does the @imageObject look like in the @appliance?	@imageObject @appliance	What does the @imageObject look like on my @appliance 
+216	108	18090380	show the image of a part or button in an appliance	What does the @imageObject look like in the @appliance?	@imageObject @appliance	What does the @imageObject look like on my @appliance 
+217	108	45901177	show the image of a part or button in an appliance	What does the @imageObject look like in the @appliance?	@imageObject @appliance	What does the @imageObject look like in the @appliance or 
+218	109	45901177	show the image of a part or button in an appliance	What does the @imageObject look like in the @appliance?	@imageObject @appliance	How does the @imageObject look like in the @appliance or 
+219	110	45901177	show the image of a part or button in an appliance	What does the @imageObject look like in the @appliance?	@imageObject @appliance	the @imageObject look like in the @appliance or 
+220	111	45596899	show the image of a part or button in an appliance	What does the @imageObject look like in the @appliance?	@imageObject @appliance	how @imageObject looks inside @appliance in any presentation and 
+221	112	45596899	show the image of a part or button in an appliance	What does the @imageObject look like in the @appliance?	@imageObject @appliance	How to update @imageObject within @appliance in any presentation on any device and 
+222	113	45596899	show the image of a part or button in an appliance	What does the @imageObject look like in the @appliance?	@imageObject @appliance	can @imageObject be projected on @appliance using any android or iphone product 
+223	114	6367365	show the image of a part or button in an appliance	What does the @imageObject look like in the @appliance?	@imageObject @appliance	Would you tell me what the @imageObject looks like on this @appliance 
+224	115	6367365	show the image of a part or button in an appliance	What does the @imageObject look like in the @appliance?	@imageObject @appliance	How does the @imageObject look on this @appliance 
+225	116	6367365	show the image of a part or button in an appliance	What does the @imageObject look like in the @appliance?	@imageObject @appliance	On this @appliance, what does the @imageObject look like 
+226	55	18090380	the purpose of an appliance feature	What is the purpose of the @purposeFeature on the @appliance?	@purposeFeature @appliance	What is the @purposeFeature used for on my @appliance 
+227	56	18090380	the purpose of an appliance feature	What is the purpose of the @purposeFeature on the @appliance?	@purposeFeature @appliance	What is the @purposeFeature function for on my @appliance 
+228	57	18090380	the purpose of an appliance feature	What is the purpose of the @purposeFeature on the @appliance?	@purposeFeature @appliance	How do I use the @purposeFeature function on my @appliance 
+229	58	43844929	the purpose of an appliance feature	What is the purpose of the @purposeFeature on the @appliance?	@purposeFeature @appliance	Can you tell me what the purpose of @purposeFeature on this @appliance is, please 
+230	59	43844929	the purpose of an appliance feature	What is the purpose of the @purposeFeature on the @appliance?	@purposeFeature @appliance	What, exactly, is the purpose of @purposeFeature on this @appliance 
+231	60	43844929	the purpose of an appliance feature	What is the purpose of the @purposeFeature on the @appliance?	@purposeFeature @appliance	Can you tell me what the purposes of @purposeFeature are on this @appliance 
+232	61	38202325	the purpose of an appliance feature	What is the purpose of the @purposeFeature on the @appliance?	@purposeFeature @appliance	What does the @purposeFeature found on the @appliance  do
+233	62	38202325	the purpose of an appliance feature	What is the purpose of the @purposeFeature on the @appliance?	@purposeFeature @appliance	Tell me the @purposeFeature  function on the @appliance
+234	63	38202325	the purpose of an appliance feature	What is the purpose of the @purposeFeature on the @appliance?	@purposeFeature @appliance	What is the@purposeFeature on the @appliance  suppose to do
+235	63	45901177	the purpose of an appliance feature	What is the purpose of the @purposeFeature on the @appliance?	@purposeFeature @appliance	What is the purpose of the @purposeFeature on the @appliance or 
+236	64	45901177	the purpose of an appliance feature	What is the purpose of the @purposeFeature on the @appliance?	@purposeFeature @appliance	the purpose of the @purposeFeature on the @appliance or 
+237	65	45901177	the purpose of an appliance feature	What is the purpose of the @purposeFeature on the @appliance?	@purposeFeature @appliance	the purpose of the @purposeFeature on the @appliance is 
+238	66	38202325	the purpose of an appliance feature	What is the purpose of the @purposeFeature on the @appliance?	@purposeFeature @appliance	What does the @purposeFeature on the @appliance  do
+239	67	38202325	the purpose of an appliance feature	What is the purpose of the @purposeFeature on the @appliance?	@purposeFeature @appliance	Tell me what the @purposeFeature  do on the @appliance
+240	68	38202325	the purpose of an appliance feature	What is the purpose of the @purposeFeature on the @appliance?	@purposeFeature @appliance	What is the @purposeFeature function on the @appliance 
+241	69	6367365	the purpose of an appliance feature	What is the purpose of the @purposeFeature on the @appliance?	@purposeFeature @appliance	Can you tell me what the @purposeFeature is for on the @appliance 
+242	70	6367365	the purpose of an appliance feature	What is the purpose of the @purposeFeature on the @appliance?	@purposeFeature @appliance	Could you explain the purpose of the @purposeFeature on the @appliance 
+243	71	6367365	the purpose of an appliance feature	What is the purpose of the @purposeFeature on the @appliance?	@purposeFeature @appliance	What is the @purposeFeature for on my @appliance 

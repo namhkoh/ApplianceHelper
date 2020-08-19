@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.aic.libnilu.NiluLibProcess;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,9 +40,20 @@ public class UserConsentActivity extends AppCompatActivity {
         String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
         Log.d("1",filePath);
 
-        String model_file = "model_tiny_ascii.pt";
+        String model_file = "model_tiny_8_9.pt";
         String file_name = Utilities.assetFilePath(getApplicationContext(), model_file);
         Log.d("2",file_name);
+
+        String vocab_file = "vocab.txt";
+        String vocab_path = Utilities.assetFilePath(getApplicationContext(), vocab_file);
+        Log.d("3",vocab_path);
+
+        String config_file = "config.json";
+        String config_path = Utilities.assetFilePath(getApplicationContext(), config_file);
+        Log.d("3",config_path);
+
+        NiluLibProcess.init(filePath,file_name, vocab_path, config_path);
+
 
         // Commented due to error.
         //NiluLibProcess.init(filePath,file_name);
