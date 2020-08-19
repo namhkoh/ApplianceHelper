@@ -1,6 +1,7 @@
 package com.aic.libnilu.token;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import timber.log.Timber;
 
@@ -33,6 +34,49 @@ public class RunTokenizer {
         this.split_tokens= inputIds;
         this.tokens=vocab.convertTokensToIds(inputIds);
     }
+
+    public long[] getSelect(String sentence){
+        int sentence_length = sentence.split(" ").length;
+        long[] select = new long[sentence_length];
+        int position = 0;
+        for(int i = 0; i < split_tokens.size(); i ++){
+            if(split_tokens.get(i).charAt(0) != '#'){
+                select[position] = Long.valueOf(i+1);
+                position++;
+            }
+        }
+        System.out.println(Arrays.toString(select));
+        return select;
+    }
+
+    public long[] getInput(){
+        long[] input = new long[split_tokens.size()+2];
+        for(int i = 0; i < split_tokens.size()+2; i++){
+            input[i] = Long.valueOf(1);
+        }
+        System.out.println(Arrays.toString(input));
+        return input;
+    }
+
+    public long[] getSegment(){
+        long[] segment = new long[split_tokens.size()+2];
+        for(int i = 0; i < split_tokens.size()+2; i++){
+            segment[i] = Long.valueOf(1);
+        }
+        System.out.println(Arrays.toString(segment));
+        return segment;
+    }
+
+    public long[] getCopies(String sentence){
+        int sentence_length = sentence.split(" ").length;
+        long[] select = new long[sentence_length];
+        for(int i = 0; i < sentence_length; i ++){
+            select[i] = Long.valueOf(i);
+        }
+        System.out.println(Arrays.toString(select));
+        return select;
+    }
+
 
     public ArrayList<Integer> getTokens() {
         return tokens;
