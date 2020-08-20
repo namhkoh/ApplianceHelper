@@ -170,30 +170,14 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     ArrayList<String> tmpList = new ArrayList<String>();
 
-    private void enterFoodCode(String buttonValue){
-        TextView ovenLcd = findViewById(R.id.oven_panel_text);
-        Handler h = new Handler(getMainLooper());
-        if (buttonValue.equals("3")) {
-            lcdString = "";
-            lcdString = "Nuggets/Fries";
-            ovenLcd.setText(lcdString);
-        }
-        h.postDelayed(() -> {
-            lcdString = "";
-            lcdString = "Set temperature";
-            ovenLcd.setText(lcdString);
-        }, 2000);
-    }
-
-    private void enterTemperature(){
-        TextView ovenLcd = findViewById(R.id.oven_panel_text);
-        lcdString = "";
-        ovenLcd.setText(lcdString);
-    }
-
     private void frozenBake() {
         frozenBakeBtnPressed = true;
         Log.e("Button pressed","frozenBake");
+        TextView lcd = findViewById(R.id.oven_panel_text);
+        Handler h = new Handler(getMainLooper());
+        lcdString = "";
+        lcdString = "Enter food code!";
+        lcd.setText(lcdString);
     }
 
     private void cookTime() {
