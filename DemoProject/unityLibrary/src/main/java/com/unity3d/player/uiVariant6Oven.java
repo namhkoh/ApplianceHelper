@@ -215,6 +215,7 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     private void press2(){
         o2Pressed = true;
+        lcdString = "";
         Log.e("Button pressed","2");
         lcdString += "2";
         update(lcdString);
@@ -222,7 +223,7 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     private void press3(){
         o3Pressed = true;
-        TextView ovenLcd = findViewById(R.id.oven_panel_text);
+        lcdString = "";
         Log.e("Button pressed","3");
         lcdString += "3";
         update(lcdString);
@@ -254,6 +255,7 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     private void press4(){
         o4Pressed = true;
+        lcdString = "";
         Log.e("Button pressed","4");
         lcdString += "4";
         update(lcdString);
@@ -261,6 +263,7 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     private void press5(){
         o5Pressed = true;
+        lcdString = "";
         Log.e("Button pressed","5");
         lcdString += "5";
         update(lcdString);
