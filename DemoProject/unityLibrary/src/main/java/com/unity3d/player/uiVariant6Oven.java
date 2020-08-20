@@ -25,6 +25,21 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     private String lcdString = " ";
 
+    boolean frozenBakeBtnPressed = false;
+    boolean cookTimeBtnPressed = false;
+    boolean startOvenBtnPressed = false;
+    boolean cancelOvenBtnPressed = false;
+    boolean o0Pressed = false;
+    boolean o1Pressed = false;
+    boolean o2Pressed = false;
+    boolean o3Pressed = false;
+    boolean o4Pressed = false;
+    boolean o5Pressed = false;
+    boolean o6Pressed = false;
+    boolean o7Pressed = false;
+    boolean o8Pressed = false;
+    boolean o9Pressed = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -165,7 +180,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         }
         h.postDelayed(() -> {
             lcdString = "";
-            lcdString = "Enter temperature";
+            lcdString = "Set temperature";
             ovenLcd.setText(lcdString);
         }, 2000);
     }
@@ -177,6 +192,7 @@ public class uiVariant6Oven extends AppCompatActivity {
     }
 
     private void frozenBake() {
+        frozenBakeBtnPressed = true;
         Log.e("Button pressed","frozenBake");
         Handler h = new Handler(getMainLooper());
         TextView ovenLcd = findViewById(R.id.oven_panel_text);
@@ -189,14 +205,17 @@ public class uiVariant6Oven extends AppCompatActivity {
     }
 
     private void cookTime() {
+        cookTimeBtnPressed = true;
         Log.e("Button pressed","cookTime");
     }
 
     private void startOven(){
+        startOvenBtnPressed = true;
         Log.e("Button pressed","startOven");
     }
 
     private void cancelOven(){
+        cancelOvenBtnPressed = true;
         Log.e("Button pressed","cancelOven");
     }
 
@@ -209,24 +228,28 @@ public class uiVariant6Oven extends AppCompatActivity {
     }
 
     private void press0(){
+        o0Pressed = true;
         Log.e("Button pressed","0");
         lcdString += "0";
         update(lcdString);
     }
 
     private void press1(){
+        o1Pressed = true;
         Log.e("Button pressed","1");
         lcdString += "1";
         update(lcdString);
     }
 
     private void press2(){
+        o2Pressed = true;
         Log.e("Button pressed","2");
         lcdString += "2";
         update(lcdString);
     }
 
     private void press3(){
+        o3Pressed = true;
         Log.e("Button pressed","3");
         lcdString += "3";
         update(lcdString);
@@ -234,26 +257,32 @@ public class uiVariant6Oven extends AppCompatActivity {
     }
 
     private void press4(){
+        o4Pressed = true;
         Log.e("Button pressed","4");
     }
 
     private void press5(){
+        o5Pressed = true;
         Log.e("Button pressed","5");
     }
 
     private void press6(){
+        o6Pressed = true;
         Log.e("Button pressed","6");
     }
 
     private void press7(){
+        o7Pressed = true;
         Log.e("Button pressed","7");
     }
 
     private void press8(){
+        o8Pressed = true;
         Log.e("Button pressed","8");
     }
 
     private void press9(){
+        o9Pressed = true;
         Log.e("Button pressed","9");
     }
 
