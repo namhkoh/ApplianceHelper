@@ -199,7 +199,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         Log.e("Button added",buttonValue);
         TextView ovenLcd = findViewById(R.id.oven_panel_text);
         lcdString = " ";
-        lcdString = buttonValue;
+        lcdString += buttonValue;
         ovenLcd.setText(lcdString);
     }
 
@@ -216,21 +216,53 @@ public class uiVariant6Oven extends AppCompatActivity {
     private void press2(){
         o2Pressed = true;
         Log.e("Button pressed","2");
+        lcdString += "2";
+        update(lcdString);
     }
 
     private void press3(){
         o3Pressed = true;
         Log.e("Button pressed","3");
+        lcdString += "3";
+        update(lcdString);
+        selectMode();
+    }
+
+    private void selectMode(){
+        Handler h = new Handler();
+        if (frozenBakeBtnPressed = true) {
+            h.postDelayed(() -> {
+                TextView lcd = findViewById(R.id.oven_panel_text);
+                lcdString = "";
+                lcdString = "Nuggets/Fries";
+                lcd.setText(lcdString);
+            }, 2000);
+        }
+        setTemperature();
+    }
+
+    private void setTemperature(){
+        Handler h = new Handler();
+        h.postDelayed(() -> {
+            TextView lcd = findViewById(R.id.oven_panel_text);
+            lcdString = "";
+            lcdString = "Set Temperature!";
+            lcd.setText(lcdString);
+        }, 2000);
     }
 
     private void press4(){
         o4Pressed = true;
         Log.e("Button pressed","4");
+        lcdString += "4";
+        update(lcdString);
     }
 
     private void press5(){
         o5Pressed = true;
         Log.e("Button pressed","5");
+        lcdString += "5";
+        update(lcdString);
     }
 
     private void press6(){
