@@ -194,14 +194,6 @@ public class uiVariant6Oven extends AppCompatActivity {
     private void frozenBake() {
         frozenBakeBtnPressed = true;
         Log.e("Button pressed","frozenBake");
-        Handler h = new Handler(getMainLooper());
-        TextView ovenLcd = findViewById(R.id.oven_panel_text);
-        lcdString = "Enter food code";
-        ovenLcd.setTextSize(30);
-        ovenLcd.setText(lcdString);
-        h.postDelayed(() -> {
-            lcdString = "";
-        }, 2000);
     }
 
     private void cookTime() {
@@ -230,30 +222,21 @@ public class uiVariant6Oven extends AppCompatActivity {
     private void press0(){
         o0Pressed = true;
         Log.e("Button pressed","0");
-        lcdString += "0";
-        update(lcdString);
     }
 
     private void press1(){
         o1Pressed = true;
         Log.e("Button pressed","1");
-        lcdString += "1";
-        update(lcdString);
     }
 
     private void press2(){
         o2Pressed = true;
         Log.e("Button pressed","2");
-        lcdString += "2";
-        update(lcdString);
     }
 
     private void press3(){
         o3Pressed = true;
         Log.e("Button pressed","3");
-        lcdString += "3";
-        update(lcdString);
-        enterFoodCode("3");
     }
 
     private void press4(){
