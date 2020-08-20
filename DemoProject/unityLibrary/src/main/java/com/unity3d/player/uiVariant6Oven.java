@@ -24,8 +24,8 @@ import java.util.HashMap;
 public class uiVariant6Oven extends AppCompatActivity {
 
     private String lcdString = " ";
-
     boolean frozenBakeBtnPressed = false;
+    boolean setTemperaturePressed = false;
     boolean cookTimeBtnPressed = false;
     boolean startOvenBtnPressed = false;
     boolean cancelOvenBtnPressed = false;
@@ -201,6 +201,11 @@ public class uiVariant6Oven extends AppCompatActivity {
         lcdString = " ";
         lcdString += buttonValue;
         ovenLcd.setText(lcdString);
+        if (setTemperaturePressed) {
+            lcdString = " ";
+            lcdString += buttonValue;
+            enterTemperature(lcdString);
+        }
     }
 
     private void press0(){
@@ -215,7 +220,6 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     private void press2(){
         o2Pressed = true;
-        lcdString = "";
         Log.e("Button pressed","2");
         lcdString += "2";
         update(lcdString);
@@ -251,11 +255,19 @@ public class uiVariant6Oven extends AppCompatActivity {
             lcdString = "Set Temperature!";
             lcd.setText(lcdString);
         }, 2000);
+        setTemperaturePressed = true;
+    }
+
+    private void enterTemperature(String tempVal){
+        TextView lcd = findViewById(R.id.oven_panel_text);
+        lcdString = "";
+        lcd.setText(lcdString);
+        lcdString = tempVal + " °F";
+        lcd.setText(lcdString);
     }
 
     private void press4(){
         o4Pressed = true;
-        lcdString = "";
         Log.e("Button pressed","4");
         lcdString += "4";
         update(lcdString);
@@ -263,7 +275,6 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     private void press5(){
         o5Pressed = true;
-        lcdString = "";
         Log.e("Button pressed","5");
         lcdString += "5";
         update(lcdString);
