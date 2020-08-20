@@ -155,12 +155,37 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     ArrayList<String> tmpList = new ArrayList<String>();
 
+    private void enterFoodCode(String buttonValue){
+        TextView ovenLcd = findViewById(R.id.oven_panel_text);
+        Handler h = new Handler(getMainLooper());
+        if (buttonValue.equals("3")) {
+            lcdString = "";
+            lcdString = "Nuggets/Fries";
+            ovenLcd.setText(lcdString);
+        }
+        h.postDelayed(() -> {
+            lcdString = "";
+            lcdString = "Enter temperature";
+            ovenLcd.setText(lcdString);
+        }, 2000);
+    }
+
+    private void enterTemperature(){
+        TextView ovenLcd = findViewById(R.id.oven_panel_text);
+        lcdString = "";
+        ovenLcd.setText(lcdString);
+    }
+
     private void frozenBake() {
+        Log.e("Button pressed","frozenBake");
+        Handler h = new Handler(getMainLooper());
         TextView ovenLcd = findViewById(R.id.oven_panel_text);
         lcdString = "Enter food code";
         ovenLcd.setTextSize(30);
         ovenLcd.setText(lcdString);
-        Log.e("Button pressed","frozenBake");
+        h.postDelayed(() -> {
+            lcdString = "";
+        }, 2000);
     }
 
     private void cookTime() {
@@ -197,10 +222,15 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     private void press2(){
         Log.e("Button pressed","2");
+        lcdString += "2";
+        update(lcdString);
     }
 
     private void press3(){
         Log.e("Button pressed","3");
+        lcdString += "3";
+        update(lcdString);
+        enterFoodCode("3");
     }
 
     private void press4(){
