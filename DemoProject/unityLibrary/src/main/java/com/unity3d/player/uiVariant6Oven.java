@@ -222,6 +222,7 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     private void press3(){
         o3Pressed = true;
+        TextView ovenLcd = findViewById(R.id.oven_panel_text);
         Log.e("Button pressed","3");
         lcdString += "3";
         update(lcdString);
