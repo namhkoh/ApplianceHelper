@@ -1,0 +1,42 @@
+question 97 and 98 look similar so there seems to be a mistake. & 101
+
+
+@all other questions are @foodType @appliance
+
+but 98 and 101 have @appliance @foodType
+
+
+
+
+
+Quality of data - mistakens
+Not enought data. 
+Sentence @appliance @foodtype
+How do I use the oven to cook the bacon
+@appliance @foodtype
+How can I cook the bacon using the microwave
+
+
+send appliaciton with speciific task file. 
+
+New user opens application -> user id is generated. 
+
+Instructions show up telling the user what to do. 
+
+There is a specific UI variant picked for them then the users basically shown a task. 
+
+Please ask how to set the clock. 
+
+The next step is UI varient where they can ask the question. 
+
+Next will be the questionare will be the user satisfaction questionare. 
+
+Namho recreate the UI so it's very realistic. 
+
+Then at the end of that goes to the next task which asks the user what to do. 
+
+Then there is another survey where they ask new qustion. 
+
+Text to give feedback. 
+
+

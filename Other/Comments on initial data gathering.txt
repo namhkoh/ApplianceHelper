@@ -1,0 +1,81 @@
+Please include the keyword ~ maybe change this to @partType and something. 
+
+
+i-3 
+
+@partType 4-2 Who has a ~ 
+Otherwise good
+
+@cleanObject
+7-1,2,3 
+This person mistakens cleanObject as an object used to clean. 
+We are trying to clean an object. 
+
+@info code good overall 
+9-3 gramatical error but otherwise good. 
+
+@cookWare
+11-1,2,3 This person leaves out @ also very bad data for all of the three
+Other two people good. 
+
+@removeObject
+16-1 bad data
+15-2,3 too specific. take away, empty. Yes but we are talking about light bulbs and oven doors so not quite. 
+
+@replaceObject
+@18-1,2,3 bad data
+
+@purpose 
+I worried that the people would think the word purpose is mandatory but Thankfully not. 
+
+@set
+Good but makes error with @setFeature setFeature part is missing. 
+
+@locateObject
+37-2,3 discover & hunt up. Funny, Yes but not the words that would typicallly be used. 
+
+@imageObject 
+@39 A bit weird user must have understood it weirdly. 
+
+@existFeature goods
+
+custom cloud. 
+
+@partType 
+@4 Doesn't use @ and Fills in the actual slot value.
+
+@cleanObject
+@5 Doesn't use @ and Fills in the actual slot value. 
+
+@infoCode
+@10 fills in the actual slot value. 
+
+@cookWare
+@13 Doesn't understand teh question FIlls in the actual slot value. 
+
+@replace
+@19 good but the same person makes the same mistake. 
+
+@foodType
+@22 same mistake otw good. 
+
+@23-2,3 same mistake
+
+@28 same
+
+@29 same
+
+@36 2,3 seek discover not words that will really be used. 
+
+@40 same 
+
+@43 same
+
+
+
+
+
+
+
+
+

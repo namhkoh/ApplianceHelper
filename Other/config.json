@@ -1,0 +1,10 @@
+{
+  "tokenizer": {
+    "method": "spm",
+    "language": "en-US",
+    "do_lower_case": true,
+    "do_normalize_num": false,
+    "do_tokenize_english": false,
+    "do_split_punctuation": true
+  }
+}

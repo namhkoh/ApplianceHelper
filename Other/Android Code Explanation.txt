@@ -1,0 +1,28 @@
+Start with activity_user_consent
+
+raw.file2. 
+Depending on the number of tasks. 
+It will loop n times. 
+
+Three screens
+
+First screen
+Activity screen instuctions. 
+
+Second 
+Actual UI variant. 
+
+Last
+
+Replication.
+
+At the end there is a survey. 
+
+Add an additional screen in between to replauy
+
+
+User satisfaction.
+
+Low level
+Userbility survey could be good. 
+

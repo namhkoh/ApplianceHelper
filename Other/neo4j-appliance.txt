@@ -1,0 +1,46 @@
+CREATE (oven:Appliance {name:'Oven'})
+CREATE (timerButton:Part {name:'Timer Button', locate:'Bottom right'})
+CREATE (glassTray:Part {name:'Charcol filter', locate:'Top corner'})
+CREATE (oven)-[:LOCATE {type:['button']}]->(timerButton)
+CREATE (oven)-[:LOCATE {type:['tray']}]->(glassTray)
+
+Match (:Appliance {name:'Oven'})-[:LOCATE]–>(parts:Part {name:'Charcol filter'}) RETURN parts.locate
+Match (:Appliance {name:'Oven'})-[:LOCATE]–>(parts:Part {name:'Timer Button'}) RETURN parts.locate
+Match (:Appliance {name:'Oven'})-[:LOCATE]–>(parts:Part) RETURN parts.locate
+
+#slot(appliance) intent #slot # Description. 
+
+MATCH (n) RETURN n;
+
+
+
+Create Knowledge Graph - 
+Download neo4j on local machine
+Java Program to interact with the knowledge graph. 
+Give slot intent then give back intent. 
+
+
+Lists of slots with values. 
+Create neo4j Query and return the answer back. 
+
+Draw out the plan. 
+What are the individual peices that are in the system. 
+Overall goal is to get an utterance in return a set of instruction based on the utterences. 
+Input string output set of instructions that you pass on in the output layer. 
+What of this whole system consisting of. NLU(github), Answer piece: set of instructions format it into neo4j query. How to comunicate with the server,
+take server results and format it into the answer that needs to get out. 
+block diagram. 
+
+-> 
+-> 
+
+(base) PS C:\> cd .\neo4j\
+(base) PS C:\neo4j> bin\neo4j console
+
+recommeneded scrubbing pad
+
+Is there anything I need to be careful of when cleaning my cleanable. 
+
+
+
+

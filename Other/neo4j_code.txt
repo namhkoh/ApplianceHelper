@@ -1,0 +1,37 @@
+MATCH (n) DETACH DELETE n
+
+MATCH (n) RETURN n
+
+CREATE (oven:Appliance {name:'oven'})
+CREATE (door:Part {name:'door', locate:'Please call 000-0000-000'})
+CREATE (oven)-[:LOCATE {type:['part']}]->(door)
+CREATE (light:Part {name:'light', locate:'Please call 000-0000-001'})
+CREATE (oven)-[:LOCATE {type:['part']}]->(light)
+
+
+
+CREATE (Inception:Movie {title: 'Inception', director:'Christopher Nolan'})
+CREATE (DarkKnight:Movie {title: 'The Dark Knight', director:'Christopher Nolan'})
+CREATE(Sam:User {name: 'Sam Hamington',age:35})
+CREATE(Ryan:User {name: 'Ryan Andrew',age:20})
+CREATE(Peter:User {name: 'Peter',age:30})
+
+CREATE
+(Inception)-[:RATED {rating: 9}]->(Peter),
+(Inception)-[:RATED {rating: 8}]->(Sam),
+(DarkKnight)-[:RATED {rating: 9}]->(Sam),
+(DarkKnight)-[:RATED {rating: 8}]->(Peter)
+
+MATCH (DarkKnight:Movie {title: 'The Dark Knight'}), (Ryan:User)
+CREATE (DarkKnight)-[:RATED {rating:8}]->(Ryan)
+
+MATCH (DarkKnight:Movie {title: 'The Dark Knight'}) RETURN DarkKnight, (Ryan:User) CREATE (DarkKnight) -[:RATED {rating:8}]->(Ryan)
+
+key word matching 
+dictionary: a few keywords 
+
+
+Java - Questions
+
+
+
