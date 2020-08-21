@@ -1,0 +1,13 @@
+<pad> : 0
+<unk> : 1
+buy : 2
+clean : 3
+code : 4
+appropriate : 5
+remove : 6
+replace : 7
+cook : 8
+purpose : 9
+set : 10
+use : 11
+on_off : 12
