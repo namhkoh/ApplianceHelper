@@ -15,7 +15,26 @@ import java.util.stream.Collectors;
  */
 public class NLU {
     // A sentence split as a list by a space
+    String modelpath;
+    String vocabpath;
+    String configpath;
+    String intentpath;
+    String slotpath;
+
+    public NLU(String modelpath, String vocabpath, String configpath, String intentpath, String slotpath){
+        this.modelpath = modelpath;
+        this.vocabpath = vocabpath;
+        this.configpath = configpath;
+        this.intentpath = intentpath;
+        this.slotpath = slotpath;
+    }
+
     private static List sentence_list;
+
+    public String Appliance(){
+        return null;
+
+    }
 
     /**
      * Extracts the slot of the sentence.
@@ -102,6 +121,8 @@ public class NLU {
         List sentence_list = Arrays.asList(sentence_token);
         return sentence_list;
     }
+
+
 
 
 }

@@ -17,6 +17,9 @@ import org.pytorch.IValue;
 import org.pytorch.Module;
 import org.pytorch.Tensor;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -24,6 +27,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -40,6 +44,30 @@ public class InferenceTask implements Callable<InferenceTask.InferenceResult> {
     private WeakReference<Context> gContext;
     private ActivityManager.MemoryInfo memInfo;
     private ActivityManager activityManager;
+    private Map<Integer,String> intent_idx = new HashMap();
+    private HashMap<Integer,String> slot_idx = new HashMap();
+    private String[] slot_solution;
+    private int maxAt;
+    private String intent;
+
+    public String[] getSlot_solution() {
+        return slot_solution;
+    }
+
+    public int getMaxAt() {
+        return maxAt;
+    }
+
+    public String getIntent() {
+        return intent;
+    }
+
+    public int[] getMax_slot() {
+        return max_slot;
+    }
+
+    private int[] max_slot;
+
     private long[] memory;
     private long[] latency;
     private static final long  MEGABYTE = 1024L * 1024L;
@@ -169,6 +197,66 @@ public class InferenceTask implements Callable<InferenceTask.InferenceResult> {
 
     /**** Load Modules ******/
 
+    public void setVocab(String intentpath, String slotpath){
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader(
+                    intentpath));
+            String line = reader.readLine();
+            String line_nospace;
+            String[] split;
+            while (line != null) {
+                System.out.println(line);
+                // read next line
+                line_nospace = line.replaceAll("\\s+", "");
+                System.out.println(line_nospace);
+                split = line_nospace.split(":");
+                System.out.println(Arrays.asList(line_nospace.split(":")));
+                line = reader.readLine();
+                intent_idx.put(new Integer(split[1]),split[0]);
+            }
+
+
+            Set<Map.Entry<Integer, String>> entries = intent_idx.entrySet();
+
+
+            for (Map.Entry<Integer, String> entry : entries) {
+                System.out.print("key: "+ entry.getKey());
+                System.out.println(", Value: "+ entry.getValue());
+            }
+            reader.close();
+
+            reader = new BufferedReader(new FileReader(
+                    slotpath));
+            line = reader.readLine();
+            while (line != null) {
+                System.out.println(line);
+                // read next line
+                line_nospace = line.replaceAll("\\s+", "");
+                System.out.println(line_nospace);
+                split = line_nospace.split(":");
+                System.out.println(Arrays.asList(line_nospace.split(":")));
+                line = reader.readLine();
+                slot_idx.put(new Integer(split[1]),split[0]);
+            }
+
+
+            Set<Map.Entry<Integer, String>> entries_slot = intent_idx.entrySet();
+
+
+            for (Map.Entry<Integer, String> entry : entries_slot) {
+                System.out.print("key: "+ entry.getKey());
+                System.out.println(", Value: "+ entry.getValue());
+            }
+            reader.close();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     private static class predictTask implements Callable<float[]> {
         long[] data;
         Module module;
@@ -199,7 +287,7 @@ public class InferenceTask implements Callable<InferenceTask.InferenceResult> {
         }
     }
 
-    public synchronized  float[] predict_2(long[] tokens, long[] selects, long[] mask, long[] segments, long[] copies){
+    public synchronized float[] predict_2(long[] tokens, long[] selects, long[] mask, long[] segments, long[] copies){
 
         String question;
         byte[] ascii = "will i be able to use porcelain in the oven".getBytes(StandardCharsets.US_ASCII);
@@ -253,19 +341,21 @@ public class InferenceTask implements Callable<InferenceTask.InferenceResult> {
                 scores = oTensor.getDataAsFloatArray();
                 System.out.println("Scores"+scores);
                 System.out.println(scores.length);
-                int maxAt = 0;
+                maxAt = 0;
                 for(int i=0; i < scores.length; i++){
                     System.out.print(scores[i] + " ");
                 }
                 System.out.println();
                 if(p == 1){
-                    int[] max_slot = {0,0,0,0,0,0,0,0,0,0};
-                    float[][] slot_2d = new float[10][24];
+                    //int[] max_slot = {0,0,0,0,0,0,0,0,0,0};
+                    max_slot = new int[copies.length];
+                    Arrays.fill(max_slot, 0);
+                    float[][] slot_2d = new float[copies.length][24];
                     for(int i=0; i < scores.length; i++){
                         slot_2d[i / 24][i % 24] = scores[i];
                     }
                     System.out.println("------");
-                    for(int i = 0; i<10; i++)
+                    for(int i = 0; i<copies.length; i++)
                     {
                         for(int j = 0; j<24; j++)
                         {
@@ -275,17 +365,27 @@ public class InferenceTask implements Callable<InferenceTask.InferenceResult> {
                         System.out.println();
                     }
                     System.out.println(Arrays.toString(max_slot));
+                    slot_solution = new String[copies.length];
+                    for(int i = 0; i < slot_solution.length;i++){
+                        slot_solution[i] = slot_idx.get(max_slot[i]);
+                    }
+                    System.out.println(Arrays.asList(slot_solution));
+
                 }
 
                 if(p == 2){
                     for(int i=0; i < scores.length; i++){
                         maxAt = scores[i] > scores[maxAt] ? i : maxAt;
                     }
+                    System.out.println("Max Index: "+maxAt);
+                    System.out.println("Intent Value: "+ intent_idx.get(maxAt));
+                    intent = intent_idx.get(maxAt);
                 }
-                System.out.print("Max Index: "+maxAt);
                 System.out.println();
             }
         }
+
+
 
         return null;
     }

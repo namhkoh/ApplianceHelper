@@ -114,14 +114,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/InputFieldGuideline" />
 
-    <Button
-        android:id="@+id/admin"
-        android:layout_width="95dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/test_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

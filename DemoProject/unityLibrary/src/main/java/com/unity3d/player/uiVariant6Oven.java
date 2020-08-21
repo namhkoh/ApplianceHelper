@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,21 +22,6 @@ import java.util.HashMap;
 public class uiVariant6Oven extends AppCompatActivity {
 
     private String lcdString = " ";
-    boolean frozenBakeBtnPressed = false;
-    boolean setTemperaturePressed = false;
-    boolean cookTimeBtnPressed = false;
-    boolean startOvenBtnPressed = false;
-    boolean cancelOvenBtnPressed = false;
-    boolean o0Pressed = false;
-    boolean o1Pressed = false;
-    boolean o2Pressed = false;
-    boolean o3Pressed = false;
-    boolean o4Pressed = false;
-    boolean o5Pressed = false;
-    boolean o6Pressed = false;
-    boolean o7Pressed = false;
-    boolean o8Pressed = false;
-    boolean o9Pressed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,129 +151,76 @@ public class uiVariant6Oven extends AppCompatActivity {
         }
     }
 
-    ArrayList<String> tmpList = new ArrayList<String>();
-
     private void frozenBake() {
-        frozenBakeBtnPressed = true;
+        TextView ovenLcd = findViewById(R.id.oven_panel_text);
+        lcdString = "Enter food code";
+        ovenLcd.setTextSize(30);
+        ovenLcd.setText(lcdString);
         Log.e("Button pressed","frozenBake");
-        TextView lcd = findViewById(R.id.oven_panel_text);
-        Handler h = new Handler(getMainLooper());
-        lcdString = "";
-        lcdString = "Enter food code!";
-        lcd.setText(lcdString);
     }
 
     private void cookTime() {
-        cookTimeBtnPressed = true;
         Log.e("Button pressed","cookTime");
     }
 
     private void startOven(){
-        startOvenBtnPressed = true;
         Log.e("Button pressed","startOven");
     }
 
     private void cancelOven(){
-        cancelOvenBtnPressed = true;
         Log.e("Button pressed","cancelOven");
     }
 
-    private void update(String buttonValue) {
-        Log.e("Button added",buttonValue);
-        TextView ovenLcd = findViewById(R.id.oven_panel_text);
-        lcdString = " ";
-        lcdString += buttonValue;
-        ovenLcd.setText(lcdString);
-    }
-
     private void press0(){
-        o0Pressed = true;
         Log.e("Button pressed","0");
     }
 
     private void press1(){
-        o1Pressed = true;
         Log.e("Button pressed","1");
     }
 
     private void press2(){
-        o2Pressed = true;
         Log.e("Button pressed","2");
-        lcdString += "2";
-        update(lcdString);
     }
 
     private void press3(){
-        o3Pressed = true;
+        Handler h = new Handler(getMainLooper());
+        TextView ovenLcd = findViewById(R.id.oven_panel_text);
+        lcdString = "3";
+        ovenLcd.setTextSize(30);
+        ovenLcd.setText(lcdString);
+        h.postDelayed(() -> {
+            lcdString = "";
+            lcdString = "3";
+            ovenLcd.setText(lcdString);
+        }, 3000);
         lcdString = "";
+        lcdString = "Enter temperature";
+        ovenLcd.setText(lcdString);
         Log.e("Button pressed","3");
-        lcdString += "3";
-        update(lcdString);
-        selectMode();
-    }
-
-    private void selectMode(){
-        Handler h = new Handler();
-        Handler h1 = new Handler();
-        if (frozenBakeBtnPressed = true) {
-            h.postDelayed(() -> {
-                TextView lcd = findViewById(R.id.oven_panel_text);
-                lcdString = "";
-                lcdString = "Nuggets/Fries";
-                lcd.setText(lcdString);
-            }, 1000);
-        }
-        h1.postDelayed(() -> {
-            TextView lcd = findViewById(R.id.oven_panel_text);
-            lcdString = " ";
-            lcdString = "Set temperature";
-            lcd.setText(lcdString);
-        }, 4000);
-        setTemperaturePressed = true;
-    }
-
-    private void enterTemperature(String tempVal){
-        String finalString;
-        TextView lcd = findViewById(R.id.oven_panel_text);
-        lcdString = " ";
-        lcdString = tempVal;
-        if (lcdString.length() < 5) {
-            finalString = lcdString + "°F\n";
-            lcd.setText(finalString);
-        }
     }
 
     private void press4(){
-        o4Pressed = true;
         Log.e("Button pressed","4");
-        lcdString += "4";
-        update(lcdString);
     }
 
     private void press5(){
-        o5Pressed = true;
         Log.e("Button pressed","5");
-        lcdString += "5";
-        update(lcdString);
     }
 
     private void press6(){
-        o6Pressed = true;
         Log.e("Button pressed","6");
     }
 
     private void press7(){
-        o7Pressed = true;
         Log.e("Button pressed","7");
     }
 
     private void press8(){
-        o8Pressed = true;
         Log.e("Button pressed","8");
     }
 
     private void press9(){
-        o9Pressed = true;
         Log.e("Button pressed","9");
     }
 

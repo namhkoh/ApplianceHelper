@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -22,7 +21,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
-import com.aic.libnilu.*;
+//import com.aic.libnilu.*;
 
 public class UserConsentActivity extends AppCompatActivity {
 
@@ -35,15 +34,6 @@ public class UserConsentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_consent);
         testIDInput = findViewById(R.id.InputTestID);
-
-        Button adminBtn = findViewById(R.id.admin);
-        adminBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), uiVariant6Oven.class);
-                startActivity(intent);
-            }
-        });
 
         Log.d("Start","Hello");
         String assetName = "video_demo_data.txt";
@@ -62,7 +52,15 @@ public class UserConsentActivity extends AppCompatActivity {
         String config_path = Utilities.assetFilePath(getApplicationContext(), config_file);
         Log.d("3",config_path);
 
-        NiluLibProcess.init(filePath,file_name, vocab_path, config_path);
+        String vocab_class_file = "vocab.class";
+        String vocab_class_path = Utilities.assetFilePath(getApplicationContext(), vocab_class_file);
+        Log.d("3",vocab_class_path);
+
+        String vocab_slot_file = "vocab.tag";
+        String vocab_slot_path = Utilities.assetFilePath(getApplicationContext(), vocab_slot_file);
+        Log.d("3",vocab_slot_path);
+
+        NiluLibProcess.init(filePath,file_name, vocab_path, config_path, vocab_class_path, vocab_slot_path);
 
 
         // Commented due to error.
