@@ -1,0 +1,7 @@
+0	oven	microwave		
+1	buy	oven	Part	partType:door
+2	Please call 000-0000-000	No Button		
+1	buy	oven	Part	partType:light
+2	Please call 000-0000-001	No Button		
+1	buy	oven	Part	partType:WireRack
+2	You can buy it from the Samsung Contact Center (1-800-726-7864)	No Button		

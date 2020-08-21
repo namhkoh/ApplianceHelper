@@ -1,0 +1,5 @@
+0	oven	microwave										
+1	cook	oven	Food:fries									
+2	Step 1: Place the tray on rack position 3. 	No Button	Step 2: Select Air Fry mode. 	Air Fry	Step 3: Use the number pad to change the default temperature to 425 °F (30oz) 	Number Pad	Step 4: Set the cook time to 25 minutes.	Number Pad	Step 5: Tap START/SET	START/SET	"Step 6: When cooking is complete, tap OFF/CEAR and take out the food."	OFF/CLEAR
+1	Code:code	oven	codeName:c-d0									
+2	Problem: There is a short in the control key.	No Button	"Solution: Press OFF/CLEAR, and then restart the oven. If the problem persists, disconnect all power to the range for at least 30 seconds and then reconnect the power. If this does not solve the problem, call for service."	OFF/CLEAR								
