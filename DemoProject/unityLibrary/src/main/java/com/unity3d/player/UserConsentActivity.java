@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -29,38 +30,48 @@ public class UserConsentActivity extends AppCompatActivity {
     private EditText testIDInput;
     private Button acceptConsent;
     public static Bundle activityBundle = new Bundle();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_consent);
         testIDInput = findViewById(R.id.InputTestID);
 
-        Log.d("Start","Hello");
+        /**
+         * Admin button to access directly to oven panel UI.
+         */
+        Button admin = findViewById(R.id.admin);
+        admin.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), uiVariant6Oven.class);
+            startActivity(intent);
+        });
+
+        Log.d("Start", "Hello");
         String assetName = "video_demo_data.txt";
         String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
-        Log.d("1",filePath);
+        Log.d("1", filePath);
 
         String model_file = "model_tiny_8_9.pt";
         String file_name = Utilities.assetFilePath(getApplicationContext(), model_file);
-        Log.d("2",file_name);
+        Log.d("2", file_name);
 
         String vocab_file = "vocab.txt";
         String vocab_path = Utilities.assetFilePath(getApplicationContext(), vocab_file);
-        Log.d("3",vocab_path);
+        Log.d("3", vocab_path);
 
         String config_file = "config.json";
         String config_path = Utilities.assetFilePath(getApplicationContext(), config_file);
-        Log.d("3",config_path);
+        Log.d("3", config_path);
 
         String vocab_class_file = "vocab.class";
         String vocab_class_path = Utilities.assetFilePath(getApplicationContext(), vocab_class_file);
-        Log.d("3",vocab_class_path);
+        //Log.d("3",vocab_class_path);
 
         String vocab_slot_file = "vocab.tag";
         String vocab_slot_path = Utilities.assetFilePath(getApplicationContext(), vocab_slot_file);
-        Log.d("3",vocab_slot_path);
+        Log.d("3", vocab_slot_path);
 
-        NiluLibProcess.init(filePath,file_name, vocab_path, config_path, vocab_class_path, vocab_slot_path);
+        //NiluLibProcess.init(filePath,file_name, vocab_path, config_path, vocab_class_path, vocab_slot_path);
 
 
         // Commented due to error.
