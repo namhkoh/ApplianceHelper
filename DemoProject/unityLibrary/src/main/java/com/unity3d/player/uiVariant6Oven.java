@@ -154,6 +154,7 @@ public class uiVariant6Oven extends AppCompatActivity {
     }
 
     private void update(String buttonValue){
+        //°F
         Log.e("Button added",buttonValue);
         TextView ovenLcd = findViewById(R.id.oven_panel_text);
         lcdString += buttonValue;
@@ -193,6 +194,9 @@ public class uiVariant6Oven extends AppCompatActivity {
     }
 
     private void cancelOven() {
+        TextView lcd = findViewById(R.id.oven_panel_text);
+        lcdString = "";
+        lcd.setText(lcdString);
         Log.e("Button pressed", "cancelOven");
     }
 
@@ -201,6 +205,7 @@ public class uiVariant6Oven extends AppCompatActivity {
     }
 
     private void press1() {
+        update("1");
         Log.e("Button pressed", "1");
     }
 
