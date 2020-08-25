@@ -171,7 +171,7 @@ public class uiVariant6Oven extends AppCompatActivity {
             lcdString = "";
             lcdString = "Enter food code";
             ovenLcd.setText(lcdString);
-        }, 3000);
+        }, 2000);
         Log.e("Button pressed", "frozenBake");
     }
 
