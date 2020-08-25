@@ -159,6 +159,33 @@ public class uiVariant6Oven extends AppCompatActivity {
         TextView ovenLcd = findViewById(R.id.oven_panel_text);
         lcdString += buttonValue;
         ovenLcd.setText(lcdString);
+        stringChecker(buttonValue);
+    }
+
+    private void stringChecker(String val) {
+        TextView ovenLcd = findViewById(R.id.oven_panel_text);
+        Handler h = new Handler(getMainLooper());
+        Handler h1 = new Handler(getMainLooper());
+        Log.e("Checking string ...",val);
+        if (ovenLcd.getText().toString().contains("Enter temperature:")) {
+            // run method to listen for temperature
+            lcdString = "";
+        } else if (ovenLcd.getText().toString().contains("Enter food code:")) {
+            // accept 3
+            if (val.equals("3")){
+                update("3");
+                h.postDelayed(() -> {
+                    lcdString = "";
+                    lcdString = "Nuggets/Fries";
+                    ovenLcd.setText(lcdString);
+                    h1.postDelayed(() -> {
+                        lcdString = "";
+                        lcdString = "Enter temperature:";
+                        ovenLcd.setText(lcdString);
+                    }, 2000);
+                }, 2000);
+            }
+        }
     }
 
     private void frozenBake() {
@@ -169,20 +196,10 @@ public class uiVariant6Oven extends AppCompatActivity {
         ovenLcd.setText(lcdString);
         h.postDelayed(() -> {
             lcdString = "";
-            lcdString = "Enter food code";
+            lcdString = "Enter food code:";
             ovenLcd.setText(lcdString);
         }, 2000);
         Log.e("Button pressed", "frozenBake");
-    }
-
-    private void stringChecker(String val) {
-        TextView ovenLcd = findViewById(R.id.oven_panel_text);
-        if (ovenLcd.getText().toString().contains("Enter temperature:")) {
-            // run method to listen for temperature
-            lcdString = "";
-            lcdString = val;
-            ovenLcd.setText(val);
-        }
     }
 
     private void cookTime() {
