@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -144,84 +146,96 @@ public class uiVariant6Oven extends AppCompatActivity {
         });
 
         ArrayList<Button> allButtons = new ArrayList<Button>(Arrays.asList(
-                frozenBakeBtn,cookTimeBtn,o0,o1,o2,o3,o4,o5,o6,o7,o8,o9,startOvenbtn,cancelOvenBtn
+                frozenBakeBtn, cookTimeBtn, o0, o1, o2, o3, o4, o5, o6, o7, o8, o9, startOvenbtn, cancelOvenBtn
         ));
         for (int i = 0; i < allButtons.size(); i++) {
             allButtons.get(i).setAlpha(0);
         }
     }
 
+    private void update(String buttonValue){
+        Log.e("Button added",buttonValue);
+        TextView ovenLcd = findViewById(R.id.oven_panel_text);
+        lcdString += buttonValue;
+        ovenLcd.setText(lcdString);
+    }
+
     private void frozenBake() {
         TextView ovenLcd = findViewById(R.id.oven_panel_text);
-        lcdString = "Enter food code";
-        ovenLcd.setTextSize(30);
-        ovenLcd.setText(lcdString);
-        Log.e("Button pressed","frozenBake");
-    }
-
-    private void cookTime() {
-        Log.e("Button pressed","cookTime");
-    }
-
-    private void startOven(){
-        Log.e("Button pressed","startOven");
-    }
-
-    private void cancelOven(){
-        Log.e("Button pressed","cancelOven");
-    }
-
-    private void press0(){
-        Log.e("Button pressed","0");
-    }
-
-    private void press1(){
-        Log.e("Button pressed","1");
-    }
-
-    private void press2(){
-        Log.e("Button pressed","2");
-    }
-
-    private void press3(){
         Handler h = new Handler(getMainLooper());
-        TextView ovenLcd = findViewById(R.id.oven_panel_text);
-        lcdString = "3";
+        lcdString = "Frozen Bake";
         ovenLcd.setTextSize(30);
         ovenLcd.setText(lcdString);
         h.postDelayed(() -> {
             lcdString = "";
-            lcdString = "3";
+            lcdString = "Enter food code";
             ovenLcd.setText(lcdString);
         }, 3000);
-        lcdString = "";
-        lcdString = "Enter temperature";
-        ovenLcd.setText(lcdString);
-        Log.e("Button pressed","3");
+        Log.e("Button pressed", "frozenBake");
     }
 
-    private void press4(){
-        Log.e("Button pressed","4");
+    private void stringChecker(String val) {
+        TextView ovenLcd = findViewById(R.id.oven_panel_text);
+        if (ovenLcd.getText().toString().contains("Enter temperature:")) {
+            // run method to listen for temperature
+            lcdString = "";
+            lcdString = val;
+            ovenLcd.setText(val);
+        }
     }
 
-    private void press5(){
-        Log.e("Button pressed","5");
+    private void cookTime() {
+        Log.e("Button pressed", "cookTime");
     }
 
-    private void press6(){
-        Log.e("Button pressed","6");
+    private void startOven() {
+        Log.e("Button pressed", "startOven");
     }
 
-    private void press7(){
-        Log.e("Button pressed","7");
+    private void cancelOven() {
+        Log.e("Button pressed", "cancelOven");
     }
 
-    private void press8(){
-        Log.e("Button pressed","8");
+    private void press0() {
+        Log.e("Button pressed", "0");
     }
 
-    private void press9(){
-        Log.e("Button pressed","9");
+    private void press1() {
+        Log.e("Button pressed", "1");
+    }
+
+    private void press2() {
+        Log.e("Button pressed", "2");
+
+    }
+
+    private void press3() {
+        Log.e("Button pressed", "3");
+
+    }
+
+    private void press4() {
+        Log.e("Button pressed", "4");
+    }
+
+    private void press5() {
+        Log.e("Button pressed", "5");
+    }
+
+    private void press6() {
+        Log.e("Button pressed", "6");
+    }
+
+    private void press7() {
+        Log.e("Button pressed", "7");
+    }
+
+    private void press8() {
+        Log.e("Button pressed", "8");
+    }
+
+    private void press9() {
+        Log.e("Button pressed", "9");
     }
 
 
@@ -255,7 +269,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         return resultList;
     }
 
-    private void setAlphaValue(int alpha){
+    private void setAlphaValue(int alpha) {
         ArrayList<Button> allButtons = new ArrayList<Button>(Arrays.asList());
         for (int i = 0; i < allButtons.size(); i++) {
             allButtons.get(i).setAlpha(0);
