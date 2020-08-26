@@ -26,6 +26,7 @@ public class uiVariant6Oven extends AppCompatActivity {
     private String lcdString = " ";
     boolean isTemp = false;
     boolean isCode = false;
+    boolean isCookTime = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,6 +163,12 @@ public class uiVariant6Oven extends AppCompatActivity {
         ovenLcd.setText(lcdString);
         if (!isCode) {
             stringChecker(buttonValue);
+        } else if (!isTemp) {
+            Log.e("reached","entering temperature");
+            ovenLcd.setText(lcdString + "°F");
+        } else if (!isCookTime) {
+            Log.e("reached","entering time");
+            ovenLcd.setText(lcdString + "mins");
         }
     }
 
@@ -184,7 +191,7 @@ public class uiVariant6Oven extends AppCompatActivity {
                 }, 2000);
             }, 2000);
         } else {
-            enterTemperature(val);
+            isTemp = false;
             isCode = false;
             Log.e("reached else statement", "check");
         }
@@ -194,7 +201,6 @@ public class uiVariant6Oven extends AppCompatActivity {
         //°F
         Log.e("Entering temperature", val);
         TextView ovenLcd = findViewById(R.id.oven_panel_text);
-        //lcdString = "";
         lcdString += val;
         ovenLcd.setText(lcdString + "°F");
     }
@@ -215,14 +221,28 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     private void cookTime() {
         Log.e("Button pressed", "cookTime");
+        isTemp = false;
+        isCode = false;
+        isCookTime = true;
+        TextView lcd = findViewById(R.id.oven_panel_text);
+        lcdString = "";
+        lcdString = "Enter cook time:";
+        lcd.setText(lcdString);
     }
 
     private void startOven() {
         Log.e("Button pressed", "startOven");
+        TextView lcd = findViewById(R.id.oven_panel_text);
+        lcdString = "";
+        lcdString = "Cooking start";
+        lcd.setText(lcdString);
     }
 
     private void cancelOven() {
         TextView lcd = findViewById(R.id.oven_panel_text);
+        isTemp = false;
+        isCode = false;
+        isCookTime = false;
         lcdString = "";
         lcd.setText(lcdString);
         Log.e("Button pressed", "cancelOven");
