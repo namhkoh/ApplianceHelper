@@ -24,6 +24,8 @@ import java.util.HashMap;
 public class uiVariant6Oven extends AppCompatActivity {
 
     private String lcdString = " ";
+    boolean isTemp = false;
+    boolean isCode = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,39 +155,48 @@ public class uiVariant6Oven extends AppCompatActivity {
         }
     }
 
-    private void update(String buttonValue){
-        //°F
-        Log.e("Button added",buttonValue);
+    private void update(String buttonValue) {
+        Log.e("Button added", buttonValue);
         TextView ovenLcd = findViewById(R.id.oven_panel_text);
         lcdString += buttonValue;
         ovenLcd.setText(lcdString);
-        stringChecker(buttonValue);
+        if (!isCode) {
+            stringChecker(buttonValue);
+        }
     }
 
     private void stringChecker(String val) {
-        TextView ovenLcd = findViewById(R.id.oven_panel_text);
+        Log.e("Checking string ...", val);
         Handler h = new Handler(getMainLooper());
         Handler h1 = new Handler(getMainLooper());
-        Log.e("Checking string ...",val);
-        if (ovenLcd.getText().toString().contains("Enter temperature:")) {
-            // run method to listen for temperature
-            lcdString = "";
-        } else if (ovenLcd.getText().toString().contains("Enter food code:")) {
-            // accept 3
-            if (val.equals("3")){
-                update("3");
-                h.postDelayed(() -> {
+        TextView ovenLcd = findViewById(R.id.oven_panel_text);
+        if (val.equals("3")) {
+            h.postDelayed(() -> {
+                isCode = true;
+                lcdString = "";
+                lcdString = "Nuggets/Fries";
+                ovenLcd.setText(lcdString);
+                h1.postDelayed(() -> {
                     lcdString = "";
-                    lcdString = "Nuggets/Fries";
+                    lcdString = "Enter temperature:";
+                    //isTemp = true;
                     ovenLcd.setText(lcdString);
-                    h1.postDelayed(() -> {
-                        lcdString = "";
-                        lcdString = "Enter temperature:";
-                        ovenLcd.setText(lcdString);
-                    }, 2000);
                 }, 2000);
-            }
+            }, 2000);
+        } else {
+            enterTemperature(val);
+            isCode = false;
+            Log.e("reached else statement", "check");
         }
+    }
+
+    private void enterTemperature(String val) {
+        //°F
+        Log.e("Entering temperature", val);
+        TextView ovenLcd = findViewById(R.id.oven_panel_text);
+        //lcdString = "";
+        lcdString += val;
+        ovenLcd.setText(lcdString + "°F");
     }
 
     private void frozenBake() {
@@ -232,8 +243,8 @@ public class uiVariant6Oven extends AppCompatActivity {
     }
 
     private void press3() {
+        update("3");
         Log.e("Button pressed", "3");
-
     }
 
     private void press4() {
