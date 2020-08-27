@@ -36,6 +36,11 @@ public class uiVariant6Oven extends AppCompatActivity {
         Button next = findViewById(R.id.next);
         next.setOnClickListener(v -> nextActivity());
 
+        //refreshTime();
+        TextView lcd = findViewById(R.id.lcd_text);
+        //lcdString = DateTimeHandler.getCurrentTime("hh:mm");
+        lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
+
         Button frozenBakeBtn = findViewById(R.id.oven_frozen);
         frozenBakeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,10 +169,10 @@ public class uiVariant6Oven extends AppCompatActivity {
         if (!isCode) {
             stringChecker(buttonValue);
         } else if (!isTemp) {
-            Log.e("reached","entering temperature");
+            Log.e("reached", "entering temperature");
             ovenLcd.setText(lcdString + "°F");
         } else if (!isCookTime) {
-            Log.e("reached","entering time");
+            Log.e("reached", "entering time");
             ovenLcd.setText(lcdString + "mins");
         }
     }
