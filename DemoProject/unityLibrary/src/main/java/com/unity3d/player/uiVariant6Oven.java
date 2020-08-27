@@ -247,6 +247,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         isCode = false;
         isCookTime = false;
         lcdString = "";
+        lcdString = "Cancelling ...";
         lcd.setText(lcdString);
         Log.e("Button pressed", "cancelOven");
     }
