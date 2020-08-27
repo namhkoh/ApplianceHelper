@@ -36,9 +36,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         Button next = findViewById(R.id.next);
         next.setOnClickListener(v -> nextActivity());
 
-        //refreshTime();
-        TextView lcd = findViewById(R.id.lcd_text);
-        //lcdString = DateTimeHandler.getCurrentTime("hh:mm");
+        TextView lcd = findViewById(R.id.oven_panel_text);
         lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
 
         Button frozenBakeBtn = findViewById(R.id.oven_frozen);
