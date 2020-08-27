@@ -42,6 +42,7 @@
 
 ## TODO
 
-- Finalize logic behind oven panel.
-- Instantiate user management system. 
-- Overall user testing mock flow 
+- Integrate User Management system.
+    - Current solution using firebase? 
+- Overall integration testing of application. 
+    - Mock user flow required. 
