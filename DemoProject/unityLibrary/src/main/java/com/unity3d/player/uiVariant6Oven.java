@@ -261,8 +261,8 @@ public class uiVariant6Oven extends AppCompatActivity {
     }
 
     private void press2() {
+        update("2");
         Log.e("Button pressed", "2");
-
     }
 
     private void press3() {
@@ -271,26 +271,32 @@ public class uiVariant6Oven extends AppCompatActivity {
     }
 
     private void press4() {
+        update("4");
         Log.e("Button pressed", "4");
     }
 
     private void press5() {
+        update("5");
         Log.e("Button pressed", "5");
     }
 
     private void press6() {
+        update("6");
         Log.e("Button pressed", "6");
     }
 
     private void press7() {
+        update("7");
         Log.e("Button pressed", "7");
     }
 
     private void press8() {
+        update("8");
         Log.e("Button pressed", "8");
     }
 
     private void press9() {
+        update("9");
         Log.e("Button pressed", "9");
     }
 
