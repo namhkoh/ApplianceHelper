@@ -60,11 +60,11 @@ public class uiVariant1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        Bundle bundle = new Bundle();
-        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "testID");
-        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "testName");
-        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "test28August2020");
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+//        Bundle bundle = new Bundle();
+//        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "testID");
+//        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "testName");
+//        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "test28August2020");
+//        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
 
 
         setContentView(R.layout.activity_ui_variant1);
