@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "808991488207",
+    "firebase_url": "https://appliance-helper-f9ce5.firebaseio.com",
+    "project_id": "appliance-helper-f9ce5",
+    "storage_bucket": "appliance-helper-f9ce5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:808991488207:android:ad3e8781409f9864e51fba",
+        "android_client_info": {
+          "package_name": "com.kohdev.AR_AI_DEV"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "808991488207-jvq2gvqt2ikp2gg5grcuavlnnc9r4t3n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-T5ilLveH3Jb2WcZd6Ln7k2KA6LV3HmY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "808991488207-jvq2gvqt2ikp2gg5grcuavlnnc9r4t3n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
