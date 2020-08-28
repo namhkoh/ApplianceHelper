@@ -42,7 +42,6 @@
 
 ## TODO
 
-- Integrate User Management system.
-    - Current solution using firebase? 
+- Add appropriate user logging statement in the codebase.
 - Overall integration testing of application. 
     - Mock user flow required. 
