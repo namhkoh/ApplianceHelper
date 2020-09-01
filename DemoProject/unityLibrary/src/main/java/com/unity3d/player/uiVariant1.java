@@ -33,7 +33,6 @@ import androidx.core.content.ContextCompat;
 
 import com.company.MainManager;
 import com.company.ResponseObject;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -53,20 +52,10 @@ public class uiVariant1 extends AppCompatActivity {
     ArrayList<String> tmpList = new ArrayList<>();
     private ArrayAdapter adapter;
     private static String utterance;
-    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Obtain the FirebaseAnalytics instance.
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-//        Bundle bundle = new Bundle();
-//        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "testID");
-//        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "testName");
-//        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "test28August2020");
-//        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
-
-
         setContentView(R.layout.activity_ui_variant1);
         checkPermission();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
