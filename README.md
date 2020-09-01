@@ -42,6 +42,14 @@
 
 ## TODO
 
-- Finalize logic behind oven panel.
-- Instantiate user management system. 
-- Overall user testing mock flow 
+- Add appropriate user logging statement in the codebase.
+- Overall integration testing of application. 
+    - Mock user flow required. 
+
+## Running firebase analytics 
+- Run this command to enable DebugView in Firebase console: 
+    - `adb shell setprop debug.firebase.analytics.app com.kohdev.AR_AI_DEV` 
+- Run these commands to enable live logging of events: 
+    - `adb shell setprop log.tag.FA VERBOSE`
+    - `adb shell setprop log.tag.FA-SVC VERBOSE`
+    - `adb logcat -v time -s FA FA-SVC`
