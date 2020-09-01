@@ -1,0 +1,101 @@
+0	oven	microwave														
+1	set	microwave	Feature	setFeature:clock												
+2	"Step 1: Press the ""Clock button."	Clock	Step 2 : Enter the time.	Number Pad	Step 3: Press on Clock again or the Start Control.	Clock/Start										
+1	cook	microwave	Food	foodType:butter												
+2	Step 1: Press the SOFTEN/MELT button.	SOFTEN/MELT	Step 2: Enter 5 for butter.	Number Pad	Step 3: Enter the quantity.	Number Pad 	Step 4: Press the Start button.	START								
+1	cook	oven	Food	foodType:fries												
+2	Step 1: Position the food on a flat rack in the oven on rack position 4. 	No Button	Step 2: Press the FROZEN BAKE button.	FROZEN BAKE	Step 3: Press the 3 on the number keypad to cook the fries. 	Number Pad 	Step 4: Press the number keypads to set the temperature as recommended on the food packaging. 	Number Pad	Step 5: Press COOK TIME. 	COOK TIME	Step 6: Press the number keypads to set the max cook time as recommended on the food packaging. 	Number Pad	Step 7: Press START. The range will calculate the best cook time based on the current oven temperature. 	START	Step 8: Press CANCEL when finished cooking. 	CANCEL
+1	clean	oven	Cleanable	cleanobject:cook-top	material:glass											
+2	Step 1: Shake the cleawning cream well. Apply a few drops of cleaner directly to the cooktop. 	No Button	Step 2: Use a paper towel or a cleaning pad for ceramic cooktops to clean the entire cooktop surface. 	No Button	Step 3: Use a dry cloth or paper towel to remove all cleannig residue.	No Button										
+1	buy	oven	Part	parttype:door												
+2	Please call 000-0000-000	No Button														
+1	buy	oven	Part	parttype:light												
+2	Please call 000-0000-001	No Button														
+1	buy	oven	Part	parttype:wirerack												
+2	You can buy it from the Samsung Contact Center (1-800-726-7864)	No Button														
+1	buy	oven	Part	parttype:air-fry-tray												
+2	You can buy it from the Samsung Contact Center (1-800-726-7864)	No Button														
+1	buy	oven	Part	parttype:storage-drawer												
+2	You can buy it from the Samsung Contact Center (1-800-726-7864)	No Button														
+1	buy	oven	Part	parttype:graphite-lubricant												
+2	You can buy it from the Samsung Contact Center (1-800-726-7864)	No Button														
+1	clean	oven	Cleanable	cleanobject:cooktop												
+2	Step 1: Shake the cleawning cream well. Apply a few drops of cleaner directly to the cooktop. 	No Button	Step 2. Use a paper towel or a cleaning pad for ceramic cooktops to clean the entire cooktop surface. 	No Button	Step 3: Use a dry cloth or paper towel to remove all cleannig residue. No need to rinse. 	No Button										
+1	clean	oven	Cleanable	cleanobject:cooktop-seal												
+2	"To clean the seal around the edges of the glass, lay a wet cloth on it for a few minutes, then wipe clean with a nonabrasive cleaner."	No Button														
+1	clean	oven	Cleanable	cleanobject:door-gasket												
+2	"Do not clean the door gasket. The door gasket is essential for a good seal. Care should be taken not to rub, damage, or move the gasket."	No Button														
+1	code	oven	Error	infocode:c-d0												
+2	Problem: There is a short in the control key. 	No Button	"Solution: Press OFF/CLEAR, and then restart the oven. If the problem persists, disconnect all power to the range for at least 30 seconds and then reconnect the power. If this does not solve the problem, call for service."	OFF/CLEAR												
+1	code	oven	Error	infocode:c-d1												
+2	Problem: The door is misaligned.	No Button	"Solution: Press OFF/CLEAR, and then restart the oven. If the problem persists, disconnect all power to the range for at least 30 seconds and then reconnect the power. If this does not solve the problem, call for service."	OFF/CLEAR												
+1	code	oven	Error	infocode:c-F0												
+2	Problem: This code occurs if communication between the Main and Sub PBA is interrupted.	No Button	"Solution: Press OFF/CLEAR, and then restart the oven. If the problem persists, disconnect all power to the range for at least 30 seconds and then reconnect the power. If this does not solve the problem, call for service."	OFF/CLEAR												
+1	code	oven	Error	infocode:c-20												
+2	Problem: The oven sensor is open when the oven is operating.	No Button	"Solution: Press OFF/CLEAR, and then restart the oven. If the problem persists, disconnect all power to the range for at least 30 seconds and then reconnect the power. If this does not solve the problem, call for service."	OFF/CLEAR												
+1	code	oven	Error	infocode:c-21												
+2	Problem: This code occurs if the internal temperature rises abnormally high.	No Button	"Solution: Press OFF/CLEAR, and then restart the oven. If the problem persists, disconnect all power to the range for at least 30 seconds and then reconnect the power. If this does not solve the problem, call for service."	OFF/CLEAR												
+1	code	oven	Error	infocode:c-22												
+2	Problem: The sub PCB sensor is open when the oven is operating. There is a short in the sub PCB sensor. 	No Button	"Solution: Press OFF/CLEAR, and then restart the oven. If the problem persists, disconnect all power to the range for at least 30 seconds and then reconnect the power. If this does not solve the problem, call for service."	OFF/CLEAR												
+1	code	oven	Error	infocode:c-30												
+2	Problem: The main PCB sensor is open when the oven is operating. There is a short in the main PCB sensor. 	No Button	"Solution: Press OFF/CLEAR, and then restart the oven. If the problem persists, disconnect all power to the range for at least 30 seconds and then reconnect the power. If this does not solve the problem, call for service."	OFF/CLEAR												
+1	code	oven	Error	infocode:c-31												
+2	Problem: This code occurs if the PCB temperature rises abnormally high.	No Button	Solution: Call for service.	No Button												
+1	code	oven	Error	infocode:c-A2												
+2	Problem: This code occurs if the sub PCB temperature rises abnormally high.	No Button	"Solution: Press OFF/CLEAR, check the vent. If the vent is closed, never block the vent by anything. After cooling the oven, restart the oven. If this does not solve the problem, call for service."	OFF/CLEAR												
+1	code	oven	Error	infocode:bAd-LInE												
+2	Problem: This error message appears if the power cord is installed improperly.	No Button	"Solution: If the power connection is plugged in improperly, _Ad LinE appears on the display. Reconnect the power connection properly, and the message disappears."	No Button												
+1	cook	oven	Food	foodtype:hamburger												
+2	Step 1. Press Broil once for high. 	Broil	"Step 2. To start broiling, press START/SET"	START/SET	Step 3. Broil one side for 3:20-3:40 minutes and the second side for 2:20-2:40 minutes.	No Button	Step 4. Press OFF/CLEAR once you have finished broiling. 	OFF/CLEAR								
+1	cook	oven	Food	foodtype:beef-steak												
+2	Step 1. Press Broil once for high. 	Broil	"Step 2. To start broiling, press START/SET"	START/SET	Step 3. Broil one side for 7:00-8:00 minutes and the second side for 6:00-7:00 minutes.	No Button	Step 4. Press OFF/CLEAR once you have finished broiling. 	OFF/CLEAR								
+1	cook	oven	Food	foodtype:chicken-pieces												
+2	Step 1. Press Broil once for high. 	Broil	"Step 2. To start broiling, press START/SET"	START/SET	Step 3. Broil one side for 15:00-16:00 minutes and the second side for 13:00-14:00 minutes.	No Button	Step 4. Press OFF/CLEAR once you have finished broiling. 	OFF/CLEAR								
+1	cook	oven	Food	foodtype:pork-chops												
+2	Step 1. Press Broil once for high. 	Broil	"Step 2. To start broiling, press START/SET"	START/SET	Step 3. Broil one side for 15:00-16:00 minutes and the second side for 13:00-14:00 minutes.	No Button	Step 4. Press OFF/CLEAR once you have finished broiling. 	OFF/CLEAR								
+1	cook	oven	Food	foodtype:lamb-chops												
+2	Step 1. Press Broil once for high. 	Broil	"Step 2. To start broiling, press START/SET"	START/SET	Step 3. Broil one side for 5:00-6:00 minutes and the second side for 4:00-5:00 minutes.	No Button	Step 4. Press OFF/CLEAR once you have finished broiling. 	OFF/CLEAR								
+1	cook	oven	Food	foodtype:salmon-steak												
+2	Step 1. Press Broil once for high. 	Broil	"Step 2. To start broiling, press START/SET"	START/SET	Step 3. Broil one side for 4:00-7:00 minutes and the second side for 3:00-6:00 minutes.	No Button	Step 4. Press OFF/CLEAR once you have finished broiling. 	OFF/CLEAR								
+1	cook	oven	Food	foodtype:frozen-french-fries												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 25 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:frozen-tater-tots												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:frozen-hash-brown												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:frozen-potato-wedges												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:homemade-french-fries												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 400 F	Number Pad	Step 4. Set the cook time to 25 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:homemade-potato-wedges												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 25 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:frozen-chicken-nugets												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 400 F	Number Pad	Step 4. Set the cook time to 15 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:frozen-chicken-wings												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:frozen-onion-rings												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 400 F	Number Pad	Step 4. Set the cook time to 15 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:frozen-fish-fingers												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 18 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:frozen-chicken-strips												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:frozen-churros												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 18 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:fresh-drumsticks												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 30 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:fresh-chicken-wings												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 27 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:breaded-chicken-breast												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 450 F	Number Pad	Step 4. Set the cook time to 25 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:breaded-asparagus												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:breaded-egg-plants												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:breaded-mushroom												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:breaded-onions												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:breaded-cauliflower												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 400 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				
+1	cook	oven	Food	foodtype:breaded-vegetable-mix												
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry Mode	Air Fry	Step 3. Use the number pad to set the temperature to 425 F	Number Pad	Step 4. Set the cook time to 20 minutes	Number Pad	Step 5. Tap Start/SET	START/SET	"Step 6. When cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR				

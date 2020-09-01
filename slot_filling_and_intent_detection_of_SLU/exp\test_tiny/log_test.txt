@@ -1,0 +1,7 @@
+Namespace(batchSize=32, bos_eos=False, crf=False, dataroot='data/appliance-one-test-sample', dataset='appliance5', deviceId=-1, dropout=0.1, experiment='exp', gradient_accumulation_steps=1, init_weight=0.2, lr=5e-05, max_epoch=20, max_norm=1.0, multiClass=False, noStdout=False, optim='adam', out_path='output', pretrained_model_name='mrm8488/bert-tiny-finetuned-squadv2', pretrained_model_type='bert', random_seed=999, read_model='exp/model_tiny_default/model', read_vocab='exp/model_tiny_default/vocab', save_model='model', save_vocab='vocab', sc_type='single_cls_CE', st_weight=0.5, task_sc='CLS', task_st='NN', test_batchSize=32, testing=True, warmup_proportion=0.1)
+Experiment path: exp\test_tiny
+Fri Aug 28 18:09:57 2020
+CPU is used.
+Vocab size: 24 13
+Testing starts at Fri Aug 28 18:09:58 2020
+Evaluation:	Time : 0.0898s	Loss : (0.01, 0.04)	Fscore : 100.00	cls-F1 : 100.00 

@@ -52,6 +52,10 @@ public class MainManager {
 
             String appliance_tagger = null;
 
+//            question = "how do i set the clock on the microwave";
+//            question = "how can i cook the butter on the microwave";
+
+
             //If the question has the word next previous or repeat return a specific type of object.
             intent = NLU.getIntent(knowledge, question);
             if (intent.equals("next")) {
@@ -64,7 +68,6 @@ public class MainManager {
 
                 nlu = new NLU(modelpath,vocabpath,configpath,intentpath, slotpath);
 
-                question = "how do i set the clock on the microwave";
 
                 RunTokenizer tokenizer = new RunTokenizer(configpath, vocabpath);
                 tokenizer.tokenize(question);
@@ -111,22 +114,28 @@ public class MainManager {
                         else if(slot_type[i].charAt(0) == 'B'){
                             slot = new ArrayList<>();
                             slot.add(split_question[i]);
+                            slot_name = new ArrayList<>();
+                            slot_name.add(slot_type[i].substring(2));
+
+                        }
+                        else if(slot_type[i].charAt(0) == 'I'){
+                            slot.add(slot.remove(slot.size()-1)+"-"+split_question[i]);
+
                         }
                     }
                 }
-
 
 
                 intent = inference.getIntent();
 
                 //appliance = NLU.getAppliance(knowledge, question);
                 //slot = NLU.getSlotName(knowledge, question);
-                slot_name = NLU.getSlot(knowledge, question);
+                //slot_name = NLU.getSlot(knowledge, question);
                 System.out.println(slot);
 
                 appliance = appliance_tagger;
                 
-                System.out.println(slot_name);
+                System.out.println("slot name_" + slot_name);
 
 
                 //Go to the appliance node by matching the appliance to the slot_name

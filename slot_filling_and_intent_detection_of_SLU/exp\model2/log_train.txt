@@ -1,0 +1,6 @@
+Namespace(batchSize=32, bidirectional=True, bos_eos=False, crf=False, dataroot='data/appliance4', dataset='appliance3', deviceId=-1, dropout=0.1, enc_dec=True, experiment='exp', fix_pretrained_model=False, hidden_size=200, init_weight=0.2, lr=5e-05, max_epoch=30, max_norm=1.0, multiClass=False, noStdout=False, num_layers=1, optim='bertadam', out_path=None, pretrained_model_name='bert-base-uncased', pretrained_model_type='bert', random_seed=999, read_model=None, read_vocab=None, save_model='model', save_vocab='vocab', sc_type='single_cls_CE', st_weight=0.5, tag_emb_size=100, task='slot_tagger_with_focus__and__hiddenAttention__and__single_cls_CE__with_transformer', task_sc='hiddenAttention', task_st='slot_tagger_with_focus', test_batchSize=32, testing=False, warmup_proportion=0.1)
+Experiment path: exp\model2
+Fri Aug 28 14:22:59 2020
+CPU is used.
+Vocab size: 26 13
+Training starts at Fri Aug 28 14:26:55 2020

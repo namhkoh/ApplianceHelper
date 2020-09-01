@@ -67,7 +67,8 @@ public class NLU {
         sentence_list = preprocess_sentence(question);
         intent = knowledge.getIntents().stream().filter(key -> sentence_list.contains(key)).findAny().get();
         }catch(Exception e){
-            throw new Exception("Intent not found from question: " + question);
+            return "None";
+            //throw new Exception("Intent not found from question: " + question);
         }
         return intent;
     }

@@ -197,13 +197,17 @@ print(test_class)
 
 print(opt.pretrained_model_name,opt.pretrained_model_type,len(tag_to_idx), len(class_to_idx), opt.dropout, opt.device, opt.multiClass, opt.task_st, opt.task_sc)
 
+print("Read from:",opt.read_model)
+
 pretrained_model_class, tokenizer_class = MODEL_CLASSES[opt.pretrained_model_type]
 tokenizer = tokenizer_class.from_pretrained(opt.pretrained_model_name)
 pretrained_model = pretrained_model_class.from_pretrained(opt.pretrained_model_name)
 print(pretrained_model.config)
-model_tag_and_class = joint_transformer.Transformers_joint_slot_and_intent(opt.pretrained_model_type, pretrained_model, len(tag_to_idx), len(class_to_idx), dropout=opt.dropout, device=opt.device, multi_class=opt.multiClass, task_st=opt.task_st, task_sc=opt.task_sc)
+model_tag_and_class = joint_transformer.Transformers_joint_slot_and_intent(opt.pretrained_model_type, pretrained_model, tokenizer,len(tag_to_idx), len(class_to_idx), dropout=opt.dropout, device=opt.device, multi_class=opt.multiClass, task_st=opt.task_st, task_sc=opt.task_sc)
 
 model_tag_and_class = model_tag_and_class.to(opt.device)
+
+print(model_tag_and_class.state_dict().keys())
 
 # read pretrained model
 if opt.read_model:
@@ -282,8 +286,21 @@ def decode(data_feats, data_tags, data_class, output_path):
 
             print(inputs)
 
+            inputs['lengths'] = torch.IntTensor(lens)
+
+
+            sample = ['will','i','be','able','to','use','procelain','in','the','oven']
+
+            sentence_ = ' '.join(sample)
+
+            asciiword = [ord(c) for c in sentence_]
+
+            #print(asciiword)
+
+            tensor_question = torch.LongTensor(asciiword)
+
             if opt.task_st == 'NN':
-                tag_scores, class_scores = model_tag_and_class(inputs, lens)
+                tag_scores, class_scores = model_tag_and_class(tensor_question,torch.LongTensor([700]),inputs['lengths'],inputs['mask'], inputs['segments'],inputs['tokens'],inputs['selects'],inputs['copies'])
                 tag_loss = tag_loss_function(tag_scores.contiguous().view(-1, len(tag_to_idx)), tags.view(-1))
                 top_pred_slots = tag_scores.data.cpu().numpy().argmax(axis=-1)
                 print(tag_scores,class_scores)

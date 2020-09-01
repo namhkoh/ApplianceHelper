@@ -7,7 +7,7 @@ task_intent_detection=CLS # CLS, max, CLS_max
 balance_weight=0.5
 
 pretrained_model_type=bert
-pretrained_model_name=mrm8488/bert-medium-finetuned-squadv2 #bert-large-uncased-whole-word-masking #bert-base-uncased
+pretrained_model_name=mrm8488/bert-tiny-finetuned-squadv2 #bert-large-uncased-whole-word-masking #bert-base-uncased
 
 dataroot=data/appliance-cleaned
 dataset=appliance
@@ -19,7 +19,7 @@ learning_rate=5e-5 # 1e-5, 5e-5, 1e-4, 1e-3
 max_norm_of_gradient_clip=1 # working for adamw, adam, sgd
 dropout_rate=0.1 # 0.1, 0.5
 
-max_epoch=10
+max_epoch=50
 
 device=-1
 # device=0 means auto-choosing a GPU

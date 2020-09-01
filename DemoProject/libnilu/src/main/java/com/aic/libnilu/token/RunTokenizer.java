@@ -37,15 +37,94 @@ public class RunTokenizer {
 
     public long[] getSelect(String sentence){
         int sentence_length = sentence.split(" ").length;
+        System.out.println("Select");
+        System.out.println(sentence);
+        System.out.println(Arrays.toString(sentence.split(" ")));
+        System.out.println(split_tokens);
         long[] select = new long[sentence_length];
         int position = 0;
+        int j = 0;
+        boolean words_split = false;
+        boolean split = false;
+        String split_word = "";
         for(int i = 0; i < split_tokens.size(); i ++){
-            if(split_tokens.get(i).charAt(0) != '#'){
+
+            if(split == true && split_word.equals(sentence.split(" ")[j])){
+                System.out.println("Split has matched: " + split_word + " " + sentence.split(" ")[j]);
+                j++;
+                i--;
+                split = false;
+            }
+
+            else if(split == true){
+                System.out.println("Split has not matched: " + split_word + " " + sentence.split(" ")[j]);
+                if(split_tokens.get(i).charAt(0) == '#') {
+                    split_word = split_word + split_tokens.get(i).substring(2);
+                }
+                else{
+                    split_word = split_word + split_tokens.get(i);
+                }
+            }
+
+
+            else if(split_tokens.get(i).equals(sentence.split(" ")[j])){
+                System.out.println("Equal");
+                System.out.println(split_tokens.get(i) + " " + sentence.split(" ")[j] + i);
                 select[position] = Long.valueOf(i+1);
                 position++;
+                j++;
             }
+
+            else if(!split_tokens.get(i).equals(sentence.split(" ")[j])){
+                split_word = "";
+                System.out.println("Not equal");
+                System.out.println(split_tokens.get(i) + " " + sentence.split(" ")[j] + i);
+                words_split = true;
+                split = true;
+                split_word = split_word + split_tokens.get(i);
+                select[position] = Long.valueOf(i+1);
+                position++;
+
+            }
+
+
+
+//            if(words_split == true && split_tokens.get(i).charAt(0) == '#'){
+//                System.out.println("One:" + i + j);
+//                words_split = false;
+//                j++;
+//            }
+//
+//            else if(words_split ){
+//                System.out.println("Two:"+i);
+//                continue;
+//            }
+//
+//            else if(split_tokens.get(i).equals(sentence.split(" ")[j])){
+//                System.out.println("Equal");
+//                System.out.println(split_tokens.get(i) + " " + sentence.split(" ")[j] + i);
+//                select[position] = Long.valueOf(i+1);
+//                position++;
+//                j++;
+//            }
+//
+//            else if(!split_tokens.get(i).equals(sentence.split(" ")[j])){
+//                System.out.println("Not equal");
+//                System.out.println(split_tokens.get(i) + " " + sentence.split(" ")[j] + i);
+//                words_split = true;
+//                select[position] = Long.valueOf(i+1);
+//                position++;
+//
+//            }
+
+//            if(split_tokens.get(i).charAt(0) != '#'){
+////                select[position] = Long.valueOf(i+1);
+////                position++;
+////            }
+
         }
         System.out.println(Arrays.toString(select));
+        System.out.println("Select End");
         return select;
     }
 

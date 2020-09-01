@@ -86,7 +86,7 @@ class Transformers_joint_slot_and_intent(nn.Module):
 
         #time_tensor = torch.FloatTensor([time.time()])
 
-        print('forward---------------------------------')
+        #print('forward---------------------------------')
 
         selects = torch.flatten(selects)
         copies = torch.flatten(copies)
@@ -205,5 +205,6 @@ class Transformers_joint_slot_and_intent(nn.Module):
             self.load_state_dict(torch.load(open(load_dir, 'rb'), map_location=lambda storage, loc: storage))
 
     def save_model(self, save_dir):
+        #print(self.state_dict().keys())
         torch.save(self.state_dict(), open(save_dir, 'wb'))
 

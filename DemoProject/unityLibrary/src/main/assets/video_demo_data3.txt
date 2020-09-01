@@ -1,0 +1,9 @@
+0	oven	microwave														
+1	set	microwave	Feature	setFeature:clock												
+2	"Step 1: Press the ""Clock button."	Clock	Step 2 : Enter the time.	Number Pad	Step 3: Press on Clock again or the Start Control.	Clock/Start										
+1	melt	microwave	Ingredient	foodType:butter												
+2	Step 1: Press the SOFTEN/MELT button.	SOFTEN/MELT	Step 2: Enter 5 for butter.	Number Pad	Step 3: Enter the quantity.	Number Pad 	Step 4: Press the Start button.	START								
+1	cook	oven	Food	foodType:fries												
+2	Step 1: Position the food on a flat rack in the oven on rack position 4. 	No Button	Step 2: Press the FROZEN BAKE button.	FROZEN BAKE	Step 3: Press the 3 on the number keypad to cook the fries. 	Number Pad 	Step 4: Press the number keypads to set the temperature as recommended on the food packaging. 	Number Pad	Step 5: Press COOK TIME. 	COOK TIME	Step 6: Press the number keypads to set the max cook time as recommended on the food packaging. 	Number Pad	Step 7: Press START. The range will calculate the best cook time based on the current oven temperature. 	START	Step 8: Press CANCEL when finished cooking. 	CANCEL
+1	clean	oven	Cleanable	cleanType:cook-top	material:glass											
+2	Step 1: Shake the cleawning cream well. Apply a few drops of cleaner directly to the cooktop. 	No Button	Step 2: Use a paper towel or a cleaning pad for ceramic cooktops to clean the entire cooktop surface. 	No Button	Step 3: Use a dry cloth or paper towel to remove all cleannig residue.	No Button										

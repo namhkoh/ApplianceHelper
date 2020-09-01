@@ -9,7 +9,7 @@ balance_weight=0.5
 pretrained_model_type=bert
 pretrained_model_name=mrm8488/bert-tiny-finetuned-squadv2 #bert-large-uncased-whole-word-masking #bert-base-uncased
 
-dataroot=data/appliance7
+dataroot=data/appliance-one-test-sample
 dataset=appliance5
 outpath=output
 
@@ -21,8 +21,8 @@ max_norm_of_gradient_clip=1 # working for adamw, adam, sgd
 dropout_rate=0.1 # 0.1, 0.5
 
 testing=true
-vocab_read=exp/test_tiny/vocab
-model_read=exp/test_tiny/model
+vocab_read=exp/model_tiny_default/vocab
+model_read=exp/model_tiny_default/model
 
 max_epoch=20
 

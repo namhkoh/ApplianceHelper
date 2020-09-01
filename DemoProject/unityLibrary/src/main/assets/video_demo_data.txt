@@ -1,5 +1,5 @@
 0	oven	microwave														
-1	set	microwave	Feature	featureType:clock												
+1	set	microwave	Feature	setFeature:clock												
 2	"Step 1: Press the ""Clock button."	Clock	Step 2 : Enter the time.	Number Pad	Step 3: Press on Clock again or the Start Control.	Clock/Start										
 1	melt	microwave	Ingredient	ingredientType:butter												
 2	Step 1: Press the SOFTEN/MELT button.	SOFTEN/MELT	Step 2: Enter 5 for butter.	Number Pad	Step 3: Enter the quantity.	Number Pad 	Step 4: Press the Start button.	START								

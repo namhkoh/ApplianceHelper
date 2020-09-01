@@ -1,0 +1,1 @@
+0 : can:O:O you:O:O tell:O:O me:O:O how:O:O do:O:O i:O:O cook:O:O an:O:O frozen:B-foodtype:B-foodtype potato:I-foodtype:I-foodtype wedges:I-foodtype:I-foodtype on:O:O the:O:O oven:B-appliance:B-appliance <=> cook <=> cook

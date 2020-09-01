@@ -21,7 +21,16 @@ public class NiluLibProcess {
     public static void init(String filepath, String modelpath, String vocabpath, String configpath, String intentpath, String slotpath){
         // Start her for any lib init's and post settings.
 //        Log.d("NLU","NLU");
-        ResponseObject response = MainManager.getAnswer("How do I set the clock on the microwave?", filepath, modelpath, vocabpath, configpath, intentpath, slotpath);
+        String question;
+        //question = "How do I set the clock on the microwave";
+        question = "how can i buy a wirerack for my oven";
+        question = "How can I clean the cooktop seal on my oven";
+        //question = "what does c-F0 code mean on my oven";
+        //question = "how do i cook a hamburger in the oven";
+        //question = "how do i set the broiling feature in the oven";
+        //question = "how do i use the reheat feature in the microwave";
+        question = "how do i turn on the wifi in my oven";
+        ResponseObject response = MainManager.getAnswer(question, filepath, modelpath, vocabpath, configpath, intentpath, slotpath);
         response.printResponseSolution();
 
 //        String question = "will i be able to use procelain in the oven";

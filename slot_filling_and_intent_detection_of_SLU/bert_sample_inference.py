@@ -52,7 +52,7 @@ def save_print_torchscipt(config_path, output_zip):
 
     model_tag_and_class = model_tag_and_class.to('cpu')
 
-    model_tag_and_class.load_model('exp\\test_tiny\\model')
+    model_tag_and_class.load_model('exp/test_tiny/model')
 
     tag_to_idx, idx_to_tag = vocab_reader.read_vocab_file('exp/test_tiny/vocab'+'.tag', bos_eos=False, no_pad=True, no_unk=True)
     class_to_idx, idx_to_class = vocab_reader.read_vocab_file('exp/test_tiny/vocab'+'.class', bos_eos=False, no_pad=True, no_unk=True)
@@ -66,7 +66,7 @@ def save_print_torchscipt(config_path, output_zip):
     
     print(test_feats,test_tags,test_class)
 
-    exp_path = 'exp\\test_tiny'
+    exp_path = 'exp/test_tiny'
 
 
     data_feats, data_tags, data_class, output_path = test_feats['data'], test_tags['data'], test_class['data'], os.path.join(exp_path, 'test.eval')
@@ -169,7 +169,9 @@ def save_torchscipt(exp_path, output_zip):
 
     model_tag_and_class = model_tag_and_class.to('cpu')
 
-    model_tag_and_class.load_model(exp_path+'\\model')
+    print(model_tag_and_class.state_dict().keys())
+
+    model_tag_and_class.load_model(exp_path+'/model')
 
     tag_to_idx, idx_to_tag = vocab_reader.read_vocab_file(exp_path+'/vocab'+'.tag', bos_eos=False, no_pad=True, no_unk=True)
     class_to_idx, idx_to_class = vocab_reader.read_vocab_file(exp_path+'/vocab'+'.class', bos_eos=False, no_pad=True, no_unk=True)
@@ -194,6 +196,10 @@ def save_torchscipt(exp_path, output_zip):
         for j in range(0, len(data_index), 32):
 
             words, tags, raw_tags, classes, raw_classes, lens, line_nums = data_reader.get_minibatch_with_class(data_feats, data_tags, data_class, tag_to_idx, class_to_idx, data_index, j, 32, add_start_end=False, multiClass=False, keep_order=True, enc_dec_focus=False, device=device)
+
+            print("words")
+            print(words)
+
 
             inputs = prepare_inputs_for_bert_xlnet(words, lens, tokenizer, 
                     cls_token_at_end=bool('bert' in ['xlnet']),  # xlnet has a cls token at the end
@@ -234,7 +240,7 @@ def save_torchscipt(exp_path, output_zip):
 
             #output_zip = 'ziptemp'
 
-            output_zip = 'output\\model_tiny_8_9.pt'
+            output_zip = 'output/model_tiny_9_1.pt'
 
             traced.save(output_zip)
 
@@ -243,6 +249,10 @@ def save_torchscipt(exp_path, output_zip):
             sample = ['can','i', 'use', 'porcelain', 'in', 'the', 'oven']
 
             sample = ['will','i','be','able','to','use','procelain','in','the','oven']
+
+            sample = ['what', 'does', 'c-f0', 'code', 'mean', 'on', 'my', 'oven']
+
+            sample = ['how','do','i','use','the','reheat','feature','in','the','microwave']
 
             sentence_ = ' '.join(sample)
 
@@ -262,6 +272,8 @@ def save_torchscipt(exp_path, output_zip):
                     pad_on_left=bool('bert' in ['xlnet']), # pad on the left for xlnet
                     pad_token_segment_id=4 if 'bert' in ['xlnet'] else 0,
                     device=device)
+
+            print(inputs_test)
 
             print("tokens:------",inputs_test['tokens'])
 
@@ -423,8 +435,8 @@ if __name__ == '__main__':
 
     #save_torchscipt(model_path, output_zip)
 
-    model_path = 'output\\model_tiny_8_1.pt'
-    exp_path = 'exp\\test_tiny'
+    model_path = 'output/model_tiny_9_1.pt'
+    exp_path = 'exp/model_tiny_default'
 
     save_torchscipt(exp_path,model_path)
 

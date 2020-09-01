@@ -25,7 +25,7 @@ def prepare_inputs_for_bert_xlnet(sentences, word_lengths, tokenizer, cls_token_
         }
     """
     ## sentences are sorted by sentence length
-    print('prepare_inputs_for_bert_xlnet')
+    #print('prepare_inputs_for_bert_xlnet')
     # print(sentences)
     max_length_of_sentences = max(word_lengths)
     tokens = []
@@ -72,13 +72,13 @@ def prepare_inputs_for_bert_xlnet(sentences, word_lengths, tokenizer, cls_token_
         selected_indexes = [[padding_lengths[idx] + i + idx * max_length_of_tokens for i in selected_index] for idx,selected_index in enumerate(selected_indexes)]
     else:
         input_mask = [[1] * len(tokenized_text) + [0] * padding_lengths[idx] for idx,tokenized_text in enumerate(tokens)]
-        print(input_mask)
+        #print(input_mask)
         indexed_tokens = [tokenizer.convert_tokens_to_ids(tokenized_text) + [pad_token] * padding_lengths[idx] for idx,tokenized_text in enumerate(tokens)]
-        print(indexed_tokens)
+        #print(indexed_tokens)
         segments_ids = [si + [pad_token_segment_id] * padding_lengths[idx] for idx,si in enumerate(segment_ids)]
-        print(segments_ids)
+        #print(segments_ids)
         selected_indexes = [[0 + i + idx * max_length_of_tokens for i in selected_index] for idx,selected_index in enumerate(selected_indexes)]
-        print(selected_indexes)
+        #print(selected_indexes)
     copied_indexes = [[i + idx * max_length_of_sentences for i in range(length)] for idx,length in enumerate(word_lengths)]
 
     input_mask = torch.tensor(input_mask, dtype=torch.long, device=device)
