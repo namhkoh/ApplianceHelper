@@ -37,10 +37,10 @@ public class RunTokenizer {
 
     public long[] getSelect(String sentence){
         int sentence_length = sentence.split(" ").length;
-        System.out.println("Select");
-        System.out.println(sentence);
-        System.out.println(Arrays.toString(sentence.split(" ")));
-        System.out.println(split_tokens);
+        //System.out.println("Select");
+        //System.out.println(sentence);
+        //System.out.println(Arrays.toString(sentence.split(" ")));
+        //System.out.println("split tokens" + split_tokens);
         long[] select = new long[sentence_length];
         int position = 0;
         int j = 0;
@@ -50,14 +50,14 @@ public class RunTokenizer {
         for(int i = 0; i < split_tokens.size(); i ++){
 
             if(split == true && split_word.equals(sentence.split(" ")[j])){
-                System.out.println("Split has matched: " + split_word + " " + sentence.split(" ")[j]);
+                //System.out.println("Split has matched: " + split_word + " " + sentence.split(" ")[j]);
                 j++;
                 i--;
                 split = false;
             }
 
             else if(split == true){
-                System.out.println("Split has not matched: " + split_word + " " + sentence.split(" ")[j]);
+                //System.out.println("Split has not matched: " + split_word + " " + sentence.split(" ")[j]);
                 if(split_tokens.get(i).charAt(0) == '#') {
                     split_word = split_word + split_tokens.get(i).substring(2);
                 }
@@ -68,8 +68,8 @@ public class RunTokenizer {
 
 
             else if(split_tokens.get(i).equals(sentence.split(" ")[j])){
-                System.out.println("Equal");
-                System.out.println(split_tokens.get(i) + " " + sentence.split(" ")[j] + i);
+                //System.out.println("Equal");
+                //System.out.println(split_tokens.get(i) + " " + sentence.split(" ")[j] + i);
                 select[position] = Long.valueOf(i+1);
                 position++;
                 j++;
@@ -77,8 +77,8 @@ public class RunTokenizer {
 
             else if(!split_tokens.get(i).equals(sentence.split(" ")[j])){
                 split_word = "";
-                System.out.println("Not equal");
-                System.out.println(split_tokens.get(i) + " " + sentence.split(" ")[j] + i);
+                //System.out.println("Not equal");
+                //System.out.println(split_tokens.get(i) + " " + sentence.split(" ")[j] + i);
                 words_split = true;
                 split = true;
                 split_word = split_word + split_tokens.get(i);
@@ -123,8 +123,8 @@ public class RunTokenizer {
 ////            }
 
         }
-        System.out.println(Arrays.toString(select));
-        System.out.println("Select End");
+        //System.out.println(Arrays.toString(select));
+        //System.out.println("Select End");
         return select;
     }
 
@@ -133,7 +133,7 @@ public class RunTokenizer {
         for(int i = 0; i < split_tokens.size()+2; i++){
             input[i] = Long.valueOf(1);
         }
-        System.out.println(Arrays.toString(input));
+        //System.out.println(Arrays.toString(input));
         return input;
     }
 
@@ -142,7 +142,7 @@ public class RunTokenizer {
         for(int i = 0; i < split_tokens.size()+2; i++){
             segment[i] = Long.valueOf(1);
         }
-        System.out.println(Arrays.toString(segment));
+        //System.out.println(Arrays.toString(segment));
         return segment;
     }
 
@@ -152,7 +152,7 @@ public class RunTokenizer {
         for(int i = 0; i < sentence_length; i ++){
             select[i] = Long.valueOf(i);
         }
-        System.out.println(Arrays.toString(select));
+        //System.out.println(Arrays.toString(select));
         return select;
     }
 

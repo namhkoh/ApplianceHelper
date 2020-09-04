@@ -31,8 +31,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.company.MainManager;
-import com.company.ResponseObject;
+
+import com.aic.libnilu.nlu.MainManager;
+import com.aic.libnilu.nlu.ResponseObject;
+//import com.company.MainManager;
+//import com.company.ResponseObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -121,9 +124,33 @@ public class uiVariant1 extends AppCompatActivity {
                     return;
                 }
                 String question = editText.getText().toString();
-                String assetName = "video_demo_data.txt";
+
+                String assetName = "video_demo_data23.txt";
                 String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
-                ResponseObject response = MainManager.getAnswer(question, filePath);
+                Log.d("1",filePath);
+
+                String model_file = "model_tiny_9_2.pt";
+                String file_name = Utilities.assetFilePath(getApplicationContext(), model_file);
+                Log.d("2",file_name);
+
+                String vocab_file = "vocab.txt";
+                String vocab_path = Utilities.assetFilePath(getApplicationContext(), vocab_file);
+                Log.d("3",vocab_path);
+
+                String config_file = "config.json";
+                String config_path = Utilities.assetFilePath(getApplicationContext(), config_file);
+                Log.d("3",config_path);
+
+                String vocab_class_file = "vocab1.class";
+                String vocab_class_path = Utilities.assetFilePath(getApplicationContext(), vocab_class_file);
+                Log.d("3",vocab_class_path);
+
+                String vocab_slot_file = "vocab1.tag";
+                String vocab_slot_path = Utilities.assetFilePath(getApplicationContext(), vocab_slot_file);
+                Log.d("3",vocab_slot_path);
+
+
+                ResponseObject response = MainManager.getAnswer(question,filePath,file_name, vocab_path, config_path, vocab_class_path, vocab_slot_path);
                 if (list != null) {
                     list.clear();
                     tmpList.clear();

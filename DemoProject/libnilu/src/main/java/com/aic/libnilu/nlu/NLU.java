@@ -73,6 +73,19 @@ public class NLU {
         return intent;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static String getIntent_Steps(KnowledgeBase knowledge, String question) throws Exception {
+        String intent;
+        try {
+            sentence_list = preprocess_sentence(question);
+            intent = knowledge.getIntents_step().stream().filter(key -> sentence_list.contains(key)).findAny().get();
+        }catch(Exception e){
+            return "None";
+            //throw new Exception("Intent not found from question: " + question);
+        }
+        return intent;
+    }
+
     /**
      * Extracts the slot of the sentence.
      * @param knowledge The hashmap that serves as a database.

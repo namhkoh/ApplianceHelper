@@ -52,37 +52,53 @@ public class Node {
     }
 
     //Get the specific node that has a particular slot value and slot property.
-    public Node getNodeFromArray(String slot, String slot_value, String intent) {
+    public Node getNodeFromArray(String slot, String slot_value, String intent) throws Exception{
 //        System.out.println(slot+";"+slot_value+";"+intent);
         ArrayList<Node> array = getNodeChildren().get(intent);
         Node temp = null;
-        for (int i = 0; i < array.size(); i++) {
-            if (array.get(i).getPropertyChildren().get(slot).getInformation().equals(slot_value)) {
-                temp = array.get(i);
+
+        try {
+            for (int i = 0; i < array.size(); i++) {
+                if (array.get(i).getPropertyChildren().get(slot).getInformation().equals(slot_value)) {
+                    temp = array.get(i);
+                }
             }
+        }catch(Exception e){
+            return null;
         }
+
         return temp;
     }
 
-    public Node getNodeFromArrayMulti(List<String> slot, List<String> slot_value, String intent) {
+    public Node getNodeFromArrayMulti(List<String> slot, List<String> slot_value, String intent) throws Exception{
         ArrayList<Node> array = getNodeChildren().get(intent);
         Node temp = null;
         Boolean match = false;
-        for(int j = 0; j < slot.size(); j++) {
-            match = false;
-            for (int i = 0; i < array.size(); i++) {
-                if (array.get(i).getPropertyChildren().get(slot.get(j)).getInformation().equals(slot_value.get(j))) {
-                    temp = array.get(i);
-                    match = true;
+
+        try {
+            for (int j = 0; j < slot.size(); j++) {
+                match = false;
+                for (int i = 0; i < array.size(); i++) {
+                    //Slot intent Matched
+                    //System.out.println(intent+" "+slot.get(j));
+                    //System.out.println(array.get(i).getPropertyChildren().get(slot.get(j)).getInformation());
+                    if (array.get(i).getPropertyChildren().get(slot.get(j)).getInformation().equals(slot_value.get(j))) {
+                        //System.out.println(array.get(i).getPropertyChildren().get(slot.get(j)).getInformation());
+                        temp = array.get(i);
+                        match = true;
+                        break;
+                    }
+                }
+                if (match == false) {
+                    System.out.println("No Match");
+                    temp = null;
                     break;
                 }
             }
-            if(match == false){
-                System.out.println("No Match");
-                temp = null;
-                break;
-            }
+        }catch(Exception e){
+            return null;
         }
+
         return temp;
     }
 

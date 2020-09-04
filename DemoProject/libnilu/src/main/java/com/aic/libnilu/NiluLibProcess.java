@@ -29,7 +29,7 @@ public class NiluLibProcess {
         //question = "how do i cook a hamburger in the oven";
         //question = "how do i set the broiling feature in the oven";
         //question = "how do i use the reheat feature in the microwave";
-        question = "how do i turn on the wifi in my oven";
+        question = "how do i turn off the sound in my oven";
         ResponseObject response = MainManager.getAnswer(question, filepath, modelpath, vocabpath, configpath, intentpath, slotpath);
         response.printResponseSolution();
 

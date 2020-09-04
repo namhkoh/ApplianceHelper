@@ -26,11 +26,14 @@ public class KnowledgeBase {
     private Node current_node;
     //Temporary
     private Set<String> intents;
+    private Set<String> intents_step;
     private HashMap<String, String> slots;
     private Set<String> appliances;
 
 
     public void load(String filename) {
+
+        System.out.println("----------------Start Of Load-----------------------");
 
         root = new Node("KnowledgeBase");
 
@@ -40,10 +43,15 @@ public class KnowledgeBase {
             intents = new HashSet<String>();
             slots = new HashMap<>();
             appliances = new HashSet<>();
+            intents_step = new HashSet<String>();
             intents.add("next");
             intents.add("previous");
             intents.add("repeat");
             intents.add("exit");
+            intents_step.add("next");
+            intents_step.add("previous");
+            intents_step.add("repeat");
+            intents_step.add("exit");
 
             while (true) {
                 //read line
@@ -151,6 +159,8 @@ public class KnowledgeBase {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        System.out.println("----------------Data Load Complete----------------------");
     }
 
     /**
@@ -163,7 +173,7 @@ public class KnowledgeBase {
      * @param intent the intent to be found.
      * @return
      */
-    public Node matchNode(Node node, String slot, String slot_value, String intent) {
+    public Node matchNode(Node node, String slot, String slot_value, String intent) throws Exception {
         return node.getNodeFromArray(slot, slot_value, intent);
     }
 
@@ -175,7 +185,7 @@ public class KnowledgeBase {
      * @param intent the intent to be found.
      * @return
      */
-    public Node matchNodeList(Node node, List<String> slot, List<String> slot_value, String intent) {
+    public Node matchNodeList(Node node, List<String> slot, List<String> slot_value, String intent) throws Exception {
         return node.getNodeFromArrayMulti(slot, slot_value, intent);
     }
 
@@ -226,5 +236,10 @@ public class KnowledgeBase {
     public Set<String> getAppliances() {
         return appliances;
     }
+
+    public Set<String> getIntents_step() {
+        return intents_step;
+    }
+
 
 }

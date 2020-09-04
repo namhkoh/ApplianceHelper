@@ -36,11 +36,11 @@ public class UserConsentActivity extends AppCompatActivity {
         testIDInput = findViewById(R.id.InputTestID);
 
         Log.d("Start","Hello");
-        String assetName = "video_demo_data11.txt";
+        String assetName = "video_demo_data23.txt";
         String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
         Log.d("1",filePath);
 
-        String model_file = "model_tiny_9_1.pt";
+        String model_file = "model_tiny_9_2.pt";
         String file_name = Utilities.assetFilePath(getApplicationContext(), model_file);
         Log.d("2",file_name);
 
@@ -52,13 +52,13 @@ public class UserConsentActivity extends AppCompatActivity {
         String config_path = Utilities.assetFilePath(getApplicationContext(), config_file);
         Log.d("3",config_path);
 
-        String vocab_class_file = "vocab.class";
+        String vocab_class_file = "vocab1.class";
         String vocab_class_path = Utilities.assetFilePath(getApplicationContext(), vocab_class_file);
-        //Log.d("3",vocab_class_path);
+        Log.d("3",vocab_class_path);
 
-        String vocab_slot_file = "vocab.tag";
+        String vocab_slot_file = "vocab1.tag";
         String vocab_slot_path = Utilities.assetFilePath(getApplicationContext(), vocab_slot_file);
-        //Log.d("3",vocab_slot_path);
+        Log.d("3",vocab_slot_path);
 
         NiluLibProcess.init(filePath,file_name, vocab_path, config_path, vocab_class_path, vocab_slot_path);
 

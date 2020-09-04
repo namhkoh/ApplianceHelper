@@ -71,9 +71,11 @@ public class MainManager {
 
                 RunTokenizer tokenizer = new RunTokenizer(configpath, vocabpath);
                 tokenizer.tokenize(question);
-                System.out.println(tokenizer.getTokens());
-                System.out.println(tokenizer.getOriginal_tokens());
-                System.out.println(tokenizer.getSplit_tokens());
+
+                //Tokenize information
+                System.out.println("tokens returned: " + tokenizer.getTokens());
+                System.out.println("words before token: " + tokenizer.getOriginal_tokens());
+                System.out.println("words after token: " + tokenizer.getSplit_tokens());
 
                 Object[] object_tokens = tokenizer.getTokens().toArray();
 
@@ -90,31 +92,38 @@ public class MainManager {
                 long[] segment = tokenizer.getSegment();
                 long[] copies = tokenizer.getCopies(question);
 
-                System.out.println(Arrays.toString(tokens));
+                System.out.println("tokens: " + Arrays.toString(tokens));
+                System.out.println("select: " + Arrays.toString(select));
+                System.out.println("segment: " + Arrays.toString(segment));
+                System.out.println("copies: " +  Arrays.toString(copies));
+                System.out.println("inputs " + Arrays.toString(input));
 
                 InferenceTask inference = new InferenceTask(modelpath);
                 inference.setVocab(intentpath,slotpath);
-                inference.predict_2(tokens, select, input, segment, copies);
+                inference.predict(tokens, select, input, segment, copies);
 
                 int[] slot_idx = inference.getMax_slot();
 
                 String[] split_question = question.split(" ");
-                System.out.println("Split question" + split_question);
+                //System.out.println("Split question" + split_question);
                 String[] slot_type = inference.getSlot_solution();
+                slot_name = new ArrayList<>();
+                slot = new ArrayList<>();
+
+
 
                 for(int i = 0; i < slot_idx.length; i++){
 //                    System.out.println(slot_type[i]);
 //                    System.out.println(slot_type[i].equals("O"));
                     if(!slot_type[i].equals("O")){
-                        System.out.println(slot_type[i]);
+                        //System.out.println(slot_type[i]);
                         if(slot_type[i].equals("B-appliance")){
-                            System.out.println(split_question[i]);
+                            //Slot Values
+                            //System.out.println(split_question[i]);
                             appliance_tagger = split_question[i];
                         }
                         else if(slot_type[i].charAt(0) == 'B'){
-                            slot = new ArrayList<>();
                             slot.add(split_question[i]);
-                            slot_name = new ArrayList<>();
                             slot_name.add(slot_type[i].substring(2));
 
                         }
@@ -131,18 +140,30 @@ public class MainManager {
                 //appliance = NLU.getAppliance(knowledge, question);
                 //slot = NLU.getSlotName(knowledge, question);
                 //slot_name = NLU.getSlot(knowledge, question);
-                System.out.println(slot);
+                System.out.println("slot value: " + slot);
 
                 appliance = appliance_tagger;
                 
-                System.out.println("slot name_" + slot_name);
+                System.out.println("slot name: " + slot_name);
+
+                if(appliance == null){
+                    return new ResponseObject(true, "no_match");
+                }
 
 
                 //Go to the appliance node by matching the appliance to the slot_name
                 current_node = knowledge.matchNode(knowledge.getRoot(), "applianceName", appliance, "appliance");
 
+                if(current_node == null){
+                    return new ResponseObject(true, "no_match");
+                }
+
                 //Temp need to test more than one.
                 current_node = knowledge.matchNodeList(current_node, slot_name, slot, intent);
+
+                if(current_node == null){
+                    return new ResponseObject(true, "no_match");
+                }
 
 
                 //The response object or solution.

@@ -49,10 +49,15 @@ public class ResponseObject {
      * Print everything in the response object.
      */
     public void printResponseSolution() {
-        for (int i = 0; i < steps.size(); i++) {
-            System.out.println("Step number: " + steps.get(i).getStep_number());
-            System.out.println("Text: " + steps.get(i).getText());
-            System.out.println("Button Name: " + steps.get(i).getButton_name());
+        if(is_dialog){
+            System.out.println("Dialog Command: " + dialog_command);
+        }
+        else {
+            for (int i = 0; i < steps.size(); i++) {
+                System.out.println("Step number: " + steps.get(i).getStep_number());
+                System.out.println("Text: " + steps.get(i).getText());
+                System.out.println("Button Name: " + steps.get(i).getButton_name());
+            }
         }
     }
 

@@ -118,6 +118,6 @@
     <orderEntry type="library" name="Gradle: androidx.interpolator:interpolator:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.constraintlayout:constraintlayout:1.1.3@aar" level="project" />
     <orderEntry type="library" name="Gradle: :VuforiaWrapper:@aar" level="project" />
-    <orderEntry type="module" module-name="DemoProject-libnilu" />
+    <orderEntry type="module" module-name="ApplianceHelper3-DemoProject-libnilu" />
   </component>
 </module>

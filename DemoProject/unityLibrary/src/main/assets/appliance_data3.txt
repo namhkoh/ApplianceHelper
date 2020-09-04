@@ -1,0 +1,29 @@
+0	oven	microwave										
+1	set	microwave	Feature	setFeature:clock								
+2	"Step 1: Press the ""Clock button."	Clock	Step 2 : Enter the time.	Number Pad	Step 3: Press on Clock again or the Start Control.	Clock/Start						
+1	buy	oven	Part	parttype:light								
+2	Please call 000-0000-001	No Button										
+1	buy	oven	Part	parttype:wirerack								
+2	You can buy it from the Samsung Contact Center (1-800-726-7864)	No Button										
+1	buy	oven	Part	parttype:air-fry-tray								
+2	You can buy it from the Samsung Contact Center (1-800-726-7864)	No Button										
+1	code	oven	Error	infocode:c-F0								
+2	Problem: This code occurs if communication between the Main and Sub PBA is interrupted.	No Button	"Solution: Press OFF/CLEAR, and then restart the oven. If the problem persists, disconnect all power to the range for at least 30 seconds and then reconnect the power. If this does not solve the problem, call for service."	OFF/CLEAR								
+1	code	oven	Error	infocode:c-20								
+2	Problem: The oven sensor is open when the oven is operating.	No Button	"Solution: Press OFF/CLEAR, and then restart the oven. If the problem persists, disconnect all power to the range for at least 30 seconds and then reconnect the power. If this does not solve the problem, call for service."	OFF/CLEAR								
+1	set	oven	Feature	setfeature:broiling								
+2	Step 1. Press Broil once for Hi or twice for Lo. 	Broil	"Step 2. To start broiling, press START/SET. Broil one side until the food is browned. Turn over and broil the other side."	START/SET	Step 3. Press OFF/CLEAR once you have finished cooking or if you want to cancel broiling.	OFF/CLEAR						
+1	set	oven	Feature	setfeature:air-fry								
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select Air Fry mode.	Air Fry	Step 3. Use the number pad to change the default temperature. Enter the suggested temperature for your food as recommended cooking guid.	Number Pad	"Step 4. Set the Cook Time or Delay Start, if necessary."	"COOK TIME, Delay Start"	Tap START/SET	START/SET	"When Cooking is complete, tap OFF/CLEAR and take out the food."	OFF/CLEAR
+1	use	microwave	Feature	usefeature:reheat								
+2	"Step 1. Press the Reheat button once for a plate of food, twice for casserole, three times for pasta."	Reheat	Step 2. Press the button on the number according to the number of servings. (For two servings of pasta press the number 2 button)	Number Pad	Step 3. Press the OK/START button	OK/START	"Step 4. When the cooking time is over, the oven will beep 4 times and display End."	No Button				
+1	use	microwave	Feature	usefeature:auto-defrost								
+2	Step 1. Press the Auto Defrost button.	Auto Defrost	Step 2. Use the number buttons to enter the weight. 	Number Pad	Step 3. Press the OK/START button	OK/START						
+1	on_off	oven	Feature	onofffeature:wifi	onoff:off							
+2	"Step 1. Press the Options button for 3 seconds, and then press 7 on the number pad. "	Options	Step 2. Press 1(Off) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START/SET						
+1	on_off	oven	Feature	onofffeature:wifi	onoff:on							
+2	"Step 1. Press the Options button for 3 seconds, and then press 7 on the number pad. "	Options	Step 2. Press 1(On) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START/SET						
+1	on_off	oven	Feature	onofffeature:sound	onoff:on							
+2	"Step 1. Press the Options button for 3 seconds, and then press 6 on the number pad. "	Options	Step 2. Press 1(On) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START/SET						
+1	on_off	oven	Feature	onofffeature:sound	onoff:off							
+2	"Step 1. Press the Options button for 3 seconds, and then press 6 on the number pad. "	Options	Step 2. Press 1(Off) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START/SET						
