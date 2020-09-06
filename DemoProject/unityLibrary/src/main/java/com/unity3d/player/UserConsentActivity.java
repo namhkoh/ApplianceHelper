@@ -54,13 +54,14 @@ public class UserConsentActivity extends AppCompatActivity {
 
         String vocab_class_file = "vocab1.class";
         String vocab_class_path = Utilities.assetFilePath(getApplicationContext(), vocab_class_file);
-        Log.d("3",vocab_class_path);
+        //Log.d("3",vocab_class_path);
 
         String vocab_slot_file = "vocab1.tag";
         String vocab_slot_path = Utilities.assetFilePath(getApplicationContext(), vocab_slot_file);
         Log.d("3",vocab_slot_path);
 
-        NiluLibProcess.init(filePath,file_name, vocab_path, config_path, vocab_class_path, vocab_slot_path);
+        // Commented for run project
+        //NiluLibProcess.init(filePath,file_name, vocab_path, config_path, vocab_class_path, vocab_slot_path);
 
 
         // Commented due to error.
