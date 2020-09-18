@@ -80,10 +80,7 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     Log.e("taskInstruction", String.valueOf(index));
                     TaskInstructionActivity.indexBundle.putInt("index", index);
                     index++;
-                    // Dynamic for all appliances.
-//                    Intent intent6 = new Intent(getApplicationContext(), uiVariant6.class);
-//                    startActivity(intent6);
-                    enterFeedback();
+                    enterApplianceUI();
                     break;
             }
         } catch (NullPointerException e) {
@@ -101,7 +98,7 @@ public class TaskInstructionActivity extends AppCompatActivity {
         task1.setText(tmp.get(indexValueString));
     }
 
-    private void enterFeedback() {
+    private void enterApplianceUI() {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         String incoming_indexString = String.valueOf(incoming_index);
         HashMap<String, String> tmpHash = getData();
