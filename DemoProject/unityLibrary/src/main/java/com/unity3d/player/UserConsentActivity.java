@@ -37,17 +37,7 @@ public class UserConsentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_consent);
         testIDInput = findViewById(R.id.InputTestID);
-
-
-
-        /**
-         * Admin button to access directly to oven panel UI.
-         */
-        Button admin = findViewById(R.id.admin);
-        admin.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), uiVariant6Oven.class);
-            startActivity(intent);
-        });
+        
 
         Log.d("Start", "Hello");
         String assetName = "video_demo_data23.txt";
