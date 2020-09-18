@@ -16,10 +16,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class TaskInstructionActivity extends AppCompatActivity {
     public static Bundle indexBundle = new Bundle();
     public static int index = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,7 @@ public class TaskInstructionActivity extends AppCompatActivity {
         });
         setInstructionText(index);
     }
+
     private void enterActivity() {
         String str = StartScreen.activityBundle.getString("activity");
         try {
@@ -77,15 +80,10 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     Log.e("taskInstruction", String.valueOf(index));
                     TaskInstructionActivity.indexBundle.putInt("index", index);
                     index++;
-                    Intent intent6 = new Intent(getApplicationContext(), uiVariant6.class);
-                    startActivity(intent6);
-                    break;
-                case "uiVariant7":
-                    Log.e("taskInstruction", String.valueOf(index));
-                    TaskInstructionActivity.indexBundle.putInt("index", index);
-                    index++;
-                    Intent intent7 = new Intent(getApplicationContext(), uiVariant7.class);
-                    startActivity(intent7);
+                    // Dynamic for all appliances.
+//                    Intent intent6 = new Intent(getApplicationContext(), uiVariant6.class);
+//                    startActivity(intent6);
+                    enterFeedback();
                     break;
             }
         } catch (NullPointerException e) {
@@ -96,11 +94,27 @@ public class TaskInstructionActivity extends AppCompatActivity {
         }
     }
 
-    private void setInstructionText(int indexValue){
+    private void setInstructionText(int indexValue) {
         String indexValueString = String.valueOf(indexValue);
         TextView task1 = findViewById(R.id.Task);
         HashMap<String, String> tmp = getData();
         task1.setText(tmp.get(indexValueString));
+    }
+
+    private void enterFeedback() {
+        int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        String incoming_indexString = String.valueOf(incoming_index);
+        HashMap<String, String> tmpHash = getData();
+        if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
+            Intent intent = new Intent(this, uiVariant6.class);
+            startActivity(intent);
+        } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")) {
+            Intent intent = new Intent(this, uiVariant6Oven.class);
+            startActivity(intent);
+        } else {
+            return;
+        }
+        Log.e("entering feedback", "enter");
     }
 
     private HashMap<String, String> getData() {
