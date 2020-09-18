@@ -121,6 +121,36 @@
         app:layout_constraintTop_toTopOf="@id/oven_panel_2" />
 
     <Button
+        android:id="@+id/oven_delay"
+        android:layout_width="65dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="188dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_2"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_2" />
+
+    <Button
+        android:id="@+id/oven_preheat"
+        android:layout_width="65dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="188dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_2"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_2" />
+
+    <Button
+        android:id="@+id/oven_settings"
+        android:layout_width="65dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="188dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_2"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_2" />
+
+    <Button
         android:id="@+id/oven_1"
         android:layout_width="38dp"
         android:layout_height="45dp"
