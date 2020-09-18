@@ -41,7 +41,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         bakeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("Clicked","Bake button");
+                Log.e("Clicked", "Bake button");
             }
         });
 
@@ -57,7 +57,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         broilBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("Clicked","Broil button");
+                Log.e("Clicked", "Broil button");
             }
         });
 
@@ -65,7 +65,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         convectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("Clicked","Convect Modes button");
+                Log.e("Clicked", "Convect Modes button");
             }
         });
 
@@ -73,7 +73,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         keepWarmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("Clicked","Keep warm button");
+                Log.e("Clicked", "Keep warm button");
             }
         });
 
@@ -81,7 +81,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         selfCleanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("Clicked","Self Clean button");
+                Log.e("Clicked", "Self Clean button");
             }
         });
 
@@ -100,7 +100,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         delayStartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("Clicked","Delay start button");
+                Log.e("Clicked", "Delay start button");
             }
         });
 
@@ -108,7 +108,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         preheatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("Clicked","rapid preheat button");
+                Log.e("Clicked", "rapid preheat button");
             }
         });
 
@@ -116,7 +116,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         settingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("Clicked","Settings/Clock button");
+                Log.e("Clicked", "Settings/Clock button");
             }
         });
 
@@ -213,7 +213,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         timerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("Clicked","Timer set/off");
+                Log.e("Clicked", "Timer set/off");
             }
         });
 
@@ -221,7 +221,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         on_offBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("Clicked","On/Off clicked");
+                Log.e("Clicked", "On/Off clicked");
             }
         });
 
@@ -229,13 +229,15 @@ public class uiVariant6Oven extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("Clicked","Confirm Button clicked");
+                Log.e("Clicked", "Confirm Button clicked");
             }
         });
 
         ArrayList<Button> allButtons = new ArrayList<Button>(Arrays.asList(
-                frozenBakeBtn, cookTimeBtn, o0, o1, o2, o3, o4, o5, o6, o7, o8, o9, startOvenbtn, cancelOvenBtn
-        ));
+                frozenBakeBtn, cookTimeBtn, o0, o1, o2, o3, o4, o5, o6, o7, o8, o9, startOvenbtn, cancelOvenBtn,
+                bakeBtn, broilBtn, convectBtn, keepWarmBtn, selfCleanBtn, delayStartBtn, preheatBtn, settingsBtn,
+                timerBtn, on_offBtn, confirm
+                ));
         for (int i = 0; i < allButtons.size(); i++) {
             allButtons.get(i).setAlpha(0);
         }
