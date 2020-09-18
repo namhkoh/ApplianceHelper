@@ -33,6 +33,15 @@ public class uiVariant6Oven extends AppCompatActivity {
         next.setOnClickListener(v -> nextActivity());
         TextView lcd = findViewById(R.id.oven_panel_text);
         lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
+
+        Button bakeBtn = findViewById(R.id.oven_bake);
+        bakeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("Clicked","Bake button");
+            }
+        });
+
         Button frozenBakeBtn = findViewById(R.id.oven_frozen);
         frozenBakeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +49,40 @@ public class uiVariant6Oven extends AppCompatActivity {
                 frozenBake();
             }
         });
+
+        Button broilBtn = findViewById(R.id.oven_broil);
+        broilBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("Clicked","Broil button");
+            }
+        });
+
+        Button convectBtn = findViewById(R.id.oven_convect);
+        convectBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("Clicked","Convect Modes button");
+            }
+        });
+
+        Button keepWarmBtn = findViewById(R.id.oven_warm);
+        keepWarmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("Clicked","Keep warm button");
+            }
+        });
+
+        Button selfCleanBtn = findViewById(R.id.oven_clean);
+        selfCleanBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("Clicked","Self Clean button");
+            }
+        });
+
+
         Button cookTimeBtn = findViewById(R.id.oven_cooktime);
         cookTimeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
