@@ -80,6 +80,13 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     Intent intent6 = new Intent(getApplicationContext(), uiVariant6.class);
                     startActivity(intent6);
                     break;
+                case "uiVariant7":
+                    Log.e("taskInstruction", String.valueOf(index));
+                    TaskInstructionActivity.indexBundle.putInt("index", index);
+                    index++;
+                    Intent intent7 = new Intent(getApplicationContext(), uiVariant7.class);
+                    startActivity(intent7);
+                    break;
             }
         } catch (NullPointerException e) {
             //throw new RuntimeException("Please enter the correct userID!", e);

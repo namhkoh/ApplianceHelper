@@ -37,7 +37,7 @@ public class UserConsentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_consent);
         testIDInput = findViewById(R.id.InputTestID);
-        
+
 
         Log.d("Start", "Hello");
         String assetName = "video_demo_data23.txt";

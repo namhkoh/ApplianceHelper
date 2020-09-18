@@ -41,7 +41,16 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <application>
-        <activity android:name=".uiVariant7"></activity>
+        <activity
+            android:name=".uiVariant7"
+            android:label="uiVariant7"
+            android:theme="@style/Theme.AppCompat.Light">
+            <intent-filter>
+                <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            </activity>
         <activity
             android:name=".uiVariant6Oven"
             android:label="Oven"
