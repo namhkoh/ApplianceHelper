@@ -57,6 +57,7 @@ public class uiVariant1 extends AppCompatActivity {
     private int index = 0;
     ArrayList<String> list = new ArrayList<>();
     ArrayList<String> tmpList = new ArrayList<>();
+    ArrayList<String> buttonList = new ArrayList<>();
     private ArrayAdapter adapter;
     private static String utterance;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -140,7 +141,8 @@ public class uiVariant1 extends AppCompatActivity {
                 }
                 String question = editText.getText().toString();
 
-                String assetName = "video_demo_data23.txt";
+                //String assetName = "video_demo_data26.txt";
+                String assetName = "appliance_data8.txt";
                 String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
                 Log.d("1",filePath);
 
@@ -173,11 +175,14 @@ public class uiVariant1 extends AppCompatActivity {
                 }
                 for (int i = 0; i < response.getSteps().size(); ++i) {
                     String data = response.getSteps().get(i).getText();
+                    String button = response.getSteps().get(i).getButton_name();
+                    buttonList.add(button);
                     list.add(data);
                     initTTS(data);
                     //tmpList.add(data);
                 }
                 index = 0;
+
                 //update(tmpList.get(index), true);
             }
 
@@ -265,6 +270,7 @@ public class uiVariant1 extends AppCompatActivity {
         HashMap<String, String> tmpHash = getData();
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
             Intent intent = new Intent(this, uiVariant6.class);
+            intent.putExtra("button",buttonList);
             startActivity(intent);
         } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")){
             Intent intent = new Intent(this, uiVariant6Oven.class);

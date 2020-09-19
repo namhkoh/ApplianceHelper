@@ -12,12 +12,12 @@
 
     <TextView
         android:id="@+id/lcd_text"
-        android:maxLength="10"
         android:layout_width="259dp"
         android:layout_height="102dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
+        android:maxLength="10"
         android:text="@string/lcd_text"
         android:textAlignment="center"
         android:textColor="#FFFFFF"

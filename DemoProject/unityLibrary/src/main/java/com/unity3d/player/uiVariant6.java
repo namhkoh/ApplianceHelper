@@ -42,6 +42,22 @@ public class uiVariant6 extends AppCompatActivity {
     boolean eightPressed = false;
     boolean ninePressed = false;
 
+
+    boolean numberpad_active = false;
+    boolean start_active = false;
+    boolean cancel_active = true;
+    boolean clock_active = false;
+    boolean timer_active = false;
+
+    HashMap<String, Boolean> next_button;
+    ArrayList<String> myList;
+
+    int current_state;
+    Button current_button;
+    String string_button;
+    int number_of_steps;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,6 +153,8 @@ public class uiVariant6 extends AppCompatActivity {
             }
         });
 
+        next.setEnabled(false);
+
         Button popcorn = findViewById(R.id.microwave_popcorn);
         Button potato = findViewById(R.id.microwave_potato);
         Button pizza = findViewById(R.id.microwave_pizza);
@@ -153,6 +171,53 @@ public class uiVariant6 extends AppCompatActivity {
         for (int i = 0; i < allButtons.size(); i++) {
             allButtons.get(i).setAlpha(0);
         }
+
+        HashMap<String, Button> button_string = new HashMap<String, Button>();
+        HashMap<String, Boolean> button_boolean = new HashMap<String, Boolean>();
+        myList = (ArrayList<String>) getIntent().getSerializableExtra("button");
+
+        current_state = 0;
+        string_button = myList.get(current_state);
+        Log.i("Button",Arrays.toString(myList.toArray()));
+        Log.i("Button", String.valueOf(myList.size()));
+        number_of_steps = myList.size();
+
+
+        //The next button that needs to be pushed before going to the next stage
+        //Eventually need to add all the buttons on the screen
+        next_button = new HashMap<String, Boolean>();
+        next_button.put("clock", false);
+        next_button.put("start", false);
+        next_button.put("cancel", false);
+
+        button_string.put("clock", clock);
+        button_boolean.put("clock",clock_active);
+        Log.e("current",string_button);
+        //Log.e("current", button_string.get(string_button));
+
+        //Initial Step
+        next_step(string_button);
+
+    }
+
+    private void next_step(String string_button){
+        if(string_button.equals("clock")) {
+            clock_active = true;
+            next_button.put(string_button, true);
+            Log.e("Button", string_button);
+        }
+
+        if(string_button.equals("number pad")){
+            numberpad_active = true;
+            clock_active = true;
+            start_active = true;
+            next_button.put("clock",true);
+            next_button.put("start",true);
+            current_state+=2;
+
+        }
+
+
     }
 
     private HashMap<String, String> getData() {
@@ -173,24 +238,54 @@ public class uiVariant6 extends AppCompatActivity {
     }
 
     private void microwaveClock() {
-        clockPressed = true;
-        clearClock();
-        Log.e("Button Pressed", "Clock");
+        if(clock_active == true) {
+            clockPressed = true;
+            clearClock();
+            Log.e("Button Pressed (Active)", "Clock");
+            if(next_button.get("clock") == true){
+                string_button = myList.get(++current_state);
+                next_button.put("clock",false);
+                clock_active = false;
+
+            next_step(string_button);
+            }
+        }
+        else{
+            Log.e("Button Pressed (Inactive)", "Clock");
+        }
     }
 
     private void microwaveStart() {
-        startPressed = true;
-        TextView lcd = findViewById(R.id.lcd_text);
-        if (clockPressed) {
-            setClock();
-        } else if (meltButterBool) {
-            lcdString = "";
-            lcdString = "Ready!";
-            lcd.setText(lcdString);
-        } else {
-            return;
+        if(start_active == true) {
+            if(next_button.get("start") == true) {
+                TextView lcd = findViewById(R.id.lcd_text);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                lcdString = "";
+                lcdString = "Ready!";
+                lcd.setText(lcdString);
+                Button next = findViewById(R.id.Next);
+                next.setEnabled(true);
+            }
+//            startPressed = true;
+//            TextView lcd = findViewById(R.id.lcd_text);
+//            if (clockPressed) {
+//                setClock();
+//            } else if (meltButterBool) {
+//                lcdString = "";
+//                lcdString = "Ready!";
+//                lcd.setText(lcdString);
+//            } else {
+//                return;
+//            }
+            Log.e("Button Pressed (Active)", "Start");
         }
-        Log.e("Button Pressed", "Start");
+        else{
+            Log.e("Button Pressed (Inactive)", "Start");
+        }
     }
 
     private void microwaveSoften() {
@@ -200,92 +295,147 @@ public class uiVariant6 extends AppCompatActivity {
     }
 
     private void microwaveCancel() {
-        TextView lcd = findViewById(R.id.lcd_text);
-        tmpList.clear();
-        cancelPressed = true;
-        lcdString = "";
-        lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
-        Log.e("Button Pressed", "Cancel");
+        if(cancel_active == true) {
+            TextView lcd = findViewById(R.id.lcd_text);
+            tmpList.clear();
+            cancelPressed = true;
+            lcdString = "";
+            lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
+            Log.e("Button Pressed (Active)", "Cancel");
+        }
+        else{
+            Log.e("Button Pressed (Inactive)", "Cancel");
+        }
     }
 
     private void press0() {
+        if(numberpad_active == true){
         zeroPressed = true;
         lcdString += 0;
         tmpList.add("0");
         update(lcdString);
-        Log.e("Button Pressed", "0");
+        Log.e("Button Pressed (Active)", "0");
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "0");
+        }
     }
 
     private void press1() {
-        onePressed = true;
-        lcdString += "1";
-        tmpList.add("1");
-        update(lcdString);
-        Log.e("Button Pressed", "1");
+        if(numberpad_active == true) {
+            onePressed = true;
+            lcdString += "1";
+            tmpList.add("1");
+            update(lcdString);
+            Log.e("Button Pressed (Active)", "1");
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "1");
+        }
     }
 
     private void press2() {
+        if(numberpad_active == true) {
         twoPressed = true;
         lcdString += "2";
         tmpList.add("2");
         update(lcdString);
         Log.e("Button Pressed", "2");
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "2");
+        }
     }
 
     private void press3() {
+        if(numberpad_active == true) {
         threePressed = true;
         lcdString += "3";
         tmpList.add("3");
         update(lcdString);
         Log.e("Button Pressed", "3");
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "3");
+        }
     }
 
     private void press4() {
+        if(numberpad_active == true) {
         fourPressed = true;
         lcdString += "4";
         tmpList.add("4");
         update(lcdString);
         Log.e("Button Pressed", "4");
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "4");
+        }
     }
 
     private void press5() {
+        if(numberpad_active == true) {
         fivePressed = true;
-        lcdString = "5";
+        lcdString += "5";
         tmpList.add("5");
         update(lcdString);
         Log.e("Button Pressed", "5");
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "5");
+        }
     }
 
     private void press6() {
+        if(numberpad_active == true) {
         sixPressed = true;
         lcdString += "6";
         tmpList.add("6");
         update(lcdString);
         Log.e("Button Pressed", "6");
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "6");
+        }
     }
 
     private void press7() {
+        if(numberpad_active == true) {
         sevenPressed = true;
         lcdString += "7";
         tmpList.add("7");
         update(lcdString);
         Log.e("Button Pressed", "7");
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "7");
+        }
     }
 
     private void press8() {
+        if(numberpad_active == true) {
         eightPressed = true;
         lcdString += "8";
         tmpList.add("8");
         update(lcdString);
         Log.e("Button Pressed", "8");
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "8");
+        }
     }
 
     private void press9() {
+        if(numberpad_active == true) {
         ninePressed = true;
         lcdString += "9";
         tmpList.add("9");
         update(lcdString);
         Log.e("Button Pressed", "9");
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "9");
+        }
     }
 
     private void update(String buttonValue) {
@@ -295,6 +445,7 @@ public class uiVariant6 extends AppCompatActivity {
         TextView lcd = findViewById(R.id.lcd_text);
         Log.e("current size", String.valueOf(tmpList.size()));
         lcd.setText(lcdString);
+
         if (meltPressed) {
             meltButter(buttonValue);
         } else if (meltButterBool) {

@@ -1,0 +1,13 @@
+0	oven	microwave																
+1	set	microwave	Feature	setFeature:clock														
+2	"Step 1: Press the ""Clock button."	Clock	Step 2 : Enter the time.	Number Pad	Step 3: Press on Clock again or the Start Control.	Clock|Start												
+1	set	microwave	Feature	setfeature:timer														
+2	Press Timer	Timer Button	"Enter the amount of time you want using the number pad, e.g., 1, 5. The timer can be set for any amount of time from 1 minute to 9 hours and 59 minutes. If you make a mistake, press Timer, and then enter the amount of time again."	Timer Button	Press START.	START	"When the set time has elapsed, the oven will beep and the display will show ""End"" until you press the Timer pad. You can cancel the timer at any time by pressing Timer for 3 seconds."	Timer										
+1	use	microwave	Feature	usefeature:reheat														
+2	"Step 1. Press the Reheat button once for a plate of food, twice for casserole, three times for pasta."	Reheat	Step 2. Press the button on the number according to the number of servings. (For two servings of pasta press the number 2 button)	Number Pad	Step 3. Press the START button	START	"Step 4. When the cooking time is over, the oven will beep 4 times and display End."	No Button										
+1	use	microwave	Feature	usefeature:defrost														
+2	Step 1. Press the Defrost button.	Defrost	Step 2. Use the number buttons to enter the weight. 	Number Pad	Step 3. Press the START button	START												
+1	cook	microwave	Food	foodtype:pork														
+2	Step 1. Use the number buttons to enter 15-20 min./lb at 170 degrees Well Done.	Number Pad	Step 2. Press the Power Level button (default 10)	Cook Power	Step 3. Press the power level twice to set the power level to high. 	Cook Power	Step 4. Use the number buttons to enter the second cook time. 10-15 min./lb. for 170 _ - Well Done	Number Pad	Step 5. Press the Power Level button (default 10)	Power level	Step 6. Press 5 to set the power level to medium	Number Pad	Step 7. Press the OK/START button.	OK/START	"Step 8.  When the cooking time is over, the oven beeps four times and displays End."	No Button	Step 9. Place the pork fat-side down on the roasting rack and cover with wax paper. Turn over halfway through cooking process. Let stand for 10 to 15_inutes.	No button
+1	cook	microwave	Food	foodtype:pizza														
+2	Step 1. Press the Pizza button.	Pizza	Step 2. Enter Bag size in ounces	Number Pad	Step 3. Press the START button	START												
