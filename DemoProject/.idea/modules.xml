@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/libnilu/ApplianceHelper-DemoProject-libnilu.iml" filepath="$PROJECT_DIR$/.idea/modules/libnilu/ApplianceHelper-DemoProject-libnilu.iml" group="DemoProject/libnilu" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/libnilu/ApplianceHelper3-DemoProject-libnilu.iml" filepath="$PROJECT_DIR$/.idea/modules/libnilu/ApplianceHelper3-DemoProject-libnilu.iml" group="DemoProject/libnilu" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/DemoProject.iml" filepath="$PROJECT_DIR$/.idea/modules/DemoProject.iml" group="DemoProject" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/libnilu/DemoProject-libnilu.iml" filepath="$PROJECT_DIR$/.idea/modules/libnilu/DemoProject-libnilu.iml" group="DemoProject/libnilu" />

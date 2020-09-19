@@ -38,14 +38,6 @@ public class UserConsentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_consent);
         testIDInput = findViewById(R.id.InputTestID);
 
-        /**
-         * Admin button to access directly to oven panel UI.
-         */
-        Button admin = findViewById(R.id.admin);
-        admin.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), uiVariant6Oven.class);
-            startActivity(intent);
-        });
 
         Log.d("Start", "Hello");
         String assetName = "video_demo_data23.txt";
@@ -83,6 +75,12 @@ public class UserConsentActivity extends AppCompatActivity {
         acceptConsent.setOnClickListener(v -> {
             testId = testIDInput.getText().toString();
             StartScreen.activityBundle.putString("testId", testId);
+            mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+            Bundle bundle = new Bundle();
+            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, testId);
+            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "testID");
+            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "entered_test_id");
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
             getActivity(testId);
         });
 

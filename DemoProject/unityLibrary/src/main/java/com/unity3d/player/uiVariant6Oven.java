@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,6 +33,18 @@ public class uiVariant6Oven extends AppCompatActivity {
         next.setOnClickListener(v -> nextActivity());
         TextView lcd = findViewById(R.id.oven_panel_text);
         lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
+
+        /**
+         * Oven panel 1
+         */
+        Button bakeBtn = findViewById(R.id.oven_bake);
+        bakeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("Clicked", "Bake button");
+            }
+        });
+
         Button frozenBakeBtn = findViewById(R.id.oven_frozen);
         frozenBakeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +52,42 @@ public class uiVariant6Oven extends AppCompatActivity {
                 frozenBake();
             }
         });
+
+        Button broilBtn = findViewById(R.id.oven_broil);
+        broilBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("Clicked", "Broil button");
+            }
+        });
+
+        Button convectBtn = findViewById(R.id.oven_convect);
+        convectBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("Clicked", "Convect Modes button");
+            }
+        });
+
+        Button keepWarmBtn = findViewById(R.id.oven_warm);
+        keepWarmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("Clicked", "Keep warm button");
+            }
+        });
+
+        Button selfCleanBtn = findViewById(R.id.oven_clean);
+        selfCleanBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("Clicked", "Self Clean button");
+            }
+        });
+
+        /**
+         * Oven panel 2
+         */
         Button cookTimeBtn = findViewById(R.id.oven_cooktime);
         cookTimeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +95,35 @@ public class uiVariant6Oven extends AppCompatActivity {
                 cookTime();
             }
         });
+
+        Button delayStartBtn = findViewById(R.id.oven_delay);
+        delayStartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("Clicked", "Delay start button");
+            }
+        });
+
+        Button preheatBtn = findViewById(R.id.oven_preheat);
+        preheatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("Clicked", "rapid preheat button");
+            }
+        });
+
+        Button settingsBtn = findViewById(R.id.oven_settings);
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("Clicked", "Settings/Clock button");
+            }
+        });
+
+        /**
+         * Oven panel 3
+         */
+
         Button o0 = findViewById(R.id.oven_0);
         o0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,9 +208,36 @@ public class uiVariant6Oven extends AppCompatActivity {
                 cancelOven();
             }
         });
+
+        Button timerBtn = findViewById(R.id.oven_timer);
+        timerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("Clicked", "Timer set/off");
+            }
+        });
+
+        Button on_offBtn = findViewById(R.id.oven_onoff);
+        on_offBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("Clicked", "On/Off clicked");
+            }
+        });
+
+        Button confirm = findViewById(R.id.oven_confirm);
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("Clicked", "Confirm Button clicked");
+            }
+        });
+
         ArrayList<Button> allButtons = new ArrayList<Button>(Arrays.asList(
-                frozenBakeBtn, cookTimeBtn, o0, o1, o2, o3, o4, o5, o6, o7, o8, o9, startOvenbtn, cancelOvenBtn
-        ));
+                frozenBakeBtn, cookTimeBtn, o0, o1, o2, o3, o4, o5, o6, o7, o8, o9, startOvenbtn, cancelOvenBtn,
+                bakeBtn, broilBtn, convectBtn, keepWarmBtn, selfCleanBtn, delayStartBtn, preheatBtn, settingsBtn,
+                timerBtn, on_offBtn, confirm
+                ));
         for (int i = 0; i < allButtons.size(); i++) {
             allButtons.get(i).setAlpha(0);
         }
