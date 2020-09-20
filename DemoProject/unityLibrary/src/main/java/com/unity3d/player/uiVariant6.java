@@ -2,8 +2,11 @@ package com.unity3d.player;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -41,6 +44,7 @@ public class uiVariant6 extends AppCompatActivity {
     boolean sevenPressed = false;
     boolean eightPressed = false;
     boolean ninePressed = false;
+    boolean timerPressed = false;
 
 
     boolean numberpad_active = false;
@@ -87,6 +91,11 @@ public class uiVariant6 extends AppCompatActivity {
         Button soften = findViewById(R.id.microwave_soften);
         soften.setOnClickListener(v -> {
             microwaveSoften();
+        });
+
+        Button timer = findViewById(R.id.microwave_timer);
+        timer.setOnClickListener(v -> {
+            timer();
         });
 
         Button m0 = findViewById(R.id.microwave_0);
@@ -163,7 +172,6 @@ public class uiVariant6 extends AppCompatActivity {
         Button cooktime = findViewById(R.id.microwave_cooktime);
         Button cookpower = findViewById(R.id.microwave_cookpower);
         Button defrost = findViewById(R.id.microwave_defrost);
-        Button timer = findViewById(R.id.microwave_timer);
         Button add30 = findViewById(R.id.microwave_30sec);
         ArrayList<Button> allButtons = new ArrayList<Button>(Arrays.asList(clock, start, cancel, soften, m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m0,
                 popcorn, potato, pizza, cook, reheat, cooktime, cookpower, defrost,
@@ -189,6 +197,7 @@ public class uiVariant6 extends AppCompatActivity {
         next_button.put("clock", false);
         next_button.put("start", false);
         next_button.put("cancel", false);
+        next_button.put("timer", false);
 
         button_string.put("clock", clock);
         button_boolean.put("clock",clock_active);
@@ -207,13 +216,31 @@ public class uiVariant6 extends AppCompatActivity {
             Log.e("Button", string_button);
         }
 
+        if(string_button.equals("timer")) {
+            timer_active = true;
+            next_button.put(string_button, true);
+            Log.e("Button", string_button);
+        }
+
+        if(string_button.equals("start")) {
+            start_active = true;
+            next_button.put(string_button, true);
+            Log.e("Button", string_button);
+        }
+
         if(string_button.equals("number pad")){
             numberpad_active = true;
-            clock_active = true;
-            start_active = true;
-            next_button.put("clock",true);
-            next_button.put("start",true);
-            current_state+=2;
+            //next_button.put(string_button,true);
+            current_state+=1;
+
+            string_button = myList.get(current_state);
+            if(string_button.equals("clock")){
+                clock_active = true;
+            }
+            else{
+                start_active = true;
+            }
+            next_button.put(string_button,true);
 
         }
 
@@ -237,17 +264,92 @@ public class uiVariant6 extends AppCompatActivity {
         return resultList;
     }
 
+    private void finish_task(){
+
+        TextView lcd = findViewById(R.id.lcd_text);
+        lcd.clearAnimation();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        lcdString = "";
+        lcdString = "Ready!";
+        lcd.setText(lcdString);
+        lcd.clearAnimation();
+        Button next = findViewById(R.id.Next);
+        next.setEnabled(true);
+    }
+
+    private void timer(){
+        Log.e("Button", "Timer Pressed");
+        if(timer_active == true) {
+            timerPressed = true;
+            clearScreen();
+            Log.e("Button Pressed (Active)", "Timer");
+            Log.e("Next Button", String.valueOf(next_button.get("timer")));
+            if(next_button.get("timer") == true){
+                Log.e("Button","Timer deactivate");
+                next_button.put("timer",false);
+                timer_active = false;
+                current_state++;
+                if(current_state >= myList.size()){
+                    TextView lcd = findViewById(R.id.lcd_text);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    lcd.clearAnimation();
+                    lcdString = "";
+                    lcdString = "Ready!";
+                    lcd.setText(lcdString);
+                    Button next = findViewById(R.id.Next);
+                    next.setEnabled(true);
+                }
+                else {
+                    string_button = myList.get(current_state);
+                    Log.e("Button 286", string_button);
+                    next_step(string_button);
+                }
+
+            }
+        }
+        else{
+            Log.e("Button Pressed (Inactive)", "Timer");
+        }
+
+    }
+
     private void microwaveClock() {
+        Log.e("Button", String.valueOf(clock_active));
         if(clock_active == true) {
             clockPressed = true;
             clearClock();
             Log.e("Button Pressed (Active)", "Clock");
+            Log.e("Next Button", String.valueOf(next_button.get("clock")));
             if(next_button.get("clock") == true){
-                string_button = myList.get(++current_state);
+                Log.e("Button","Clock deactivate");
                 next_button.put("clock",false);
                 clock_active = false;
+                if(current_state >= myList.size()){
+                    TextView lcd = findViewById(R.id.lcd_text);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    lcdString = "";
+                    lcdString = "Ready!";
+                    lcd.setText(lcdString);
+                    Button next = findViewById(R.id.Next);
+                    next.setEnabled(true);
+                }
+                else {
+                    string_button = myList.get(++current_state);
+                    next_step(string_button);
+                }
 
-            next_step(string_button);
             }
         }
         else{
@@ -258,18 +360,72 @@ public class uiVariant6 extends AppCompatActivity {
     private void microwaveStart() {
         if(start_active == true) {
             if(next_button.get("start") == true) {
-                TextView lcd = findViewById(R.id.lcd_text);
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                Log.e("Button","Clock deactivate");
+                next_button.put("start",false);
+                start_active = false;
+                current_state++;
+
+                if(timerPressed == true){
+                    TextView lcd = findViewById(R.id.lcd_text);
+
+
+//                    for(int i = Integer.parseInt(tmpList.get(0)); i >= 0; i--){
+//                        try {
+//                            Thread.sleep(1000);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+//                        Log.e("Button", String.valueOf(i));
+//                        lcdString = "";
+//                        lcdString = String.valueOf(i);
+//                        Log.e("Button",lcdString);
+//                        lcd.setText(lcdString);
+//                    }
+
+                    Animation anim = new AlphaAnimation(0.0f, 1.0f);
+                    anim.setDuration(50); //You can manage the blinking time with this parameter
+                    anim.setStartOffset(20);
+                    anim.setRepeatMode(Animation.REVERSE);
+                    anim.setRepeatCount(Animation.INFINITE);
+
+                    new CountDownTimer(7000,1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            Log.e("Button",String.valueOf(millisUntilFinished));
+                            Log.e("Button",String.valueOf(millisUntilFinished / 1000));
+                            if((millisUntilFinished / 1000) < Integer.parseInt(tmpList.get(0))) {
+                                lcd.setText(String.valueOf(millisUntilFinished / 1000));
+                            }
+                        }
+                        @Override
+                        public void onFinish() {
+                            lcd.setText("End");
+                            lcd.startAnimation(anim);
+                        }
+                    }.start();
+
+//                    try {
+//                        Thread.sleep(1000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                    lcdString = "";
+//                    lcdString = "End";
+//                    lcd.setText(lcdString);
+
                 }
-                lcdString = "";
-                lcdString = "Ready!";
-                lcd.setText(lcdString);
-                Button next = findViewById(R.id.Next);
-                next.setEnabled(true);
+
+                if(current_state >= myList.size()){
+                    finish_task();
+                }
+                else{
+                    string_button = myList.get(current_state);
+                    next_step(string_button);
+                }
             }
+
+
 //            startPressed = true;
 //            TextView lcd = findViewById(R.id.lcd_text);
 //            if (clockPressed) {
@@ -467,6 +623,17 @@ public class uiVariant6 extends AppCompatActivity {
             alt.setText(altString);
             lcd.setText(lcdString);
         }
+    }
+
+    private void clearScreen(){
+        TextView alt = findViewById(R.id.alt_txt);
+        TextView lcd = findViewById(R.id.lcd_text);
+        alt.setAlpha(1);
+        lcdString = " ";
+        altString = " ";
+        alt.setText(altString);
+        lcd.setText(lcdString);
+
     }
 
     private void setClock(){
