@@ -140,6 +140,6 @@
     <orderEntry type="library" name="Gradle: androidx.print:print:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.constraintlayout:constraintlayout:1.1.3@aar" level="project" />
     <orderEntry type="library" name="Gradle: :VuforiaWrapper:@aar" level="project" />
-    <orderEntry type="module" module-name="libnilu" />
+    <orderEntry type="module" module-name="DemoProject-libnilu" />
   </component>
 </module>
