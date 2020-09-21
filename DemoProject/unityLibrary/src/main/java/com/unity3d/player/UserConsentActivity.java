@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -13,7 +14,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.aic.libnilu.NiluLibProcess;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.firebase.analytics.FirebaseAnalytics;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,7 +32,6 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
-//import com.aic.libnilu.*;
 
 public class UserConsentActivity extends AppCompatActivity {
 
@@ -38,6 +47,41 @@ public class UserConsentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_consent);
         testIDInput = findViewById(R.id.InputTestID);
 
+        /**
+         * Testing node server side data transfer
+         */
+        Button serverBtn = findViewById(R.id.server);
+        final RequestQueue queue = Volley.newRequestQueue(this);
+        final String url = "http://127.0.0.1/postdata"; // your URL
+        queue.start();
+        serverBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HashMap<String, String> params = new HashMap<String,String>();
+                params.put("data", "test string from android"); // the entered data as the body.
+
+                JsonObjectRequest jsObjRequest = new
+                        JsonObjectRequest(Request.Method.POST,
+                        url,
+                        new JSONObject(params),
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    Log.e("response",response.getString("message"));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("error","That didn't work!");
+                    }
+                });
+                queue.add(jsObjRequest);
+            }
+        });
 
         Log.d("Start", "Hello");
         String assetName = "video_demo_data23.txt";

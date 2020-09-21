@@ -114,5 +114,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/InputFieldGuideline" />
 
+    <Button
+        android:id="@+id/server"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="158dp"
+        android:layout_marginBottom="6dp"
+        android:text="@string/server_button"
+        app:layout_constraintBottom_toTopOf="@+id/consent_title"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
