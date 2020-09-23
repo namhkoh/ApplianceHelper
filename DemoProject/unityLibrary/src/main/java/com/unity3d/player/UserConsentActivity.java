@@ -54,33 +54,21 @@ public class UserConsentActivity extends AppCompatActivity {
         final RequestQueue queue = Volley.newRequestQueue(this);
         final String url = "http://127.0.0.1/postdata"; // your URL
         queue.start();
-        serverBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                HashMap<String, String> params = new HashMap<String,String>();
-                params.put("data", "test string from android"); // the entered data as the body.
-
-                JsonObjectRequest jsObjRequest = new
-                        JsonObjectRequest(Request.Method.POST,
-                        url,
-                        new JSONObject(params),
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
-                                    Log.e("response",response.getString("message"));
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("error","That didn't work!");
-                    }
-                });
-                queue.add(jsObjRequest);
-            }
+        serverBtn.setOnClickListener(view -> {
+            HashMap<String, String> params = new HashMap<>();
+            params.put("data", "test"); // the entered data as the body.
+            JsonObjectRequest jsObjRequest = new
+                    JsonObjectRequest(Request.Method.POST,
+                    url,
+                    new JSONObject(params),
+                    response -> {
+                        try {
+                            Log.e("response",response.getString("message"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }, error -> Log.e("error","That didn't work!"));
+            queue.add(jsObjRequest);
         });
 
         Log.d("Start", "Hello");
