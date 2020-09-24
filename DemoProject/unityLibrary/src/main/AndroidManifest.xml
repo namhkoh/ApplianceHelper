@@ -39,6 +39,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application>
         <activity
@@ -76,6 +77,7 @@
         </activity>
         <activity
             android:name=".UserConsentActivity"
+            android:usesCleartextTraffic="true"
             android:label="@string/app_title"
             android:theme="@style/Theme.AppCompat.Light">
             <intent-filter>
