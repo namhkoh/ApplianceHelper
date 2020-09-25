@@ -59,7 +59,7 @@ public class UserConsentActivity extends AppCompatActivity {
         DisplayText = (TextView) findViewById(R.id.DisplayText);
 
         final RequestQueue queue = Volley.newRequestQueue(this);
-        final String url = "http://10.0.2.2:3000/";
+        final String url = "http://10.128.183.59:3000/";
 
         queue.start();
         RequestButton.setOnClickListener(v -> {
