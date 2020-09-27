@@ -57,7 +57,7 @@ public class uiVariant1 extends AppCompatActivity {
     private int index = 0;
     ArrayList<String> list = new ArrayList<>();
     ArrayList<String> tmpList = new ArrayList<>();
-    ArrayList<String> buttonList = new ArrayList<>();
+    ArrayList<String> buttonList;
     private ArrayAdapter adapter;
     private static String utterance;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -142,11 +142,11 @@ public class uiVariant1 extends AppCompatActivity {
                 String question = editText.getText().toString();
 
                 //String assetName = "video_demo_data26.txt";
-                String assetName = "appliance_data11.txt";
+                String assetName = "appliance_data15.txt";
                 String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
                 Log.d("1",filePath);
 
-                String model_file = "model_tiny_9_2.pt";
+                String model_file = "model_tiny_9_5.pt";
                 String file_name = Utilities.assetFilePath(getApplicationContext(), model_file);
                 Log.d("2",file_name);
 
@@ -173,6 +173,9 @@ public class uiVariant1 extends AppCompatActivity {
                     tmpList.clear();
                     adapter.notifyDataSetChanged();
                 }
+
+                buttonList = new ArrayList<>();
+
                 for (int i = 0; i < response.getSteps().size(); ++i) {
                     String data = response.getSteps().get(i).getText();
                     String button = response.getSteps().get(i).getButton_name();

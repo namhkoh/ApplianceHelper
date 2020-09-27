@@ -51,6 +51,7 @@
 
     <string name="userConsentAccept">Accept</string>
     <string name="nextActivity">Next</string>
+    <string name="openActivity">Open</string>
     <string name="submitButton">Submit</string>
     <string name="nps_text">How likely is it that you would recommend our appliance helper to a friend or colleague?</string>
     <string name="css_text">How satisfied were you with your experience today?</string>
