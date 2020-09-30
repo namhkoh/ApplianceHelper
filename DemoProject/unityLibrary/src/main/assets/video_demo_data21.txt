@@ -170,10 +170,10 @@
 1	use	microwave	Feature	usefeature:eco-mode														
 2	"When you press the Eco button once, the display will go out and the microwave shifts to Eco mode which minimizes power useage. To cancel the Eco Mode, press the Eco button once again, or press any other button."	No Button																
 1	on_off	oven	Feature	onofffeature:wifi	onoff:off													
-2	"Step 1. Press the Options button for 3 seconds, and then press 7 on the number pad. "	Options	Step 2. Press 1(Off) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START/SET												
+2	"Step 1. Press the Options button for 3 seconds, and then press 7 on the number pad. "	Options	Step 2. Press 1(Off) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START												
 1	on_off	oven	Feature	onofffeature:wifi	onoff:on													
-2	"Step 1. Press the Options button for 3 seconds, and then press 7 on the number pad. "	Options	Step 2. Press 1(On) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START/SET												
+2	"Step 1. Press the Options button for 3 seconds, and then press 7 on the number pad. "	Options	Step 2. Press 1(On) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START												
 1	on_off	oven	Feature	onofffeature:sound	onoff:on													
-2	"Step 1. Press the Options button for 3 seconds, and then press 6 on the number pad. "	Options	Step 2. Press 1(On) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START/SET												
+2	"Step 1. Press the Options button for 3 seconds, and then press 6 on the number pad. "	Options	Step 2. Press 1(On) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START												
 1	on_off	oven	Feature	onofffeature:sound	onoff:off													
-2	"Step 1. Press the Options button for 3 seconds, and then press 6 on the number pad. "	Options	Step 2. Press 1(Off) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START/SET												
+2	"Step 1. Press the Options button for 3 seconds, and then press 6 on the number pad. "	Options	Step 2. Press 1(Off) on the number pad. 	Number Pad	Step 3. Press Start/SET to save the changes	START												

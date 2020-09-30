@@ -20,6 +20,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class uiVariant6 extends AppCompatActivity {
@@ -64,13 +65,17 @@ public class uiVariant6 extends AppCompatActivity {
     boolean food_working = false;
     boolean defrost_working = false;
     boolean reheat_working = false;
+    boolean pizza_pressed = false;
+    boolean popcorn_pressed = false;
 
     boolean previous_numberpad = false;
     CountDownTimer t;
 
     HashMap<String, Boolean> next_button;
+    HashMap<String, Boolean> active_button;
     ArrayList<String> myList;
     Animation anim;
+    ArrayList<String> tmpList;
 
     int current_state;
     Button current_button;
@@ -80,7 +85,7 @@ public class uiVariant6 extends AppCompatActivity {
     int number_of_steps;
     int reheat_category = 0;
     //String[] time = new String[4];
-    String[] time = {" ", " "," "," "};
+    String[] time = {" ", " ", " ", " "};
     int time_position = 0;
 
 
@@ -90,9 +95,8 @@ public class uiVariant6 extends AppCompatActivity {
         setContentView(R.layout.activity_ui_variant6);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //refreshTime();
+        //Initialize the time on the screen with the current time.
         TextView lcd = findViewById(R.id.lcd_text);
-        //lcdString = DateTimeHandler.getCurrentTime("hh:mm");
         lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
 
         Button clock = findViewById(R.id.microwave_clock);
@@ -190,6 +194,11 @@ public class uiVariant6 extends AppCompatActivity {
             popcorn();
         });
 
+        Button open = findViewById(R.id.open);
+        open.setOnClickListener(v -> {
+            open_microwave();
+        });
+
         Button next = findViewById(R.id.Next);
         next.setOnClickListener(v -> {
             int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
@@ -204,13 +213,10 @@ public class uiVariant6 extends AppCompatActivity {
             }
         });
 
-        Button open = findViewById(R.id.open);
-        open.setOnClickListener(v -> {
-            open_microwave();
-        });
-
+        //Set next into disabled
         next.setEnabled(false);
 
+        //Currently don't have an onclick listener
         Button potato = findViewById(R.id.microwave_potato);
         Button cook = findViewById(R.id.microwave_cook);
         Button cooktime = findViewById(R.id.microwave_cooktime);
@@ -226,113 +232,139 @@ public class uiVariant6 extends AppCompatActivity {
             allButtons.get(i).setAlpha(0);
         }
 
-        HashMap<String, Button> button_string = new HashMap<String, Button>();
-        HashMap<String, Boolean> button_boolean = new HashMap<String, Boolean>();
-        myList = (ArrayList<String>) getIntent().getSerializableExtra("button");
-
-        current_state = 0;
-        string_button = myList.get(current_state);
-        Log.i("Button",Arrays.toString(myList.toArray()));
-        Log.i("Button", String.valueOf(myList.size()));
-        number_of_steps = myList.size();
-
-
-        //The next button that needs to be pushed before going to the next stage
-        //Eventually need to add all the buttons on the screen
-        next_button = new HashMap<String, Boolean>();
-        next_button.put("clock", false);
-        next_button.put("start", false);
-        next_button.put("cancel", false);
-        next_button.put("timer", false);
-        next_button.put("reheat", false);
-        next_button.put("defrost", false);
-        next_button.put("pizza", false);
-        next_button.put("pork", false);
-
-        button_string.put("clock", clock);
-        button_boolean.put("clock",clock_active);
-        Log.e("current",string_button);
-        //Log.e("current", button_string.get(string_button));
-
-        //Initial Step
-        next_step(string_button);
-
         anim = new AlphaAnimation(0.0f, 1.0f);
         anim.setDuration(50); //You can manage the blinking time with this parameter
         anim.setStartOffset(20);
         anim.setRepeatMode(Animation.REVERSE);
         anim.setRepeatCount(Animation.INFINITE);
 
+        //Get data from uiVaraiant 1,2,3,4
+        myList = (ArrayList<String>) getIntent().getSerializableExtra("button");
+
+        tmpList = new ArrayList<String>();
+
+        //Initialize an hashmap that is used to track the button that used to be pressed next.
+//        next_button = new HashMap<String, Boolean>();
+//        next_button.put("clock", false);
+//        next_button.put("start", false);
+//        next_button.put("cancel", false);
+//        next_button.put("timer", false);
+//        next_button.put("reheat", false);
+//        next_button.put("defrost", false);
+//        next_button.put("pizza", false);
+//        next_button.put("pork", false);
+//        active_button = new HashMap<String, Boolean>();
+//        active_button.put("clock", false);
+//        active_button.put("start", false);
+//        active_button.put("cancel", false);
+//        active_button.put("timer", false);
+//        active_button.put("reheat", false);
+//        active_button.put("defrost", false);
+//        active_button.put("pizza", false);
+//        active_button.put("pork", false);
+
+        //Initialize hashmap
+        List<String> list = Arrays.asList("clock", "start", "cancel", "timer", "reheat", "defrost", "pizza", "pork", "no button", "number pad","open");
+        next_button = new HashMap<String, Boolean>();
+        active_button = new HashMap<String, Boolean>();
+        for (String i : list) {
+            next_button.put(i, false);
+            active_button.put(i, false);
+        }
+
+        //Initial Step
+        current_state = 0;
+        string_button = myList.get(current_state);
+        number_of_steps = myList.size();
+        next_step(string_button);
+
     }
 
-    private void next_step(String string_button){
-        if(string_button.equals("clock")) {
+    private void next_step(String string_button) {
+        if (string_button.equals("clock")) {
             clock_active = true;
+            active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
-        if(string_button.equals("reheat")) {
+        if (string_button.equals("reheat")) {
             reheat_active = true;
+            active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
-        if(string_button.equals("defrost")) {
+        if (string_button.equals("defrost")) {
             defrost_active = true;
+            active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
-        if(string_button.equals("pizza")) {
+        if (string_button.equals("pizza")) {
             pizza_active = true;
+            active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
-        if(string_button.equals("popcorn")) {
+        if (string_button.equals("popcorn")) {
             popcorn_active = true;
+            active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
-        if(string_button.equals("timer")) {
+        if (string_button.equals("timer")) {
             timer_active = true;
+            active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
-        if(string_button.equals("start")) {
+        if (string_button.equals("start")) {
             start_active = true;
+            active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
-        if(string_button.equals("no button")) {
+        if (string_button.equals("no button")) {
             start_active = true;
+            active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
             finish_task();
         }
 
-        if(string_button.equals("number pad")){
-            numberpad_active = true;
-            //next_button.put(string_button,true);
-            previous_state = string_button;
-            current_state+=1;
-            previous_numberpad = true;
-            string_button = myList.get(current_state);
-            if(string_button.equals("clock")){
-                clock_active = true;
-            }
-            else{
-                start_active = true;
-            }
-            next_button.put(string_button,true);
-
+        if (string_button.equals("open")) {
+            active_button.put(string_button, true);
+            next_button.put(string_button, true);
+            Log.e("Button", string_button);
         }
 
+        if (string_button.equals("number pad")) {
+            //Because number pad doesn't have a specific button to press in order to go to the next step.
+            numberpad_active = true;
+            //next_button.put(string_button,true);
+            active_button.put(string_button, true);
+            previous_state = string_button;
+            previous_numberpad = true;
 
+            //Go to the next element in the list. This button would be used to identify the movement in state.
+            current_state += 1;
+            string_button = myList.get(current_state);
+            if (string_button.equals("clock")) {
+                clock_active = true;
+                active_button.put(string_button, true);
+            } else {
+                start_active = true;
+                active_button.put(string_button, true);
+            }
+            //Activate the next button without deactivating the current button.
+            next_button.put(string_button, true);
+        }
     }
 
     private HashMap<String, String> getData() {
@@ -352,16 +384,171 @@ public class uiVariant6 extends AppCompatActivity {
         return resultList;
     }
 
-    private void open_microwave(){
-        //refreshTime();
-        TextView lcd = findViewById(R.id.lcd_text);
-        lcd.clearAnimation();
-        //lcdString = DateTimeHandler.getCurrentTime("hh:mm");
-        lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
+    //Simulates Opening the microwave.
+    private void open_microwave() {
+        if(active_button.get("open")) {
+            TextView lcd = findViewById(R.id.lcd_text);
+            lcd.clearAnimation();
+            lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            numberpad_toggle();
+            current_state++;
+            manage_next();
+        }
     }
 
-    private void finish_task(){
+    private void press(String number) {
+        if (food_working == true) {
+            lcdString = number;
+            tmpList = new ArrayList<>();
+            tmpList.add(number);
+            update_number(number);
+        } else {
+            if(lcdString.length() < 4) {
+                lcdString += number;
+                tmpList.add(number);
+            }
+            if (time_position < 4) {
+                time[time_position] = number;
+                time_position++;
+            }
+            if (clock_working | timer_working) {
+                update(lcdString);
+            }
+            if (food_working | defrost_working | reheat_working) {
+                update_number(lcdString);
+            }
+            if (current_task == "Reheat") {
+                reheat_active = false;
+            }
+        }
+    }
 
+    private void press0() {
+        if (active_button.get("number pad")) {
+            zeroPressed = true;
+            press("0");
+            Log.e("Button Pressed (Active)", "0");
+        } else {
+            Log.e("Button Pressed (Inactive)", "0");
+        }
+    }
+
+    private void press1() {
+        if (active_button.get("number pad")) {
+            onePressed = true;
+            press("1");
+            Log.e("Button Pressed (Active)", "1");
+        } else {
+            Log.e("Button Pressed (Inactive)", "1");
+        }
+    }
+
+    private void press2() {
+        if (active_button.get("number pad")) {
+            twoPressed = true;
+            press("2");
+            Log.e("Button Pressed (Active)", "2");
+        } else {
+            Log.e("Button Pressed (Inactive)", "2");
+        }
+    }
+
+    private void press3() {
+        if (active_button.get("number pad")) {
+            threePressed = true;
+            press("3");
+            Log.e("Button Pressed (Active)", "3");
+        } else {
+            Log.e("Button Pressed (Inactive)", "3");
+        }
+    }
+
+    private void press4() {
+        if (active_button.get("number pad")) {
+            fourPressed = true;
+            press("4");
+            Log.e("Button Pressed (Active)", "4");
+        } else {
+            Log.e("Button Pressed (Inactive)", "4");
+        }
+    }
+
+    private void press5() {
+        if (active_button.get("number pad")) {
+            fivePressed = true;
+            press("5");
+            Log.e("Button Pressed (Active)", "5");
+        } else {
+            Log.e("Button Pressed (Inactive)", "5");
+        }
+    }
+
+    private void press6() {
+        if (active_button.get("number pad")) {
+            sixPressed = true;
+            press("6");
+            Log.e("Button Pressed (Active)", "6");
+        } else {
+            Log.e("Button Pressed (Inactive)", "6");
+        }
+    }
+
+    private void press7() {
+        if (active_button.get("number pad")) {
+            sevenPressed = true;
+            press("7");
+            Log.e("Button Pressed (Active)", "7");
+        } else {
+            Log.e("Button Pressed (Inactive)", "7");
+        }
+    }
+
+    private void press8() {
+        if (active_button.get("number pad")) {
+            eightPressed = true;
+            press("8");
+            Log.e("Button Pressed (Active)", "8");
+        } else {
+            Log.e("Button Pressed (Inactive)", "8");
+        }
+    }
+
+    private void press9() {
+        if (active_button.get("number pad")) {
+            ninePressed = true;
+            press("9");
+            Log.e("Button Pressed (Active)", "9");
+        } else {
+            Log.e("Button Pressed (Inactive)", "9");
+        }
+    }
+
+    private void manage_next() {
+        TextView lcd = findViewById(R.id.lcd_text);
+        if (current_state >= myList.size()) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            lcdString = "";
+            lcd.clearAnimation();
+            lcdString = "Ready!";
+            lcd.setText(lcdString);
+            Button next = findViewById(R.id.Next);
+            next.setEnabled(true);
+        } else {
+            string_button = myList.get(current_state);
+            next_step(string_button);
+        }
+    }
+
+    private void finish_task() {
         TextView lcd = findViewById(R.id.lcd_text);
         lcd.clearAnimation();
         try {
@@ -377,364 +564,199 @@ public class uiVariant6 extends AppCompatActivity {
         next.setEnabled(true);
     }
 
-    public void pizza(){
-        if(pizza_active == true){
-            food_working = true;
-            clearScreen();
-            Log.e("Button Pressed (Active)", "Pizza");
-            if(next_button.get("pizza") == true){
-                current_task = "Pizza";
-                next_button.put("defrost",false);
-                Log.e("Button","Pizza deactivate");
-                if(previous_numberpad == true){
-                    numberpad_active = false;
-                    previous_numberpad = false;
-                }
-                current_state++;
-                if(current_state >= myList.size()){
-                    TextView lcd = findViewById(R.id.lcd_text);
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    lcd.clearAnimation();
-                    lcdString = "";
-                    lcdString = "Press Next-d!";
-                    lcd.setText(lcdString);
-                    Button next = findViewById(R.id.Next);
-                    next.setEnabled(true);
-                }
-                else {
-                    string_button = myList.get(current_state);
-                    Log.e("Button 286", string_button);
-                    next_step(string_button);
-                }
-            }
-        }else{
-            Log.e("Button Pressed (Deactivate)", "Pizza");
-        }
-    };
-
-    public void popcorn(){
-        Log.e("Button Pressed", "Popcorn");
-        if(popcorn_active == true){
-            food_working = true;
-            clearScreen();
-            Log.e("Button Pressed (Active)", "Popcorn");
-            if(next_button.get("popcorn") == true){
-                current_task = "Popcorn";
-                next_button.put("popcorn",false);
-                Log.e("Button","Popcorn deactivate");
-                if(previous_numberpad == true){
-                    numberpad_active = false;
-                    previous_numberpad = false;
-                }
-                current_state++;
-                if(current_state >= myList.size()){
-                    TextView lcd = findViewById(R.id.lcd_text);
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    lcd.clearAnimation();
-                    lcdString = "";
-                    lcdString = "Press Next-d!";
-                    lcd.setText(lcdString);
-                    Button next = findViewById(R.id.Next);
-                    next.setEnabled(true);
-                }
-                else {
-                    string_button = myList.get(current_state);
-                    Log.e("Button 286", string_button);
-                    next_step(string_button);
-                }
-            }
-        }else{
-            Log.e("Button Pressed (Deactivate)", "Pizza");
-        }
-    };
-
-    private void defrost(){
-        Log.e("Button", "Defrost Pressed");
-        if(defrost_active == true){
-            clearScreen();
-            defrost_working = true;
-            Log.e("Button Pressed (Active)", "Defrost");
-            Log.e("Next Button", String.valueOf(next_button.get("Defrost")));
-            if(next_button.get("defrost") == true) {
-                current_task = "Defrost";
-                next_button.put("defrost",false);
-                Log.e("Button","Defrost deactivate");
-                defrost_active = false;
-                if(previous_numberpad == true){
-                    numberpad_active = false;
-                    previous_numberpad = false;
-                }
-                current_state++;
-                if(current_state >= myList.size()){
-                    TextView lcd = findViewById(R.id.lcd_text);
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    lcd.clearAnimation();
-                    lcdString = "";
-                    lcdString = "Press Next-d!";
-                    lcd.setText(lcdString);
-                    Button next = findViewById(R.id.Next);
-                    next.setEnabled(true);
-                }
-                else {
-                    string_button = myList.get(current_state);
-                    Log.e("Button 286", string_button);
-                    next_step(string_button);
-                }
-            }
-        }else {
-            Log.e("Button Pressed (Inactive)", "Defrost");
-        }
-    }
-
-    private void reheat(){
-        Log.e("Button", "Reheat Pressed");
-        if(reheat_active == true){
-            reheatScreen();
-            Log.e("Button Pressed (Active)", "Reheat");
-            if(next_button.get("reheat") == true) {
-                reheat_working = true;
-                // Not for reheat
-                // next_button.put("reheat",false);
-                //Log.e("Button","Reheat deactivate");
-                //reheat_active = false;
-                current_task = "Reheat";
-                System.out.println(reheat_pressed);
-                if(reheat_pressed == false) {
-                    System.out.println("Initial reheat Pressed");
-                    current_state++;
-                }
-                reheat_pressed = true;
-                if(current_state >= myList.size()){
-                    TextView lcd = findViewById(R.id.lcd_text);
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    lcd.clearAnimation();
-                    lcdString = "";
-                    lcdString = "Press Next-r!";
-                    lcd.setText(lcdString);
-                    Button next = findViewById(R.id.Next);
-                    next.setEnabled(true);
-                }
-                else {
-                    string_button = myList.get(current_state);
-                    System.out.println(string_button);
-                    Log.e("Button 286", string_button);
-                    next_step(string_button);
-                }
-            }
-        }else {
-            Log.e("Button Pressed (Inactive)", "Reheat");
-        }
-    }
-
-    private void timer(){
-        if(timer_active == true) {
-            current_task = "Timer";
-            timerPressed = true;
-            clearScreen();
-            lcdString = "";
-            Log.e("Button Pressed (Active)", "Timer");
-            if(next_button.get("timer") == true){
-                Log.e("Button","Timer deactivate");
-                next_button.put("timer",false);
-                timer_active = false;
-                timer_working = true;
-                if(previous_numberpad == true){
-                    numberpad_active = false;
-                    previous_numberpad = false;
-                }
-                current_state++;
-                if(current_state >= myList.size()){
-                    TextView lcd = findViewById(R.id.lcd_text);
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    lcd.clearAnimation();
-                    lcdString = "";
-                    lcdString = "Press Next!";
-                    lcd.setText(lcdString);
-                    Button next = findViewById(R.id.Next);
-                    next.setEnabled(true);
-                }
-                else {
-                    string_button = myList.get(current_state);
-                    Log.e("Button 286", string_button);
-                    next_step(string_button);
-                }
-
-            }
-        }
-        else{
-            Log.e("Button Pressed (Inactive)", "Timer");
-        }
-
-    }
-
-    private void numberpad_toggle(){
-        numberpad_active = false;
-        previous_numberpad = false;
-    }
-
-    private void manage_next(){
-        TextView lcd = findViewById(R.id.lcd_text);
-        if(current_state >= myList.size()){
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            lcdString = "";
-            lcdString = "Ready!";
-            lcd.setText(lcdString);
-            Button next = findViewById(R.id.Next);
-            next.setEnabled(true);
-        }
-        else {
-            string_button = myList.get(current_state);
-            next_step(string_button);
-        }
-    }
-
     private void microwaveClock() {
-        if(clock_active == true) {
+        if (active_button.get("clock") == true) {
+            //Is this really needed?
             clockPressed = true;
             clearClock();
             Log.e("Button Pressed (Active)", "Clock");
-            if(next_button.get("clock") == true){
-                Log.e("Button","Next Button Clock");
+            if (next_button.get("clock") == true) {
                 TextView lcd = findViewById(R.id.lcd_text);
-                next_button.put("clock",false);
+                next_button.put("clock", false);
                 lcdString = "  :  ";
                 lcd.setText(lcdString);
+                //What was this for again?
                 clock_active = false;
                 clock_working = true;
                 numberpad_toggle();
                 current_state++;
                 manage_next();
             }
-        }
-        else{
+        } else {
             Log.e("Button Pressed (Inactive)", "Clock");
         }
     }
 
-    private void microwaveStart() {
-        if(start_active == true) {
-            if(next_button.get("start") == true) {
-                Log.e("Button","Clock deactivate");
-                next_button.put("start",false);
-                start_active = false;
-                if(previous_numberpad == true){
-                    numberpad_active = false;
-                    previous_numberpad = false;
+    private void timer() {
+        if (active_button.get("timer") == true) {
+            current_task = "Timer";
+            timerPressed = true;
+            clearScreen();
+            //lcdString = "";
+            Log.e("Button Pressed (Active)", "Timer");
+            if (next_button.get("timer") == true) {
+                Log.e("Button", "Timer deactivate");
+                next_button.put("timer", false);
+                active_button.put("timer",false);
+                timer_active = false;
+                timer_working = true;
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+        } else {
+            Log.e("Button Pressed (Inactive)", "Timer");
+        }
+    }
+
+
+    public void pizza() {
+        if (active_button.get("pizza")) {
+            pizza_pressed = true;
+            food_working = true;
+            clearScreen();
+
+            Log.e("Button Pressed (Active)", "Pizza");
+            if (next_button.get("pizza") == true) {
+                TextView lcd = findViewById(R.id.lcd_text);
+                lcd.setText("0.0 QTY");
+                current_task = "Pizza";
+                next_button.put("defrost", false);
+                Log.e("Button", "Pizza deactivate");
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+        } else {
+            Log.e("Button Pressed (Deactivate)", "Pizza");
+        }
+    }
+
+    ;
+
+    public void popcorn() {
+        if (active_button.get("popcorn")) {
+            popcorn_pressed = true;
+            food_working = true;
+            clearScreen();
+            Log.e("Button Pressed (Active)", "Popcorn");
+            if (next_button.get("popcorn") == true) {
+                TextView lcd = findViewById(R.id.lcd_text);
+                lcd.setText("0.0 oz");
+                current_task = "Popcorn";
+                next_button.put("popcorn", false);
+                Log.e("Button", "Popcorn deactivate");
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+        } else {
+            Log.e("Button Pressed (Deactivate)", "Popcorn");
+        }
+    }
+
+    ;
+
+    private void defrost() {
+        if (active_button.get("defrost")) {
+            clearScreen();
+            defrost_working = true;
+            Log.e("Button Pressed (Active)", "Defrost");
+            Log.e("Next Button", String.valueOf(next_button.get("Defrost")));
+            if (next_button.get("defrost") == true) {
+                current_task = "Defrost";
+                lcdString = "";
+                next_button.put("defrost", false);
+                defrost_active = false;
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+        } else {
+            Log.e("Button Pressed (Inactive)", "Defrost");
+        }
+    }
+
+    private void reheat() {
+        if (active_button.get("reheat")) {
+            reheatScreen();
+            Log.e("Button Pressed (Active)", "Reheat");
+            if (next_button.get("reheat") == true) {
+                reheat_working = true;
+                // Not for reheat
+                // next_button.put("reheat",false);
+                // reheat_active = false;
+                current_task = "Reheat";
+                lcdString = "";
+                if (reheat_pressed == false) {
+                    current_state++;
                 }
+                reheat_pressed = true;
+                manage_next();
+            }
+        } else {
+            Log.e("Button Pressed (Inactive)", "Reheat");
+        }
+    }
+
+    private void numberpad_toggle() {
+        numberpad_active = false;
+        previous_numberpad = false;
+    }
+
+    private void microwaveStart() {
+        if (active_button.get("start")) {
+            if (next_button.get("start") == true) {
+                Log.e("Button", "Clock deactivate");
+                next_button.put("start", false);
+                active_button.put("start",false);
+                start_active = false;
+                numberpad_toggle();
                 System.out.println(previous_state);
-                if(current_task == "Reheat"){
+                if (current_task == "Reheat") {
                     countdown(lcdString);
                 }
-                if((current_task == "Pizza") | (current_task == "Popcorn")| (current_task == "Defrost")){
+                if ((current_task == "Pizza") | (current_task == "Popcorn") | (current_task == "Defrost")) {
                     countdown("10");
                 }
                 current_state++;
-                if(timerPressed == true){
-
+                if (timerPressed == true) {
                     countdown(lcdString);
-
-//                    TextView lcd = findViewById(R.id.lcd_text);
-//
-//                    Animation anim = new AlphaAnimation(0.0f, 1.0f);
-//                    anim.setDuration(50); //You can manage the blinking time with this parameter
-//                    anim.setStartOffset(20);
-//                    anim.setRepeatMode(Animation.REVERSE);
-//                    anim.setRepeatCount(Animation.INFINITE);
-//
-//                    new CountDownTimer((Integer.parseInt(lcdString))*1000 +200,1000) {
-//                        @Override
-//                        public void onTick(long millisUntilFinished) {
-//                            Log.e("Button",String.valueOf(millisUntilFinished));
-//                            Log.e("Button",String.valueOf(millisUntilFinished / 1000));
-//                            if((millisUntilFinished / 1000) < Integer.parseInt(lcdString)) {
-//                                lcd.setText(String.valueOf(millisUntilFinished / 1000));
-//                            }
-//                        }
-//                        @Override
-//                        public void onFinish() {
-//                            lcd.setText("End");
-//                            lcd.startAnimation(anim);
-//                        }
-//                    }.start();
-
                 }
 
-                if(current_state >= myList.size()){
+                if (current_state >= myList.size()) {
                     finish_task();
-                }
-                else{
+                } else {
                     string_button = myList.get(current_state);
                     next_step(string_button);
                 }
             }
-
-
-//            startPressed = true;
-//            TextView lcd = findViewById(R.id.lcd_text);
-//            if (clockPressed) {
-//                setClock();
-//            } else if (meltButterBool) {
-//                lcdString = "";
-//                lcdString = "Ready!";
-//                lcd.setText(lcdString);
-//            } else {
-//                return;
-//            }
             Log.e("Button Pressed (Active)", "Start");
-        }
-        else{
+        } else {
             Log.e("Button Pressed (Inactive)", "Start");
         }
     }
 
     private void microwaveSoften() {
         meltPressed = true;
-        //meltSelection();
         Log.e("Button Pressed", "Soften/Melt");
-        if(melt_active = true){
+        if (melt_active = true) {
             Log.e("Button Pressed (Active)", "Cancel");
             melt_active = false;
-        }
-        else{
+        } else {
             Log.e("Button Pressed (Inactive)", "Cancel");
         }
     }
 
-    public void cancel(String string_button){
-
-        if(current_task == "Reheat" | current_task == "Timer"){
+    public void cancel(String string_button) {
+        if (current_task == "Reheat" | current_task == "Timer") {
             stopTimer();
             return;
         }
-
-        if(string_button.equals("clock")){
+        if (string_button.equals("clock")) {
             clock_active = false;
         }
-        if(numberpad_active = true){
+        if (numberpad_active = true) {
             numberpad_active = false;
         }
 
@@ -754,311 +776,9 @@ public class uiVariant6 extends AppCompatActivity {
         current_state = 0;
         string_button = myList.get(current_state);
         next_step(string_button);
-        //Cancel is always active
-
-//        if(cancel_active == true) {
-//            TextView lcd = findViewById(R.id.lcd_text);
-//            tmpList.clear();
-//            cancelPressed = true;
-//            lcdString = "";
-//            lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
-//            Log.e("Button Pressed (Active)", "Cancel");
-//        }
-//        else{
-//            Log.e("Button Pressed (Inactive)", "Cancel");
-//        }
     }
 
-    private void press0() {
-        if(numberpad_active == true){
-        zeroPressed = true;
-        lcdString += 0;
-        tmpList.add("0");
-        if(time_position < 4) {
-            time[time_position] = "0";
-            time_position++;
-        }
-            if(clock_working | timer_working) {
-                update(lcdString);
-            }
-            if(food_working | defrost_working){
-                update_number(lcdString);
-            }
-            if(reheat_working){
-                update_number(lcdString);
-            }
-            if(current_task == "Reheat"){
-                reheat_active = false;
-            }
-        Log.e("Button Pressed (Active)", "0");
-        }
-        else {
-            Log.e("Button Pressed (Inactive)", "0");
-        }
-    }
-
-    private void press1() {
-        if(numberpad_active == true) {
-            onePressed = true;
-            lcdString += "1";
-            tmpList.add("1");
-            if(time_position < 4) {
-                time[time_position] = "1";
-                time_position++;
-            }
-            if(clock_working | timer_working) {
-                update(lcdString);
-            }
-            if(food_working| defrost_working){
-                update_number(lcdString);
-            }
-            if(reheat_working){
-                update_number(lcdString);
-            }
-
-            if(current_task == "Reheat"){
-                reheat_active = false;
-            }
-
-            Log.e("Button Pressed (Active)", "1");
-        }
-        else {
-            Log.e("Button Pressed (Inactive)", "1");
-        }
-    }
-
-    private void press2() {
-        if(numberpad_active == true) {
-        twoPressed = true;
-        lcdString += "2";
-        tmpList.add("2");
-        if(time_position < 4) {
-                time[time_position] = "2";
-                time_position++;
-            }
-            if(clock_working | timer_working) {
-                update(lcdString);
-            }
-            if(food_working| defrost_working){
-                update_number(lcdString);
-            }
-            if(reheat_working){
-                update_number(lcdString);
-            }
-
-            if(current_task == "Reheat"){
-                reheat_active = false;
-            }
-        Log.e("Button Pressed", "2");
-        }
-        else {
-            Log.e("Button Pressed (Inactive)", "2");
-        }
-    }
-
-    private void press3() {
-        if(numberpad_active == true) {
-        threePressed = true;
-        lcdString += "3";
-        tmpList.add("3");
-        if(time_position < 4) {
-            time[time_position] = "3";
-            time_position++;
-        }
-            if(clock_working | timer_working) {
-                update(lcdString);
-            }
-            if(food_working| defrost_working){
-                update_number(lcdString);
-            }
-            if(reheat_working){
-                update_number(lcdString);
-            }
-            if(current_task == "Reheat"){
-                reheat_active = false;
-            }
-        Log.e("Button Pressed", "3");
-        }
-        else {
-            Log.e("Button Pressed (Inactive)", "3");
-        }
-    }
-
-    private void press4() {
-        if(numberpad_active == true) {
-        fourPressed = true;
-        lcdString += "4";
-        tmpList.add("4");
-            if(time_position < 4) {
-                time[time_position] = "4";
-                time_position++;
-            }
-            if(clock_working | timer_working) {
-                update(lcdString);
-            }
-            if(food_working| defrost_working){
-                update_number(lcdString);
-            }
-            if(reheat_working){
-                update_number(lcdString);
-            }
-
-            if(current_task == "Reheat"){
-                reheat_active = false;
-            }
-        Log.e("Button Pressed", "4");
-        }
-        else {
-            Log.e("Button Pressed (Inactive)", "4");
-        }
-    }
-
-    private void press5() {
-        if(numberpad_active == true) {
-        fivePressed = true;
-        lcdString += "5";
-        tmpList.add("5");
-            if(time_position < 4) {
-                time[time_position] = "5";
-                time_position++;
-            }
-            if(clock_working | timer_working) {
-                update(lcdString);
-            }
-            if(food_working| defrost_working){
-                update_number(lcdString);
-            }
-            if(reheat_working){
-                update_number(lcdString);
-            }
-
-            if(current_task == "Reheat"){
-                reheat_active = false;
-            }
-        Log.e("Button Pressed", "5");
-        }
-        else {
-            Log.e("Button Pressed (Inactive)", "5");
-        }
-    }
-
-    private void press6() {
-        if(numberpad_active == true) {
-        sixPressed = true;
-        lcdString += "6";
-        tmpList.add("6");
-            if(time_position < 4) {
-                time[time_position] = "6";
-                time_position++;
-            }
-            if(clock_working | timer_working) {
-                update(lcdString);
-            }
-            if(food_working| defrost_working){
-                update_number(lcdString);
-            }
-            if(reheat_working){
-                update_number(lcdString);
-            }
-
-            if(current_task == "Reheat"){
-                reheat_active = false;
-            }
-        Log.e("Button Pressed", "6");
-        }
-        else {
-            Log.e("Button Pressed (Inactive)", "6");
-        }
-    }
-
-    private void press7() {
-        if(numberpad_active == true) {
-        sevenPressed = true;
-        lcdString += "7";
-        tmpList.add("7");
-            if(time_position < 4) {
-                time[time_position] = "7";
-                time_position++;
-            }
-            if(clock_working | timer_working) {
-                update(lcdString);
-            }
-            if(food_working| defrost_working){
-                update_number(lcdString);
-            }
-            if(reheat_working){
-                update_number(lcdString);
-            }
-            if(current_task == "Reheat"){
-                reheat_active = false;
-            }
-        Log.e("Button Pressed", "7");
-        }
-        else {
-            Log.e("Button Pressed (Inactive)", "7");
-        }
-    }
-
-    private void press8() {
-        if(numberpad_active == true) {
-        eightPressed = true;
-        lcdString += "8";
-        tmpList.add("8");
-            if(time_position < 4) {
-                time[time_position] = "8";
-                time_position++;
-            }
-            if(clock_working | timer_working) {
-                update(lcdString);
-            }
-            if(food_working| defrost_working){
-                update_number(lcdString);
-            }
-            if(reheat_working){
-                update_number(lcdString);
-            }
-            if(current_task == "Reheat"){
-                reheat_active = false;
-            }
-        Log.e("Button Pressed", "8");
-        }
-        else {
-            Log.e("Button Pressed (Inactive)", "8");
-        }
-    }
-
-    private void press9() {
-        if(numberpad_active == true) {
-        ninePressed = true;
-        lcdString += "9";
-        tmpList.add("9");
-            System.out.println(timer_active);
-            if(time_position < 4) {
-                time[time_position] = "9";
-                time_position++;
-            }
-        if(clock_working | timer_working) {
-            update(lcdString);
-        }
-        if( food_working| defrost_working){
-            update_number(lcdString);
-        }
-            if(reheat_working){
-                update_number(lcdString);
-            }
-
-            if(current_task == "Reheat"){
-                reheat_active = false;
-            }
-        Log.e("Button Pressed", "9");
-        }
-        else {
-            Log.e("Button Pressed (Inactive)", "9");
-        }
-    }
-
-    public void startTimer(final long finish, long tick)
-    {
+    public void startTimer(final long finish, long tick) {
         TextView lcd = findViewById(R.id.lcd_text);
         t = new CountDownTimer(finish, tick) {
 
@@ -1071,17 +791,17 @@ public class uiVariant6 extends AppCompatActivity {
                 long mm = (remainedSecs % 60);
                 String hour;
                 String minute;
-                if(hh/10 == 0){
+                if (hh / 10 == 0) {
                     hour = "0" + hh;
-                }else{
+                } else {
                     hour = String.valueOf(hh);
                 }
-                if(mm/10 == 0){
+                if (mm / 10 == 0) {
                     minute = "0" + mm;
-                }else{
+                } else {
                     minute = String.valueOf(mm);
                 }
-                if(finish - 101 > millisUntilFinished) {
+                if (finish - 101 > millisUntilFinished) {
                     lcd.setText("" + hour + ":" + minute);// manage it accordign to you
                 }
             }
@@ -1105,22 +825,28 @@ public class uiVariant6 extends AppCompatActivity {
         }.start();
     }
 
-    public void stopTimer(){
+    public void stopTimer() {
         t.cancel();
     }
 
-    private void countdown(String number){
+    private void countdown(String number) {
         System.out.println(number);
-        System.out.println("%"+number.substring(1)+"%");
+        System.out.println("%" + number.substring(1) + "%");
         int time = Integer.parseInt(number);
-        int seconds = time/1000 * 60 * 60 + time/100 * 60 + time % 100;
-        startTimer(seconds * 1000 + 1100,1000);
+        int seconds = time / 1000 * 60 * 60 + time / 100 * 60 + time % 100;
+        startTimer(seconds * 1000 + 1100, 1000);
     }
 
-    private void update_number(String number){
+    private void update_number(String number) {
         System.out.println("Update Number");
         TextView lcd = findViewById(R.id.lcd_text);
-        lcd.setText(number);
+        if(pizza_pressed) {
+            lcd.setText(number + ".0 QTY");
+        } else if(popcorn_pressed){
+            lcd.setText(number + ".0 oz");
+        } else{
+            lcd.setText(number);
+        }
     }
 
     private void update(String buttonValue) {
@@ -1131,27 +857,27 @@ public class uiVariant6 extends AppCompatActivity {
         Log.e("current size", String.valueOf(tmpList.size()));
         //lcd.setText(lcdString);
 
-        Log.e("time",Arrays.toString(time));
+        Log.e("time", Arrays.toString(time));
         String first = " ";
         String second = " ";
         String third = " ";
         String fourth = " ";
-        HashMap<Integer,String> time_map = new HashMap<Integer,String>();
-        time_map.put(0," ");
-        time_map.put(1," ");
-        time_map.put(2," ");
-        time_map.put(3," ");
+        HashMap<Integer, String> time_map = new HashMap<Integer, String>();
+        time_map.put(0, " ");
+        time_map.put(1, " ");
+        time_map.put(2, " ");
+        time_map.put(3, " ");
 
 
         int temp_position = time_position;
         System.out.println(time_position);
-        for(int i = 0; i < time_position; i++){
+        for (int i = 0; i < time_position; i++) {
             System.out.println(time[i]);
-            time_map.put(3-temp_position+1,time[i]);
+            time_map.put(3 - temp_position + 1, time[i]);
             temp_position--;
         }
 
-        Log.e("time",time_map.get(0) + time_map.get(1) + ":" + time_map.get(2) + time_map.get(3));
+        Log.e("time", time_map.get(0) + time_map.get(1) + ":" + time_map.get(2) + time_map.get(3));
         lcd.setText(time_map.get(0) + time_map.get(1) + ":" + time_map.get(2) + time_map.get(3));
 
 
@@ -1162,13 +888,11 @@ public class uiVariant6 extends AppCompatActivity {
         }
     }
 
-    ArrayList<String> tmpList = new ArrayList<String>();
-
     private void clearClock() {
         TextView alt = findViewById(R.id.alt_txt);
         TextView lcd = findViewById(R.id.lcd_text);
         alt.setAlpha(1);
-        lcdString = " ";
+        lcdString = "";
         tmpList.clear();
         if (clockPressed) {
             // blink animation and allow user to alter the time
@@ -1178,18 +902,18 @@ public class uiVariant6 extends AppCompatActivity {
         }
     }
 
-    private void clearScreen(){
+    private void clearScreen() {
         TextView alt = findViewById(R.id.alt_txt);
         TextView lcd = findViewById(R.id.lcd_text);
         alt.setAlpha(1);
-        lcdString = " ";
-        altString = " ";
+        lcdString = "";
+        altString = "";
         alt.setText(altString);
         lcd.setText(lcdString);
 
     }
 
-    private void reheatScreen(){
+    private void reheatScreen() {
         TextView alt = findViewById(R.id.alt_txt);
         TextView lcd = findViewById(R.id.lcd_text);
         alt.setAlpha(1);
@@ -1197,19 +921,18 @@ public class uiVariant6 extends AppCompatActivity {
         altString = " ";
         alt.setText(altString);
         lcd.setText(lcdString);
-        if(reheat_category%3 == 0){
+        if (reheat_category % 3 == 0) {
             lcd.setText("Plate of food");
-        } else if(reheat_category % 3 == 1){
+        } else if (reheat_category % 3 == 1) {
             lcd.setText("Casserole");
-        }else{
+        } else {
             lcd.setText("Pasta");
         }
         reheat_category++;
 
-
     }
 
-    private void setClock(){
+    private void setClock() {
         TextView alt = findViewById(R.id.alt_txt);
         TextView lcd = findViewById(R.id.lcd_text);
         altString = "";

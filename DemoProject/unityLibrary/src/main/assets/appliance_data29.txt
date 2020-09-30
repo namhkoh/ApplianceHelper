@@ -1,0 +1,39 @@
+0	oven	microwave																
+1	set	microwave	Feature	setFeature:clock														
+2	"Step 1: Press the ""Clock button."	Clock	Step 2 : Enter the time.	Number Pad	Step 3: Press on Clock again or the Start Control.	Clock												
+1	set	microwave	Feature	setfeature:timer														
+2	Press Timer	Timer	"Enter the amount of time you want using the number pad, e.g., 1, 5. The timer can be set for any amount of time from 1 minute to 9 hours and 59 minutes. If you make a mistake, press Timer, and then enter the amount of time again."	Number Pad	Press START.	START	"When the set time has elapsed, the oven will beep and the display will show ""End"" until you press the Timer pad. You can cancel the timer at any time by pressing Timer for 3 seconds."	Timer										
+1	use	microwave	Feature	usefeature:reheat														
+2	"Step 1. Press the Reheat button once for a plate of food, twice for casserole, three times for pasta."	Reheat	Step 2. Press the button on the number according to the number of servings. (For two servings of pasta press the number 2 button)	Number Pad	Step 3. Press the START button	START	"Step 4. When the cooking time is over, the oven will beep 4 times and display End."	No Button										
+1	use	microwave	Feature	usefeature:defrost														
+2	Step 1. Press the Defrost button.	Defrost	Step 2. Use the number buttons to enter the weight. 	Number Pad	Step 3. Press the START button	START	Step 4. Open the oven door and take out the food. 	Open										
+1	cook	microwave	Food	foodtype:pork														
+2	Step 1. Use the number buttons to enter 15-20 min./lb at 170 degrees Well Done.	Number Pad	Step 2. Press the Power Level button (default 10)	Cook Power	Step 3. Press the power level twice to set the power level to high. 	Cook Power	Step 4. Use the number buttons to enter the second cook time. 10-15 min./lb. for 170 _ - Well Done	Number Pad	Step 5. Press the Power Level button (default 10)	Power level	Step 6. Press 5 to set the power level to medium	Number Pad	Step 7. Press the OK/START button.	OK/START	"Step 8.  When the cooking time is over, the oven beeps four times and displays End."	No Button	Step 9. Place the pork fat-side down on the roasting rack and cover with wax paper. Turn over halfway through cooking process. Let stand for 10 to 15_inutes.	No button
+1	cook	microwave	Food	foodtype:pizza														
+2	Step 1. Press the Pizza button.	Pizza	Step 2. Enter the number of slices	Number Pad	Step 3. Press the START button	START	Step 4. Open the oven door and take out the food. 	Open										
+1	cook	microwave	Food	foodtype:popcorn														
+2	Step 1. Press the Popcorn button.	Popcorn	Step 2. Enter Bag size in ounces	Number Pad	Step 3. Press the START button	START	Step 4. Open the oven door and take out the food. 	Open										
+1	set	oven	Feature	setfeature:clock														
+2	Step 1. Press the clock button.	Clock Button	Step 2. Press the clock button to select AM or PM.  (Skip this step on 24 hour display setting.) 	Clock Button	"Step 3. Enter the current time in hours and minutes on the number pad, e.g., 1, 3, 0, for 1:30."	Number Pad	Press the clock or start/set to save the changes.	Clock Button										
+1	set	oven	Feature	setfeature:kitchen														
+2	Press Timer	Timer Button	"Enter the amount of time you want using the number pad, e.g., 1, 5. The timer can be set for any amount of time from 1 minute to 9 hours and 59 minutes. If you make a mistake, press Timer, and then enter the amount of time again."	Timer Button	Press START/SET.	START/SET	"When the set time has elapsed, the oven will beep and the display will show ""End"" until you press the Timer pad. You can cancel the timer at any time by pressing Timer for 3 seconds."	Timer										
+1	cook	oven	Food	foodtype:hamburger														
+2	Step 1. Press Broil once for high. 	Broil	"Step 2. To start broiling, press START/SET"	START/SET	Step 3. Broil one side for 3:20-3:40 minutes and the second side for 2:20-2:40 minutes.	No Button	Step 4. Press OFF/CLEAR once you have finished broiling. 	OFF/CLEAR										
+1	cook	oven	Food	foodtype:steak														
+2	Step 1. Press Broil once for high. 	Broil	"Step 2. To start broiling, press START/SET"	START/SET	Step 3. Broil one side for 7:00-8:00 minutes and the second side for 6:00-7:00 minutes.	No Button	Step 4. Press OFF/CLEAR once you have finished broiling. 	OFF/CLEAR										
+1	on_off	oven	Feature	onofffeature:sound	onoff:on													
+2	Step 1. Press the Settings/Clock.	"Settings/Clock,sound"	Step 2. Press 6 on the number pad. 	six	Step 3. Press 1(On) on the number pad. 	one	Step 4. Press Start to save the changes	START										
+1	on_off	oven	Feature	onofffeature:sound	onoff:off													
+2	Step 1. Press the Settings/Clock	"Settings/Clock,sound"	Step 2. Press 6 on the number pad. 	six	Step 3. Press 1(On) on the number pad. 	two	Step 4. Press Start to save the changes	START										
+1	set	oven	Feature	setfeature:broiling														
+2	Step 1. Press Broil once for Hi or twice for Lo. 	Broil	"Step 2. To start broiling, press START. Broil one side until the food is browned. Turn over and broil the other side."	START	Step 3. Press OFF/CLEAR once you have finished cooking or if you want to cancel broiling.	OFF/CLEAR												
+1	use	oven	Feature	usefeature:keep-warm														
+2	Step 1. Press Keep Warm	Keep Warm	Step 2. Press the desired temperature	Number Pad	Step 3. Press START	START	Step 3. Press OFF/CLEAR at any time to turn off the Keep Warm feature.	Cancel										
+1	use	oven	Feature	usefeature:broiling														
+2	Step 1. Press Broil Button	Broil	Step2. Select the Boiling temperature by pressing 1 - High or 2 - Low.	one	Step 3. Press START	START	Step 3. Press OFF/CLEAR at any time to turn off the Broiling feature.	Cancel										
+1	cook	oven	Food	foodtype:fries														
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select the Bake Button	Bake	Step 3. Use the number pad to set the temperature to 400 F	Number Pad	Step 4. Set the cook time to 25 minutes	Cook Time	Step 5. Press 25 for 25 minutes	Number Pad	Step 6. Tap Start	START	"Step 7. When cooking is complete, tap OFF/CLEAR and take out the food."	Cancel				
+1	use	oven	Feature	usefeature:broil														
+2	Step 1. Press Broil Button	Broil	Step2. Select the Boiling temperature by pressing 1 - High or 2 - Low.	one	Step 3. Press START	START	Step 3. Press OFF/CLEAR at any time to turn off the Broiling feature.	Cancel										
+1	set	oven	Feature	setfeature:temperature														
+2	Step 1. Press the Settings/Clock	"Settings/Clock,temperature"	Step 2. Press 6 on the number pad. 	five	Step 3. Press 1(On) on the number pad. 	one	Step 4. Press Start to save the changes	START										
