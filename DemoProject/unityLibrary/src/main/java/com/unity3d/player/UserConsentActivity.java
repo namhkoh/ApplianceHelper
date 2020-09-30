@@ -59,13 +59,12 @@ public class UserConsentActivity extends AppCompatActivity {
         DisplayText = (TextView) findViewById(R.id.DisplayText);
 
         final RequestQueue queue = Volley.newRequestQueue(this);
-        final String url = "http://10.128.183.59:3000/";
+        final String url = "http://ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3001/postdata";
 
         queue.start();
         RequestButton.setOnClickListener(v -> {
             HashMap<String, String> params = new HashMap<String,String>();
-            params.put("data", DataField.getText().toString()); // the entered data as the body.
-
+            params.put("android side test", DataField.getText().toString()); // the entered data as the body.
             JsonObjectRequest jsObjRequest = new
                     JsonObjectRequest(Request.Method.POST,
                     url,
