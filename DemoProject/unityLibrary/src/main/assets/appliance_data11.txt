@@ -1,6 +1,6 @@
 0	oven	microwave																
 1	set	microwave	Feature	setFeature:clock														
-2	"Step 1: Press the ""Clock button."	Clock	Step 2 : Enter the time.	Number Pad	Step 3: Press on Clock again or the Start Control.	Clock|Start												
+2	"Step 1: Press the ""Clock button."	Clock	Step 2 : Enter the time.	Number Pad	Step 3: Press on Clock again or the Start Control.	Clock												
 1	set	microwave	Feature	setfeature:timer														
 2	Press Timer	Timer	"Enter the amount of time you want using the number pad, e.g., 1, 5. The timer can be set for any amount of time from 1 minute to 9 hours and 59 minutes. If you make a mistake, press Timer, and then enter the amount of time again."	Number Pad	Press START.	START	"When the set time has elapsed, the oven will beep and the display will show ""End"" until you press the Timer pad. You can cancel the timer at any time by pressing Timer for 3 seconds."	Timer										
 1	use	microwave	Feature	usefeature:reheat														

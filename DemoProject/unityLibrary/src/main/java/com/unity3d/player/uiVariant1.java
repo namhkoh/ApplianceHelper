@@ -57,7 +57,7 @@ public class uiVariant1 extends AppCompatActivity {
     private int index = 0;
     ArrayList<String> list = new ArrayList<>();
     ArrayList<String> tmpList = new ArrayList<>();
-    ArrayList<String> buttonList = new ArrayList<>();
+    ArrayList<String> buttonList;
     private ArrayAdapter adapter;
     private static String utterance;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -142,11 +142,11 @@ public class uiVariant1 extends AppCompatActivity {
                 String question = editText.getText().toString();
 
                 //String assetName = "video_demo_data26.txt";
-                String assetName = "appliance_data11.txt";
+                String assetName = "appliance_data29.txt";
                 String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
                 Log.d("1",filePath);
 
-                String model_file = "model_tiny_9_2.pt";
+                String model_file = "model_tiny_9_5.pt";
                 String file_name = Utilities.assetFilePath(getApplicationContext(), model_file);
                 Log.d("2",file_name);
 
@@ -168,21 +168,31 @@ public class uiVariant1 extends AppCompatActivity {
 
 
                 ResponseObject response = MainManager.getAnswer(question,filePath,file_name, vocab_path, config_path, vocab_class_path, vocab_slot_path);
-                if (list != null) {
-                    list.clear();
-                    tmpList.clear();
-                    adapter.notifyDataSetChanged();
-                }
-                for (int i = 0; i < response.getSteps().size(); ++i) {
-                    String data = response.getSteps().get(i).getText();
-                    String button = response.getSteps().get(i).getButton_name();
-                    buttonList.add(button);
-                    list.add(data);
-                    initTTS(data);
-                    //tmpList.add(data);
-                }
-                index = 0;
 
+                if(response.getDialog_command().equals("no_match")){
+
+
+
+                }else {
+
+                    if (list != null) {
+                        list.clear();
+                        tmpList.clear();
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    buttonList = new ArrayList<>();
+
+                    for (int i = 0; i < response.getSteps().size(); ++i) {
+                        String data = response.getSteps().get(i).getText();
+                        String button = response.getSteps().get(i).getButton_name();
+                        buttonList.add(button);
+                        list.add(data);
+                        initTTS(data);
+                        //tmpList.add(data);
+                    }
+                    index = 0;
+                }
                 //update(tmpList.get(index), true);
             }
 
@@ -271,6 +281,7 @@ public class uiVariant1 extends AppCompatActivity {
             startActivity(intent);
         } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")){
             Intent intent = new Intent(this, uiVariant6Oven.class);
+            intent.putExtra("button",buttonList);
             startActivity(intent);
         } else {
             return;
