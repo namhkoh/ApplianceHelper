@@ -61,6 +61,7 @@ public class uiVariant1 extends AppCompatActivity {
     private ArrayAdapter adapter;
     private static String utterance;
     private FirebaseAnalytics mFirebaseAnalytics;
+    Button next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +81,8 @@ public class uiVariant1 extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
         final EditText editText = findViewById(R.id.editText);
-        Button next = findViewById(R.id.nextActivity);
+        next = findViewById(R.id.nextActivity);
+        next.setEnabled(false);
         next.setOnClickListener(v -> {
             enterFeedback();
         });
@@ -171,6 +173,15 @@ public class uiVariant1 extends AppCompatActivity {
 
                 if(response.getDialog_command().equals("no_match")){
 
+                    if (list != null) {
+                        list.clear();
+                        tmpList.clear();
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    list.add("No Match");
+                    initTTS("No Match");
+
 
 
                 }else {
@@ -194,6 +205,7 @@ public class uiVariant1 extends AppCompatActivity {
                     index = 0;
                 }
                 //update(tmpList.get(index), true);
+                next.setEnabled(true);
             }
 
             @Override

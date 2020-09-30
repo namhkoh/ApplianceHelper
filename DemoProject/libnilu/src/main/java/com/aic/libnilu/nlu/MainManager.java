@@ -110,28 +110,29 @@ public class MainManager {
                 slot_name = new ArrayList<>();
                 slot = new ArrayList<>();
 
+                try {
 
-
-                for(int i = 0; i < slot_idx.length; i++){
+                    for (int i = 0; i < slot_idx.length; i++) {
 //                    System.out.println(slot_type[i]);
 //                    System.out.println(slot_type[i].equals("O"));
-                    if(!slot_type[i].equals("O")){
-                        //System.out.println(slot_type[i]);
-                        if(slot_type[i].equals("B-appliance")){
-                            //Slot Values
-                            //System.out.println(split_question[i]);
-                            appliance_tagger = split_question[i];
-                        }
-                        else if(slot_type[i].charAt(0) == 'B'){
-                            slot.add(split_question[i]);
-                            slot_name.add(slot_type[i].substring(2));
+                        if (!slot_type[i].equals("O")) {
+                            //System.out.println(slot_type[i]);
+                            if (slot_type[i].equals("B-appliance")) {
+                                //Slot Values
+                                //System.out.println(split_question[i]);
+                                appliance_tagger = split_question[i];
+                            } else if (slot_type[i].charAt(0) == 'B') {
+                                slot.add(split_question[i]);
+                                slot_name.add(slot_type[i].substring(2));
 
-                        }
-                        else if(slot_type[i].charAt(0) == 'I'){
-                            slot.add(slot.remove(slot.size()-1)+"-"+split_question[i]);
+                            } else if (slot_type[i].charAt(0) == 'I') {
+                                slot.add(slot.remove(slot.size() - 1) + "-" + split_question[i]);
 
+                            }
                         }
                     }
+                }catch (Exception e){
+                    return new ResponseObject(true, "no_match");
                 }
 
 
