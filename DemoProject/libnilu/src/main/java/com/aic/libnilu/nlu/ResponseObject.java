@@ -26,6 +26,7 @@ public class ResponseObject {
         this.model_number = model_number;
         this.question = question;
         this.steps = new ArrayList<StepObject>();
+        this.dialog_command = "Placeholder";
     }
 
     /**

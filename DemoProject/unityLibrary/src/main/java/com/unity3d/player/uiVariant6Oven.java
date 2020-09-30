@@ -25,6 +25,30 @@ public class uiVariant6Oven extends AppCompatActivity {
     boolean isCode = false;
     boolean isCookTime = false;
 
+    boolean numberpad_active = false;
+    boolean previous_numberpad = false;
+    boolean six_active = false;
+    boolean one_active = false;
+    boolean settings_clock_working = false;
+    boolean sound_working = false;
+    boolean settings_temperature_working = false;
+
+    ArrayList<String> tmpList = new ArrayList<String>();
+
+
+
+    HashMap<String, Boolean> next_button;
+    HashMap<String, Boolean> button_active;
+    ArrayList<String> myList;
+    int number_of_steps;
+    int current_state;
+    String string_button;
+    String previous_state;
+    String info_button;
+
+    boolean clock_active;
+    boolean start_active;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +66,7 @@ public class uiVariant6Oven extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.e("Clicked", "Bake button");
+                bake();
             }
         });
 
@@ -58,6 +83,7 @@ public class uiVariant6Oven extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.e("Clicked", "Broil button");
+                broil();
             }
         });
 
@@ -74,6 +100,7 @@ public class uiVariant6Oven extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.e("Clicked", "Keep warm button");
+                keepWarm();
             }
         });
 
@@ -116,6 +143,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         settingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                settings_clock();
                 Log.e("Clicked", "Settings/Clock button");
             }
         });
@@ -241,7 +269,299 @@ public class uiVariant6Oven extends AppCompatActivity {
         for (int i = 0; i < allButtons.size(); i++) {
             allButtons.get(i).setAlpha(0);
         }
+
+        //List gotten for buttons
+        myList = (ArrayList<String>) getIntent().getSerializableExtra("button");
+        Log.d("Debug",Arrays.toString(myList.toArray()));
+        Log.d("Debug", String.valueOf(myList.size()));
+
+        //How many buttons are there in the button array.
+        number_of_steps = myList.size();
+
+        //Button Hashmap for state
+        next_button = new HashMap<String, Boolean>();
+        button_active = new HashMap<String, Boolean>();
+        next_button.put("settings/clock", false);
+        button_active.put("settings/clock",false);
+        next_button.put("six", false);
+        button_active.put("six",false);
+        next_button.put("one", false);
+        button_active.put("one",false);
+        next_button.put("two", false);
+        button_active.put("two",false);
+        next_button.put("three", false);
+        button_active.put("three",false);
+        next_button.put("four", false);
+        button_active.put("four",false);
+        next_button.put("five", false);
+        button_active.put("five",false);
+        next_button.put("nine", false);
+        button_active.put("nine",false);
+        next_button.put("seven", false);
+        button_active.put("seven",false);
+        next_button.put("eight", false);
+        button_active.put("eight",false);
+        next_button.put("zero", false);
+        button_active.put("zero",false);
+        next_button.put("start", false);
+        button_active.put("start",false);
+        next_button.put("bake", false);
+        button_active.put("bake",false);
+        next_button.put("cook time", false);
+        button_active.put("cook time",false);
+        next_button.put("broil", false);
+        button_active.put("broil",false);
+        next_button.put("keep warm", false);
+        button_active.put("keep warm",false);
+
+        //Current Button
+        current_state = 0;
+        string_button = myList.get(current_state);
+
+        //Initial Step
+        next_step(string_button);
+
     }
+
+    private void next_step(String string_button) {
+
+        //
+        String arr1[] = string_button.split(",");
+        if(arr1.length == 1){
+            string_button = arr1[0];
+        }else{
+            string_button = arr1[0];
+            info_button = arr1[1];
+            System.out.println(info_button);
+        }
+
+        if (string_button.equals("settings/clock")) {
+            next_button.put(string_button, true);
+            button_active.put(string_button, true);
+            Log.e("Debug", string_button);
+        }
+
+        if (string_button.equals("six")) {
+            next_button.put(string_button, true);
+            button_active.put(string_button, true);
+            Log.e("Debug", string_button);
+        }
+
+        if (string_button.equals("broil")) {
+            next_button.put(string_button, true);
+            button_active.put(string_button, true);
+            Log.e("Debug", string_button);
+        }
+
+        if (string_button.equals("keep warm")) {
+            next_button.put(string_button, true);
+            button_active.put(string_button, true);
+            Log.e("Debug", string_button);
+        }
+
+        if (string_button.equals("one")) {
+            next_button.put(string_button, true);
+            button_active.put(string_button, true);
+            Log.e("Debug", string_button);
+        }
+
+        if (string_button.equals("cook time")) {
+            next_button.put(string_button, true);
+            button_active.put(string_button, true);
+            Log.e("Debug", string_button);
+        }
+
+        if (string_button.equals("bake")) {
+            next_button.put(string_button, true);
+            button_active.put(string_button, true);
+            Log.e("Debug", string_button);
+        }
+
+        if (string_button.equals("two")) {
+            next_button.put(string_button, true);
+            button_active.put(string_button, true);
+            Log.e("Debug", string_button);
+        }
+
+        if (string_button.equals("five")) {
+            next_button.put(string_button, true);
+            button_active.put(string_button, true);
+            Log.e("Debug", string_button);
+        }
+
+        if (string_button.equals("no button")) {
+//            next_button.put(string_button, true);
+//            button_active.put(string_button, true);
+//            Log.e("Debug", string_button);
+            current_state++;
+            string_button = myList.get(current_state);
+            next_step(string_button);
+        }
+
+        if (string_button.equals("start")) {
+            next_button.put(string_button, true);
+            button_active.put(string_button, true);
+            Log.e("Debug", string_button);
+        }
+
+        if(string_button.equals("number pad")){
+            numberpad_active = true;
+            //next_button.put(string_button,true);
+            previous_state = string_button;
+            current_state+=1;
+            previous_numberpad = true;
+            string_button = myList.get(current_state);
+
+            if(string_button.equals("clock")){
+                clock_active = true;
+            }
+            else{
+                start_active = true;
+            }
+            next_button.put(string_button,true);
+            manage_next();
+
+        }
+    }
+
+    private void settings_clock(){
+        if(button_active.get("settings/clock") == true) {
+            clearClock();
+            Log.e("Button Pressed (Active)", "Clock");
+            if(next_button.get("settings/clock") == true){
+                Log.e("Button","Next Button Clock");
+                TextView lcd = findViewById(R.id.oven_panel_text);
+                next_button.put("settings/clock",false);
+                button_active.put("settings/clock",false);
+                lcdString = "Settings Clock";
+                lcd.setText(lcdString);
+                //clock_active = false;
+                settings_clock_working = true;
+                settings_temperature_working = true;
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+        }
+        else{
+            Log.e("Button Pressed (Inactive)", "Clock");
+        }
+    }
+
+    private void keepWarm(){
+        if(button_active.get("keep warm") == true) {
+            clearClock();
+            Log.e("Button Pressed (Active)", "Keep Warm");
+            if(next_button.get("keep warm") == true){
+                Log.e("Button","Next Button Keep Warm");
+                TextView lcd = findViewById(R.id.oven_panel_text);
+                next_button.put("keep warm",false);
+                button_active.put("keep warm",false);
+                lcdString = "Keep warm";
+                lcd.setText(lcdString);
+                lcdString = "";
+                //clock_active = false;
+                //settings_clock_working = true;
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+        }
+        else{
+            Log.e("Button Pressed (Inactive)", "Clock");
+        }
+    }
+
+    private void broil(){
+        if(button_active.get("broil") == true) {
+            clearClock();
+            Log.e("Button Pressed (Active)", "Broil");
+            if(next_button.get("broil") == true){
+                Log.e("Button","Next Button Broil");
+                TextView lcd = findViewById(R.id.oven_panel_text);
+                next_button.put("broil",false);
+                button_active.put("broil",false);
+                lcdString = "Broil";
+                lcd.setText(lcdString);
+                lcdString = "";
+                //clock_active = false;
+                //settings_clock_working = true;
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+        }
+        else{
+            Log.e("Button Pressed (Inactive)", "Clock");
+        }
+    }
+
+    private void bake(){
+        if(button_active.get("bake") == true) {
+            clearClock();
+            Log.e("Button Pressed (Active)", "Bake");
+            if(next_button.get("bake") == true){
+                Log.e("Button","Next Button Bake");
+                TextView lcd = findViewById(R.id.oven_panel_text);
+                next_button.put("bake",false);
+                button_active.put("bake",false);
+                lcdString = "Bake";
+                lcd.setText(lcdString);
+                lcdString = "";
+                //clock_active = false;
+                //settings_clock_working = true;
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+        }
+        else{
+            Log.e("Button Pressed (Inactive)", "Clock");
+        }
+    }
+
+    private void numberpad_toggle(){
+        numberpad_active = false;
+        previous_numberpad = false;
+    }
+
+    private void manage_next(){
+        TextView lcd = findViewById(R.id.oven_panel_text);
+        System.out.println(current_state + " " + myList.size());
+        //System.out.println(myList.get(current_state));
+        if(current_state >= myList.size()){
+            System.out.println("Inside");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            lcdString = "";
+            lcdString = "Ready!";
+            lcd.setText(lcdString);
+            Button next = findViewById(R.id.next);
+            next.setEnabled(true);
+        }
+        else {
+            string_button = myList.get(current_state);
+            next_step(string_button);
+        }
+    }
+
+    private void clearClock() {
+        //TextView alt = findViewById(R.id.alt_txt);
+        TextView lcd = findViewById(R.id.oven_panel_text);
+        //alt.setAlpha(1);
+        lcdString = " ";
+        //tmpList.clear();
+        if (true) {
+            // blink animation and allow user to alter the time
+            lcd.setText(lcdString);
+        }
+    }
+
+
+
 
     private void update(String buttonValue) {
         Log.e("Button added", buttonValue);
@@ -307,23 +627,86 @@ public class uiVariant6Oven extends AppCompatActivity {
     }
 
     private void cookTime() {
-        Log.e("Button pressed", "cookTime");
-        isTemp = false;
-        isCode = false;
-        isCookTime = true;
-        TextView lcd = findViewById(R.id.oven_panel_text);
-        lcdString = "";
-        lcdString = "Enter cook time:";
-        lcd.setText(lcdString);
+//        Log.e("Button pressed", "cookTime");
+//        isTemp = false;
+//        isCode = false;
+//        isCookTime = true;
+//        TextView lcd = findViewById(R.id.oven_panel_text);
+//        lcdString = "";
+//        lcdString = "Enter cook time:";
+//        lcd.setText(lcdString);
+        if(button_active.get("cook time") == true) {
+            clearClock();
+            Log.e("Button Pressed (Active)", "Cook time");
+            if(next_button.get("cook time") == true){
+                Log.e("Button","Next Button Cook time");
+                TextView lcd = findViewById(R.id.oven_panel_text);
+                next_button.put("cook time",false);
+                button_active.put("cook time",false);
+                lcdString = "Cook Time";
+                lcd.setText(lcdString);
+                lcdString = "";
+                //clock_active = false;
+                //settings_clock_working = true;
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+        }
+        else{
+            Log.e("Button Pressed (Inactive)", "Cook Time");
+        }
     }
 
     private void startOven() {
-        Log.e("Button pressed", "startOven");
-        TextView lcd = findViewById(R.id.oven_panel_text);
-        lcdString = "";
-        lcdString = "Cooking start";
-        lcd.setText(lcdString);
+//        Log.e("Button pressed", "startOven");
+//        TextView lcd = findViewById(R.id.oven_panel_text);
+//        lcdString = "";
+//        lcdString = "Cooking start";
+//        lcd.setText(lcdString);
+//
+        if(button_active.get("start") == true) {
+            Log.e("Button", "Start (Active)");
+            if (next_button.get("start") == true) {
+                Log.e("Button", "Start deactivate");
+                next_button.put("start", false);
+            }
+
+            current_state++;
+
+            System.out.println(current_state + ":" + myList.size());
+
+            if(current_state >= myList.size()){
+                finish_task();
+            }
+            else{
+                string_button = myList.get(current_state);
+                next_step(string_button);
+            }
+
+        }else{
+            Log.e("Button", "Start (Inactive)");
+        }
     }
+
+
+    private void finish_task(){
+
+        TextView lcd = findViewById(R.id.oven_panel_text);
+        lcd.clearAnimation();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        lcdString = "";
+        lcdString = "Ready!";
+        lcd.setText(lcdString);
+        lcd.clearAnimation();
+        Button next = findViewById(R.id.next);
+        next.setEnabled(true);
+    }
+
 
     private void cancelOven() {
         TextView lcd = findViewById(R.id.oven_panel_text);
@@ -334,56 +717,217 @@ public class uiVariant6Oven extends AppCompatActivity {
         lcdString = "Cancelling ...";
         lcd.setText(lcdString);
         Log.e("Button pressed", "cancelOven");
+        current_state++;
+        manage_next();
     }
 
     private void press0() {
-        Log.e("Button pressed", "0");
-    }
+        if(numberpad_active == true | button_active.get("zero") == true) {
+            Log.e("Button Pressed (Active)", "0");
+            if(button_active.get("zero") ==  true){
+                button_active.put("zero",false);
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+            else{
+                update("0");
+            }
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "0");
+        }}
+
 
     private void press1() {
-        update("1");
-        Log.e("Button pressed", "1");
-    }
+        if(numberpad_active == true | button_active.get("one") == true) {
+            TextView lcd = findViewById(R.id.oven_panel_text);
+            Log.e("Button Pressed (Active)", "1");
+            if(button_active.get("one") ==  true){
+                System.out.println("button_active one is true");
+                button_active.put("one",false);
+
+                if(info_button.equals("sound")){
+                    lcd.setText("Sound on");
+                }
+
+                if(info_button.equals("temperature")){
+                    lcd.setText("Temperature on");
+                }
+
+
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+            else{
+                update("1");
+            }
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "1");
+        }}
 
     private void press2() {
-        update("2");
-        Log.e("Button pressed", "2");
-    }
+        if(numberpad_active == true | button_active.get("two") == true) {
+            TextView lcd = findViewById(R.id.oven_panel_text);
+            Log.e("Button Pressed (Active)", "2");
+            if(button_active.get("two") ==  true){
+                button_active.put("two",false);
+
+                if(info_button.equals("sound")){
+                    lcd.setText("Sound on");
+                }
+
+                if(info_button.equals("temperature")){
+                    lcd.setText("Sound on");
+                }
+
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+            else{
+                update("2");
+            }
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "2");
+        }}
 
     private void press3() {
-        update("3");
-        Log.e("Button pressed", "3");
-    }
+        if(numberpad_active == true | button_active.get("three") == true) {
+            Log.e("Button Pressed (Active)", "3");
+            if(button_active.get("three") ==  true){
+                button_active.put("three",false);
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+            else{
+                update("3");
+            }
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "3");
+        }}
 
     private void press4() {
-        update("4");
-        Log.e("Button pressed", "4");
-    }
+        if(numberpad_active == true | button_active.get("four") == true) {
+            Log.e("Button Pressed (Active)", "4");
+            if(button_active.get("four") ==  true){
+                button_active.put("four",false);
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+            else{
+                update("4");
+            }
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "4");
+        }}
 
     private void press5() {
-        update("5");
-        Log.e("Button pressed", "5");
-    }
+        if(numberpad_active == true | button_active.get("five") == true) {
+            Log.e("Button Pressed (Active)", "5");
+            TextView lcd = findViewById(R.id.oven_panel_text);
+            if(button_active.get("five") ==  true){
+                button_active.put("five",false);
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+
+                if(settings_temperature_working){
+                    sound_working = true;
+                    lcd.setText("Temperature Settings");
+                }
+
+            }
+            else{
+                update("5");
+            }
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "5");
+        }}
 
     private void press6() {
-        update("6");
-        Log.e("Button pressed", "6");
-    }
+        if(numberpad_active == true | button_active.get("six") == true) {
+            TextView lcd = findViewById(R.id.oven_panel_text);
+            Log.e("Button Pressed (Active)", "6");
+            if(button_active.get("six") ==  true){
+                button_active.put("six",false);
+
+                if(settings_clock_working){
+                    sound_working = true;
+                    lcd.setText("Sound Settings");
+                }
+
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+            else{
+                update("6");
+            }
+        }
+        else {
+        Log.e("Button Pressed (Inactive)", "6");
+    }}
+
 
     private void press7() {
-        update("7");
-        Log.e("Button pressed", "7");
-    }
+        if(numberpad_active == true | button_active.get("seven") == true) {
+            Log.e("Button Pressed (Active)", "7");
+            if(button_active.get("seven") ==  true){
+                button_active.put("seven",false);
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+            else{
+                update("7");
+            }
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "7");
+        }}
 
     private void press8() {
-        update("8");
-        Log.e("Button pressed", "8");
-    }
+        if(numberpad_active == true | button_active.get("eight") == true) {
+            Log.e("Button Pressed (Active)", "8");
+            if(button_active.get("eight") ==  true){
+                button_active.put("eight",false);
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+            else{
+                update("8");
+            }
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "8");
+        }}
 
     private void press9() {
-        update("9");
-        Log.e("Button pressed", "9");
-    }
+        if(numberpad_active == true | button_active.get("nine") == true) {
+            Log.e("Button Pressed (Active)", "9");
+            if(button_active.get("nine") ==  true){
+                button_active.put("nine",false);
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+            else{
+                update("9");
+            }
+        }
+        else {
+            Log.e("Button Pressed (Inactive)", "9");
+        }}
 
     private void nextActivity() {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
