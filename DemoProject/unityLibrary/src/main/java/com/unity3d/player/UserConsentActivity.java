@@ -54,30 +54,6 @@ public class UserConsentActivity extends AppCompatActivity {
         /**
          * Node.js server side communication
          */
-        RequestButton = (Button) findViewById(R.id.RequestButton);
-        DataField = (TextView) findViewById(R.id.DataField);
-        DisplayText = (TextView) findViewById(R.id.DisplayText);
-
-        final RequestQueue queue = Volley.newRequestQueue(this);
-        final String url = "http://ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3001/postdata";
-
-        queue.start();
-        RequestButton.setOnClickListener(v -> {
-            HashMap<String, String> params = new HashMap<String,String>();
-            params.put("android side test", DataField.getText().toString()); // the entered data as the body.
-            JsonObjectRequest jsObjRequest = new
-                    JsonObjectRequest(Request.Method.POST,
-                    url,
-                    new JSONObject(params),
-                    response -> {
-                        try {
-                            DisplayText.setText(response.getString("message"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }, error -> DisplayText.setText("That didn't work!"));
-            queue.add(jsObjRequest);
-        });
 
         /**
          * Node.js end
