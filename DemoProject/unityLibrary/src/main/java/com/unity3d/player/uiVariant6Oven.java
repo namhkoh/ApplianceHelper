@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -25,6 +28,8 @@ public class uiVariant6Oven extends AppCompatActivity {
     boolean isCode = false;
     boolean isCookTime = false;
 
+    String current_task;
+
     boolean numberpad_active = false;
     boolean previous_numberpad = false;
     boolean six_active = false;
@@ -32,10 +37,13 @@ public class uiVariant6Oven extends AppCompatActivity {
     boolean settings_clock_working = false;
     boolean sound_working = false;
     boolean settings_temperature_working = false;
-
+    boolean timerPressed = false;
+    CountDownTimer t;
+    Animation anim;
     ArrayList<String> tmpList = new ArrayList<String>();
 
-
+    String[] time = {" ", " ", " ", " "};
+    int time_position = 0;
 
     HashMap<String, Boolean> next_button;
     HashMap<String, Boolean> button_active;
@@ -44,7 +52,7 @@ public class uiVariant6Oven extends AppCompatActivity {
     int current_state;
     String string_button;
     String previous_state;
-    String info_button;
+    String info_button = "nothing";
 
     boolean clock_active;
     boolean start_active;
@@ -242,6 +250,7 @@ public class uiVariant6Oven extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.e("Clicked", "Timer set/off");
+                timer();
             }
         });
 
@@ -266,9 +275,16 @@ public class uiVariant6Oven extends AppCompatActivity {
                 bakeBtn, broilBtn, convectBtn, keepWarmBtn, selfCleanBtn, delayStartBtn, preheatBtn, settingsBtn,
                 timerBtn, on_offBtn, confirm
                 ));
+
         for (int i = 0; i < allButtons.size(); i++) {
             allButtons.get(i).setAlpha(0);
         }
+
+        anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(50); //You can manage the blinking time with this parameter
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
 
         //List gotten for buttons
         myList = (ArrayList<String>) getIntent().getSerializableExtra("button");
@@ -313,6 +329,9 @@ public class uiVariant6Oven extends AppCompatActivity {
         button_active.put("broil",false);
         next_button.put("keep warm", false);
         button_active.put("keep warm",false);
+        next_button.put("timer", false);
+        button_active.put("timer",false);
+
 
         //Current Button
         current_state = 0;
@@ -342,6 +361,12 @@ public class uiVariant6Oven extends AppCompatActivity {
         }
 
         if (string_button.equals("six")) {
+            next_button.put(string_button, true);
+            button_active.put(string_button, true);
+            Log.e("Debug", string_button);
+        }
+
+        if (string_button.equals("timer")) {
             next_button.put(string_button, true);
             button_active.put(string_button, true);
             Log.e("Debug", string_button);
@@ -383,6 +408,18 @@ public class uiVariant6Oven extends AppCompatActivity {
             Log.e("Debug", string_button);
         }
 
+        if (string_button.equals("three")) {
+            next_button.put(string_button, true);
+            button_active.put(string_button, true);
+            Log.e("Debug", string_button);
+        }
+
+        if (string_button.equals("four")) {
+            next_button.put(string_button, true);
+            button_active.put(string_button, true);
+            Log.e("Debug", string_button);
+        }
+
         if (string_button.equals("five")) {
             next_button.put(string_button, true);
             button_active.put(string_button, true);
@@ -405,6 +442,9 @@ public class uiVariant6Oven extends AppCompatActivity {
         }
 
         if(string_button.equals("number pad")){
+//            TextView lcd = findViewById(R.id.oven_panel_text);
+            lcdString = "";
+//            lcd.setText(lcdString);
             numberpad_active = true;
             //next_button.put(string_button,true);
             previous_state = string_button;
@@ -412,12 +452,17 @@ public class uiVariant6Oven extends AppCompatActivity {
             previous_numberpad = true;
             string_button = myList.get(current_state);
 
+            if(info_button.equals("clock")){
+
+            }
+
             if(string_button.equals("clock")){
                 clock_active = true;
             }
             else{
                 start_active = true;
             }
+
             next_button.put(string_button,true);
             manage_next();
 
@@ -536,6 +581,7 @@ public class uiVariant6Oven extends AppCompatActivity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            lcd.clearAnimation();
             lcdString = "";
             lcdString = "Ready!";
             lcd.setText(lcdString);
@@ -552,7 +598,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         //TextView alt = findViewById(R.id.alt_txt);
         TextView lcd = findViewById(R.id.oven_panel_text);
         //alt.setAlpha(1);
-        lcdString = " ";
+        lcdString = "";
         //tmpList.clear();
         if (true) {
             // blink animation and allow user to alter the time
@@ -560,24 +606,76 @@ public class uiVariant6Oven extends AppCompatActivity {
         }
     }
 
-
-
-
-    private void update(String buttonValue) {
-        Log.e("Button added", buttonValue);
-        TextView ovenLcd = findViewById(R.id.oven_panel_text);
-        lcdString += buttonValue;
-        ovenLcd.setText(lcdString);
-        if (!isCode) {
-            stringChecker(buttonValue);
-        } else if (!isTemp) {
-            Log.e("reached", "entering temperature");
-            ovenLcd.setText(lcdString + "°F");
-        } else if (!isCookTime) {
-            Log.e("reached", "entering time");
-            ovenLcd.setText(lcdString + "mins");
+    private void timer(){
+        if (button_active.get("timer") == true) {
+            current_task = "Timer";
+            timerPressed = true;
+            clearClock();
+            //lcdString = "";
+            Log.e("Button Pressed (Active)", "Timer");
+            if (next_button.get("timer") == true) {
+                Log.e("Button", "Timer deactivate");
+                next_button.put("timer", false);
+                button_active.put("timer",false);
+//                timer_active = false;
+//                timer_working = true;
+                numberpad_toggle();
+                current_state++;
+                manage_next();
+            }
+        } else {
+            Log.e("Button Pressed (Inactive)", "Timer");
         }
     }
+
+    private void update(String buttonValue) {
+        Log.e("update", buttonValue);
+        lcdString += buttonValue;
+        TextView lcd = findViewById(R.id.oven_panel_text);
+        Log.e("current size", String.valueOf(tmpList.size()));
+        //lcd.setText(lcdString);
+
+        Log.e("time", Arrays.toString(time));
+        String first = " ";
+        String second = " ";
+        String third = " ";
+        String fourth = " ";
+        HashMap<Integer, String> time_map = new HashMap<Integer, String>();
+        time_map.put(0, " ");
+        time_map.put(1, " ");
+        time_map.put(2, " ");
+        time_map.put(3, " ");
+
+
+        int temp_position = time_position;
+        System.out.println(time_position);
+        for (int i = 0; i < time_position; i++) {
+            System.out.println(time[i]);
+            time_map.put(3 - temp_position + 1, time[i]);
+            temp_position--;
+        }
+
+        Log.e("time", time_map.get(0) + time_map.get(1) + ":" + time_map.get(2) + time_map.get(3));
+        lcd.setText(time_map.get(0) + time_map.get(1) + ":" + time_map.get(2) + time_map.get(3));
+
+    }
+
+
+//    private void update(String buttonValue) {
+//        Log.e("Button added", buttonValue);
+//        TextView ovenLcd = findViewById(R.id.oven_panel_text);
+//        lcdString += buttonValue;
+//        ovenLcd.setText(lcdString);
+//        if (!isCode) {
+//            stringChecker(buttonValue);
+//        } else if (!isTemp) {
+//            Log.e("reached", "entering temperature");
+//            ovenLcd.setText(lcdString + "°F");
+//        } else if (!isCookTime) {
+//            Log.e("reached", "entering time");
+//            ovenLcd.setText(lcdString + "mins");
+//        }
+//    }
 
     private void stringChecker(String val) {
         Log.e("Checking string ...", val);
@@ -658,6 +756,67 @@ public class uiVariant6Oven extends AppCompatActivity {
         }
     }
 
+
+    public void startTimer(final long finish, long tick) {
+        TextView lcd = findViewById(R.id.oven_panel_text);
+        t = new CountDownTimer(finish, tick) {
+
+
+            public void onTick(long millisUntilFinished) {
+                System.out.println(millisUntilFinished);
+                System.out.println(finish);
+                long remainedSecs = millisUntilFinished / 1000;
+                long hh = (remainedSecs / 60);
+                long mm = (remainedSecs % 60);
+                String hour;
+                String minute;
+                if (hh / 10 == 0) {
+                    hour = "0" + hh;
+                } else {
+                    hour = String.valueOf(hh);
+                }
+                if (mm / 10 == 0) {
+                    minute = "0" + mm;
+                } else {
+                    minute = String.valueOf(mm);
+                }
+                if (finish - 101 > millisUntilFinished) {
+                    lcd.setText("" + hour + ":" + minute);// manage it accordign to you
+                }
+            }
+
+            public void onFinish() {
+                lcd.setText("00:00");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                lcd.setText("End");
+                lcd.startAnimation(anim);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                cancel();
+            }
+        }.start();
+    }
+
+    public void stopTimer() {
+        t.cancel();
+    }
+
+
+    private void countdown(String number) {
+        System.out.println(number);
+        System.out.println("%" + number.substring(1) + "%");
+        int time = Integer.parseInt(number);
+        int seconds = time / 1000 * 60 * 60 + time / 100 * 60 + time % 100;
+        startTimer(seconds * 1000 + 1100, 1000);
+    }
+
     private void startOven() {
 //        Log.e("Button pressed", "startOven");
 //        TextView lcd = findViewById(R.id.oven_panel_text);
@@ -673,6 +832,10 @@ public class uiVariant6Oven extends AppCompatActivity {
             }
 
             current_state++;
+            if (timerPressed == true) {
+                System.out.println("lcdString" + lcdString);
+                countdown(lcdString);
+            }
 
             System.out.println(current_state + ":" + myList.size());
 
@@ -710,15 +873,39 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     private void cancelOven() {
         TextView lcd = findViewById(R.id.oven_panel_text);
-        isTemp = false;
-        isCode = false;
-        isCookTime = false;
-        lcdString = "";
-        lcdString = "Cancelling ...";
-        lcd.setText(lcdString);
-        Log.e("Button pressed", "cancelOven");
-        current_state++;
-        manage_next();
+
+        if(current_task.equals("Timer")){
+            stopTimer();
+        }
+
+        lcd.clearAnimation();
+        Button next = findViewById(R.id.oven_cancel);
+        next.setEnabled(false);
+        //lcdString = DateTimeHandler.getCurrentTime("hh:mm");
+        lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
+        time = new String[]{" ", " ", " ", " "};
+        time_position = 0;
+        current_state = 0;
+        string_button = myList.get(current_state);
+        next_step(string_button);
+
+//        isTemp = false;
+//        isCode = false;
+//        isCookTime = false;
+//        lcdString = "";
+//        lcdString = "Cancelling ...";
+//        lcd.setText(lcdString);
+//        Log.e("Button pressed", "cancelOven");
+//        current_state++;
+//        manage_next();
+
+    }
+
+    private void press(String number){
+        if (time_position < 4) {
+            time[time_position] = number;
+            time_position++;
+        }
     }
 
     private void press0() {
@@ -731,6 +918,7 @@ public class uiVariant6Oven extends AppCompatActivity {
                 manage_next();
             }
             else{
+                press("0");
                 update("0");
             }
         }
@@ -761,6 +949,7 @@ public class uiVariant6Oven extends AppCompatActivity {
                 manage_next();
             }
             else{
+                press("1");
                 update("1");
             }
         }
@@ -776,11 +965,11 @@ public class uiVariant6Oven extends AppCompatActivity {
                 button_active.put("two",false);
 
                 if(info_button.equals("sound")){
-                    lcd.setText("Sound on");
+                    lcd.setText("Sound off");
                 }
 
                 if(info_button.equals("temperature")){
-                    lcd.setText("Sound on");
+                    lcd.setText("Temperature off");
                 }
 
                 numberpad_toggle();
@@ -788,6 +977,7 @@ public class uiVariant6Oven extends AppCompatActivity {
                 manage_next();
             }
             else{
+                press("2");
                 update("2");
             }
         }
@@ -797,14 +987,27 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     private void press3() {
         if(numberpad_active == true | button_active.get("three") == true) {
+            TextView lcd = findViewById(R.id.oven_panel_text);
             Log.e("Button Pressed (Active)", "3");
             if(button_active.get("three") ==  true){
                 button_active.put("three",false);
+
+                if(info_button.equals("clock")){
+                    System.out.println("AM");
+                    lcd.setText("AM");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 numberpad_toggle();
                 current_state++;
                 manage_next();
             }
             else{
+                press("3");
                 update("3");
             }
         }
@@ -814,14 +1017,21 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     private void press4() {
         if(numberpad_active == true | button_active.get("four") == true) {
+            TextView lcd = findViewById(R.id.oven_panel_text);
             Log.e("Button Pressed (Active)", "4");
             if(button_active.get("four") ==  true){
                 button_active.put("four",false);
+
+                if(info_button.equals("clock")){
+                    lcd.setText("Clock Settings");
+                }
+
                 numberpad_toggle();
                 current_state++;
                 manage_next();
             }
             else{
+                press("4");
                 update("4");
             }
         }
@@ -846,6 +1056,7 @@ public class uiVariant6Oven extends AppCompatActivity {
 
             }
             else{
+                press("5");
                 update("5");
             }
         }
@@ -870,6 +1081,7 @@ public class uiVariant6Oven extends AppCompatActivity {
                 manage_next();
             }
             else{
+                press("6");
                 update("6");
             }
         }
@@ -888,6 +1100,7 @@ public class uiVariant6Oven extends AppCompatActivity {
                 manage_next();
             }
             else{
+                press("7");
                 update("7");
             }
         }
@@ -905,6 +1118,7 @@ public class uiVariant6Oven extends AppCompatActivity {
                 manage_next();
             }
             else{
+                press("8");
                 update("8");
             }
         }
@@ -922,6 +1136,7 @@ public class uiVariant6Oven extends AppCompatActivity {
                 manage_next();
             }
             else{
+                press("9");
                 update("9");
             }
         }
