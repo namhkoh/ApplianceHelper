@@ -30,43 +30,25 @@ public class uiVariant6 extends AppCompatActivity {
     public static Bundle uiVariant6Bundle = new Bundle();
 
     boolean meltPressed = false;
-    boolean meltButterBool = false;
-    boolean startPressed = false;
     boolean clockPressed = false;
-    boolean cancelPressed = false;
     boolean reheat_pressed = false;
 
-    boolean zeroPressed = false;
-    boolean onePressed = false;
-    boolean twoPressed = false;
-    boolean threePressed = false;
-    boolean fourPressed = false;
-    boolean fivePressed = false;
-    boolean sixPressed = false;
-    boolean sevenPressed = false;
-    boolean eightPressed = false;
-    boolean ninePressed = false;
-    boolean timerPressed = false;
-
-
-    boolean numberpad_active = false;
-    boolean start_active = false;
-    boolean cancel_active = true;
-    boolean clock_active = false;
-    boolean timer_active = false;
-    boolean reheat_active = false;
-    boolean defrost_active = false;
-    boolean pizza_active = false;
+//    boolean numberpad_active = false;
+//    boolean start_active = false;
+//    boolean cancel_active = true;
+//    boolean clock_active = false;
+//    boolean timer_active = false;
+//    boolean reheat_active = false;
+//    boolean defrost_active = false;
+//    boolean pizza_active = false;
     boolean melt_active = false;
-    boolean popcorn_active = false;
+//    boolean popcorn_active = false;
 
     boolean clock_working = false;
     boolean timer_working = false;
     boolean food_working = false;
     boolean defrost_working = false;
     boolean reheat_working = false;
-    boolean pizza_pressed = false;
-    boolean popcorn_pressed = false;
 
     boolean previous_numberpad = false;
     CountDownTimer t;
@@ -78,13 +60,11 @@ public class uiVariant6 extends AppCompatActivity {
     ArrayList<String> tmpList;
 
     int current_state;
-    Button current_button;
     String string_button;
     String previous_state;
     String current_task;
     int number_of_steps;
     int reheat_category = 0;
-    //String[] time = new String[4];
     String[] time = {" ", " ", " ", " "};
     int time_position = 0;
 
@@ -243,30 +223,13 @@ public class uiVariant6 extends AppCompatActivity {
 
         tmpList = new ArrayList<String>();
 
-        //Initialize an hashmap that is used to track the button that used to be pressed next.
-//        next_button = new HashMap<String, Boolean>();
-//        next_button.put("clock", false);
-//        next_button.put("start", false);
-//        next_button.put("cancel", false);
-//        next_button.put("timer", false);
-//        next_button.put("reheat", false);
-//        next_button.put("defrost", false);
-//        next_button.put("pizza", false);
-//        next_button.put("pork", false);
-//        active_button = new HashMap<String, Boolean>();
-//        active_button.put("clock", false);
-//        active_button.put("start", false);
-//        active_button.put("cancel", false);
-//        active_button.put("timer", false);
-//        active_button.put("reheat", false);
-//        active_button.put("defrost", false);
-//        active_button.put("pizza", false);
-//        active_button.put("pork", false);
-
         //Initialize hashmap
         List<String> list = Arrays.asList("clock", "start", "cancel", "timer", "reheat", "defrost", "pizza", "pork", "no button", "number pad","open");
+        //Next Button is the button I have to Press Next
         next_button = new HashMap<String, Boolean>();
+        //Active Button is to define what buttons are active.
         active_button = new HashMap<String, Boolean>();
+        //Initialize everything to false
         for (String i : list) {
             next_button.put(i, false);
             active_button.put(i, false);
@@ -274,64 +237,58 @@ public class uiVariant6 extends AppCompatActivity {
 
         //Initial Step
         current_state = 0;
+        //Get the Next button
         string_button = myList.get(current_state);
+        //How many instructions are there in total
         number_of_steps = myList.size();
+        //Use the String value of the button to go to the next step.
         next_step(string_button);
-
     }
 
     private void next_step(String string_button) {
         if (string_button.equals("clock")) {
-            clock_active = true;
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
         if (string_button.equals("reheat")) {
-            reheat_active = true;
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
         if (string_button.equals("defrost")) {
-            defrost_active = true;
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
         if (string_button.equals("pizza")) {
-            pizza_active = true;
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
         if (string_button.equals("popcorn")) {
-            popcorn_active = true;
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
         if (string_button.equals("timer")) {
-            timer_active = true;
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
         if (string_button.equals("start")) {
-            start_active = true;
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
         if (string_button.equals("no button")) {
-            start_active = true;
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
@@ -346,7 +303,6 @@ public class uiVariant6 extends AppCompatActivity {
 
         if (string_button.equals("number pad")) {
             //Because number pad doesn't have a specific button to press in order to go to the next step.
-            numberpad_active = true;
             //next_button.put(string_button,true);
             active_button.put(string_button, true);
             previous_state = string_button;
@@ -356,10 +312,8 @@ public class uiVariant6 extends AppCompatActivity {
             current_state += 1;
             string_button = myList.get(current_state);
             if (string_button.equals("clock")) {
-                clock_active = true;
                 active_button.put(string_button, true);
             } else {
-                start_active = true;
                 active_button.put(string_button, true);
             }
             //Activate the next button without deactivating the current button.
@@ -423,14 +377,13 @@ public class uiVariant6 extends AppCompatActivity {
                 update_number(lcdString);
             }
             if (current_task == "Reheat") {
-                reheat_active = false;
+                active_button.put("reheat",false);
             }
         }
     }
 
     private void press0() {
         if (active_button.get("number pad")) {
-            zeroPressed = true;
             press("0");
             Log.e("Button Pressed (Active)", "0");
         } else {
@@ -440,7 +393,6 @@ public class uiVariant6 extends AppCompatActivity {
 
     private void press1() {
         if (active_button.get("number pad")) {
-            onePressed = true;
             press("1");
             Log.e("Button Pressed (Active)", "1");
         } else {
@@ -450,7 +402,6 @@ public class uiVariant6 extends AppCompatActivity {
 
     private void press2() {
         if (active_button.get("number pad")) {
-            twoPressed = true;
             press("2");
             Log.e("Button Pressed (Active)", "2");
         } else {
@@ -460,7 +411,6 @@ public class uiVariant6 extends AppCompatActivity {
 
     private void press3() {
         if (active_button.get("number pad")) {
-            threePressed = true;
             press("3");
             Log.e("Button Pressed (Active)", "3");
         } else {
@@ -470,7 +420,6 @@ public class uiVariant6 extends AppCompatActivity {
 
     private void press4() {
         if (active_button.get("number pad")) {
-            fourPressed = true;
             press("4");
             Log.e("Button Pressed (Active)", "4");
         } else {
@@ -480,7 +429,6 @@ public class uiVariant6 extends AppCompatActivity {
 
     private void press5() {
         if (active_button.get("number pad")) {
-            fivePressed = true;
             press("5");
             Log.e("Button Pressed (Active)", "5");
         } else {
@@ -490,7 +438,6 @@ public class uiVariant6 extends AppCompatActivity {
 
     private void press6() {
         if (active_button.get("number pad")) {
-            sixPressed = true;
             press("6");
             Log.e("Button Pressed (Active)", "6");
         } else {
@@ -500,7 +447,6 @@ public class uiVariant6 extends AppCompatActivity {
 
     private void press7() {
         if (active_button.get("number pad")) {
-            sevenPressed = true;
             press("7");
             Log.e("Button Pressed (Active)", "7");
         } else {
@@ -510,7 +456,6 @@ public class uiVariant6 extends AppCompatActivity {
 
     private void press8() {
         if (active_button.get("number pad")) {
-            eightPressed = true;
             press("8");
             Log.e("Button Pressed (Active)", "8");
         } else {
@@ -520,7 +465,6 @@ public class uiVariant6 extends AppCompatActivity {
 
     private void press9() {
         if (active_button.get("number pad")) {
-            ninePressed = true;
             press("9");
             Log.e("Button Pressed (Active)", "9");
         } else {
@@ -540,6 +484,11 @@ public class uiVariant6 extends AppCompatActivity {
             lcd.clearAnimation();
             lcdString = "Ready!";
             lcd.setText(lcdString);
+
+            if(clock_working){
+                clock_working = false;
+            }
+
             Button next = findViewById(R.id.Next);
             next.setEnabled(true);
         } else {
@@ -566,17 +515,17 @@ public class uiVariant6 extends AppCompatActivity {
 
     private void microwaveClock() {
         if (active_button.get("clock") == true) {
-            //Is this really needed?
-            clockPressed = true;
             clearClock();
             Log.e("Button Pressed (Active)", "Clock");
             if (next_button.get("clock") == true) {
                 TextView lcd = findViewById(R.id.lcd_text);
+                //As this is the next button deactivate the two buttons.
                 next_button.put("clock", false);
+                active_button.put("clock",false);
+                //Set the Screen like that
                 lcdString = "  :  ";
                 lcd.setText(lcdString);
-                //What was this for again?
-                clock_active = false;
+                //To determine what type of update it should do.
                 clock_working = true;
                 numberpad_toggle();
                 current_state++;
@@ -590,15 +539,11 @@ public class uiVariant6 extends AppCompatActivity {
     private void timer() {
         if (active_button.get("timer") == true) {
             current_task = "Timer";
-            timerPressed = true;
             clearScreen();
-            //lcdString = "";
             Log.e("Button Pressed (Active)", "Timer");
             if (next_button.get("timer") == true) {
-                Log.e("Button", "Timer deactivate");
                 next_button.put("timer", false);
                 active_button.put("timer",false);
-                timer_active = false;
                 timer_working = true;
                 numberpad_toggle();
                 current_state++;
@@ -612,17 +557,15 @@ public class uiVariant6 extends AppCompatActivity {
 
     public void pizza() {
         if (active_button.get("pizza")) {
-            pizza_pressed = true;
             food_working = true;
             clearScreen();
-
             Log.e("Button Pressed (Active)", "Pizza");
             if (next_button.get("pizza") == true) {
                 TextView lcd = findViewById(R.id.lcd_text);
                 lcd.setText("0.0 QTY");
                 current_task = "Pizza";
-                next_button.put("defrost", false);
-                Log.e("Button", "Pizza deactivate");
+                next_button.put("pizza", false);
+                active_button.put("pizza",false);
                 numberpad_toggle();
                 current_state++;
                 manage_next();
@@ -636,7 +579,6 @@ public class uiVariant6 extends AppCompatActivity {
 
     public void popcorn() {
         if (active_button.get("popcorn")) {
-            popcorn_pressed = true;
             food_working = true;
             clearScreen();
             Log.e("Button Pressed (Active)", "Popcorn");
@@ -645,7 +587,7 @@ public class uiVariant6 extends AppCompatActivity {
                 lcd.setText("0.0 oz");
                 current_task = "Popcorn";
                 next_button.put("popcorn", false);
-                Log.e("Button", "Popcorn deactivate");
+                active_button.put("popcorn",false);
                 numberpad_toggle();
                 current_state++;
                 manage_next();
@@ -662,12 +604,11 @@ public class uiVariant6 extends AppCompatActivity {
             clearScreen();
             defrost_working = true;
             Log.e("Button Pressed (Active)", "Defrost");
-            Log.e("Next Button", String.valueOf(next_button.get("Defrost")));
             if (next_button.get("defrost") == true) {
                 current_task = "Defrost";
                 lcdString = "";
                 next_button.put("defrost", false);
-                defrost_active = false;
+                active_button.put("defrost",false);
                 numberpad_toggle();
                 current_state++;
                 manage_next();
@@ -700,8 +641,9 @@ public class uiVariant6 extends AppCompatActivity {
     }
 
     private void numberpad_toggle() {
-        numberpad_active = false;
         previous_numberpad = false;
+        active_button.put("number pad",false);
+
     }
 
     private void microwaveStart() {
@@ -710,7 +652,6 @@ public class uiVariant6 extends AppCompatActivity {
                 Log.e("Button", "Clock deactivate");
                 next_button.put("start", false);
                 active_button.put("start",false);
-                start_active = false;
                 numberpad_toggle();
                 System.out.println(previous_state);
                 if (current_task == "Reheat") {
@@ -720,7 +661,7 @@ public class uiVariant6 extends AppCompatActivity {
                     countdown("10");
                 }
                 current_state++;
-                if (timerPressed == true) {
+                if (timer_working == true) {
                     countdown(lcdString);
                 }
 
@@ -737,27 +678,17 @@ public class uiVariant6 extends AppCompatActivity {
         }
     }
 
-    private void microwaveSoften() {
-        meltPressed = true;
-        Log.e("Button Pressed", "Soften/Melt");
-        if (melt_active = true) {
-            Log.e("Button Pressed (Active)", "Cancel");
-            melt_active = false;
-        } else {
-            Log.e("Button Pressed (Inactive)", "Cancel");
-        }
-    }
-
     public void cancel(String string_button) {
         if (current_task == "Reheat" | current_task == "Timer") {
             stopTimer();
             return;
         }
         if (string_button.equals("clock")) {
-            clock_active = false;
+            active_button.put("clock",false);
         }
-        if (numberpad_active = true) {
-            numberpad_active = false;
+
+        if(active_button.get("number pad") == true){
+            active_button.put("number pad",false);
         }
 
     }
@@ -840,9 +771,9 @@ public class uiVariant6 extends AppCompatActivity {
     private void update_number(String number) {
         System.out.println("Update Number");
         TextView lcd = findViewById(R.id.lcd_text);
-        if(pizza_pressed) {
+        if(current_task == "Pizza") {
             lcd.setText(number + ".0 QTY");
-        } else if(popcorn_pressed){
+        } else if(current_task == "Popcorn"){
             lcd.setText(number + ".0 oz");
         } else{
             lcd.setText(number);
@@ -881,11 +812,11 @@ public class uiVariant6 extends AppCompatActivity {
         lcd.setText(time_map.get(0) + time_map.get(1) + ":" + time_map.get(2) + time_map.get(3));
 
 
-        if (meltPressed) {
-            meltButter(buttonValue);
-        } else if (meltButterBool) {
-            setButterQty(buttonValue);
-        }
+//        if (meltPressed) {
+//            meltButter(buttonValue);
+//        } else if (meltButterBool) {
+//            setButterQty(buttonValue);
+//        }
     }
 
     private void clearClock() {
@@ -932,102 +863,117 @@ public class uiVariant6 extends AppCompatActivity {
 
     }
 
-    private void setClock() {
-        TextView alt = findViewById(R.id.alt_txt);
-        TextView lcd = findViewById(R.id.lcd_text);
-        altString = "";
-        alt.setText(altString);
-        StringBuilder hh = new StringBuilder();
-        StringBuilder mm = new StringBuilder();
-        Log.e("First", tmpList.get(0));
-        Log.e("Second", tmpList.get(1));
-        Log.e("Third", tmpList.get(2));
-        Log.e("Fourth", tmpList.get(3));
-        System.out.println(tmpList.size());
-        hh.append(tmpList.get(0)).append(tmpList.get(1));
-        mm.append(tmpList.get(2)).append(tmpList.get(3));
-        update(lcdString);
-        String newTime = DateTimeHandler.setNewTime(hh.toString(), mm.toString());
-        lcd.setText(newTime);
-        clockPressed = false;
+    /////////////////////////////////////////////////////////////////////////////
+
+    private void microwaveSoften() {
+        if(active_button.get("soften")) {
+            meltPressed = true;
+            Log.e("Button Pressed", "Soften/Melt");
+            if (melt_active = true) {
+                Log.e("Button Pressed (Active)", "Cancel");
+                melt_active = false;
+            } else {
+                Log.e("Button Pressed (Inactive)", "Cancel");
+            }
+        }
     }
 
-    // This method will set the microwave panel to 0 and wait for an incoming string
-    private void meltSelection() {
-        TextView lcd = findViewById(R.id.lcd_text);
-        lcdString = "";
-        lcdString = "0";
-        lcd.setText(lcdString);
-    }
+//    private void setClock() {
+//        TextView alt = findViewById(R.id.alt_txt);
+//        TextView lcd = findViewById(R.id.lcd_text);
+//        altString = "";
+//        alt.setText(altString);
+//        StringBuilder hh = new StringBuilder();
+//        StringBuilder mm = new StringBuilder();
+//        Log.e("First", tmpList.get(0));
+//        Log.e("Second", tmpList.get(1));
+//        Log.e("Third", tmpList.get(2));
+//        Log.e("Fourth", tmpList.get(3));
+//        System.out.println(tmpList.size());
+//        hh.append(tmpList.get(0)).append(tmpList.get(1));
+//        mm.append(tmpList.get(2)).append(tmpList.get(3));
+//        update(lcdString);
+//        String newTime = DateTimeHandler.setNewTime(hh.toString(), mm.toString());
+//        lcd.setText(newTime);
+//        clockPressed = false;
+//    }
+
+//    // This method will set the microwave panel to 0 and wait for an incoming string
+//    private void meltSelection() {
+//        TextView lcd = findViewById(R.id.lcd_text);
+//        lcdString = "";
+//        lcdString = "0";
+//        lcd.setText(lcdString);
+//    }
 
     // If the user inputs "5", it will set the panel to "0.0 QTY";
-    private void meltButter(String buttonValue) {
-        Log.e("button value", buttonValue);
-        Handler h = new Handler(getMainLooper());
-        TextView lcd = findViewById(R.id.lcd_text);
-        TextView alt = findViewById(R.id.alt_txt);
-        if (buttonValue.equals("5")) {
-            lcdString = "";
-            lcdString += "5";
-            lcd.setText(lcdString);
-            h.postDelayed(() -> {
-                lcdString = "";
-                altString = "";
-                //lcdString += "0.0 QTY";
-                altString += "0.0 QTY";
-                lcd.setText(lcdString);
-                lcd.setAlpha(0);
-                alt.setText(altString);
-            }, 1000);
-            meltButterBool = true;
-            meltPressed = false;
-        }
-    }
+//    private void meltButter(String buttonValue) {
+//        Log.e("button value", buttonValue);
+//        Handler h = new Handler(getMainLooper());
+//        TextView lcd = findViewById(R.id.lcd_text);
+//        TextView alt = findViewById(R.id.alt_txt);
+//        if (buttonValue.equals("5")) {
+//            lcdString = "";
+//            lcdString += "5";
+//            lcd.setText(lcdString);
+//            h.postDelayed(() -> {
+//                lcdString = "";
+//                altString = "";
+//                //lcdString += "0.0 QTY";
+//                altString += "0.0 QTY";
+//                lcd.setText(lcdString);
+//                lcd.setAlpha(0);
+//                alt.setText(altString);
+//            }, 1000);
+//            meltButterBool = true;
+//            meltPressed = false;
+//        }
+//    }
 
-    private void setButterQty(String qty) {
-        TextView lcd = findViewById(R.id.lcd_text);
-        TextView alt = findViewById(R.id.alt_txt);
-        alt.setAlpha(0);
-        lcd.setAlpha(1);
-        Log.e("butter qty", qty);
-        switch (qty) {
-            case "1":
-                lcdString = "1.0 QTY";
-                lcd.setText(lcdString);
-                break;
-            case "2":
-                lcdString = "2.0 QTY";
-                lcd.setText(lcdString);
-                break;
-            case "3":
-                lcdString = "3.0 QTY";
-                lcd.setText(lcdString);
-                break;
-            case "4":
-                lcdString = "4.0 QTY";
-                lcd.setText(lcdString);
-                break;
-            case "5":
-                lcdString = "5.0 QTY";
-                lcd.setText(lcdString);
-                break;
-            case "6":
-                lcdString = "6.0 QTY";
-                lcd.setText(lcdString);
-                break;
-            case "7":
-                lcdString = "7.0 QTY";
-                lcd.setText(lcdString);
-                break;
-            case "8":
-                lcdString = "8.0 QTY";
-                lcd.setText(lcdString);
-                break;
-            case "9":
-                lcdString = "9.0 QTY";
-                lcd.setText(lcdString);
-                break;
-        }
-    }
+//    private void setButterQty(String qty) {
+//        TextView lcd = findViewById(R.id.lcd_text);
+//        TextView alt = findViewById(R.id.alt_txt);
+//        alt.setAlpha(0);
+//        lcd.setAlpha(1);
+//        Log.e("butter qty", qty);
+//        switch (qty) {
+//            case "1":
+//                lcdString = "1.0 QTY";
+//                lcd.setText(lcdString);
+//                break;
+//            case "2":
+//                lcdString = "2.0 QTY";
+//                lcd.setText(lcdString);
+//                break;
+//            case "3":
+//                lcdString = "3.0 QTY";
+//                lcd.setText(lcdString);
+//                break;
+//            case "4":
+//                lcdString = "4.0 QTY";
+//                lcd.setText(lcdString);
+//                break;
+//            case "5":
+//                lcdString = "5.0 QTY";
+//                lcd.setText(lcdString);
+//                break;
+//            case "6":
+//                lcdString = "6.0 QTY";
+//                lcd.setText(lcdString);
+//                break;
+//            case "7":
+//                lcdString = "7.0 QTY";
+//                lcd.setText(lcdString);
+//                break;
+//            case "8":
+//                lcdString = "8.0 QTY";
+//                lcd.setText(lcdString);
+//                break;
+//            case "9":
+//                lcdString = "9.0 QTY";
+//                lcd.setText(lcdString);
+//                break;
+//        }
+//    }
 
 }
