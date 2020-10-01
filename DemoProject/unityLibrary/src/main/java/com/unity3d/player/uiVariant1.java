@@ -144,7 +144,7 @@ public class uiVariant1 extends AppCompatActivity {
                 String question = editText.getText().toString();
 
                 //String assetName = "video_demo_data26.txt";
-                String assetName = "appliance_data29.txt";
+                String assetName = "appliance_data33.txt";
                 String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
                 Log.d("1",filePath);
 

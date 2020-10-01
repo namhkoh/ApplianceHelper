@@ -14,9 +14,9 @@
 1	cook	microwave	Food	foodtype:popcorn														
 2	Step 1. Press the Popcorn button.	Popcorn	Step 2. Enter Bag size in ounces	Number Pad	Step 3. Press the START button	START	Step 4. Open the oven door and take out the food. 	Open										
 1	set	oven	Feature	setfeature:clock														
-2	Step 1. Press the clock button.	"Settings/Clock,clock"	Step 2. Press the clock button to select AM or PM.  (Skip this step on 24 hour display setting.) 	Clock Button	"Step 3. Enter the current time in hours and minutes on the number pad, e.g., 1, 3, 0, for 1:30."	Number Pad	Press the clock or start/set to save the changes.	Clock Button										
-1	set	oven	Feature	setfeature:kitchen														
-2	Press Timer	Timer Button	"Enter the amount of time you want using the number pad, e.g., 1, 5. The timer can be set for any amount of time from 1 minute to 9 hours and 59 minutes. If you make a mistake, press Timer, and then enter the amount of time again."	Timer Button	Press START/SET.	START/SET	"When the set time has elapsed, the oven will beep and the display will show ""End"" until you press the Timer pad. You can cancel the timer at any time by pressing Timer for 3 seconds."	Timer										
+2	Step 1. Press the clock button.	"Settings/Clock,clock"	Step 3. Press 4 to change the clock	four	Step 3. Press 3 for AM or 6 for PM. 	three	"Step 4. Enter the current time in hours and minutes on the number pad, e.g., 1, 3, 0, for 1:30."	Number Pad	Press the clock or start/set to save the changes.	Settings/Clock								
+1	set	oven	Feature	setfeature:timer														
+2	Press Timer	Timer	"Enter the amount of time you want using the number pad, e.g., 1, 5. The timer can be set for any amount of time from 1 minute to 9 hours and 59 minutes. If you make a mistake, press Timer, and then enter the amount of time again."	Number Pad	Press START	START	"When the set time has elapsed, the oven will beep and the display will show ""End"" until you press the Timer pad. You can cancel the timer at any time by pressing Timer for 3 seconds."	Timer										
 1	cook	oven	Food	foodtype:hamburger														
 2	Step 1. Press Broil once for high. 	Broil	"Step 2. To start broiling, press START/SET"	START/SET	Step 3. Broil one side for 3:20-3:40 minutes and the second side for 2:20-2:40 minutes.	No Button	Step 4. Press OFF/CLEAR once you have finished broiling. 	OFF/CLEAR										
 1	cook	oven	Food	foodtype:steak														
