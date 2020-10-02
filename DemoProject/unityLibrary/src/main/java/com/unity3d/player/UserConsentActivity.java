@@ -15,7 +15,15 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.aic.libnilu.NiluLibProcess;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.firebase.analytics.FirebaseAnalytics;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,8 +32,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class UserConsentActivity extends AppCompatActivity {
@@ -45,13 +58,6 @@ public class UserConsentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_consent);
         testIDInput = findViewById(R.id.InputTestID);
-        /**
-         * Node.js server side communication
-         */
-
-        /**
-         * Node.js end
-         */
 
         Log.d("Start", "Hello");
         String assetName = "video_demo_data23.txt";
@@ -89,12 +95,20 @@ public class UserConsentActivity extends AppCompatActivity {
         acceptConsent.setOnClickListener(v -> {
             testId = testIDInput.getText().toString();
             StartScreen.activityBundle.putString("testId", testId);
-            mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-            Bundle bundle = new Bundle();
-            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, testId);
-            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "testID");
-            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "entered_test_id");
-            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
+            String text = null;
+            try {
+                text = URLEncoder.encode(testId, "utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            //sendToNode(text);
+//            mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+//            Bundle bundle = new Bundle();
+//            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, testId);
+//            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "testID");
+//            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "entered_test_id");
+//            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
             getActivity(testId);
         });
 
@@ -109,6 +123,26 @@ public class UserConsentActivity extends AppCompatActivity {
 
         testIDInput.addTextChangedListener(submitTextWatcher);
 
+    }
+
+    private void sendToNode(String text) {
+        RequestQueue MyRequestQueue = Volley.newRequestQueue(this);
+        String url = "http://ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/sendData";
+        //Create an error listener to handle errors appropriately.
+        StringRequest MyStringRequest = new StringRequest(Request.Method.POST, url, response -> {
+            //This code is executed if the server responds, whether or not the response contains data.
+            //The String 'response' contains the server's response.
+        }, error -> {
+            //This code is executed if there is an error.
+            Log.e("Error","unable to process request " + error);
+        }) {
+            protected Map<String, String> getParams() {
+                Map<String, String> MyData = new HashMap<>();
+                MyData.put("User", text); //Add the data you'd like to send to the server.
+                return MyData;
+            }
+        };
+        MyRequestQueue.add(MyStringRequest);
     }
 
     private void getActivity(String id) {
