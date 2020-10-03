@@ -2,21 +2,25 @@ package com.unity3d.player;
 
 import com.google.gson.JsonObject;
 
+import org.json.JSONObject;
+
 public class User {
 
     private String testId;
     private String name;
     private int buttonsCorrect;
-    private int startSession;
-    private int endSession;
+    private int buttonsIncorrect;
+    private long startSession;
+    private long endSession;
     private int totalTime;
     private Boolean userConsent;
-    private JsonObject feedback;
+    private JSONObject feedback;
 
-    public User(String testId, String name, int buttonsCorrect, int startSession, int endSession, int totalTime, Boolean userConsent, JsonObject feedback) {
+    public User(String testId, String name, int buttonsCorrect, int buttonsIncorrect, long startSession, long endSession, int totalTime, Boolean userConsent, JSONObject feedback) {
         this.testId = testId;
         this.name = name;
         this.buttonsCorrect = buttonsCorrect;
+        this.buttonsIncorrect = buttonsIncorrect;
         this.startSession = startSession;
         this.endSession = endSession;
         this.totalTime = totalTime;

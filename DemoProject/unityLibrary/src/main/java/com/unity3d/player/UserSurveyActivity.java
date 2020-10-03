@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.JsonObject;
 import com.google.gson.internal.$Gson$Preconditions;
 
 import org.json.JSONException;
@@ -21,6 +22,12 @@ import org.json.JSONObject;
 
 import java.time.Duration;
 import java.time.Instant;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UserSurveyActivity extends AppCompatActivity {
     RatingBar nps;
@@ -74,15 +81,44 @@ public class UserSurveyActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            User user = new User(
+                    testId,
+                    name,
+                    buttonsCorrect,
+                    buttonsIncorrect,
+                    sessionStart,
+                    sessionEnd,
+                    totalTime,
+                    true,
+                    feedback
+            );
 
-//            long sessionEnd = Instant.now().getEpochSecond();
-//            final Bundle parameters = this.getIntent().getExtras();
-//            String test = parameters.getString("testID");
-//            Log.e("test",test);
-
+            sendNetworkRequest(user);
         });
 
         additionalFeedback.addTextChangedListener(submitTextWatcher);
+    }
+
+    private void sendNetworkRequest(User user) {
+        Retrofit.Builder builder = new Retrofit.Builder()
+                .baseUrl("localhost:3030/api/v1/todos")
+                .addConverterFactory(GsonConverterFactory.create());
+        Retrofit retrofit = builder.build();
+
+        TestClient client = retrofit.create(TestClient.class);
+        Call<User> call = client.createUser(user);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                Toast.makeText(UserSurveyActivity.this,"Success!" + response.body().getTestId(),Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(UserSurveyActivity.this,"Something went wrong!",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private TextWatcher submitTextWatcher = new TextWatcher() {
