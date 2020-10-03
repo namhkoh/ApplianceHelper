@@ -51,6 +51,7 @@ public class UserConsentActivity extends AppCompatActivity {
     private EditText testIDInput;
     private Button acceptConsent;
     public static Bundle activityBundle = new Bundle();
+    public static Bundle userDataBundle = new Bundle();
     private FirebaseAnalytics mFirebaseAnalytics;
 
     private Button RequestButton; // button which on clicking, sends the request
@@ -99,6 +100,7 @@ public class UserConsentActivity extends AppCompatActivity {
         acceptConsent.setOnClickListener(v -> {
             testId = testIDInput.getText().toString();
             StartScreen.activityBundle.putString("testId", testId);
+            StartScreen.userDataBundle.putString("testId",testId);
             getActivity(testId);
         });
 

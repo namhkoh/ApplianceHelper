@@ -1,6 +1,7 @@
 package com.unity3d.player;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
@@ -17,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -26,7 +29,9 @@ public class StartScreen extends AppCompatActivity {
     private Button submit;
     public static Bundle testBundle = new Bundle();
     public static Bundle activityBundle = new Bundle();
+    public static Bundle userDataBundle = new Bundle();
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +42,19 @@ public class StartScreen extends AppCompatActivity {
         submit.setOnClickListener(v -> {
             name = nameInput.getText().toString();
             String str = StartScreen.activityBundle.getString("testId");
+            long sessionStart = Instant.now().getEpochSecond();
+            StartScreen.userDataBundle.putLong("sessionStart",sessionStart);
+            StartScreen.userDataBundle.putString("name",name);
+
+
+//            Bundle userData = new Bundle();
+//            Intent i = new Intent();
+//            userData.putString("name",name);
+//            userData.putLong("sessionStart",sessionStart);
+//            userData.putString("testId",str);
+//            i.putExtras(userData);
+
+
             startUserActivity(str);
         });
 
