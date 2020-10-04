@@ -82,13 +82,6 @@ public class UserSurveyActivity extends AppCompatActivity {
             String userConsent = "true";
             int buttonsCorrect = 10;
             int buttonsIncorrect = 2;
-//            JSONObject feedback = new JSONObject();
-//            try {
-//                feedback.put("netScore", netScore);
-//                feedback.put("CustomerScore", customerScore);
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
 
             JSONArray feedback = new JSONArray();
             JSONObject feedbackScores = new JSONObject();
@@ -134,7 +127,7 @@ public class UserSurveyActivity extends AppCompatActivity {
         Retrofit retrofit = builder.build();
         TestClient client = retrofit.create(TestClient.class);
         Call<User> call = client.createUser(user);
-        
+
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
