@@ -105,7 +105,7 @@ public class UserSurveyActivity extends AppCompatActivity {
                     feedback
             );
 
-            sendNetworkRequest(user1);
+            sendNetworkRequest(user);
         });
 
         additionalFeedback.addTextChangedListener(submitTextWatcher);
@@ -123,12 +123,12 @@ public class UserSurveyActivity extends AppCompatActivity {
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                Toast.makeText(UserSurveyActivity.this,"Success!" + response.body().getTestId(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserSurveyActivity.this, "Success!" + response.body().getTestId(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(UserSurveyActivity.this,"Something went wrong!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserSurveyActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
             }
         });
     }
