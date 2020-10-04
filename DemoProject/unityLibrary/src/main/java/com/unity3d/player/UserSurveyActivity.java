@@ -2,6 +2,7 @@ package com.unity3d.player;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Debug;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -14,14 +15,18 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.internal.$Gson$Preconditions;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.time.Duration;
 import java.time.Instant;
+
+import javax.security.auth.login.LoginException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -70,16 +75,37 @@ public class UserSurveyActivity extends AppCompatActivity {
             Log.e("sessionEnd", String.valueOf(sessionEnd));
 
             int totalTime = 000000;
-            Boolean userConsent = true;
+            String userConsent = "true";
             int buttonsCorrect = 10;
             int buttonsIncorrect = 2;
-            JSONObject feedback = new JSONObject();
+//            JSONObject feedback = new JSONObject();
+//            try {
+//                feedback.put("netScore", netScore);
+//                feedback.put("CustomerScore", customerScore);
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+            JSONArray feedback = new JSONArray();
+            JSONObject feedbackScores = new JSONObject();
             try {
-                feedback.put("netScore", netScore);
-                feedback.put("CustomerScore", customerScore);
+                feedbackScores.put("Net Score",netScore);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            try {
+                feedbackScores.put("Customer Score",customerScore);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            feedback.put(feedbackScores);
+            feedback.put(feedbackScores);
+
+            Gson gson = new Gson();
+            User testUser = new User("1","John Wick",10,2,123456,654321,99999,"true"
+            ,feedback);
+
+            String json = gson.toJson(testUser);
+
 
             User user = new User(
                     testId,
@@ -89,7 +115,7 @@ public class UserSurveyActivity extends AppCompatActivity {
                     sessionStart,
                     sessionEnd,
                     totalTime,
-                    true,
+                    "true",
                     feedback
             );
 
@@ -101,7 +127,7 @@ public class UserSurveyActivity extends AppCompatActivity {
                     00000,
                     00000,
                     00000,
-                    true,
+                    "true",
                     feedback
             );
 
@@ -129,6 +155,7 @@ public class UserSurveyActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Toast.makeText(UserSurveyActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                Log.e("ERROR", String.valueOf(t.getCause()));
             }
         });
     }
