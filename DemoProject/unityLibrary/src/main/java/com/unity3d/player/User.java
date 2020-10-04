@@ -2,6 +2,7 @@ package com.unity3d.player;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,5 +33,37 @@ public class User {
 
     public String getTestId() {
         return testId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getButtonsCorrect() {
+        return buttonsCorrect;
+    }
+
+    public int getButtonsIncorrect() {
+        return buttonsIncorrect;
+    }
+
+    public long getStartSession() {
+        return startSession;
+    }
+
+    public long getEndSession() {
+        return endSession;
+    }
+
+    public int getTotalTime() {
+        return totalTime;
+    }
+
+    public String getUserConsent() {
+        return userConsent;
+    }
+
+    public JSONArray getFeedback() {
+        return feedback;
     }
 }

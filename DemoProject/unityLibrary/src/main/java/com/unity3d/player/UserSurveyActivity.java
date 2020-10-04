@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.internal.$Gson$Preconditions;
 
@@ -28,11 +29,13 @@ import java.time.Instant;
 
 import javax.security.auth.login.LoginException;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class UserSurveyActivity extends AppCompatActivity {
     RatingBar nps;
@@ -40,6 +43,7 @@ public class UserSurveyActivity extends AppCompatActivity {
     private EditText additionalFeedback;
     private String additionalFeedbackString;
     public static Bundle activityBundle = new Bundle();
+//    ApiService apiService;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -85,6 +89,7 @@ public class UserSurveyActivity extends AppCompatActivity {
 //            } catch (JSONException e) {
 //                e.printStackTrace();
 //            }
+
             JSONArray feedback = new JSONArray();
             JSONObject feedbackScores = new JSONObject();
             try {
@@ -99,50 +104,18 @@ public class UserSurveyActivity extends AppCompatActivity {
             }
             feedback.put(feedbackScores);
             feedback.put(feedbackScores);
-//
-//            Gson gson = new Gson();
-//            User testUser = new User("1","John Wick",10,2,123456,654321,99999,"true"
-//            ,feedback);
-//
-//            String json = gson.toJson(testUser);
-
-            /**
-             * this.testId = testId;
-             *         this.name = name;
-             *         this.buttonsCorrect = buttonsCorrect;
-             *         this.buttonsIncorrect = buttonsIncorrect;
-             *         this.startSession = startSession;
-             *         this.endSession = endSession;
-             *         this.totalTime = totalTime;
-             *         this.userConsent = userConsent;
-             *         this.feedback = feedback;
-             */
-
 
             User user = new User(
-                    testId,
-                    name,
-                    buttonsCorrect,
-                    buttonsIncorrect,
-                    sessionStart,
-                    sessionEnd,
-                    totalTime,
-                    userConsent,
+                    "1",
+                    "jeff",
+                    0,
+                    0,
+                    000000,
+                    0000000,
+                    000000,
+                    "true",
                     feedback
-
             );
-
-//            User user1 = new User(
-//                    "1",
-//                    "name",
-//                    10,
-//                    10,
-//                    00000,
-//                    00000,
-//                    00000,
-//                    "true",
-//                    feedback
-//            );
 
             sendNetworkRequest(user);
         });
@@ -150,27 +123,29 @@ public class UserSurveyActivity extends AppCompatActivity {
         additionalFeedback.addTextChangedListener(submitTextWatcher);
     }
 
+
     private void sendNetworkRequest(User user) {
-        String awsUrl = "http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/api/v1/todos/";
-        String localUrl = "http://localhost:3030/api/v1/todos/";
+//        String awsUrl = "http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/api/v1/todos/";
+//        String localUrl = "http://localhost:3030/api/v1/todos/";
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl("http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/api/v1/todos/")
                 .addConverterFactory(GsonConverterFactory.create());
-        Retrofit retrofit = builder.build();
 
+        Retrofit retrofit = builder.build();
         TestClient client = retrofit.create(TestClient.class);
         Call<User> call = client.createUser(user);
-
+        
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 //Toast.makeText(UserSurveyActivity.this, "Success!" + response.body().getTestId(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(UserSurveyActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserSurveyActivity.this, "Success!" + response.body(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Toast.makeText(UserSurveyActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                t.getCause();
                 t.printStackTrace();
             }
         });
