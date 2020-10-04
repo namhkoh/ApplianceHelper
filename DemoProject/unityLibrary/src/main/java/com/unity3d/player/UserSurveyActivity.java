@@ -93,7 +93,19 @@ public class UserSurveyActivity extends AppCompatActivity {
                     feedback
             );
 
-            sendNetworkRequest(user);
+            User user1 = new User(
+                    "1",
+                    "name",
+                    10,
+                    10,
+                    00000,
+                    00000,
+                    00000,
+                    true,
+                    feedback
+            );
+
+            sendNetworkRequest(user1);
         });
 
         additionalFeedback.addTextChangedListener(submitTextWatcher);
@@ -101,7 +113,7 @@ public class UserSurveyActivity extends AppCompatActivity {
 
     private void sendNetworkRequest(User user) {
         Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("localhost:3030/api/v1/todos")
+                .baseUrl("http://localhost:3030/api/v1/todos/")
                 .addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit = builder.build();
 

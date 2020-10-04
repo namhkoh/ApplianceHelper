@@ -6,6 +6,6 @@ import retrofit2.http.POST;
 
 public interface TestClient {
 
-    @POST("user")
+    @POST("v1/todos")
     Call<User> createUser(@Body User user);
 }

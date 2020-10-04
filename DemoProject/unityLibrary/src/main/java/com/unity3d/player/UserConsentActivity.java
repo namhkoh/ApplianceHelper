@@ -54,10 +54,6 @@ public class UserConsentActivity extends AppCompatActivity {
     public static Bundle userDataBundle = new Bundle();
     private FirebaseAnalytics mFirebaseAnalytics;
 
-    private Button RequestButton; // button which on clicking, sends the request
-    private TextView DisplayText; // a text field to display the request response
-    private TextView DataField; // a text field where the data to be sent is entered
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
