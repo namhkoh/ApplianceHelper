@@ -125,9 +125,17 @@ public class UserSurveyActivity extends AppCompatActivity {
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl("http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/api/v1/todos/")
                 .addConverterFactory(GsonConverterFactory.create());
-
         Retrofit retrofit = builder.build();
         TestClient client = retrofit.create(TestClient.class);
+
+        /**
+         * Retrofit retrofit = new Retrofit.Builder()
+         *                 .baseUrl("http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/api/v1/todos/")
+         *                 .addConverterFactory(GsonConverterFactory.create())
+         *                 .build();
+         *         TestClient client = retrofit.create(TestClient.class);
+         */
+
         Call<User> call = client.createUser(user);
         call.enqueue(new Callback<User>() {
             @Override
