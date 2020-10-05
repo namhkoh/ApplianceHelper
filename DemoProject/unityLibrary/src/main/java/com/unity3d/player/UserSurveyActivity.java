@@ -83,20 +83,20 @@ public class UserSurveyActivity extends AppCompatActivity {
             int buttonsCorrect = 10;
             int buttonsIncorrect = 2;
 
-            JSONArray feedback = new JSONArray();
-            JSONObject feedbackScores = new JSONObject();
-            try {
-                feedbackScores.put("Net Score", netScore);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            try {
-                feedbackScores.put("Customer Score", customerScore);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            feedback.put(feedbackScores);
-            feedback.put(feedbackScores);
+//            JSONArray feedback = new JSONArray();
+//            JSONObject feedbackScores = new JSONObject();
+//            try {
+//                feedbackScores.put("Net Score", netScore);
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            try {
+//                feedbackScores.put("Customer Score", customerScore);
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            feedback.put(feedbackScores);
+//            feedback.put(feedbackScores);
 
             User user = new User(
                     "1",
@@ -107,8 +107,10 @@ public class UserSurveyActivity extends AppCompatActivity {
                     0000000,
                     000000,
                     "true",
-                    feedback
+                    "feedback"
             );
+
+
 
             sendNetworkRequest(user);
         });

@@ -17,9 +17,9 @@ public class User {
     private long endSession;
     private int totalTime;
     private String userConsent;
-    private JSONArray feedback;
+    private String feedback;
 
-    public User(String testId, String name, int buttonsCorrect, int buttonsIncorrect, long startSession, long endSession, int totalTime, String userConsent, JSONArray feedback) {
+    public User(String testId, String name, int buttonsCorrect, int buttonsIncorrect, long startSession, long endSession, int totalTime, String userConsent, String feedback) {
         this.testId = testId;
         this.name = name;
         this.buttonsCorrect = buttonsCorrect;
@@ -63,7 +63,7 @@ public class User {
         return userConsent;
     }
 
-    public JSONArray getFeedback() {
+    public String getFeedback() {
         return feedback;
     }
 }
