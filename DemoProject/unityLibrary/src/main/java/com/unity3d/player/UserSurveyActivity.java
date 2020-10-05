@@ -129,7 +129,6 @@ public class UserSurveyActivity extends AppCompatActivity {
         Retrofit retrofit = builder.build();
         TestClient client = retrofit.create(TestClient.class);
         Call<User> call = client.createUser(user);
-
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
