@@ -13,6 +13,7 @@ public class KnowledgeBase {
     private FileReader reader;
     private BufferedReader buf;
     private List<String> wordsArray;
+    private List<String> wordsArray_upper;
     private String name;
     private List<String> slot_list;
     private String intent;
@@ -134,11 +135,12 @@ public class KnowledgeBase {
                     } else if (Integer.parseInt(wordsArray.get(0)) == 2) {
                         //if the line is 2 it means that the line contains answers to the solution.
                         //System.out.println(slots.get(slot_value) + " "+ slot_value);
+                        wordsArray_upper = preprocess_sentence_upper_case(lineJustFetched);
                         children = new ArrayList<>();
                         for (int i = 1; i < wordsArray.size(); i += 2) {
                             temp_node = new Node("Step");
                             temp_node.getPropertyChildren().put("stepNumber", new IntegerNode(i / 2 + 1));
-                            temp_node.getPropertyChildren().put("stepText", new StringNode(wordsArray.get(i)));
+                            temp_node.getPropertyChildren().put("stepText", new StringNode(wordsArray_upper.get(i)));
                             temp_node.getPropertyChildren().put("Button", new StringNode(wordsArray.get(i + 1)));
                             children.add(temp_node);
                         }
@@ -198,6 +200,20 @@ public class KnowledgeBase {
      */
     private static List preprocess_sentence(String sentence) {
         sentence = sentence.toLowerCase();
+        sentence = sentence.replaceAll("[\"]", "");
+        String[] sentence_token = sentence.split("\t");
+        List sentence_list = Arrays.asList(sentence_token);
+        return sentence_list;
+    }
+
+    /**
+     * Breaks the words of a tab delimited sentence.
+     * " is removed because for some unknown reason the tsv file puts " on some sentences.
+     *
+     * @param sentence The question that was given as input
+     * @return A list of words in the sentence.
+     */
+    private static List preprocess_sentence_upper_case(String sentence) {
         sentence = sentence.replaceAll("[\"]", "");
         String[] sentence_token = sentence.split("\t");
         List sentence_list = Arrays.asList(sentence_token);
