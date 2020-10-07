@@ -1,12 +1,5 @@
 package com.unity3d.player;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.annotations.SerializedName;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 public class User {
 
     private String testId;

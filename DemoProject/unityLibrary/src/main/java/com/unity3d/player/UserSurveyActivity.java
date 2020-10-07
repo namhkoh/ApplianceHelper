@@ -43,6 +43,7 @@ public class UserSurveyActivity extends AppCompatActivity {
     private EditText additionalFeedback;
     private String additionalFeedbackString;
     public static Bundle activityBundle = new Bundle();
+    private TestClient testClient;
 //    ApiService apiService;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -110,12 +111,50 @@ public class UserSurveyActivity extends AppCompatActivity {
                     "feedback"
             );
 
-
-
+//            Retrofit retrofit = new Retrofit.Builder()
+//                    .baseUrl("http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/api/v1/todos/")
+//                    .addConverterFactory(GsonConverterFactory.create())
+//                    .build();
+//            testClient = retrofit.create(TestClient.class);
+//            createUser();
             sendNetworkRequest(user);
         });
 
         additionalFeedback.addTextChangedListener(submitTextWatcher);
+    }
+
+    private void createUser(){
+        User user = new User(
+                "1",
+                "jeff",
+                0,
+                0,
+                000000,
+                0000000,
+                000000,
+                "true",
+                "feedback"
+        );
+
+        Call<User> call = testClient.createUser(user);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (!response.isSuccessful()){
+                    Log.e("response", String.valueOf(response.code()));
+                    return;
+                }
+                User userResponse = response.body();
+                String content = "";
+                content += "testId " + userResponse.getTestId();
+                Log.e("content",content);
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.e("Error",t.getMessage());
+            }
+        });
     }
 
 
@@ -140,14 +179,18 @@ public class UserSurveyActivity extends AppCompatActivity {
                 .baseUrl("http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/api/v1/todos/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        TestClient client = retrofit.create(TestClient.class);
+        testClient = retrofit.create(TestClient.class);
 
-        Call<User> call = client.createUser(user);
+        Call<User> call = testClient.createUser(user);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 //Toast.makeText(UserSurveyActivity.this, "Success!" + response.body().getTestId(), Toast.LENGTH_SHORT).show();
                 Toast.makeText(UserSurveyActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+                if (!response.isSuccessful()){
+                    Log.e("response", String.valueOf(response.code()));
+                    return;
+                }
             }
 
             @Override
