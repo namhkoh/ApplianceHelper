@@ -122,11 +122,11 @@ public class UserSurveyActivity extends AppCompatActivity {
     private void sendNetworkRequest(User user) {
 //        String awsUrl = "http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/api/v1/todos/";
 //        String localUrl = "http://localhost:3030/api/v1/todos/";
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/api/v1/todos/")
-                .addConverterFactory(GsonConverterFactory.create());
-        Retrofit retrofit = builder.build();
-        TestClient client = retrofit.create(TestClient.class);
+//        Retrofit.Builder builder = new Retrofit.Builder()
+//                .baseUrl("http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/api/v1/todos/")
+//                .addConverterFactory(GsonConverterFactory.create());
+//        Retrofit retrofit = builder.build();
+//        TestClient client = retrofit.create(TestClient.class);
 
         /**
          * Retrofit retrofit = new Retrofit.Builder()
@@ -136,12 +136,18 @@ public class UserSurveyActivity extends AppCompatActivity {
          *         TestClient client = retrofit.create(TestClient.class);
          */
 
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/api/v1/todos/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        TestClient client = retrofit.create(TestClient.class);
+
         Call<User> call = client.createUser(user);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 //Toast.makeText(UserSurveyActivity.this, "Success!" + response.body().getTestId(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(UserSurveyActivity.this, "Success!" + response.body(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserSurveyActivity.this, "Success!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
