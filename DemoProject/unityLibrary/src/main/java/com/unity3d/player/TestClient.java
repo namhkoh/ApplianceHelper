@@ -10,7 +10,6 @@ import retrofit2.http.POST;
 
 public interface TestClient {
 
-    @Headers("Content-Type: application/json")
     @POST("v1/todos")
     Call<User> createUser(@Body User user);
 
