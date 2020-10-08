@@ -71,18 +71,18 @@ public class UserSurveyActivity extends AppCompatActivity {
             Log.e("testId", String.valueOf(testId));
 
             long sessionStart = StartScreen.userDataBundle.getLong("sessionStart");
-            String sessionStartval = String.valueOf(sessionStart);
-            Log.e("sessionStart", sessionStartval);
+            String sessionStartVal = String.valueOf(sessionStart);
+            Log.e("sessionStart", sessionStartVal);
 
             String name = StartScreen.userDataBundle.getString("name");
             Log.e("name", name);
 
             long sessionEnd = Instant.now().getEpochSecond();
-            String sessionEndval = String.valueOf(sessionEnd);
-            Log.e("sessionEnd", sessionEndval);
+            String sessionEndVal = String.valueOf(sessionEnd);
+            Log.e("sessionEnd", sessionEndVal);
 
             long totalTime = (sessionEnd - sessionStart);
-            String totaltime = String.valueOf(totalTime);
+            String totalTimeVal = String.valueOf(totalTime);
 
             String userConsent = "true";
 
@@ -94,9 +94,9 @@ public class UserSurveyActivity extends AppCompatActivity {
                     name,
                     10,
                     9,
-                    sessionStartval,
-                    sessionEndval,
-                    totaltime,
+                    sessionStartVal,
+                    sessionEndVal,
+                    totalTimeVal,
                     userConsent,
                     "feedback"
             );
@@ -104,14 +104,14 @@ public class UserSurveyActivity extends AppCompatActivity {
             call1.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
-                    if (!response.isSuccessful()){
+                    if (!response.isSuccessful()) {
                         Log.e("response", String.valueOf(response.code()));
                     }
                 }
 
                 @Override
                 public void onFailure(Call<User> call, Throwable t) {
-                    Log.e("Error",t.getMessage());
+                    Log.e("Error", t.getMessage());
                 }
             });
         });
