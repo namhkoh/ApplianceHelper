@@ -67,8 +67,8 @@ public class UserSurveyActivity extends AppCompatActivity {
 
             // preparing the data before creating JSON file.
 
-            Integer testId = (Integer) StartScreen.userDataBundle.get("testId");
-            Log.e("testId", String.valueOf(testId));
+            String testId = (String) StartScreen.userDataBundle.get("testId");
+            Log.e("testId", testId);
 
             long sessionStart = StartScreen.userDataBundle.getLong("sessionStart");
             String sessionStartVal = String.valueOf(sessionStart);
@@ -89,6 +89,20 @@ public class UserSurveyActivity extends AppCompatActivity {
             int buttonsCorrect = 10;
             int buttonsIncorrect = 2;
 
+            Gson gson = new Gson();
+            JSONObject feedbackObject = new JSONObject();
+            try {
+                feedbackObject.put("NetScore", netScore);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            try {
+                feedbackObject.put("CustomerScore", customerScore);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            String feedbackValue = gson.toJson(feedbackObject);
+
             User user = new User(
                     testId,
                     name,
@@ -98,7 +112,7 @@ public class UserSurveyActivity extends AppCompatActivity {
                     sessionEndVal,
                     totalTimeVal,
                     userConsent,
-                    "feedback"
+                    feedbackValue
             );
             Call<User> call1 = apiInterface.createUser(user);
             call1.enqueue(new Callback<User>() {
@@ -115,20 +129,6 @@ public class UserSurveyActivity extends AppCompatActivity {
                 }
             });
         });
-
-        /**
-         * public User(Integer testId, String name, Integer buttonsCorrect, Integer buttonsIncorrect, String startSession, String endSession, String totalTime, String userConsent, String feedback) {
-         *         this.testId = testId;
-         *         this.name = name;
-         *         this.buttonsCorrect = buttonsCorrect;
-         *         this.buttonsIncorrect = buttonsIncorrect;
-         *         this.startSession = startSession;
-         *         this.endSession = endSession;
-         *         this.totalTime = totalTime;
-         *         this.userConsent = userConsent;
-         *         this.feedback = feedback;
-         *     }
-         */
 
         additionalFeedback.addTextChangedListener(submitTextWatcher);
     }
