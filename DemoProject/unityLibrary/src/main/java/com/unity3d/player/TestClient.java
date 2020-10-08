@@ -12,5 +12,4 @@ public interface TestClient {
 
     @POST("v1/todos")
     Call<User> createUser(@Body User user);
-
 }

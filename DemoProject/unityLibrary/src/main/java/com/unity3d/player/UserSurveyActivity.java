@@ -179,6 +179,7 @@ public class UserSurveyActivity extends AppCompatActivity {
                 .baseUrl("http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/api/v1/todos/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
         testClient = retrofit.create(TestClient.class);
 
         Call<User> call = testClient.createUser(user);
