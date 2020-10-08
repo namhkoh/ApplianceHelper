@@ -43,8 +43,6 @@ public class UserSurveyActivity extends AppCompatActivity {
     private EditText additionalFeedback;
     private String additionalFeedbackString;
     public static Bundle activityBundle = new Bundle();
-    private TestClient testClient;
-//    ApiService apiService;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -83,124 +81,9 @@ public class UserSurveyActivity extends AppCompatActivity {
             String userConsent = "true";
             int buttonsCorrect = 10;
             int buttonsIncorrect = 2;
-
-//            JSONArray feedback = new JSONArray();
-//            JSONObject feedbackScores = new JSONObject();
-//            try {
-//                feedbackScores.put("Net Score", netScore);
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//            try {
-//                feedbackScores.put("Customer Score", customerScore);
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//            feedback.put(feedbackScores);
-//            feedback.put(feedbackScores);
-
-            User user = new User(
-                    "1",
-                    "jeff",
-                    0,
-                    0,
-                    000000,
-                    0000000,
-                    000000,
-                    "true",
-                    "feedback"
-            );
-
-//            Retrofit retrofit = new Retrofit.Builder()
-//                    .baseUrl("http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/api/v1/todos/")
-//                    .addConverterFactory(GsonConverterFactory.create())
-//                    .build();
-//            testClient = retrofit.create(TestClient.class);
-//            createUser();
-            sendNetworkRequest(user);
         });
 
         additionalFeedback.addTextChangedListener(submitTextWatcher);
-    }
-
-    private void createUser(){
-        User user = new User(
-                "1",
-                "jeff",
-                0,
-                0,
-                000000,
-                0000000,
-                000000,
-                "true",
-                "feedback"
-        );
-
-        Call<User> call = testClient.createUser(user);
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (!response.isSuccessful()){
-                    Log.e("response", String.valueOf(response.code()));
-                    return;
-                }
-                User userResponse = response.body();
-                String content = "";
-                content += "testId " + userResponse.getTestId();
-                Log.e("content",content);
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Log.e("Error",t.getMessage());
-            }
-        });
-    }
-
-
-    private void sendNetworkRequest(User user) {
-//        String awsUrl = "http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/api/v1/todos/";
-//        String localUrl = "http://localhost:3030/api/v1/todos/";
-//        Retrofit.Builder builder = new Retrofit.Builder()
-//                .baseUrl("http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/api/v1/todos/")
-//                .addConverterFactory(GsonConverterFactory.create());
-//        Retrofit retrofit = builder.build();
-//        TestClient client = retrofit.create(TestClient.class);
-
-        /**
-         * Retrofit retrofit = new Retrofit.Builder()
-         *                 .baseUrl("http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/api/v1/todos/")
-         *                 .addConverterFactory(GsonConverterFactory.create())
-         *                 .build();
-         *         TestClient client = retrofit.create(TestClient.class);
-         */
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/api/v1/todos/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        testClient = retrofit.create(TestClient.class);
-
-        Call<User> call = testClient.createUser(user);
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                //Toast.makeText(UserSurveyActivity.this, "Success!" + response.body().getTestId(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(UserSurveyActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                if (!response.isSuccessful()){
-                    Log.e("response", String.valueOf(response.code()));
-                    return;
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(UserSurveyActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
-                t.getCause();
-                t.printStackTrace();
-            }
-        });
     }
 
     private TextWatcher submitTextWatcher = new TextWatcher() {
