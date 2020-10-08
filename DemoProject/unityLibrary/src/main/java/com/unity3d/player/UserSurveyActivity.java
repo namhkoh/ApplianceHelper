@@ -41,14 +41,15 @@ public class UserSurveyActivity extends AppCompatActivity {
     RatingBar nps;
     RatingBar css;
     private EditText additionalFeedback;
-    private String additionalFeedbackString;
-    public static Bundle activityBundle = new Bundle();
+    APIInterface apiInterface;
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_survey);
+        apiInterface = APIClient.getClient().create(APIInterface.class);
         additionalFeedback = findViewById(R.id.userFeedback);
         nps = findViewById(R.id.net_promoter_score);
         css = findViewById(R.id.customer_satisfaction_score);
@@ -81,7 +82,47 @@ public class UserSurveyActivity extends AppCompatActivity {
             String userConsent = "true";
             int buttonsCorrect = 10;
             int buttonsIncorrect = 2;
+
+            User user = new User(
+                    1,
+                    "jeff",
+                    10,
+                    9,
+                    "000000",
+                    "0000000",
+                    "000000",
+                    "true",
+                    "feedback"
+            );
+            Call<User> call1 = apiInterface.createUser(user);
+            call1.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    if (!response.isSuccessful()){
+                        Log.e("response", String.valueOf(response.code()));
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Log.e("Error",t.getMessage());
+                }
+            });
         });
+
+        /**
+         * public User(Integer testId, String name, Integer buttonsCorrect, Integer buttonsIncorrect, String startSession, String endSession, String totalTime, String userConsent, String feedback) {
+         *         this.testId = testId;
+         *         this.name = name;
+         *         this.buttonsCorrect = buttonsCorrect;
+         *         this.buttonsIncorrect = buttonsIncorrect;
+         *         this.startSession = startSession;
+         *         this.endSession = endSession;
+         *         this.totalTime = totalTime;
+         *         this.userConsent = userConsent;
+         *         this.feedback = feedback;
+         *     }
+         */
 
         additionalFeedback.addTextChangedListener(submitTextWatcher);
     }
