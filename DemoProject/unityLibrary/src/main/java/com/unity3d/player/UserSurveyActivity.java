@@ -26,6 +26,7 @@ import org.json.JSONObject;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.time.temporal.Temporal;
 
 import javax.security.auth.login.LoginException;
 
@@ -66,32 +67,37 @@ public class UserSurveyActivity extends AppCompatActivity {
 
             // preparing the data before creating JSON file.
 
-            String testId = (String) StartScreen.userDataBundle.get("testId");
-            Log.e("testId", testId);
+            Integer testId = (Integer) StartScreen.userDataBundle.get("testId");
+            Log.e("testId", String.valueOf(testId));
 
             long sessionStart = StartScreen.userDataBundle.getLong("sessionStart");
-            Log.e("sessionStart", String.valueOf(sessionStart));
+            String sessionStartval = String.valueOf(sessionStart);
+            Log.e("sessionStart", sessionStartval);
 
             String name = StartScreen.userDataBundle.getString("name");
             Log.e("name", name);
 
             long sessionEnd = Instant.now().getEpochSecond();
-            Log.e("sessionEnd", String.valueOf(sessionEnd));
+            String sessionEndval = String.valueOf(sessionEnd);
+            Log.e("sessionEnd", sessionEndval);
 
-            int totalTime = 000000;
+            long totalTime = (sessionEnd - sessionStart);
+            String totaltime = String.valueOf(totalTime);
+
             String userConsent = "true";
+
             int buttonsCorrect = 10;
             int buttonsIncorrect = 2;
 
             User user = new User(
-                    1,
-                    "jeff",
+                    testId,
+                    name,
                     10,
                     9,
-                    "000000",
-                    "0000000",
-                    "000000",
-                    "true",
+                    sessionStartval,
+                    sessionEndval,
+                    totaltime,
+                    userConsent,
                     "feedback"
             );
             Call<User> call1 = apiInterface.createUser(user);
