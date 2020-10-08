@@ -233,11 +233,8 @@ public class uiVariant1 extends AppCompatActivity {
             return false;
         });
         // SPEECH TO TEXT END
-        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
+        textToSpeech = new TextToSpeech(getApplicationContext(), status -> {
 
-            }
         });
         textToSpeech.setOnUtteranceProgressListener(
                 new UtteranceProgressListener() {
