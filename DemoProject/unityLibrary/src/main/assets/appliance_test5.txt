@@ -1,0 +1,33 @@
+0	oven	microwave												
+1	set	microwave	Feature	setFeature:clock										
+2	"Step 1: Press the ""Clock button."	Clock	Step 2: Enter the time.	Number Pad	Step 3: Press on Clock again to modify the changes	Clock								
+1	set	microwave	Feature	setfeature:timer										
+2	Step 1: Press Timer	Timer	"Step 2: Enter the amount of time you want using the number pad, e.g., 1, 5. "	Number Pad	Step 3: Press START.	START	"Step 4: When the set time has elapsed, the oven will beep and the display will show ""End"" until you press the Timer pad. "	Timer						
+1	cook	microwave	Food	foodtype:pizza										
+2	Step 1. Press the Pizza button.	Pizza	Step 2. Enter the number of slices	Number Pad	Step 3. Press the START button	START	Step 4. Open the oven door and take out the food. 	Open						
+1	cook	microwave	Food	foodtype:popcorn										
+2	Step 1. Press the Popcorn button.	Popcorn	Step 2. Enter Bag size in ounces	Number Pad	Step 3. Press the START button	START	Step 4. Open the oven door and take out the food. 	Open						
+1	use	microwave	Feature	usefeature:reheat										
+2	"Step 1. Press the Reheat button once for a plate of food, twice for casserole, three times for pasta."	Reheat	Step 2. Press the button on the number according to the number of servings. (For two servings of pasta press the number 2 button)	Number Pad	Step 3. Press the START button	START	"Step 4. When the cooking time is over, the oven will beep 4 times and display End. Press Open to take out the food. "	Open						
+1	use	microwave	Feature	usefeature:defrost										
+2	Step 1. Press the Defrost button.	Defrost	Step 2. Use the number buttons to enter the weight. 	Number Pad	Step 3. Press the START button	START	Step 4. Open the oven door and take out the food. 	Open						
+1	set	oven	Feature	setfeature:clock										
+2	Step 1. Press the clock button.	"Settings/Clock,clock"	Step 2. Press 4 to change the clock	four	Step 3. Press 3 for AM or 6 for PM. 	three	"Step 4. Enter the current time in hours and minutes on the number pad, e.g., 1, 3, 0, for 1:30."	Number Pad	Press the clock or start/set to save the changes.	Settings/Clock				
+1	set	oven	Feature	setfeature:timer										
+2	Step 1. Press Timer	Timer	"Step 2. Enter the amount of time you want using the number pad, e.g., 1, 5. "	Number Pad	Step 3. Press START	START	"Step 4. When the set time has elapsed, the oven will beep and the display will show ""End"" until you press the Timer pad. "	Timer						
+1	on_off	oven	Feature	onofffeature:sound	onoff:on									
+2	Step 1. Press the Settings/Clock.	"Settings/Clock,sound"	Step 2. Press 6 on the number pad. 	six	Step 3. Press 1(On) on the number pad. 	one	Step 4. Press Start to save the changes	START						
+1	on_off	oven	Feature	onofffeature:sound	onoff:off									
+2	Step 1. Press the Settings/Clock	"Settings/Clock,sound"	Step 2. Press 6 on the number pad. 	six	Step 3. Press 2(Off) on the number pad. 	two	Step 4. Press Start to save the changes	START						
+1	set	oven	Feature	setfeature:broiling										
+2	Step 1. Press Broil once for Hi or twice for Lo. 	Broil	"Step 2. To start broiling, press START. Broil one side until the food is browned. Turn over and broil the other side."	START	Step 3. Press OFF/CLEAR once you have finished cooking or if you want to cancel broiling.	OFF/CLEAR								
+1	use	oven	Feature	usefeature:broil										
+2	Step 1. Press Broil Button	Broil	Step 2. Select the Boiling temperature by pressing 1 - High or 2 - Low. (Press 1)	one	Step 3. Press START	START	Step 3. Press Cancel at any time to turn off the Broiling feature.	Cancel						
+1	use	oven	Feature	usefeature:broiling										
+2	Step 1. Press Broil Button	Broil	Step2. Select the Boiling temperature by pressing 1 - High or 2 - Low. (Press 1)	one	Step 3. Press START	START	Step 3. Press Cancel at any time to turn off the Broiling feature.	Cancel						
+1	use	oven	Feature	usefeature:keep-warm										
+2	Step 1. Press Keep Warm	Keep Warm	Step 2. Press the desired temperature	Number Pad	Step 3. Press START	START	Step 3. Press Cancel at any time to turn off the Keep Warm feature.	Cancel						
+1	cook	oven	Food	foodtype:fries										
+2	Step 1. Place the tray on rack position 3.	No Button	Step 2. Select the Bake Button	Bake	Step 3. Use the number pad to set the temperature to 400 F	Number Pad	Step 4. Press the Cook Time button	Cook Time	Step 5. Press 25 for 25 minutes	Number Pad	Step 6. Tap Start	START	"Step 7. When cooking is complete, tap Cancel and take out the food."	Cancel
+1	set	oven	Feature	setfeature:temperature										
+2	Step 1. Press the Settings/Clock	"Settings/Clock,temperature"	Step 2. Press 5 on the number pad. 	five	Step 3. Press 1(On) on the number pad. 	one	Step 4. Press Start to save the changes	START						

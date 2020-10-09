@@ -9,6 +9,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -47,6 +48,7 @@ public class uiVariant6 extends AppCompatActivity {
     HashMap<String, Boolean> working_button;
 
     ArrayList<String> myList;
+    ArrayList<String> instructionList;
     ArrayList<String> tmpList;
 
     Animation anim;
@@ -245,12 +247,18 @@ public class uiVariant6 extends AppCompatActivity {
         //Get data from uiVaraiant 1,2,3,4
         myList = (ArrayList<String>) getIntent().getSerializableExtra("button");
 
+        instructionList = (ArrayList<String>) getIntent().getSerializableExtra("instructions");
+
         System.out.println(myList);
+
+        System.out.println(instructionList);
 
         tmpList = new ArrayList<String>();
 
         //Initialize hashmap
-        list = Arrays.asList("clock", "start", "cancel", "timer", "reheat", "defrost", "pizza", "pork", "no button", "number pad","open","popcorn","soften");
+        list = Arrays.asList("clock", "start", "cancel", "timer", "reheat", "defrost", "pizza", "pork",
+                "no button", "number pad","open","popcorn","soften",
+                        "potato","cook","add30","cook time","cook power");
         //Next Button is the button I have to Press Next
         next_button = new HashMap<String, Boolean>();
         //Active Button is to define what buttons are active.
@@ -370,34 +378,30 @@ public class uiVariant6 extends AppCompatActivity {
     }
 
     private void potato(){
-        Log.e("Button Pressed (Inactive)", "Potato");
-        pressed_wrong++;
+        core_button_support("Potato",null);
     }
 
     private void cook(){
-        Log.e("Button Pressed (Inactive)", "Cook");
-        pressed_wrong++;
+        core_button_support("Cook",null);
     }
 
     private void cooktime(){
-        Log.e("Button Pressed (Inactive)", "Cooktime");
-        pressed_wrong++;
+        core_button_support("Cook Time",null);
     }
 
     private void cookpower(){
-        Log.e("Button Pressed (Inactive)", "Cookpower");
-        pressed_wrong++;
+        core_button_support("Cook Power",null);
     }
 
     private void add30(){
-        Log.e("Button Pressed (Inactive)", "Add 30 Seconds");
-        pressed_wrong++;
+        core_button_support("add30",null);
     }
 
 
     //Simulates Opening the microwave.
     private void open_microwave() {
         if(active_button.get("open")) {
+            active_inactive_log(true,"Open");
             TextView lcd = findViewById(R.id.lcd_text);
             lcd.clearAnimation();
             lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
@@ -409,11 +413,13 @@ public class uiVariant6 extends AppCompatActivity {
             numberpad_toggle();
             current_state++;
             manage_next();
+        }else{
+            active_inactive_log(false,"Open");
         }
     }
 
     private void press(String number) {
-        if (food_working == true) {
+        if (food_working | working_button.get("reheat")) {
             lcdString = number;
             tmpList = new ArrayList<>();
             tmpList.add(number);
@@ -427,10 +433,10 @@ public class uiVariant6 extends AppCompatActivity {
                 time[time_position] = number;
                 time_position++;
             }
-            if (working_button.get("clock") | working_button.get("timer")) {
+            if (working_button.get("clock") | working_button.get("timer") | working_button.get("defrost")) {
                 update(lcdString);
             }
-            if (food_working | working_button.get("defrost") | working_button.get("reheat")) {
+            if (food_working | working_button.get("reheat")) {
                 update_number(lcdString);
             }
             if (current_task == "Reheat") {
@@ -451,7 +457,7 @@ public class uiVariant6 extends AppCompatActivity {
 
         System.out.println(pressed_wrong);
 
-        if(pressed_wrong > 5){
+        if(pressed_wrong >= 5 & current_state < myList.size()){
             hint.setEnabled(true);
         }
     }
@@ -507,6 +513,8 @@ public class uiVariant6 extends AppCompatActivity {
 
     private void hint(){
         Log.e("Button Pressed", "Hint");
+        Toast toast = Toast.makeText(getApplicationContext(),instructionList.get(current_state),Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     private void manage_next() {
@@ -575,6 +583,7 @@ public class uiVariant6 extends AppCompatActivity {
                 if(lcd_text != null) {
                     lcdString = lcd_text;
                     lcd.setText(lcdString);
+                    lcdString = "";
                 }
                 //To determine what type of update it should do.
                 numberpad_toggle();
@@ -591,7 +600,7 @@ public class uiVariant6 extends AppCompatActivity {
     }
 
     private void timer() {
-        core_button_support("Timer",null);
+        core_button_support("Timer","  :  ");
     }
 
     public void pizza() {
@@ -603,7 +612,7 @@ public class uiVariant6 extends AppCompatActivity {
     }
 
     private void defrost() {
-        core_button_support("Defrost", "");
+        core_button_support("Defrost", "  :  ");
     }
 
     private void microwaveSoften() {
@@ -647,7 +656,7 @@ public class uiVariant6 extends AppCompatActivity {
                 numberpad_toggle();
                 System.out.println(previous_state);
                 if (current_task == "Reheat") {
-                    countdown(lcdString);
+                    countdown("10");
                 }
                 if ((current_task == "Pizza") | (current_task == "Popcorn") | (current_task == "Defrost")) {
                     countdown("10");
@@ -655,6 +664,11 @@ public class uiVariant6 extends AppCompatActivity {
                 current_state++;
                 if (working_button.get("timer")) {
                     countdown(lcdString);
+                }
+
+                if(active_button.get("reheat")){
+                    active_button.put("reheat",false);
+                    next_button.put("reheat",false);
                 }
 
                 if (current_state >= myList.size()) {
@@ -783,7 +797,9 @@ public class uiVariant6 extends AppCompatActivity {
             lcd.setText(number + ".0 QTY");
         } else if(current_task == "Popcorn"){
             lcd.setText(number + ".0 oz");
-        } else{
+        } else if(current_task == "Reheat"){
+            lcd.setText(number + ".0 serving");
+        }else{
             lcd.setText(number);
         }
     }

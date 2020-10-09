@@ -141,10 +141,11 @@ public class uiVariant1 extends AppCompatActivity {
                     update(list.get(index), false);
                     return;
                 }
+
                 String question = editText.getText().toString();
 
                 //String assetName = "video_demo_data26.txt";
-                String assetName = "appliance_data34.txt";
+                String assetName = "appliance_test6.txt";
                 String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
                 Log.d("1",filePath);
 
@@ -170,6 +171,9 @@ public class uiVariant1 extends AppCompatActivity {
 
 
                 ResponseObject response = MainManager.getAnswer(question,filePath,file_name, vocab_path, config_path, vocab_class_path, vocab_slot_path);
+
+                //Current task from file2 here Please
+                System.out.println();
 
                 if(response.getDialog_command().equals("no_match")){
 
@@ -293,10 +297,12 @@ public class uiVariant1 extends AppCompatActivity {
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
             Intent intent = new Intent(this, uiVariant6.class);
             intent.putExtra("button",buttonList);
+            intent.putExtra("instructions",list);
             startActivity(intent);
         } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")){
             Intent intent = new Intent(this, uiVariant6Oven.class);
             intent.putExtra("button",buttonList);
+            intent.putExtra("instructions",list);
             startActivity(intent);
         } else {
             return;

@@ -1,0 +1,9 @@
+0	oven	microwave						
+1	set	microwave	Feature	setFeature:clock				
+2	"Step 1: Press the ""Clock button."	Clock	Step 2: Enter the time.	Number Pad	Step 3: Press on Clock again to modify the changes	Clock		
+1	set	microwave	Feature	setfeature:timer				
+2	Step 1: Press Timer	Timer	"Step 2: Enter the amount of time you want using the number pad, e.g., 1, 5. "	Number Pad	Step 3: Press START.	START	"Step 4: When the set time has elapsed, the oven will beep and the display will show ""End"" until you press the Timer pad. "	Timer
+1	cook	microwave	Food	foodtype:pizza				
+2	Step 1. Press the Pizza button.	Pizza	Step 2. Enter the number of slices	Number Pad	Step 3. Press the START button	START	Step 4. Open the oven door and take out the food. 	Open
+1	cook	microwave	Food	foodtype:popcorn				
+2	Step 1. Press the Popcorn button.	Popcorn	Step 2. Enter Bag size in ounces	Number Pad	Step 3. Press the START button	START	Step 4. Open the oven door and take out the food. 	Open
