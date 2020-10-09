@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,14 +17,33 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.aic.libnilu.NiluLibProcess;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-//import com.aic.libnilu.*;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+
 
 public class UserConsentActivity extends AppCompatActivity {
 
@@ -30,6 +51,7 @@ public class UserConsentActivity extends AppCompatActivity {
     private EditText testIDInput;
     private Button acceptConsent;
     public static Bundle activityBundle = new Bundle();
+    public static Bundle userDataBundle = new Bundle();
     private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
@@ -37,7 +59,6 @@ public class UserConsentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_consent);
         testIDInput = findViewById(R.id.InputTestID);
-
 
         Log.d("Start", "Hello");
         String assetName = "video_demo_data23.txt";
@@ -75,12 +96,7 @@ public class UserConsentActivity extends AppCompatActivity {
         acceptConsent.setOnClickListener(v -> {
             testId = testIDInput.getText().toString();
             StartScreen.activityBundle.putString("testId", testId);
-            mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-            Bundle bundle = new Bundle();
-            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, testId);
-            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "testID");
-            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "entered_test_id");
-            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+            StartScreen.userDataBundle.putString("testId",testId);
             getActivity(testId);
         });
 
