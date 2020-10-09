@@ -147,35 +147,38 @@ public class uiVariant1 extends AppCompatActivity {
                 //String assetName = "video_demo_data26.txt";
                 String assetName = "appliance_test6.txt";
                 String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
-                Log.d("1",filePath);
+                Log.d("1", filePath);
 
                 String model_file = "model_tiny_9_5.pt";
                 String file_name = Utilities.assetFilePath(getApplicationContext(), model_file);
-                Log.d("2",file_name);
+                Log.d("2", file_name);
 
                 String vocab_file = "vocab.txt";
                 String vocab_path = Utilities.assetFilePath(getApplicationContext(), vocab_file);
-                Log.d("3",vocab_path);
+                Log.d("3", vocab_path);
 
                 String config_file = "config.json";
                 String config_path = Utilities.assetFilePath(getApplicationContext(), config_file);
-                Log.d("3",config_path);
+                Log.d("3", config_path);
 
                 String vocab_class_file = "vocab1.class";
                 String vocab_class_path = Utilities.assetFilePath(getApplicationContext(), vocab_class_file);
-                Log.d("3",vocab_class_path);
+                Log.d("3", vocab_class_path);
 
                 String vocab_slot_file = "vocab1.tag";
                 String vocab_slot_path = Utilities.assetFilePath(getApplicationContext(), vocab_slot_file);
-                Log.d("3",vocab_slot_path);
+                Log.d("3", vocab_slot_path);
 
 
-                ResponseObject response = MainManager.getAnswer(question,filePath,file_name, vocab_path, config_path, vocab_class_path, vocab_slot_path);
+                ResponseObject response = MainManager.getAnswer(question, filePath, file_name, vocab_path, config_path, vocab_class_path, vocab_slot_path);
 
                 //Current task from file2 here Please
-                System.out.println();
+                HashMap<String, String> tmpHash = getData();
+                int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+                String incoming_indexString = String.valueOf(incoming_index);
+                System.out.println(tmpHash.get(incoming_indexString));
 
-                if(response.getDialog_command().equals("no_match")){
+                if (response.getDialog_command().equals("no_match")) {
 
                     if (list != null) {
                         list.clear();
@@ -187,8 +190,7 @@ public class uiVariant1 extends AppCompatActivity {
                     initTTS("No Match");
 
 
-
-                }else {
+                } else {
 
                     if (list != null) {
                         list.clear();
@@ -293,13 +295,13 @@ public class uiVariant1 extends AppCompatActivity {
         HashMap<String, String> tmpHash = getData();
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
             Intent intent = new Intent(this, uiVariant6.class);
-            intent.putExtra("button",buttonList);
-            intent.putExtra("instructions",list);
+            intent.putExtra("button", buttonList);
+            intent.putExtra("instructions", list);
             startActivity(intent);
-        } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")){
+        } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")) {
             Intent intent = new Intent(this, uiVariant6Oven.class);
-            intent.putExtra("button",buttonList);
-            intent.putExtra("instructions",list);
+            intent.putExtra("button", buttonList);
+            intent.putExtra("instructions", list);
             startActivity(intent);
         } else {
             return;
@@ -342,17 +344,18 @@ public class uiVariant1 extends AppCompatActivity {
             adapter.notifyDataSetChanged();
             initTTS(speakText);
             index++;
-        },0);
+        }, 0);
     }
 
 
-    private void initTTS(String selectedText){
+    private void initTTS(String selectedText) {
         //textToSpeech.setSpeechRate(testingVal);
         int speechStatus = textToSpeech.speak(selectedText, TextToSpeech.QUEUE_ADD, null, "1");
         if (speechStatus == TextToSpeech.ERROR) {
             Log.e("TTS", "Error in converting Text to Speech!");
         }
     }
+
     private void checkPermission() {
         if (!(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) &&
                 !(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) &&
