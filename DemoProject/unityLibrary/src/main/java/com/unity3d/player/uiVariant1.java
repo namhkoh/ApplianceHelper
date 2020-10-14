@@ -10,6 +10,7 @@ import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
@@ -27,6 +28,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -61,7 +63,9 @@ public class uiVariant1 extends AppCompatActivity {
     private ArrayAdapter adapter;
     private static String utterance;
     private FirebaseAnalytics mFirebaseAnalytics;
+    HashMap<String, String> intentList;
     Button next;
+    private boolean sucess = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +80,7 @@ public class uiVariant1 extends AppCompatActivity {
         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, dateFormat.format(date));
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
 
+
         setContentView(R.layout.activity_ui_variant1);
         checkPermission();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -86,6 +91,12 @@ public class uiVariant1 extends AppCompatActivity {
         next.setOnClickListener(v -> {
             enterFeedback();
         });
+
+        Button task = findViewById(R.id.task);
+        task.setOnClickListener(v -> {
+            task();
+        });
+
         // SPEECH TO TEXT START
         final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -147,28 +158,27 @@ public class uiVariant1 extends AppCompatActivity {
                 //String assetName = "video_demo_data26.txt";
                 String assetName = "appliance_test6.txt";
                 String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
-                Log.d("1", filePath);
+                Log.d("Data File path", filePath);
 
                 String model_file = "model_tiny_9_5.pt";
                 String file_name = Utilities.assetFilePath(getApplicationContext(), model_file);
-                Log.d("2", file_name);
+                Log.d("Model File Path", file_name);
 
                 String vocab_file = "vocab.txt";
                 String vocab_path = Utilities.assetFilePath(getApplicationContext(), vocab_file);
-                Log.d("3", vocab_path);
+                Log.d("Vocab File Path", vocab_path);
 
                 String config_file = "config.json";
                 String config_path = Utilities.assetFilePath(getApplicationContext(), config_file);
-                Log.d("3", config_path);
+                Log.d("Config File Path", config_path);
 
                 String vocab_class_file = "vocab1.class";
                 String vocab_class_path = Utilities.assetFilePath(getApplicationContext(), vocab_class_file);
-                Log.d("3", vocab_class_path);
+                Log.d("Vocab Class File", vocab_class_path);
 
                 String vocab_slot_file = "vocab1.tag";
                 String vocab_slot_path = Utilities.assetFilePath(getApplicationContext(), vocab_slot_file);
-                Log.d("3", vocab_slot_path);
-
+                Log.d("Vocab Tag Path", vocab_slot_path);
 
                 ResponseObject response = MainManager.getAnswer(question, filePath, file_name, vocab_path, config_path, vocab_class_path, vocab_slot_path);
 
@@ -176,8 +186,10 @@ public class uiVariant1 extends AppCompatActivity {
                 HashMap<String, String> tmpHash = getData();
                 int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
                 String incoming_indexString = String.valueOf(incoming_index);
-                System.out.println(tmpHash.get(incoming_indexString));
 
+                System.out.println(tmpList.size());
+
+                //Some sort of error happened in the NLU part
                 if (response.getDialog_command().equals("no_match")) {
 
                     if (list != null) {
@@ -187,11 +199,37 @@ public class uiVariant1 extends AppCompatActivity {
                     }
 
                     list.add("No Match");
+                    list.add("Try again by pressing the red mike button");
                     initTTS("No Match");
 
 
-                } else {
+                } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
 
+                    if (list != null) {
+                        list.clear();
+                        tmpList.clear();
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    list.add("Wrong Intent. " + "The current intent is " + response.getIntent());
+                    list.add("Try again by pressing the red mike button");
+                    initTTS("Wrong Intent");
+
+
+                } else if (!Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains(response.getAppliance_name().toLowerCase())) {
+
+                    if (list != null) {
+                        list.clear();
+                        tmpList.clear();
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    list.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
+                    list.add("Try again by pressing the red mike button");
+                    initTTS("Wrong appliance");
+
+                } else {
+                    sucess = true;
                     if (list != null) {
                         list.clear();
                         tmpList.clear();
@@ -246,13 +284,48 @@ public class uiVariant1 extends AppCompatActivity {
                 new UtteranceProgressListener() {
                     @Override
                     public void onStart(String utteranceId) {
-
+                        SpeechBtn.setEnabled(false);
                     }
 
                     @Override
                     public void onDone(String utteranceId) {
                         if (index < tmpList.size()) {
                             update(tmpList.get(index), true);
+                        }
+
+
+                        Log.d("Speak", String.valueOf(index));
+
+                        index++;
+
+                        if (index == list.size() & sucess == true) {
+                            Log.d("Here we go", "Done");
+                            SpeechBtn.setEnabled(false);
+
+                            Handler h = new Handler(getMainLooper());
+
+                            h.postDelayed(() -> {
+
+                            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    lvSteps.setAdapter(null);
+                                    Toast.makeText(getApplicationContext(), "Press Next", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }, 3000);
+
+                            Log.d("Here we go", "Done-2");
+                        }else{
+
+                            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    SpeechBtn.setEnabled(true);
+                                }
+                            });
+
                         }
                     }
 
@@ -269,7 +342,11 @@ public class uiVariant1 extends AppCompatActivity {
                 item.setTextColor(Color.parseColor("#000000"));
                 item.setTypeface(item.getTypeface(), Typeface.BOLD);
                 item.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13);
-                item.setBackgroundColor(Color.parseColor("#f2f2f2"));
+                if (sucess) {
+                    item.setBackgroundColor(Color.parseColor("#f2f2f2"));
+                } else {
+                    item.setBackgroundColor(Color.parseColor("#ff0033"));
+                }
                 item.setAlpha(0.7f);
                 return item;
             }
@@ -287,6 +364,27 @@ public class uiVariant1 extends AppCompatActivity {
             }
         });
         lvSteps.setAdapter(adapter);
+    }
+
+    private void stop_screen() {
+        lvSteps.setAdapter(null);
+    }
+
+    private void task() {
+        HashMap<String, String> tmpHash = getData();
+        int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        String incoming_indexString = String.valueOf(incoming_index);
+        Toast.makeText(getApplicationContext(), tmpHash.get(incoming_indexString), Toast.LENGTH_SHORT).show();
+    }
+
+    //Disable back button
+    @Override
+    public void onBackPressed() {
+        if (false) {
+            super.onBackPressed();
+        } else {
+            Log.d("Debug", "Back Button Pressed");
+        }
     }
 
     private void enterFeedback() {
@@ -314,10 +412,12 @@ public class uiVariant1 extends AppCompatActivity {
         BufferedReader reader = new BufferedReader(new InputStreamReader(ls, StandardCharsets.UTF_8));
         String line = "";
         HashMap<String, String> resultList = new HashMap<String, String>();
+        intentList = new HashMap<String, String>();
         try {
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split("\t");
                 resultList.put(tokens[0], tokens[1]);
+                intentList.put(tokens[0], tokens[2]);
             }
         } catch (IOException e) {
             Log.wtf("TaskInstructionActivity", "Error reading data file on line" + line, e);
@@ -368,4 +468,7 @@ public class uiVariant1 extends AppCompatActivity {
         }
     }
 
+    private void onClick(View v) {
+        //hint();
+    }
 }

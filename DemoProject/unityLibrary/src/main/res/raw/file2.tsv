@@ -1,3 +1,6 @@
-0	Ask the system to set the clock on the microwave.
-1	Ask the system to cook the popcorn in the microwave
-2	Ask the system to turn the sound off in the oven
+0	Ask the system to use the reheat feature on the microwave	use
+1	Ask the system to use the reheat feature on the microwave	use
+2	Ask the system to cook the fries in the oven	cook
+3	Ask the system to turn the sound off in the oven	on_off
+4	Ask the system to set the clock on the microwave	set
+5	Ask the system to set the timer on the microwave	set
