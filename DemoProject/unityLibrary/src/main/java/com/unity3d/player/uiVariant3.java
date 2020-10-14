@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
@@ -25,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,8 +51,13 @@ public class uiVariant3 extends AppCompatActivity {
     private int index = 0;
     ArrayList<String> list = new ArrayList<>();
     ArrayList<String> tmpList = new ArrayList<>();
+    HashMap<String, String> intentList;
     private ArrayAdapter adapter;
     private static String utterance;
+    ArrayList<String> buttonList;
+    private String current_appliance;
+
+    private boolean sucess = false;
 
     ImageView iv1;
 
@@ -63,6 +70,7 @@ public class uiVariant3 extends AppCompatActivity {
         SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
         Button next = findViewById(R.id.next);
         next.setOnClickListener(v -> enterFeedback());
+        next.setEnabled(false);
         final EditText editText = findViewById(R.id.editText);
         // SPEECH TO TEXT START
         final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
@@ -124,22 +132,147 @@ public class uiVariant3 extends AppCompatActivity {
                     utterance = matches.get(0);
                 }
                 String question = utterance;
-                String assetName = "video_demo_data.txt";
-                String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
-                ResponseObject response = MainManager.getAnswer(question, filePath);
-                if (list != null) {
-                    list.clear();
-                    tmpList.clear();
-                    adapter.notifyDataSetChanged();
+
+                /////////////////////////////////////////////////////////////////////////////////
+
+                String appliance_data = "appliance_test6.txt";
+                String appliance_filePath = Utilities.assetFilePath(getApplicationContext(), appliance_data);
+                Log.d("Data File path", appliance_filePath);
+
+                String model_file = "model_tiny_9_5.pt";
+                String file_name = Utilities.assetFilePath(getApplicationContext(), model_file);
+                Log.d("Model File Path", file_name);
+
+                String vocab_file_name = "vocab.txt";
+                String vocab_path = Utilities.assetFilePath(getApplicationContext(), vocab_file_name);
+                Log.d("Vocab File Path", vocab_path);
+
+                String config_file = "config.json";
+                String config_path = Utilities.assetFilePath(getApplicationContext(), config_file);
+                Log.d("Config File Path", config_path);
+
+                String vocab_class_file = "vocab1.class";
+                String vocab_class_path = Utilities.assetFilePath(getApplicationContext(), vocab_class_file);
+                Log.d("Vocab Class File", vocab_class_path);
+
+                String vocab_slot_file = "vocab1.tag";
+                String vocab_slot_path = Utilities.assetFilePath(getApplicationContext(), vocab_slot_file);
+                Log.d("Vocab Tag Path", vocab_slot_path);
+
+                com.aic.libnilu.nlu.ResponseObject response = com.aic.libnilu.nlu.MainManager.getAnswer(question, appliance_filePath, file_name, vocab_path, config_path, vocab_class_path, vocab_slot_path);
+
+                current_appliance = response.getAppliance_name();
+
+                //Current task from file2 here Please
+                HashMap<String, String> tmpHash = getData();
+                int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+                String incoming_indexString = String.valueOf(incoming_index);
+
+                System.out.println(intentList.get(incoming_indexString));
+
+                buttonList = new ArrayList<>();
+
+                //Some sort of error happened in the NLU part
+                if (response.getDialog_command().equals("no_match")) {
+
+                    if (list != null) {
+                        list.clear();
+                        tmpList.clear();
+                        buttonList.clear();
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    list.add("No Match");
+                    list.add("Try again by pressing the red mike button");
+                    tmpList.add("No Match");
+                    tmpList.add("Try again by pressing the red mike button");
+                    buttonList.add("try_again");
+                    buttonList.add("speech");
+
+                    index = 0;
+
+
+                } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
+
+                    if (list != null) {
+                        list.clear();
+                        tmpList.clear();
+                        adapter.notifyDataSetChanged();
+                        buttonList.clear();
+                    }
+
+                    list.add("Wrong Intent. " + "The current intent is " + response.getIntent());
+                    list.add("Try again by pressing the red mike button");
+                    tmpList.add("Wrong Intent. " + "The current intent is " + response.getIntent());
+                    tmpList.add("Try again by pressing the red mike button");
+                    buttonList.add("try_again");
+                    buttonList.add("speech");
+
+                    index = 0;
+
+
+                } else if (!Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains(response.getAppliance_name().toLowerCase())) {
+
+                    if (list != null) {
+                        list.clear();
+                        tmpList.clear();
+                        adapter.notifyDataSetChanged();
+                        buttonList.clear();
+                    }
+
+                    list.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
+                    list.add("Try again by pressing the red mike button");
+                    tmpList.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
+                    tmpList.add("Try again by pressing the red mike button");
+                    buttonList.add("try_again");
+                    buttonList.add("speech");
+
+                    index = 0;
+
+                } else  {
+                    sucess = true;
+                    if (list != null) {
+                        list.clear();
+                        tmpList.clear();
+                        buttonList.clear();
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    buttonList = new ArrayList<>();
+
+                    for (int i = 0; i < response.getSteps().size(); ++i) {
+                        String data = response.getSteps().get(i).getText();
+                        String button = response.getSteps().get(i).getButton_name();
+                        buttonList.add(button);
+                        list.add(data);
+                        tmpList.add(data);
+                        //tmpList.add(data);
+                    }
+                    index = 0;
                 }
-                for (int i = 0; i < response.getSteps().size(); ++i) {
-                    String data = response.getSteps().get(i).getText();
-                    tmpList.add(data);
-                }
-                index = 0;
+
+                /////////////////////////////////////////////////////////////////////////////////
+
+//                String assetName = "video_demo_data.txt";
+//                String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
+//                ResponseObject response = MainManager.getAnswer(question, filePath);
+//                if (list != null) {
+//                    list.clear();
+//                    tmpList.clear();
+//                    adapter.notifyDataSetChanged();
+//                }
+//                for (int i = 0; i < response.getSteps().size(); ++i) {
+//                    String data = response.getSteps().get(i).getText();
+//                    tmpList.add(data);
+//                }
+//                index = 0;
                 //update(tmpList.get(index), true);
                 //nextStep(tmpList.get(index));
-                runSteps(tmpList.get(index));
+                runSteps(buttonList.get(index), tmpList.get(index));
+
+
+                /////////////////////////////////////////////////////////////////////////////////
+
             }
 
             @Override
@@ -182,8 +315,15 @@ public class uiVariant3 extends AppCompatActivity {
 
                     @Override
                     public void onDone(String utteranceId) {
-                        if (index < tmpList.size()) {
-                            runSteps(tmpList.get(index));
+                        if (index < buttonList.size()) {
+                            runSteps(buttonList.get(index),tmpList.get(index));
+                        } else{
+                            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    next.setEnabled(true);
+                                }
+                            });
                         }
                     }
 
@@ -213,9 +353,13 @@ public class uiVariant3 extends AppCompatActivity {
         HashMap<String, String> tmpHash = getData();
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
             Intent intent = new Intent(this, uiVariant6.class);
+            intent.putExtra("button", buttonList);
+            intent.putExtra("instructions", list);
             startActivity(intent);
         } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")){
             Intent intent = new Intent(this, uiVariant6Oven.class);
+            intent.putExtra("button", buttonList);
+            intent.putExtra("instructions", list);
             startActivity(intent);
         } else {
             return;
@@ -228,10 +372,12 @@ public class uiVariant3 extends AppCompatActivity {
         BufferedReader reader = new BufferedReader(new InputStreamReader(ls, StandardCharsets.UTF_8));
         String line = "";
         HashMap<String, String> resultList = new HashMap<String, String>();
+        intentList = new HashMap<String, String>();
         try {
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split("\t");
                 resultList.put(tokens[0], tokens[1]);
+                intentList.put(tokens[0], tokens[2]);
             }
         } catch (IOException e) {
             Log.wtf("TaskInstructionActivity", "Error reading data file on line" + line, e);
@@ -267,15 +413,48 @@ public class uiVariant3 extends AppCompatActivity {
         }, 0);
     }
 
-    public void runSteps(String s) {
+    public void runSteps(String s, String k) {
         Handler h1 = new Handler(getMainLooper());
         TextView step = findViewById(R.id.stepOutput);
         h1.postDelayed(() -> {
-            step.setText(s);
-            initTTS(s);
-            displayPanels();
+            step.setText(k);
+            initTTS(k);
+            displayPanels2(s);
             index++;
         }, 3000);
+    }
+
+    private void displayPanels2(String button){
+        iv1 = (ImageView) findViewById(R.id.appliance_image);
+        System.out.println(button.toLowerCase());
+        System.out.println(current_appliance);
+        if(current_appliance.toLowerCase().equals("oven")) {
+            if(button.toLowerCase().equals("speech")){
+                iv1.setImageResource(R.drawable.speech);
+            } else if(button.toLowerCase().equals("try_again")){
+                iv1.setImageResource(R.drawable.try_again);
+            } else{
+                iv1.setImageResource(R.drawable.no_image_available);
+            }
+        } else{
+            if (button.toLowerCase().equals("clock")) {
+                iv1.setImageResource(R.drawable.microwave_clock_button);
+            } else if (button.toLowerCase().equals("number pad")) {
+                iv1.setImageResource(R.drawable.microwave_number_pad);
+            } else if(button.toLowerCase().equals("timer")){
+                iv1.setImageResource(R.drawable.microwave_timer);
+            } else if(button.toLowerCase().equals("reheat")){
+                iv1.setImageResource(R.drawable.microwave_reheat);
+            } else if(button.toLowerCase().equals("speech")){
+                iv1.setImageResource(R.drawable.speech);
+            } else if(button.toLowerCase().equals("try_again")){
+                iv1.setImageResource(R.drawable.try_again);
+            } else if(button.toLowerCase().equals("start")){
+                iv1.setImageResource(R.drawable.microwave_start_button);
+            }else{
+                iv1.setImageResource(R.drawable.no_image_available);
+            }
+        }
     }
 
     private void displayPanels() {

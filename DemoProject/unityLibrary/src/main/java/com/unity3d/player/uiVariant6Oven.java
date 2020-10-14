@@ -47,6 +47,7 @@ public class uiVariant6Oven extends AppCompatActivity {
     boolean timerPressed = false;
     boolean clock_active;
     boolean start_active;
+    private boolean bake_pressed;
 
     private int time_position = 0;
     private int number_of_steps;
@@ -235,7 +236,7 @@ public class uiVariant6Oven extends AppCompatActivity {
             }
         });
 
-        hint = findViewById(R.id.hint);
+        hint = findViewById(R.id.task);
         hint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -583,7 +584,11 @@ public class uiVariant6Oven extends AppCompatActivity {
     private void confirm(){core_button_support("Confirm", null);};
 
     private void cookTime() {
-        core_button_support("Cook Time", "Cook Time");
+        if(bake_pressed){
+        core_button_support("Cook Time", "Cook Time");}
+        else{
+            active_inactive_log(false, "Cook Time");
+        }
     }
 
     private void hint(){
@@ -662,8 +667,8 @@ public class uiVariant6Oven extends AppCompatActivity {
         time_map.put(3, " ");
 
         if(temp_task.equals("bake")){
-
-            lcd.setText(lcdString + " F");
+            bake_pressed = true;
+            lcd.setText(lcdString + "°F");
 
         } else {
             int temp_position = time_position;
@@ -716,11 +721,11 @@ public class uiVariant6Oven extends AppCompatActivity {
                 }
                 lcd.setText("End");
                 lcd.startAnimation(anim);
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    Thread.sleep(5000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
                 t.cancel();
             }
         }.start();
@@ -780,6 +785,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         Handler h = new Handler(getMainLooper());
         Handler h1 = new Handler(getMainLooper());
         TextView lcd = findViewById(R.id.oven_panel_text);
+        lcd.clearAnimation();
         h.postDelayed(() -> {
             isCode = true;
             lcdString = "";
@@ -806,12 +812,15 @@ public class uiVariant6Oven extends AppCompatActivity {
         System.out.println(current_task);
 
         //Not good very limited conditions (If time try to change)
-        if(current_state + 1>= myList.size() & string_button.equals("cancel") & !current_task.equals("cook time")){
+        // Bug may be fixed by putting & !current_task.equals("cook time")
+        if(current_state + 1 == myList.size() & string_button.equals("cancel")){
+            current_state++;
             System.out.println("946");
             stopTimer();
             finish_task();
         }
         else {
+            System.out.println("636");
             TextView lcd = findViewById(R.id.oven_panel_text);
 
             stopTimer();

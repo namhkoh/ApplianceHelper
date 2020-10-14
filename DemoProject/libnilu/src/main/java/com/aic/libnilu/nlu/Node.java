@@ -108,8 +108,8 @@ public class Node {
      * @param question The question that was asked from the user. Store in the response object for convenience.
      * @return
      */
-    public ResponseObject getSolution(String intent, String question) {
-        solution = new ResponseObject("Oven", "000-000-000", question);
+    public ResponseObject getSolution(String intent, String question, String appliance) {
+        solution = new ResponseObject(appliance, "000-000-000", question);
 
         for (Node a : nodeChildren.get(intent)) {
             a.getPropertyChildren().get("Button");

@@ -17,7 +17,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:maxLength="10"
+        android:maxLength="15"
         android:text="@string/lcd_text"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
@@ -27,16 +27,16 @@
 
     <TextView
         android:id="@+id/alt_txt"
-        android:maxLength="10"
         android:layout_width="259dp"
         android:layout_height="102dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
+        android:maxLength="15"
+        android:text="@string/alt_txt"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="40sp"
-        android:text="@string/alt_txt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -283,7 +283,7 @@
         app:layout_constraintTop_toBottomOf="@+id/microwave_start" />
 
     <Button
-        android:id="@+id/hint"
+        android:id="@+id/task"
         android:layout_width="82dp"
         android:layout_height="47dp"
         android:layout_marginTop="24dp"

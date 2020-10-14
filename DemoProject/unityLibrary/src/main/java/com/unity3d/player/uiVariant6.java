@@ -3,8 +3,8 @@ package com.unity3d.player;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
@@ -220,7 +220,7 @@ public class uiVariant6 extends AppCompatActivity {
             }
         });
 
-        hint = findViewById((R.id.hint));
+        hint = findViewById((R.id.task));
         hint.setOnClickListener(v -> {
             hint();
         });
@@ -517,6 +517,16 @@ public class uiVariant6 extends AppCompatActivity {
         toast.show();
     }
 
+    //Disable back button
+    @Override
+    public void onBackPressed() {
+        if (false) {
+            super.onBackPressed();
+        } else {
+            Log.d("Debug","Back Button Pressed");
+        }
+    }
+
     private void manage_next() {
         TextView lcd = findViewById(R.id.lcd_text);
         if (current_state >= myList.size()) {
@@ -798,7 +808,9 @@ public class uiVariant6 extends AppCompatActivity {
         } else if(current_task == "Popcorn"){
             lcd.setText(number + ".0 oz");
         } else if(current_task == "Reheat"){
-            lcd.setText(number + ".0 serving");
+            lcd.setTextSize(TypedValue.COMPLEX_UNIT_SP,30);
+            lcd.setText(number + ".0 servings");
+            lcd.setTextSize(TypedValue.COMPLEX_UNIT_SP,40);
         }else{
             lcd.setText(number);
         }
@@ -871,7 +883,9 @@ public class uiVariant6 extends AppCompatActivity {
         alt.setText(altString);
         lcd.setText(lcdString);
         if (reheat_category % 3 == 0) {
+            lcd.setTextSize(TypedValue.COMPLEX_UNIT_SP,30);
             lcd.setText("Plate of food");
+            lcd.setTextSize(TypedValue.COMPLEX_UNIT_SP,40);
         } else if (reheat_category % 3 == 1) {
             lcd.setText("Casserole");
         } else {
