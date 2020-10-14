@@ -138,6 +138,8 @@ public class MainManager {
 
                 intent = inference.getIntent();
 
+                System.out.println("Intent: 2" + intent);
+
                 //appliance = NLU.getAppliance(knowledge, question);
                 //slot = NLU.getSlotName(knowledge, question);
                 //slot_name = NLU.getSlot(knowledge, question);
@@ -167,8 +169,11 @@ public class MainManager {
                 }
 
 
+                System.out.println("Here");
                 //The response object or solution.
-                response = current_node.getSolution("instructionStep", question);
+                response = current_node.getSolution("instructionStep", question,appliance);
+                response.setIntent(intent);
+                System.out.println("Intent: " + intent);
 
 
             }

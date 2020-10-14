@@ -15,6 +15,7 @@ public class ResponseObject {
     private boolean is_dialog;
     private String dialog_command;
     private String question;
+    private String intent;
 
     /**
      * Default constructor that takes in appliance_name and model_number.
@@ -37,6 +38,7 @@ public class ResponseObject {
     public ResponseObject(boolean is_dialog, String dialog_command){
         this.is_dialog = is_dialog;
         this.dialog_command = dialog_command;
+        this.appliance_name = "No Name";
     }
 
     /**
@@ -90,5 +92,13 @@ public class ResponseObject {
 
     public String getQuestion() {
         return question;
+    }
+
+    public void setIntent(String intent) {
+        this.intent = intent;
+    }
+
+    public String getIntent() {
+        return intent;
     }
 }
