@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -40,6 +41,10 @@ public class uiVariant6 extends AppCompatActivity {
 
     //If the previous step was a numberpad used for Reheat
     boolean previous_numberpad = false;
+
+    boolean is_first = false;
+
+    boolean hasBeenPaused = false;
 
     CountDownTimer t;
 
@@ -75,6 +80,16 @@ public class uiVariant6 extends AppCompatActivity {
         setContentView(R.layout.activity_ui_variant6);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        if(savedInstanceState != null){
+            System.out.println("Saved Instance Not Null");
+        }else{
+            System.out.println("Saved Instance Null");
+        }
+
+        System.out.println("Is First: " + is_first);
+
+        is_first = true;
+
         //Initialize the time on the screen with the current time.
         TextView lcd = findViewById(R.id.lcd_text);
         lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
@@ -82,6 +97,19 @@ public class uiVariant6 extends AppCompatActivity {
         Button clock = findViewById(R.id.microwave_clock);
         clock.setOnClickListener(v -> {
             microwaveClock();
+        });
+
+        Button back = findViewById(R.id.back);
+        back.setOnClickListener(v -> {
+            //NavUtils.navigateUpFromSameTask(this);
+            //microwaveClock();
+//            Intent intent = NavUtils.getParentActivityIntent(this);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//            NavUtils.navigateUpTo(this,intent);
+
+            Intent intent = new Intent(this, uiVariant1.class);
+            startActivity(intent);
+
         });
 
         Button start = findViewById(R.id.microwave_start);
@@ -283,6 +311,40 @@ public class uiVariant6 extends AppCompatActivity {
         //Use the String value of the button to go to the next step.
         next_step(string_button);
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        Log.v("bundle","saved");
+        savedInstanceState.putBoolean("Is_first", is_first);
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onPause(){
+        hasBeenPaused = true;
+        Log.d("On Paused","Yes");
+        super.onPause();
+    }
+
+    @Override
+    public void onResume(){
+        if(hasBeenPaused){
+            Log.d("Paused","Yes");
+        }else{
+            Log.d("Paused","No");
+        }
+        super.onResume();
+    }
+
+
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        is_first = savedInstanceState.getBoolean("Is_first");
+        System.out.println(is_first);
+    }
+
 
     private void next_step(String string_button) {
         if (string_button.equals("clock")) {
@@ -564,6 +626,7 @@ public class uiVariant6 extends AppCompatActivity {
         lcdString = "Ready!";
         lcd.setText(lcdString);
         lcd.clearAnimation();
+
         Button next = findViewById(R.id.Next);
         next.setEnabled(true);
     }

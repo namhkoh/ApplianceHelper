@@ -428,11 +428,36 @@ public class uiVariant3 extends AppCompatActivity {
         iv1 = (ImageView) findViewById(R.id.appliance_image);
         System.out.println(button.toLowerCase());
         System.out.println(current_appliance);
+
         if(current_appliance.toLowerCase().equals("oven")) {
             if(button.toLowerCase().equals("speech")){
                 iv1.setImageResource(R.drawable.speech);
             } else if(button.toLowerCase().equals("try_again")){
                 iv1.setImageResource(R.drawable.try_again);
+            } else if(button.toLowerCase().equals("two")){
+                iv1.setImageResource(R.drawable.oven_panel_button_2);
+            }else if(button.toLowerCase().equals("three")){
+                iv1.setImageResource(R.drawable.oven_panel_button_3);
+            }else if(button.toLowerCase().equals("six")){
+                iv1.setImageResource(R.drawable.oven_panel_button_6);
+            }else if(button.toLowerCase().equals("four")){
+                iv1.setImageResource(R.drawable.oven_panel_button_4);
+            }else if(button.toLowerCase().equals("start")){
+                iv1.setImageResource(R.drawable.oven_start_button);
+            }else if(button.toLowerCase().equals("cook time")){
+                iv1.setImageResource(R.drawable.oven_panel_cook_time);
+            }else if(button.toLowerCase().equals("number pad")){
+                iv1.setImageResource(R.drawable.oven_panel_number_pad);
+            }else if(button.toLowerCase().equals("bake")){
+                iv1.setImageResource(R.drawable.oven_panel_bake);
+            }else if(button.toLowerCase().equals("settings/clock,sound")){
+                iv1.setImageResource(R.drawable.oven_panel_settings_clock);
+            }else if(button.toLowerCase().equals("settings/clock,clock")){
+                iv1.setImageResource(R.drawable.oven_panel_settings_clock);
+            } else if(button.toLowerCase().equals("cancel")){
+                iv1.setImageResource(R.drawable.oven_cancel_button);
+            } else if(button.toLowerCase().equals("open")){
+                iv1.setImageResource(R.drawable.oven_open);
             } else{
                 iv1.setImageResource(R.drawable.no_image_available);
             }
@@ -477,7 +502,7 @@ public class uiVariant3 extends AppCompatActivity {
             if (index == 1) {
                 iv1.setImageResource(R.drawable.oven_frozen_button);
             } else if (index == 2) {
-                iv1.setImageResource(R.drawable.oven_3_button);
+                iv1.setImageResource(R.drawable.oven_panel_button_3);
             } else if (index == 4) {
                 iv1.setImageResource(R.drawable.oven_cooktime_button);
             } else if (index == 6) {

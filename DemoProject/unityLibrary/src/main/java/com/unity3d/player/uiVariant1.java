@@ -138,6 +138,8 @@ public class uiVariant1 extends AppCompatActivity {
             @Override
             public void onResults(Bundle bundle) {
 
+                next.setEnabled(true);
+
                 //getting all the matches
                 ArrayList<String> matches = bundle
                         .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
@@ -249,7 +251,7 @@ public class uiVariant1 extends AppCompatActivity {
                     index = 0;
                 }
                 //update(tmpList.get(index), true);
-                next.setEnabled(true);
+                //next.setEnabled(true);
             }
 
             @Override
@@ -310,7 +312,8 @@ public class uiVariant1 extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     lvSteps.setAdapter(null);
-                                    Toast.makeText(getApplicationContext(), "Press Next", Toast.LENGTH_SHORT).show();
+                                    //next.setEnabled(true);
+                                    //Toast.makeText(getApplicationContext(), "Press Next", Toast.LENGTH_SHORT).show();
                                 }
                             });
 

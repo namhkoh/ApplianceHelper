@@ -335,6 +335,7 @@ public class uiVariant6Oven extends AppCompatActivity {
 
         next.setEnabled(false);
         open.setEnabled(false);
+        hint.setEnabled(false);
 
         //Current Button
         current_state = 0;
@@ -749,7 +750,8 @@ public class uiVariant6Oven extends AppCompatActivity {
             if (next_button.get("start") == true) {
                 next_button.put("start", false);
             }
-
+            next_button.put("start", false);
+            button_active.put("start",false);
             current_state++;
 
             if (timerPressed == true) {
