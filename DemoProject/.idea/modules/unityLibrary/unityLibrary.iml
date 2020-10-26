@@ -151,6 +151,6 @@
     <orderEntry type="library" name="Gradle: androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.print:print:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: :VuforiaWrapper:@aar" level="project" />
-    <orderEntry type="module" module-name="ApplianceHelper6-DemoProject-libnilu" />
+    <orderEntry type="module" module-name="libnilu" />
   </component>
 </module>

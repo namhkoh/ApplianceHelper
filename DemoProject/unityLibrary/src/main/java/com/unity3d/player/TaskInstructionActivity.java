@@ -46,6 +46,7 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     TaskInstructionActivity.indexBundle.putInt("index", index);
                     index++;
                     Intent intent1 = new Intent(getApplicationContext(), uiVariant1.class);
+                    //Intent intent1 = new Intent(getApplicationContext(), uiVariant1.class);
                     startActivity(intent1);
                     break;
                 case "uiVariant2":
@@ -66,7 +67,8 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     Log.e("taskInstruction", String.valueOf(index));
                     TaskInstructionActivity.indexBundle.putInt("index", index);
                     index++;
-                    Intent intent4 = new Intent(getApplicationContext(), uiVariant4.class);
+                    //Intent intent4 = new Intent(getApplicationContext(), uiVariant4.class);
+                    Intent intent4 = new Intent(getApplicationContext(), uiVariant4_Alternative_Microwave.class);
                     startActivity(intent4);
                     break;
                 case "UnityPlayerActivity":
