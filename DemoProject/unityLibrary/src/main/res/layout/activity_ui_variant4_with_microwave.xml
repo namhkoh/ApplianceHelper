@@ -323,6 +323,7 @@
         android:layout_height="44dp"
         android:layout_marginStart="236dp"
         android:layout_marginTop="2dp"
+        android:backgroundTint="#FF0000"
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintStart_toStartOf="parent"

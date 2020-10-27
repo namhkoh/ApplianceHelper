@@ -7,11 +7,15 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -63,7 +67,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
     String current_task;
     String[] time = {" ", " ", " ", " "};
 
-    List<String> list;
+    List<String> list1;
     Button hint;
 
     int current_state;
@@ -82,6 +86,15 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
         //Initialize the time on the screen with the current time.
         TextView lcd = findViewById(R.id.lcd_text);
         lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
+
+        FloatingActionButton fab = findViewById(R.id.HelperButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(v, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
         Button clock = findViewById(R.id.microwave_clock);
         clock.setOnClickListener(v -> {
@@ -260,7 +273,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
         tmpList = new ArrayList<String>();
 
         //Initialize hashmap
-        list = Arrays.asList("clock", "start", "cancel", "timer", "reheat", "defrost", "pizza", "pork",
+        list1 = Arrays.asList("clock", "start", "cancel", "timer", "reheat", "defrost", "pizza", "pork",
                 "no button", "number pad", "open", "popcorn", "soften",
                 "potato", "cook", "add30", "cook time", "cook power");
         //Next Button is the button I have to Press Next
@@ -270,7 +283,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
         //Working Button is to define features (not buttons) are active.
         working_button = new HashMap<String, Boolean>();
         //Initialize everything to false
-        for (String i : list) {
+        for (String i : list1) {
             next_button.put(i, false);
             active_button.put(i, false);
             working_button.put(i, false);
@@ -738,7 +751,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
         //Working Button is to define features (not buttons) are active.
         working_button = new HashMap<String, Boolean>();
         //Initialize everything to false
-        for (String i : list) {
+        for (String i : list1) {
             next_button.put(i, false);
             active_button.put(i, false);
             working_button.put(i, false);
