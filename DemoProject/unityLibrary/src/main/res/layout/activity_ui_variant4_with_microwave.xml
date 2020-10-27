@@ -317,4 +317,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/microwave_cancel" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/HelperButton"
+        android:layout_width="48dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="236dp"
+        android:layout_marginTop="2dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/microwave_clock"
+        app:srcCompat="@android:drawable/ic_menu_help" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
