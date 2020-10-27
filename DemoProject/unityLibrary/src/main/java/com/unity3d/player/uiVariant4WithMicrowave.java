@@ -896,6 +896,10 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
             lcd.setText("Pasta");
         }
         reheat_category++;
-
     }
+
+    /**
+     * Speech handling
+     */
+
 }
