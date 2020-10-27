@@ -1,21 +1,32 @@
 package com.unity3d.player;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.provider.Settings;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,12 +37,27 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * this class will contain the microwave panel with the speech button.
  */
 
 public class uiVariant4WithMicrowave extends AppCompatActivity {
+
+    private ImageButton SpeechBtn;
+    private ListView lvSteps;
+    private int index = 0;
+    ArrayList<String> list = new ArrayList<>();
+    ArrayList<String> tmpList = new ArrayList<>();
+    ArrayList<String> buttonList;
+    private ArrayAdapter adapter;
+    private static String utterance;
+    private FirebaseAnalytics mFirebaseAnalytics;
+    HashMap<String, String> intentList;
+    Button next;
+    private boolean sucess = false;
+
 
     private String lcdString = " ";
     private String altString = " ";
@@ -57,7 +83,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
 
     ArrayList<String> myList;
     ArrayList<String> instructionList;
-    ArrayList<String> tmpList;
+    ArrayList<String> tmpList1;
 
     Animation anim;
 
@@ -78,6 +104,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        checkPermission();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui_variant4_with_microwave);
 
@@ -270,7 +297,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
 
         System.out.println(instructionList);
 
-        tmpList = new ArrayList<String>();
+        tmpList1 = new ArrayList<String>();
 
         //Initialize hashmap
         list1 = Arrays.asList("clock", "start", "cancel", "timer", "reheat", "defrost", "pizza", "pork",
@@ -438,13 +465,13 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
     private void press(String number) {
         if (food_working | working_button.get("reheat")) {
             lcdString = number;
-            tmpList = new ArrayList<>();
-            tmpList.add(number);
+            tmpList1 = new ArrayList<>();
+            tmpList1.add(number);
             update_number(number);
         } else {
             if (lcdString.length() < 4) {
                 lcdString += number;
-                tmpList.add(number);
+                tmpList1.add(number);
             }
             if (time_position < 4) {
                 time[time_position] = number;
@@ -838,7 +865,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
         lcdString = "";
         lcdString = buttonValue;
         TextView lcd = findViewById(R.id.lcd_text);
-        Log.e("current size", String.valueOf(tmpList.size()));
+        Log.e("current size", String.valueOf(tmpList1.size()));
         //lcd.setText(lcdString);
 
         Log.e("time", Arrays.toString(time));
@@ -871,7 +898,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
         TextView lcd = findViewById(R.id.lcd_text);
         alt.setAlpha(1);
         lcdString = "";
-        tmpList.clear();
+        tmpList1.clear();
         if (working_button.get("clock")) {
             // blink animation and allow user to alter the time
             altString = "   ";
@@ -914,5 +941,106 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
     /**
      * Speech handling
      */
+    private void stop_screen() {
+        lvSteps.setAdapter(null);
+    }
+
+    private void task() {
+        HashMap<String, String> tmpHash = getData();
+        int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        String incoming_indexString = String.valueOf(incoming_index);
+        Toast.makeText(getApplicationContext(), tmpHash.get(incoming_indexString), Toast.LENGTH_SHORT).show();
+    }
+
+    //Disable back button
+//    @Override
+//    public void onBackPressed() {
+//        if (false) {
+//            super.onBackPressed();
+//        } else {
+//            Log.d("Debug", "Back Button Pressed");
+//        }
+//    }
+
+    private void enterFeedback() {
+        int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        String incoming_indexString = String.valueOf(incoming_index);
+        HashMap<String, String> tmpHash = getData();
+        if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
+            Intent intent = new Intent(this, uiVariant6.class);
+            intent.putExtra("button", buttonList);
+            intent.putExtra("instructions", list);
+            startActivity(intent);
+        } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")) {
+            Intent intent = new Intent(this, uiVariant6Oven.class);
+            intent.putExtra("button", buttonList);
+            intent.putExtra("instructions", list);
+            startActivity(intent);
+        } else {
+            return;
+        }
+        Log.e("entering feedback", "enter");
+    }
+
+//    private HashMap<String, String> getData() {
+//        InputStream ls = getResources().openRawResource(R.raw.file2);
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(ls, StandardCharsets.UTF_8));
+//        String line = "";
+//        HashMap<String, String> resultList = new HashMap<String, String>();
+//        intentList = new HashMap<String, String>();
+//        try {
+//            while ((line = reader.readLine()) != null) {
+//                String[] tokens = line.split("\t");
+//                resultList.put(tokens[0], tokens[1]);
+//                intentList.put(tokens[0], tokens[2]);
+//            }
+//        } catch (IOException e) {
+//            Log.wtf("TaskInstructionActivity", "Error reading data file on line" + line, e);
+//            e.printStackTrace();
+//        }
+//        return resultList;
+//    }
+
+    private TextToSpeech textToSpeech;
+    String speakText = "";
+
+    void update(String s, final boolean forward) {
+        Log.e("UI STEP ", s);
+        Handler h = new Handler(getMainLooper());
+        h.postDelayed(() -> {
+            if (!forward) {
+                list.remove(tmpList.get(index));
+                index--;
+                speakText = tmpList.get(index);
+            } else {
+                list.add(s);
+                speakText = s;
+            }
+            adapter.notifyDataSetChanged();
+            initTTS(speakText);
+            index++;
+        }, 0);
+    }
+
+
+    private void initTTS(String selectedText) {
+        //textToSpeech.setSpeechRate(testingVal);
+        int speechStatus = textToSpeech.speak(selectedText, TextToSpeech.QUEUE_ADD, null, "1");
+        if (speechStatus == TextToSpeech.ERROR) {
+            Log.e("TTS", "Error in converting Text to Speech!");
+        }
+    }
+
+    private void checkPermission() {
+        if (!(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) &&
+                !(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) &&
+                !(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+        ) {
+            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                    Uri.parse("package:" + getPackageName()));
+            startActivity(intent);
+            finish();
+        }
+    }
 
 }
