@@ -70,17 +70,6 @@ public class uiVariant1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        // Obtain the FirebaseAnalytics instance.
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        Bundle bundle = new Bundle();
-        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "testID");
-        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "testName");
-        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, dateFormat.format(date));
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
-
-
         setContentView(R.layout.activity_ui_variant1);
         checkPermission();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
