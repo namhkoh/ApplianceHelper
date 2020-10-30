@@ -66,6 +66,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity implements View.O
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        checkPermission();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui_variant4_with_microwave);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -94,8 +95,15 @@ public class uiVariant4WithMicrowave extends AppCompatActivity implements View.O
         return true;
     }
 
-
-    private void showToast(String inputText) {
-        Toast.makeText(this, inputText, Toast.LENGTH_SHORT).show();
+    private void checkPermission() {
+        if (!(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) &&
+                !(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) &&
+                !(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+        ) {
+            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                    Uri.parse("package:" + getPackageName()));
+            startActivity(intent);
+            finish();
+        }
     }
 }
