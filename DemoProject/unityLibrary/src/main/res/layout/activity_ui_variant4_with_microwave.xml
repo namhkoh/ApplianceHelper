@@ -9,68 +9,16 @@
     android:background="@drawable/microwave_full_panel"
     tools:context=".uiVariant4WithMicrowave">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="508dp"
-        android:autofillHints=""
-        android:background="#B2F2F2F2"
-        android:hint="@string/inputString"
-        android:inputType="text"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageButton
         android:id="@+id/speechButton"
-        android:layout_width="78dp"
-        android:layout_height="73dp"
+        android:layout_width="56dp"
+        android:layout_height="61dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="44dp"
         android:background="@drawable/button_background"
         android:contentDescription="@string/speech_handler"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
-
-    <ListView
-        android:id="@+id/lv_steps"
-        android:layout_width="295dp"
-        android:layout_height="496dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/nextActivity"
-        android:layout_width="73dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="196dp"
-        android:layout_marginTop="172dp"
-        android:text="@string/nextActivity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lv_steps" />
-
-    <Button
-        android:id="@+id/task"
-        android:layout_width="70dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="176dp"
-        android:text="@string/taskActivity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lv_steps" />
+        tools:layout_editor_absoluteX="122dp"
+        tools:layout_editor_absoluteY="593dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
