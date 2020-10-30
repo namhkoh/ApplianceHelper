@@ -237,7 +237,8 @@ public class uiVariant4WithMicrowave extends AppCompatActivity implements View.O
                     if (list != null) {
                         list.clear();
                         tmpList.clear();
-                        adapter.notifyDataSetChanged();
+
+                        //adapter.notifyDataSetChanged();
                     }
 
                     buttonList = new ArrayList<>();
@@ -247,6 +248,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity implements View.O
                         String button = response.getSteps().get(i).getButton_name();
                         buttonList.add(button);
                         list.add(data);
+                        showToast(data);
                         initTTS(data);
                         //tmpList.add(data);
                     }
@@ -265,25 +267,6 @@ public class uiVariant4WithMicrowave extends AppCompatActivity implements View.O
 
             }
         });
-        //    @Override
-//    public boolean onTouch(View v, MotionEvent event) {
-//        switch (event.getAction()) {
-//            case MotionEvent.ACTION_DOWN:
-//                lastAction = MotionEvent.ACTION_DOWN;
-//                dX = v.getX() - event.getRawX();
-//                dY = v.getY() - event.getRawY();
-//                break;
-//            case MotionEvent.ACTION_MOVE:
-//                lastAction = MotionEvent.ACTION_MOVE;
-//                v.setX(event.getRawX() + dX);
-//                v.setY(event.getRawY() + dY);
-//                break;
-//            case MotionEvent.ACTION_UP:
-//                Log.e("buttonState", "Pressed");
-//                break;
-//        }
-//        return true;
-//    }
         SpeechBtn.setOnTouchListener((View v, MotionEvent event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_UP:
@@ -322,8 +305,6 @@ public class uiVariant4WithMicrowave extends AppCompatActivity implements View.O
                         if (index < tmpList.size()) {
                             update(tmpList.get(index), true);
                         }
-
-
                         Log.d("Speak", String.valueOf(index));
 
                         index++;
@@ -339,7 +320,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity implements View.O
                                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        lvSteps.setAdapter(null);
+                                        //lvSteps.setAdapter(null);
                                         Toast.makeText(getApplicationContext(), "Press Next", Toast.LENGTH_SHORT).show();
                                     }
                                 });
@@ -367,37 +348,41 @@ public class uiVariant4WithMicrowave extends AppCompatActivity implements View.O
 
 
         // TOAST it up
-        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, list) {
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                TextView item = (TextView) super.getView(position, convertView, parent);
-                item.setTextColor(Color.parseColor("#000000"));
-                item.setTypeface(item.getTypeface(), Typeface.BOLD);
-                item.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13);
-                if (sucess) {
-                    item.setBackgroundColor(Color.parseColor("#f2f2f2"));
-                } else {
-                    item.setBackgroundColor(Color.parseColor("#ff0033"));
-                }
-                item.setAlpha(0.7f);
-                return item;
-            }
-        };
-        lvSteps = findViewById(R.id.lv_steps);
-        lvSteps.setOnItemClickListener((parent, view, position, id) -> {
-            String item = (String) adapter.getItem(position);
-            initTTS(item);
-            for (int i = 0; i < lvSteps.getChildCount(); i++) {
-                if (position == i) {
-                    lvSteps.getChildAt(i).setBackgroundColor(Color.parseColor("#8c8c8c"));
-                } else {
-                    lvSteps.getChildAt(i).setBackgroundColor(Color.parseColor("#f2f2f2"));
-                }
-            }
-        });
-        lvSteps.setAdapter(adapter);
+//        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, list) {
+//            @NonNull
+//            @Override
+//            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+//                TextView item = (TextView) super.getView(position, convertView, parent);
+//                item.setTextColor(Color.parseColor("#000000"));
+//                item.setTypeface(item.getTypeface(), Typeface.BOLD);
+//                item.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13);
+//                if (sucess) {
+//                    item.setBackgroundColor(Color.parseColor("#f2f2f2"));
+//                } else {
+//                    item.setBackgroundColor(Color.parseColor("#ff0033"));
+//                }
+//                item.setAlpha(0.7f);
+//                return item;
+//            }
+//        };
+//        lvSteps = findViewById(R.id.lv_steps);
+//        lvSteps.setOnItemClickListener((parent, view, position, id) -> {
+//            String item = (String) adapter.getItem(position);
+//            initTTS(item);
+//            for (int i = 0; i < lvSteps.getChildCount(); i++) {
+//                if (position == i) {
+//                    lvSteps.getChildAt(i).setBackgroundColor(Color.parseColor("#8c8c8c"));
+//                } else {
+//                    lvSteps.getChildAt(i).setBackgroundColor(Color.parseColor("#f2f2f2"));
+//                }
+//            }
+//        });
+//        lvSteps.setAdapter(adapter);
         // toast it up
+    }
+
+    private void showToast(String inputText) {
+        Toast.makeText(this, inputText, Toast.LENGTH_LONG).show();
     }
 
     private TextToSpeech textToSpeech;
