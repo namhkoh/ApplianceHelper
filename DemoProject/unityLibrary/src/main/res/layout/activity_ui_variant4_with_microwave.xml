@@ -9,47 +9,14 @@
     android:background="@drawable/microwave_full_panel"
     tools:context=".uiVariant4WithMicrowave">
 
-    <ImageButton
-        android:id="@+id/speechButton"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_gravity="bottom|right"
-        android:layout_marginStart="228dp"
-        android:layout_marginTop="536dp"
-        android:background="@drawable/button_background"
-        android:contentDescription="@string/speech_handler"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="RtlHardcoded" />
-
-    <Button
-        android:id="@+id/nextActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/nextActivity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/speechButton" />
-
-    <Button
-        android:id="@+id/task"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="666dp"
-        android:text="@string/taskActivity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/editText"
-        android:layout_width="209dp"
-        android:layout_height="21dp"
+        android:layout_width="283dp"
+        android:layout_height="20dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="46dp"
-        android:layout_marginTop="328dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="6dp"
         android:autofillHints=""
         android:background="#B2F2F2F2"
         android:hint="@string/inputString"
@@ -57,5 +24,40 @@
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/BottomNavigation"
+        android:layout_width="297dp"
+        android:layout_height="68dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/speechButton"
+            android:layout_width="66dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:background="@drawable/button_background"
+            android:contentDescription="@string/speech_handler"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/nextActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="@string/nextActivity"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="@string/openActivity"
+            tools:ignore="RtlHardcoded" />
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

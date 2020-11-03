@@ -20,6 +20,7 @@ import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,7 @@ import androidx.core.content.ContextCompat;
 
 import com.aic.libnilu.nlu.MainManager;
 import com.aic.libnilu.nlu.ResponseObject;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.BufferedReader;
@@ -48,6 +50,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -74,8 +77,9 @@ public class uiVariant4WithMicrowave extends AppCompatActivity implements View.O
     private static String utterance;
     private FirebaseAnalytics mFirebaseAnalytics;
     HashMap<String, String> intentList;
-    Button next;
+    private Button next;
     private boolean sucess = false;
+    private BottomNavigationView BottomNav;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -96,9 +100,25 @@ public class uiVariant4WithMicrowave extends AppCompatActivity implements View.O
             enterFeedback();
         });
 
-        Button task = findViewById(R.id.task);
-        task.setOnClickListener(v -> {
-            task();
+//        Button task = findViewById(R.id.task);
+//        task.setOnClickListener(v -> {
+//            task();
+//        });
+
+        BottomNav = findViewById(R.id.BottomNavigation);
+        BottomNav.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.nextActivity) {
+                System.out.println("1");
+                return true;
+            } else if (itemId == R.id.speechButton) {
+                System.out.println("2");
+                return true;
+            } else if (itemId == R.id.task) {
+                System.out.println("3");
+                return true;
+            }
+            return false;
         });
 
         // SPEECH TO TEXT START
@@ -199,7 +219,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity implements View.O
                     if (list != null) {
                         list.clear();
                         tmpList.clear();
-                        adapter.notifyDataSetChanged();
+                        //adapter.notifyDataSetChanged();
                     }
 
                     list.add("No Match");
@@ -212,7 +232,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity implements View.O
                     if (list != null) {
                         list.clear();
                         tmpList.clear();
-                        adapter.notifyDataSetChanged();
+                        //adapter.notifyDataSetChanged();
                     }
 
                     list.add("Wrong Intent. " + "The current intent is " + response.getIntent());
@@ -225,7 +245,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity implements View.O
                     if (list != null) {
                         list.clear();
                         tmpList.clear();
-                        adapter.notifyDataSetChanged();
+                        //adapter.notifyDataSetChanged();
                     }
 
                     list.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
@@ -267,21 +287,14 @@ public class uiVariant4WithMicrowave extends AppCompatActivity implements View.O
 
             }
         });
-        SpeechBtn.setOnTouchListener((View v, MotionEvent event) -> {
-            switch (event.getAction()) {
+        SpeechBtn.setOnTouchListener((view, motionEvent) -> {
+            switch (motionEvent.getAction()) {
                 case MotionEvent.ACTION_UP:
                     mSpeechRecognizer.stopListening();
                     editText.setHint("You will see input here");
                     break;
-                case MotionEvent.ACTION_MOVE:
-                    lastAction = MotionEvent.ACTION_MOVE;
-                    v.setX(event.getRawX() + dX);
-                    v.setY(event.getRawY() + dY);
-                    break;
+
                 case MotionEvent.ACTION_DOWN:
-                    lastAction = MotionEvent.ACTION_DOWN;
-                    dX = v.getX() - event.getRawX();
-                    dY = v.getY() - event.getRawY();
                     mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
                     editText.setText("");
                     editText.setHint("Listening...");
@@ -289,6 +302,28 @@ public class uiVariant4WithMicrowave extends AppCompatActivity implements View.O
             }
             return false;
         });
+//        SpeechBtn.setOnTouchListener((View v, MotionEvent event) -> {
+//            switch (event.getAction()) {
+//                case MotionEvent.ACTION_UP:
+//                    mSpeechRecognizer.stopListening();
+//                    editText.setHint("You will see input here");
+//                    break;
+//                case MotionEvent.ACTION_MOVE:
+//                    lastAction = MotionEvent.ACTION_MOVE;
+//                    v.setX(event.getRawX() + dX);
+//                    v.setY(event.getRawY() + dY);
+//                    break;
+//                case MotionEvent.ACTION_DOWN:
+//                    lastAction = MotionEvent.ACTION_DOWN;
+//                    dX = v.getX() - event.getRawX();
+//                    dY = v.getY() - event.getRawY();
+//                    mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+//                    editText.setText("");
+//                    editText.setHint("Listening...");
+//                    break;
+//            }
+//            return false;
+//        });
         // SPEECH TO TEXT END
         textToSpeech = new TextToSpeech(getApplicationContext(), status -> {
 
