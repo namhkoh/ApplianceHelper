@@ -408,6 +408,9 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                         buttonList.add(button);
                         list_ui1.add(data);
                         initTTS(data);
+
+                        showToast(data);
+
                         //tmpList.add(data);
                         myList = buttonList;
                         instructionList = list_ui1;
@@ -659,7 +662,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
     }
 
     private void showToast(String inputText) {
-        Toast.makeText(this, inputText + " Star", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, inputText, Toast.LENGTH_LONG).show();
     }
 
     /**
