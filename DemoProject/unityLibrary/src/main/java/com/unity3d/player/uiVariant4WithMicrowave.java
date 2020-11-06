@@ -823,8 +823,6 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
             if (working_button.get("clock")) {
                 working_button.put("clock", false);
             }
-
-            Button next = findViewById(R.id.Next);
             next.setEnabled(true);
         } else {
             string_button = myList.get(current_state);
@@ -844,7 +842,6 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
         lcdString = "Ready!";
         lcd.setText(lcdString);
         lcd.clearAnimation();
-        Button next = findViewById(R.id.Next);
         next.setEnabled(true);
     }
 
@@ -994,7 +991,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
         //refreshTime();
         TextView lcd = findViewById(R.id.lcd_text);
         lcd.clearAnimation();
-        Button next = findViewById(R.id.Next);
+        //Button next = findViewById(R.id.Next);
         next.setEnabled(false);
         //lcdString = DateTimeHandler.getCurrentTime("hh:mm");
         lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
