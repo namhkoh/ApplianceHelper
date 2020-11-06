@@ -38,39 +38,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
 
-    <ListView
-        android:id="@+id/lv_steps"
-        android:layout_width="285dp"
-        android:layout_height="359dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="140dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <Button
         android:id="@+id/nextActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="196dp"
-        android:layout_marginTop="304dp"
+        android:layout_marginTop="1dp"
         android:text="@string/nextActivity"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lv_steps" />
-
-    <Button
-        android:id="@+id/task"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="304dp"
-        android:text="@string/taskActivity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lv_steps" />
+        app:layout_constraintTop_toBottomOf="@+id/speechButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

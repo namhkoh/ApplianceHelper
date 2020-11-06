@@ -54,17 +54,15 @@ import java.util.Objects;
 public class uiVariant4WithMicrowave extends AppCompatActivity {
 
     private ImageButton SpeechBtn;
-    private ListView lvSteps;
     private int index = 0;
     ArrayList<String> list = new ArrayList<>();
     ArrayList<String> tmpList = new ArrayList<>();
     ArrayList<String> buttonList;
-    private ArrayAdapter adapter;
     private static String utterance;
     private FirebaseAnalytics mFirebaseAnalytics;
     HashMap<String, String> intentList;
     Button next;
-    private boolean sucess = false;
+    private boolean success = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,12 +75,8 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
         next = findViewById(R.id.nextActivity);
         next.setEnabled(false);
         next.setOnClickListener(v -> {
-            enterFeedback();
-        });
-
-        Button task = findViewById(R.id.task);
-        task.setOnClickListener(v -> {
-            task();
+            //enterFeedback();
+            nextTask();
         });
 
         // SPEECH TO TEXT START
@@ -183,7 +177,6 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                     if (list != null) {
                         list.clear();
                         tmpList.clear();
-                        adapter.notifyDataSetChanged();
                     }
 
                     list.add("No Match");
@@ -196,7 +189,6 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                     if (list != null) {
                         list.clear();
                         tmpList.clear();
-                        adapter.notifyDataSetChanged();
                     }
 
                     list.add("Wrong Intent. " + "The current intent is " + response.getIntent());
@@ -209,7 +201,6 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                     if (list != null) {
                         list.clear();
                         tmpList.clear();
-                        adapter.notifyDataSetChanged();
                     }
 
                     list.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
@@ -217,11 +208,10 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                     initTTS("Wrong appliance");
 
                 } else {
-                    sucess = true;
+                    success = true;
                     if (list != null) {
                         list.clear();
                         tmpList.clear();
-                        adapter.notifyDataSetChanged();
                     }
 
                     buttonList = new ArrayList<>();
@@ -286,7 +276,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
 
                         index++;
 
-                        if (index == list.size() & sucess == true) {
+                        if (index == list.size() & success == true) {
                             Log.d("Here we go", "Done");
                             SpeechBtn.setEnabled(false);
 
@@ -297,7 +287,6 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        lvSteps.setAdapter(null);
                                         Toast.makeText(getApplicationContext(), "Press Next", Toast.LENGTH_SHORT).show();
                                     }
                                 });
@@ -305,7 +294,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                             }, 3000);
 
                             Log.d("Here we go", "Done-2");
-                        }else{
+                        } else {
 
                             new Handler(Looper.getMainLooper()).post(new Runnable() {
                                 @Override
@@ -322,49 +311,9 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
 
                     }
                 });
-        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, list) {
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                TextView item = (TextView) super.getView(position, convertView, parent);
-                item.setTextColor(Color.parseColor("#000000"));
-                item.setTypeface(item.getTypeface(), Typeface.BOLD);
-                item.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13);
-                if (sucess) {
-                    item.setBackgroundColor(Color.parseColor("#f2f2f2"));
-                } else {
-                    item.setBackgroundColor(Color.parseColor("#ff0033"));
-                }
-                item.setAlpha(0.7f);
-                return item;
-            }
-        };
-        lvSteps = findViewById(R.id.lv_steps);
-        lvSteps.setOnItemClickListener((parent, view, position, id) -> {
-            String item = (String) adapter.getItem(position);
-            initTTS(item);
-            for (int i = 0; i < lvSteps.getChildCount(); i++) {
-                if (position == i) {
-                    lvSteps.getChildAt(i).setBackgroundColor(Color.parseColor("#8c8c8c"));
-                } else {
-                    lvSteps.getChildAt(i).setBackgroundColor(Color.parseColor("#f2f2f2"));
-                }
-            }
-        });
-        lvSteps.setAdapter(adapter);
-
     }
 
-    private void stop_screen() {
-        lvSteps.setAdapter(null);
-    }
 
-    private void task() {
-        HashMap<String, String> tmpHash = getData();
-        int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
-        String incoming_indexString = String.valueOf(incoming_index);
-        Toast.makeText(getApplicationContext(), tmpHash.get(incoming_indexString), Toast.LENGTH_SHORT).show();
-    }
 
     //Disable back button
     @Override
@@ -373,6 +322,22 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
             super.onBackPressed();
         } else {
             Log.d("Debug", "Back Button Pressed");
+        }
+    }
+
+    /**
+     * This function will take the user to TaskUserActivity
+     */
+    private void nextTask() {
+        int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        HashMap<String, String> tmpHash = getData();
+        ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
+        if (incoming_index < instructionList.size() - 1) {
+            Intent intent = new Intent(this, TaskInstructionActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, UserSurveyActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -430,7 +395,6 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                 list.add(s);
                 speakText = s;
             }
-            adapter.notifyDataSetChanged();
             initTTS(speakText);
             index++;
         }, 0);
@@ -459,5 +423,9 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
 
     private void onClick(View v) {
         //hint();
+    }
+
+    private void showToast(String inputText) {
+        Toast.makeText(this, inputText + " Star", Toast.LENGTH_SHORT).show();
     }
 }
