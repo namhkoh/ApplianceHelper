@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.BlendMode;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -409,7 +410,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                         list_ui1.add(data);
                         initTTS(data);
 
-                        showToast(data);
+                        showToast(data, 1);
 
                         //tmpList.add(data);
                         myList = buttonList;
@@ -661,8 +662,13 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
         }
     }
 
-    private void showToast(String inputText) {
-        Toast.makeText(this, inputText, Toast.LENGTH_LONG).show();
+    private void showToast(String inputText, int Length) {
+        if (Length == 0) {
+            Toast.makeText(this, inputText, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, inputText, Toast.LENGTH_LONG).show();
+        }
+
     }
 
     /**

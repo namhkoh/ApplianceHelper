@@ -284,11 +284,12 @@
     <EditText
         android:id="@+id/editText"
         android:layout_width="251dp"
-        android:layout_height="18dp"
+        android:layout_height="25dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="23dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="25dp"
         android:autofillHints=""
         android:background="#B2F2F2F2"
         android:hint="@string/inputString"
@@ -296,6 +297,7 @@
         android:scrollHorizontally="false"
         android:textColor="#000000"
         android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lcd_text" />
 
