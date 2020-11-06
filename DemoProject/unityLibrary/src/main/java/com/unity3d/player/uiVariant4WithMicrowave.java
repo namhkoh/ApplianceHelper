@@ -1,6 +1,7 @@
 package com.unity3d.player;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -64,6 +65,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
     Button next;
     private boolean success = false;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
