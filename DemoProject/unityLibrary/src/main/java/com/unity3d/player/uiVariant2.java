@@ -31,9 +31,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.company.MainManager;
-import com.company.ResponseObject;
+import com.aic.libnilu.nlu.ResponseObject;
+//import com.company.MainManager;
+//import com.company.ResponseObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -45,43 +47,84 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.Scanner;
 
+
+/**
+ * This class is responsible for handling the UI Variant 2 task of this application.
+ * UI variant 2 is where the user asks a question by pressing the red mike button.
+ * If a question is successfully asked a list with the first step will be displayed
+ * The user can say Previous, Next, Repeat to toggle around the steps.
+ * The user then presses the UI Variant button to go to UI variant 6 in order to perform the instructions given.
+ * The user may come back to uiVariant6 if they forgot what the instructions were and go back.
+ * The status from uiVariant6 will be saved in uivariant1Bundle.
+ */
 public class uiVariant2 extends AppCompatActivity {
-    private ImageButton SpeechBtn;
+
+    //Remove after checking (not being used)
     int testingVal = 5;
     // Set to 0 for testing
     int delayVal = 3500;
+    ArrayList<String> microwaveButtons = new ArrayList<String>(Arrays.asList("Clock", "Melt", "Start"));
+    ArrayList<String> ovenButtons = new ArrayList<String>(Arrays.asList("Frozen", "Cook Time", "Oven Start", "Cancel"));
+    ArrayList<String> utteranceMicrowave = new ArrayList<String>(Arrays.asList("Clock", "SOFTEN/MELT", "Start"));
+    ArrayList<String> utteranceOven = new ArrayList<String>(Arrays.asList("FROZEN BAKE", "COOK TIME", "START", "CANCEL"));
+
+
+    private ImageButton SpeechBtn;
     private ListView lvSteps;
     private int index = 0;
-    ArrayList<String> list = new ArrayList<>();
-    ArrayList<String> tmpList = new ArrayList<>();
+    private ArrayList<String> list = new ArrayList<>();
+    private ArrayList<String> tmpList = new ArrayList<>();
+    private ArrayList<String> buttonList;
     private ArrayAdapter adapter;
     private static String utterance;
-    ArrayList<String> microwaveButtons = new ArrayList<String>(Arrays.asList("Clock","Melt","Start"));
-    ArrayList<String> ovenButtons = new ArrayList<String>(Arrays.asList("Frozen","Cook Time","Oven Start","Cancel"));
+    private int max_index;
+    private boolean success;
+    private HashMap<String, String> tmpHash; //getData
+    int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+    private String incoming_indexString;
+    private TextToSpeech textToSpeech;
+    private String speakText = "";
 
-    ArrayList<String> utteranceMicrowave = new ArrayList<String>(Arrays.asList("Clock","SOFTEN/MELT","Start"));
-    ArrayList<String> utteranceOven = new ArrayList<String>(Arrays.asList("FROZEN BAKE","COOK TIME","START","CANCEL"));
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        checkPermission();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui_variant2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        checkPermission();
+
+        initialize_task();
+
+//        //Initializing (Extracting) information from file2.tsv
+//        tmpHash = getData(); //result list. Technically no need to return it to tmpHash as the method getData() initializes everything we want.
+//        incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+//        incoming_indexString = String.valueOf(incoming_index); // Index value of current task. Used to extract corresponding intents and instructions.
+
+        /**
+         * Initializing buttons
+         */
         SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
+        final EditText editText = findViewById(R.id.editText);
         Button next = findViewById(R.id.next);
         next.setOnClickListener(v -> {
             enterFeedback();
         });
-        final EditText editText = findViewById(R.id.editText);
+        next.setEnabled(false);
+
+        Button task = findViewById(R.id.task);
+        task.setOnClickListener(v -> {
+            task();
+        });
+
+        /**
+         * Speech Recognize
+         */
         final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
                 Locale.getDefault());
-
         mSpeechRecognizer.setRecognitionListener(new RecognitionListener() {
             @Override
             public void onReadyForSpeech(Bundle bundle) {
@@ -125,56 +168,79 @@ public class uiVariant2 extends AppCompatActivity {
                 editText.setText(utterance);
 
                 if (utterance.contains("previous")) {
-                    Log.e("previous", String.valueOf(index));
-                    index--;
-                    update(list.get(index), false);
+                    if (index > 0) {
+                        Log.e("previous", String.valueOf(index));
+                        index--;
+                        update_state(tmpList.get(index));
+                    } else {
+                        Log.e("previous", "Front of the line");
+                    }
+                    return;
+                } else if (utterance.contains("next")) {
+                    if (index < max_index - 1) {
+                        index++;
+                        Log.e("next", String.valueOf(index));
+                        update_state(tmpList.get(index));
+                        if (index == max_index - 1) {
+                            Toast.makeText(getApplicationContext(), "Last Step", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Log.e("next", "End of the line");
+                    }
+                    return;
+                } else if (utterance.contains("repeat")) {
+                    initTTS(tmpList.get(index));
                     return;
                 }
 
+                //Code below is technically an else cause everything above has a return statement.
+
                 String question = editText.getText().toString();
-//                String assetName = "video_demo_data.txt";
-//                String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
 
-                String assetName = "video_demo_data25.txt";
-                String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
-                Log.d("1",filePath);
+                ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
 
-                String model_file = "model_tiny_9_2.pt";
-                String file_name = Utilities.assetFilePath(getApplicationContext(), model_file);
-                Log.d("2",file_name);
+                //Some sort of error happened in the NLU part
+                if (response.getDialog_command().equals("no_match")) {
+                    buttonList = new ArrayList<>();
+                    clear(list);
+                    success = false;
 
-                String vocab_file = "vocab.txt";
-                String vocab_path = Utilities.assetFilePath(getApplicationContext(), vocab_file);
-                Log.d("3",vocab_path);
+                    tmpList.add("No Match");
+                    tmpList.add("Try again by pressing the red mike button");
+                    buttonList.add("try_again");
+                    buttonList.add("speech");
 
-                String config_file = "config.json";
-                String config_path = Utilities.assetFilePath(getApplicationContext(), config_file);
-                Log.d("3",config_path);
+                    index = 0;
+                    max_index = 2;
 
-                String vocab_class_file = "vocab1.class";
-                String vocab_class_path = Utilities.assetFilePath(getApplicationContext(), vocab_class_file);
-                Log.d("3",vocab_class_path);
+                    update(tmpList.get(index), true);
 
-                String vocab_slot_file = "vocab1.tag";
-                String vocab_slot_path = Utilities.assetFilePath(getApplicationContext(), vocab_slot_file);
-                Log.d("3",vocab_slot_path);
+                } else {
+                    clear(list);
+                    success = true;
+                    buttonList = new ArrayList<>();
+                    next.setEnabled(true);
+                    if (list != null) {
+                        list.clear();
+                        tmpList.clear();
+                        buttonList.clear();
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    for (int i = 0; i < response.getSteps().size(); ++i) {
+                        String data = response.getSteps().get(i).getText();
+                        String button = response.getSteps().get(i).getButton_name();
+                        buttonList.add(button);
+                        tmpList.add(data);
+                    }
+
+                    index = 0;
+                    max_index = response.getSteps().size();
+                    initial_update(tmpList.get(index));
 
 
-                com.aic.libnilu.nlu.ResponseObject response = com.aic.libnilu.nlu.MainManager.getAnswer(question,filePath,file_name, vocab_path, config_path, vocab_class_path, vocab_slot_path);
-
-                //ResponseObject response = MainManager.getAnswer(question, filePath);
-                if (list != null) {
-                    list.clear();
-                    tmpList.clear();
-                    adapter.notifyDataSetChanged();
                 }
 
-                for (int i = 0; i < response.getSteps().size(); ++i) {
-                    String data = response.getSteps().get(i).getText();
-                    tmpList.add(data);
-                }
-                index = 0;
-                update(tmpList.get(index), true);
             }
 
             @Override
@@ -217,7 +283,9 @@ public class uiVariant2 extends AppCompatActivity {
 
                     @Override
                     public void onDone(String utteranceId) {
-                        if (index < tmpList.size()) {
+                        Log.e("Debug", "On Done");
+                        if (success == false & (index < max_index - 1)) {
+                            index++;
                             update(tmpList.get(index), true);
                         }
                     }
@@ -235,7 +303,12 @@ public class uiVariant2 extends AppCompatActivity {
                 item.setTextColor(Color.parseColor("#000000"));
                 item.setTypeface(item.getTypeface(), Typeface.BOLD);
                 item.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13);
-                item.setBackgroundColor(Color.parseColor("#f2f2f2"));
+//                item.setBackgroundColor(Color.parseColor("#f2f2f2"));
+                if (success) {
+                    item.setBackgroundColor(Color.parseColor("#f2f2f2"));
+                } else {
+                    item.setBackgroundColor(Color.parseColor("#ff0033"));
+                }
                 item.setAlpha(0.7f);
                 return item;
             }
@@ -258,15 +331,54 @@ public class uiVariant2 extends AppCompatActivity {
         lvSteps.setAdapter(adapter);
     }
 
+    /**
+     * Clear everything from the lists.
+     * @param list_
+     */
+    public void clear(ArrayList<String> list_) {
+        if (list_ != null) {
+            list.clear();
+            tmpList.clear();
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    /**
+     * Initializing (Extracting) information from file2.tsv
+     * tmpHash: result list. Technically no need to return it to tmpHash as the method getData() initializes everything we want.
+     * incoming_indexString: Index value of current task. Used to extract corresponding intents and instructions.
+     */
+    private void initialize_task() {
+        tmpHash = getData();
+        incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        incoming_indexString = String.valueOf(incoming_index);
+    }
+
+    /**
+     * Reminds the user of the current task (What they need to ask to the application)
+     */
+    private void task() {
+        Toast.makeText(getApplicationContext(), tmpHash.get(incoming_indexString), Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Is called when going to the next screen (UI Variant6, UI Variant6 Oven ex.)
+     */
     private void enterFeedback() {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         String incoming_indexString = String.valueOf(incoming_index);
         HashMap<String, String> tmpHash = getData();
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
             Intent intent = new Intent(this, uiVariant6.class);
+            intent.putExtra("button", buttonList);
+            intent.putExtra("instructions", list);
+            intent.putExtra("variant", 2);
             startActivity(intent);
-        } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")){
+        } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")) {
             Intent intent = new Intent(this, uiVariant6Oven.class);
+            intent.putExtra("button", buttonList);
+            intent.putExtra("instructions", list);
+            intent.putExtra("variant", 2);
             startActivity(intent);
         } else {
             return;
@@ -274,6 +386,10 @@ public class uiVariant2 extends AppCompatActivity {
         Log.e("entering feedback", "enter");
     }
 
+    /**
+     * Get the data from the task file file2.tsv.
+     * @return Could get rid of this since the objective is to populate resultList and intentList and not just resultList.
+     */
     private HashMap<String, String> getData() {
         InputStream ls = getResources().openRawResource(R.raw.file2);
         BufferedReader reader = new BufferedReader(new InputStreamReader(ls, StandardCharsets.UTF_8));
@@ -292,14 +408,13 @@ public class uiVariant2 extends AppCompatActivity {
     }
 
 
-    private TextToSpeech textToSpeech;
-    String speakText = "";
-
     void update(String s, final boolean forward) {
         Log.e("UI STEP ", s);
+        System.out.println(index);
         Handler h = new Handler(getMainLooper());
         h.postDelayed(() -> {
             if (!forward) {
+                System.out.println(index);
                 list.remove(tmpList.get(index));
                 index--;
                 speakText = tmpList.get(index);
@@ -310,10 +425,39 @@ public class uiVariant2 extends AppCompatActivity {
             adapter.notifyDataSetChanged();
             initTTS(speakText);
             index++;
-        },3000);
+        }, 3000);
+        index--;
     }
 
-    private void initTTS(String selectedText){
+    /**
+     * Used to display the first step in the screen
+     * @param s The text to be updated
+     */
+    void initial_update(String s) {
+        Log.e("UI STEP ", s);
+        list.add(s);
+        speakText = s;
+        adapter.notifyDataSetChanged();
+        initTTS(speakText);
+    }
+
+    /**
+     * Update the instruction list to the next/previous step
+     * Maybe wise to combine with initial_update
+     * @param s The text to be updated
+     */
+    void update_state(String s) {
+        list.clear();
+        list.add(s);
+        adapter.notifyDataSetChanged();
+        initTTS(s);
+    }
+
+    /**
+     * A voice reads the text given in the method.
+     * @param selectedText The String text that is read.
+     */
+    private void initTTS(String selectedText) {
         //textToSpeech.setSpeechRate(testingVal);
         int speechStatus = textToSpeech.speak(selectedText, TextToSpeech.QUEUE_FLUSH, null, "1");
         if (speechStatus == TextToSpeech.ERROR) {

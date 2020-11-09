@@ -39,8 +39,6 @@ import androidx.core.content.ContextCompat;
 import com.aic.libnilu.nlu.MainManager;
 import com.aic.libnilu.nlu.ResponseObject;
 import com.google.firebase.analytics.FirebaseAnalytics;
-//import com.company.MainManager;
-//import com.company.ResponseObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -52,38 +50,72 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.prefs.AbstractPreferences;
 
+
+/**
+ * This class is responsible for handling the UI Variant 1 task of this application.
+ * UI variant 1 is where the user asks a question by pressing the red mike button.
+ * If a question is successfully asked a list will be displayed containing such instructions.
+ * The user then presses the UI Variant button to go to UI variant 6 in order to perform the instructions given.
+ * The user may come back to uiVariant6 if they forgot what the instructions were and go back.
+ * The status from uiVariant6 will be saved in uivariant1Bundle.
+ */
 public class uiVariant1 extends AppCompatActivity {
-    private ImageButton SpeechBtn;
-    private ListView lvSteps;
-    private int index = 0;
-    ArrayList<String> list = new ArrayList<>();
-    ArrayList<String> tmpList = new ArrayList<>();
-    ArrayList<String> buttonList;
-    private ArrayAdapter adapter;
-    private static String utterance;
+
     private FirebaseAnalytics mFirebaseAnalytics;
-    HashMap<String, String> intentList;
+    private ArrayAdapter adapter;
+    public static Bundle uivariant1Bundle = new Bundle();
+    private ImageButton SpeechBtn;
+    private ListView lvSteps; //The list showing the instructions.
+
+    private ArrayList<String> list = new ArrayList<>();
+    private ArrayList<String> tmpList = new ArrayList<>();
+    private ArrayList<String> buttonList;
+
+    private HashMap<String, String> intentList;
+    private HashMap<String, String> tmpHash; //getData
+
     Button next;
+    Intent intent;
+    Button task;
+
+    int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+    private int index = 0;
     private boolean sucess = false;
+    private String incoming_indexString;
+    private static String utterance;
+
+    private TextToSpeech textToSpeech;
+    private String speakText = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        // Obtain the FirebaseAnalytics instance.
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        Bundle bundle = new Bundle();
-        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "testID");
-        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "testName");
-        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, dateFormat.format(date));
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
-
-
         setContentView(R.layout.activity_ui_variant1);
-        checkPermission();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        checkPermission();
+
+        initialize_task();
+
+        firebase_instance();
+
+//        //Initializing (Extracting) information from file2.tsv
+//        tmpHash = getData(); //result list. Technically no need to return it to tmpHash as the method getData() initializes everything we want.
+//        incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+//        incoming_indexString = String.valueOf(incoming_index); // Index value of current task. Used to extract corresponding intents and instructions.
+
+//        // Obtain the FirebaseAnalytics instance.
+//        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//        Date date = new Date();
+//        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+//        Bundle bundle = new Bundle();
+//        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "testID");
+//        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "testName");
+//        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, dateFormat.format(date));
+//        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
+        //Set tasks to buttons. SpeechButton, Task button, UI Panel Button (next)
         SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
         final EditText editText = findViewById(R.id.editText);
         next = findViewById(R.id.nextActivity);
@@ -91,8 +123,7 @@ public class uiVariant1 extends AppCompatActivity {
         next.setOnClickListener(v -> {
             enterFeedback();
         });
-
-        Button task = findViewById(R.id.task);
+        task = findViewById(R.id.task);
         task.setOnClickListener(v -> {
             task();
         });
@@ -146,96 +177,41 @@ public class uiVariant1 extends AppCompatActivity {
                 utterance = matches.get(0);
                 editText.setText(utterance);
 
-                if (utterance.contains("previous")) {
-                    Log.e("previous", String.valueOf(index));
-                    index--;
-                    update(list.get(index), false);
-                    return;
-                }
-
                 String question = editText.getText().toString();
 
-                //String assetName = "video_demo_data26.txt";
-                String assetName = "appliance_test6.txt";
-                String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
-                Log.d("Data File path", filePath);
-
-                String model_file = "model_tiny_9_5.pt";
-                String file_name = Utilities.assetFilePath(getApplicationContext(), model_file);
-                Log.d("Model File Path", file_name);
-
-                String vocab_file = "vocab.txt";
-                String vocab_path = Utilities.assetFilePath(getApplicationContext(), vocab_file);
-                Log.d("Vocab File Path", vocab_path);
-
-                String config_file = "config.json";
-                String config_path = Utilities.assetFilePath(getApplicationContext(), config_file);
-                Log.d("Config File Path", config_path);
-
-                String vocab_class_file = "vocab1.class";
-                String vocab_class_path = Utilities.assetFilePath(getApplicationContext(), vocab_class_file);
-                Log.d("Vocab Class File", vocab_class_path);
-
-                String vocab_slot_file = "vocab1.tag";
-                String vocab_slot_path = Utilities.assetFilePath(getApplicationContext(), vocab_slot_file);
-                Log.d("Vocab Tag Path", vocab_slot_path);
-
-                ResponseObject response = MainManager.getAnswer(question, filePath, file_name, vocab_path, config_path, vocab_class_path, vocab_slot_path);
-
-                //Current task from file2 here Please
-                HashMap<String, String> tmpHash = getData();
-                int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
-                String incoming_indexString = String.valueOf(incoming_index);
-
-                System.out.println(tmpList.size());
+                ResponseObject response = Utilities.returnResponse(getApplicationContext(),question);
 
                 //Some sort of error happened in the NLU part
                 if (response.getDialog_command().equals("no_match")) {
 
-                    if (list != null) {
-                        list.clear();
-                        tmpList.clear();
-                        adapter.notifyDataSetChanged();
-                    }
+                    clear(list);
 
                     list.add("No Match");
                     list.add("Try again by pressing the red mike button");
                     initTTS("No Match");
 
+                    //Adapter is what creates the list on the screen using lv_steps and list.
 
+                //Intent list contains the intent values.
+                //So if the incoming_indexString is 0 the intentList will get me the corresponding intent.
                 } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
 
-                    if (list != null) {
-                        list.clear();
-                        tmpList.clear();
-                        adapter.notifyDataSetChanged();
-                    }
-
+                    clear(list);
                     list.add("Wrong Intent. " + "The current intent is " + response.getIntent());
                     list.add("Try again by pressing the red mike button");
                     initTTS("Wrong Intent");
 
-
                 } else if (!Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains(response.getAppliance_name().toLowerCase())) {
 
-                    if (list != null) {
-                        list.clear();
-                        tmpList.clear();
-                        adapter.notifyDataSetChanged();
-                    }
-
+                    clear(list);
                     list.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
                     list.add("Try again by pressing the red mike button");
                     initTTS("Wrong appliance");
 
                 } else {
+                    SpeechBtn.setEnabled(false);
+                    clear(list);
                     sucess = true;
-                    if (list != null) {
-                        list.clear();
-                        tmpList.clear();
-                        adapter.notifyDataSetChanged();
-                    }
-
                     buttonList = new ArrayList<>();
 
                     for (int i = 0; i < response.getSteps().size(); ++i) {
@@ -244,12 +220,10 @@ public class uiVariant1 extends AppCompatActivity {
                         buttonList.add(button);
                         list.add(data);
                         initTTS(data);
-                        //tmpList.add(data);
                     }
                     index = 0;
+                    next.setEnabled(true);
                 }
-                //update(tmpList.get(index), true);
-                next.setEnabled(true);
             }
 
             @Override
@@ -261,6 +235,7 @@ public class uiVariant1 extends AppCompatActivity {
 
             }
         });
+
         SpeechBtn.setOnTouchListener((view, motionEvent) -> {
             switch (motionEvent.getAction()) {
                 case MotionEvent.ACTION_UP:
@@ -276,10 +251,13 @@ public class uiVariant1 extends AppCompatActivity {
             }
             return false;
         });
+
         // SPEECH TO TEXT END
         textToSpeech = new TextToSpeech(getApplicationContext(), status -> {
 
         });
+
+        //Results of pressing the speech button.
         textToSpeech.setOnUtteranceProgressListener(
                 new UtteranceProgressListener() {
                     @Override
@@ -289,43 +267,22 @@ public class uiVariant1 extends AppCompatActivity {
 
                     @Override
                     public void onDone(String utteranceId) {
-                        if (index < tmpList.size()) {
-                            update(tmpList.get(index), true);
-                        }
-
-
-                        Log.d("Speak", String.valueOf(index));
-
                         index++;
-
                         if (index == list.size() & sucess == true) {
-                            Log.d("Here we go", "Done");
-                            SpeechBtn.setEnabled(false);
-
-                            Handler h = new Handler(getMainLooper());
-
-                            h.postDelayed(() -> {
-
+                            Log.d("Log","Speach button deactivated");
                             new Handler(Looper.getMainLooper()).post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    lvSteps.setAdapter(null);
-                                    Toast.makeText(getApplicationContext(), "Press Next", Toast.LENGTH_SHORT).show();
+                                    SpeechBtn.setEnabled(false);
                                 }
                             });
-
-                        }, 3000);
-
-                            Log.d("Here we go", "Done-2");
                         }else{
-
                             new Handler(Looper.getMainLooper()).post(new Runnable() {
                                 @Override
                                 public void run() {
                                     SpeechBtn.setEnabled(true);
                                 }
                             });
-
                         }
                     }
 
@@ -334,6 +291,9 @@ public class uiVariant1 extends AppCompatActivity {
 
                     }
                 });
+
+
+        //Used to automatically update the list on the screen.
         adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, list) {
             @NonNull
             @Override
@@ -366,14 +326,55 @@ public class uiVariant1 extends AppCompatActivity {
         lvSteps.setAdapter(adapter);
     }
 
+    /**
+     * Initializing (Extracting) information from file2.tsv
+     * tmpHash: result list. Technically no need to return it to tmpHash as the method getData() initializes everything we want.
+     * incoming_indexString: Index value of current task. Used to extract corresponding intents and instructions.
+     */
+    private void initialize_task(){
+        tmpHash = getData();
+        incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        incoming_indexString = String.valueOf(incoming_index);
+    }
+
+    /**
+     * Obtain the FirebaseAnalytics instance.
+     */
+    private void firebase_instance(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "testID");
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "testName");
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, dateFormat.format(date));
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+    }
+
+    /**
+     * Clear everything from the lists.
+     * @param list_
+     */
+    public void clear(ArrayList<String> list_){
+        if (list_ != null) {
+            list.clear();
+            tmpList.clear();
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    /**
+     * Used to get rid of the lvSteps (Instructions)
+     * Not currently used. Was used when the instructions were given a timer.
+     */
     private void stop_screen() {
         lvSteps.setAdapter(null);
     }
 
+    /**
+     * Reminds the user of the current task (What they need to ask to the application)
+     */
     private void task() {
-        HashMap<String, String> tmpHash = getData();
-        int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
-        String incoming_indexString = String.valueOf(incoming_index);
         Toast.makeText(getApplicationContext(), tmpHash.get(incoming_indexString), Toast.LENGTH_SHORT).show();
     }
 
@@ -387,19 +388,24 @@ public class uiVariant1 extends AppCompatActivity {
         }
     }
 
+    /**
+     * Is called when going to the next screen (UI Variant6, UI Variant6 Oven ex.)
+     */
     private void enterFeedback() {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         String incoming_indexString = String.valueOf(incoming_index);
         HashMap<String, String> tmpHash = getData();
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
-            Intent intent = new Intent(this, uiVariant6.class);
+            intent = new Intent(this, uiVariant6.class);
             intent.putExtra("button", buttonList);
             intent.putExtra("instructions", list);
+            intent.putExtra("variant",1);
             startActivity(intent);
         } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")) {
             Intent intent = new Intent(this, uiVariant6Oven.class);
             intent.putExtra("button", buttonList);
             intent.putExtra("instructions", list);
+            intent.putExtra("variant", 1);
             startActivity(intent);
         } else {
             return;
@@ -407,6 +413,10 @@ public class uiVariant1 extends AppCompatActivity {
         Log.e("entering feedback", "enter");
     }
 
+    /**
+     * Get the data from the task file file2.tsv.
+     * @return Could get rid of this since the objective is to populate resultList and intentList and not just resultList.
+     */
     private HashMap<String, String> getData() {
         InputStream ls = getResources().openRawResource(R.raw.file2);
         BufferedReader reader = new BufferedReader(new InputStreamReader(ls, StandardCharsets.UTF_8));
@@ -426,9 +436,12 @@ public class uiVariant1 extends AppCompatActivity {
         return resultList;
     }
 
-    private TextToSpeech textToSpeech;
-    String speakText = "";
+//  Remove if no errors found. No reason for this to be down here.
+//    private TextToSpeech textToSpeech;
+//    String speakText = "";
 
+    //This method doesn't really seem to be used in uiVariant1
+    //But not removed because it might be used.
     void update(String s, final boolean forward) {
         Log.e("UI STEP ", s);
         Handler h = new Handler(getMainLooper());
@@ -447,7 +460,10 @@ public class uiVariant1 extends AppCompatActivity {
         }, 0);
     }
 
-
+    /**
+     * A voice reads the text given in the method.
+     * @param selectedText The String text that is read.
+     */
     private void initTTS(String selectedText) {
         //textToSpeech.setSpeechRate(testingVal);
         int speechStatus = textToSpeech.speak(selectedText, TextToSpeech.QUEUE_ADD, null, "1");
@@ -456,6 +472,9 @@ public class uiVariant1 extends AppCompatActivity {
         }
     }
 
+    /**
+     * Checking permission with the Device. (Probably. Check with Namho)
+     */
     private void checkPermission() {
         if (!(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) &&
                 !(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) &&
@@ -468,7 +487,4 @@ public class uiVariant1 extends AppCompatActivity {
         }
     }
 
-    private void onClick(View v) {
-        //hint();
-    }
 }

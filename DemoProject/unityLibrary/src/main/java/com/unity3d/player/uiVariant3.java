@@ -33,8 +33,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.company.MainManager;
-import com.company.ResponseObject;
+import com.aic.libnilu.nlu.ResponseObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -46,7 +45,18 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
 
+/**
+ * This class is responsible for handling the UI Variant 23task of this application.
+ * UI variant 3 is where the user asks a question by pressing the red mike button.
+ * If a question is successfully asked a list with the first step will be displayed along with an image of the button
+ * This UI Variant is very much similar to uiVariant2
+ * The user can say Previous, Next, Repeat to toggle around the steps.
+ * The user then presses the UI Variant button to go to UI variant 6 in order to perform the instructions given.
+ * The user may come back to uiVariant6 if they forgot what the instructions were and go back.
+ * The status from uiVariant6 will be saved in uivariant1Bundle.
+ */
 public class uiVariant3 extends AppCompatActivity {
+
     private ImageButton SpeechBtn;
     private int index = 0;
     ArrayList<String> list = new ArrayList<>();
@@ -56,10 +66,16 @@ public class uiVariant3 extends AppCompatActivity {
     private static String utterance;
     ArrayList<String> buttonList;
     private String current_appliance;
-
+    private int max_index;
     private boolean sucess = false;
-
     ImageView iv1;
+
+    private HashMap<String, String> tmpHash; //getData
+    private String incoming_indexString;
+    private int incoming_index;
+
+    private TextToSpeech textToSpeech;
+    String speakText = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +83,26 @@ public class uiVariant3 extends AppCompatActivity {
         setContentView(R.layout.activity_ui_variant3);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         checkPermission();
+
+        initialize_task();
+
+        /**
+         * Initialize buttons
+         */
         SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
+        final EditText editText = findViewById(R.id.editText);
         Button next = findViewById(R.id.next);
         next.setOnClickListener(v -> enterFeedback());
         next.setEnabled(false);
-        final EditText editText = findViewById(R.id.editText);
-        // SPEECH TO TEXT START
+
+        Button task = findViewById(R.id.task);
+        task.setOnClickListener(v -> {
+            task();
+        });
+
+        /**
+         * SPEECH TO TEXT START
+         */
         final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
@@ -118,48 +148,39 @@ public class uiVariant3 extends AppCompatActivity {
                         .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                 Log.e("ALL MATCHES", matches.toString());
 
-                editText.setText(matches.get(0));
+                utterance = matches.get(0);
+                editText.setText(utterance);
 
-                if (matches.get(0).contains("previous")) {
-                    Log.e("previous", String.valueOf(index));
-                    index--;
-                    update(list.get(index), false);
+                if (utterance.contains("previous")) {
+                    if(index > 0) {
+                        Log.e("previous", String.valueOf(index));
+                        index--;
+                        update_state(tmpList.get(index));
+                    }else{
+                        Log.e("previous", "Beginning of the instructions");
+                    }
                     return;
-                } else if (matches.get(0).toLowerCase().contains("next")) {
-                    nextStep(tmpList.get(index));
+                } else if (utterance.toLowerCase().contains("next")) {
+                    if(index < max_index - 1) {
+                        index++;
+                        Log.e("next", String.valueOf(index));
+                        System.out.println(list);
+                        update_state(tmpList.get(index));
+                    }else{
+                        Log.e("next","End of the instructions");
+                    }
                     return;
-                } else {
-                    utterance = matches.get(0);
+                } else if (utterance.contains("repeat")){
+                    initTTS(tmpList.get(index));
+                    return;
                 }
+
+                //Technically the code below is an else statement.
+                //Due to the return statements from the code above.
+
                 String question = utterance;
 
-                /////////////////////////////////////////////////////////////////////////////////
-
-                String appliance_data = "appliance_test6.txt";
-                String appliance_filePath = Utilities.assetFilePath(getApplicationContext(), appliance_data);
-                Log.d("Data File path", appliance_filePath);
-
-                String model_file = "model_tiny_9_5.pt";
-                String file_name = Utilities.assetFilePath(getApplicationContext(), model_file);
-                Log.d("Model File Path", file_name);
-
-                String vocab_file_name = "vocab.txt";
-                String vocab_path = Utilities.assetFilePath(getApplicationContext(), vocab_file_name);
-                Log.d("Vocab File Path", vocab_path);
-
-                String config_file = "config.json";
-                String config_path = Utilities.assetFilePath(getApplicationContext(), config_file);
-                Log.d("Config File Path", config_path);
-
-                String vocab_class_file = "vocab1.class";
-                String vocab_class_path = Utilities.assetFilePath(getApplicationContext(), vocab_class_file);
-                Log.d("Vocab Class File", vocab_class_path);
-
-                String vocab_slot_file = "vocab1.tag";
-                String vocab_slot_path = Utilities.assetFilePath(getApplicationContext(), vocab_slot_file);
-                Log.d("Vocab Tag Path", vocab_slot_path);
-
-                com.aic.libnilu.nlu.ResponseObject response = com.aic.libnilu.nlu.MainManager.getAnswer(question, appliance_filePath, file_name, vocab_path, config_path, vocab_class_path, vocab_slot_path);
+                ResponseObject response = Utilities.returnResponse(getApplicationContext(),question);
 
                 current_appliance = response.getAppliance_name();
 
@@ -174,7 +195,7 @@ public class uiVariant3 extends AppCompatActivity {
 
                 //Some sort of error happened in the NLU part
                 if (response.getDialog_command().equals("no_match")) {
-
+                    sucess = false;
                     if (list != null) {
                         list.clear();
                         tmpList.clear();
@@ -189,7 +210,11 @@ public class uiVariant3 extends AppCompatActivity {
                     buttonList.add("try_again");
                     buttonList.add("speech");
 
+                    max_index = 2;
+
                     index = 0;
+
+                    update_state(buttonList.get(index));
 
 
                 } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
@@ -210,6 +235,8 @@ public class uiVariant3 extends AppCompatActivity {
 
                     index = 0;
 
+                    update_state(buttonList.get(index));
+
 
                 } else if (!Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains(response.getAppliance_name().toLowerCase())) {
 
@@ -229,7 +256,10 @@ public class uiVariant3 extends AppCompatActivity {
 
                     index = 0;
 
+                    update_state(buttonList.get(index));
+
                 } else  {
+                    next.setEnabled(true);
                     sucess = true;
                     if (list != null) {
                         list.clear();
@@ -249,29 +279,10 @@ public class uiVariant3 extends AppCompatActivity {
                         //tmpList.add(data);
                     }
                     index = 0;
+                    max_index = response.getSteps().size();
+
+                    initial_update(buttonList.get(index), tmpList.get(index));
                 }
-
-                /////////////////////////////////////////////////////////////////////////////////
-
-//                String assetName = "video_demo_data.txt";
-//                String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
-//                ResponseObject response = MainManager.getAnswer(question, filePath);
-//                if (list != null) {
-//                    list.clear();
-//                    tmpList.clear();
-//                    adapter.notifyDataSetChanged();
-//                }
-//                for (int i = 0; i < response.getSteps().size(); ++i) {
-//                    String data = response.getSteps().get(i).getText();
-//                    tmpList.add(data);
-//                }
-//                index = 0;
-                //update(tmpList.get(index), true);
-                //nextStep(tmpList.get(index));
-                runSteps(buttonList.get(index), tmpList.get(index));
-
-
-                /////////////////////////////////////////////////////////////////////////////////
 
             }
 
@@ -315,15 +326,19 @@ public class uiVariant3 extends AppCompatActivity {
 
                     @Override
                     public void onDone(String utteranceId) {
-                        if (index < buttonList.size()) {
-                            runSteps(buttonList.get(index),tmpList.get(index));
-                        } else{
+                        Log.e("Debug","On Done");
+
+                        if(sucess==false & (index < max_index - 1)){
+                            index++;
+                            Handler h = new Handler(getMainLooper());
+                            h.postDelayed(() -> {
                             new Handler(Looper.getMainLooper()).post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    next.setEnabled(true);
+                                    update_state(tmpList.get(index));
                                 }
                             });
+                            }, 3000);
                         }
                     }
 
@@ -347,6 +362,9 @@ public class uiVariant3 extends AppCompatActivity {
         };
     }
 
+    /**
+     * Is called when going to the next screen (UI Variant6, UI Variant6 Oven ex.)
+     */
     private void enterFeedback() {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         String incoming_indexString = String.valueOf(incoming_index);
@@ -355,11 +373,13 @@ public class uiVariant3 extends AppCompatActivity {
             Intent intent = new Intent(this, uiVariant6.class);
             intent.putExtra("button", buttonList);
             intent.putExtra("instructions", list);
+            intent.putExtra("variant",3);
             startActivity(intent);
         } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")){
             Intent intent = new Intent(this, uiVariant6Oven.class);
             intent.putExtra("button", buttonList);
             intent.putExtra("instructions", list);
+            intent.putExtra("variant",3);
             startActivity(intent);
         } else {
             return;
@@ -367,6 +387,10 @@ public class uiVariant3 extends AppCompatActivity {
         Log.e("entering feedback", "enter");
     }
 
+    /**
+     * Get the data from the task file file2.tsv.
+     * @return Could get rid of this since the objective is to populate resultList and intentList and not just resultList.
+     */
     private HashMap<String, String> getData() {
         InputStream ls = getResources().openRawResource(R.raw.file2);
         BufferedReader reader = new BufferedReader(new InputStreamReader(ls, StandardCharsets.UTF_8));
@@ -386,19 +410,41 @@ public class uiVariant3 extends AppCompatActivity {
         return resultList;
     }
 
-    private TextToSpeech textToSpeech;
-    String speakText = "";
+    /**
+     * Initializing (Extracting) information from file2.tsv
+     * tmpHash: result list. Technically no need to return it to tmpHash as the method getData() initializes everything we want.
+     * incoming_indexString: Index value of current task. Used to extract corresponding intents and instructions.
+     */
+    private void initialize_task() {
+        tmpHash = getData();
+        incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        incoming_indexString = String.valueOf(incoming_index);
+    }
+
+    /**
+     * Reminds the user of the current task (What they need to ask to the application)
+     */
+    private void task() {
+        Toast.makeText(getApplicationContext(), tmpHash.get(incoming_indexString), Toast.LENGTH_SHORT).show();
+    }
+
     void update(String s, final boolean forward) {
         TextView step = findViewById(R.id.stepOutput);
         Handler h = new Handler(getMainLooper());
+        System.out.println("Index: " + index);
         h.postDelayed(() -> {
             if (!forward) {
                 list.remove(tmpList.get(index));
                 index--;
                 speakText = tmpList.get(index);
+                System.out.println(speakText);
+                System.out.println(buttonList.get(index));
+                step.setText(speakText);
+                displayPanels2(buttonList.get(index));
             } else {
                 list.add(s);
                 step.setText(s);
+                displayPanels2(buttonList.get(index));
                 speakText = s;
             }
             adapter.notifyDataSetChanged();
@@ -411,6 +457,27 @@ public class uiVariant3 extends AppCompatActivity {
             //3000
             index++;
         }, 0);
+        index--;
+        System.out.println(index);
+    }
+
+    void update_state(String s){
+        TextView step = findViewById(R.id.stepOutput);
+        list.clear();
+        list.add(s);
+        step.setText(s);
+        displayPanels2(buttonList.get(index));
+        adapter.notifyDataSetChanged();
+        initTTS(s);
+    }
+
+    void initial_update(String s, String k){
+        TextView step = findViewById(R.id.stepOutput);
+        step.setText(k);
+        initTTS(k);
+        displayPanels2(s);
+        adapter.notifyDataSetChanged();
+        initTTS(s);
     }
 
     public void runSteps(String s, String k) {
@@ -420,19 +487,47 @@ public class uiVariant3 extends AppCompatActivity {
             step.setText(k);
             initTTS(k);
             displayPanels2(s);
-            index++;
         }, 3000);
     }
 
+    /**
+     * Used to display the button images.
+     * @param button The name of the button.
+     */
     private void displayPanels2(String button){
         iv1 = (ImageView) findViewById(R.id.appliance_image);
         System.out.println(button.toLowerCase());
         System.out.println(current_appliance);
+
         if(current_appliance.toLowerCase().equals("oven")) {
             if(button.toLowerCase().equals("speech")){
                 iv1.setImageResource(R.drawable.speech);
             } else if(button.toLowerCase().equals("try_again")){
                 iv1.setImageResource(R.drawable.try_again);
+            } else if(button.toLowerCase().equals("two")){
+                iv1.setImageResource(R.drawable.oven_panel_button_2);
+            }else if(button.toLowerCase().equals("three")){
+                iv1.setImageResource(R.drawable.oven_panel_button_3);
+            }else if(button.toLowerCase().equals("six")){
+                iv1.setImageResource(R.drawable.oven_panel_button_6);
+            }else if(button.toLowerCase().equals("four")){
+                iv1.setImageResource(R.drawable.oven_panel_button_4);
+            }else if(button.toLowerCase().equals("start")){
+                iv1.setImageResource(R.drawable.oven_start_button);
+            }else if(button.toLowerCase().equals("cook time")){
+                iv1.setImageResource(R.drawable.oven_panel_cook_time);
+            }else if(button.toLowerCase().equals("number pad")){
+                iv1.setImageResource(R.drawable.oven_panel_number_pad);
+            }else if(button.toLowerCase().equals("bake")){
+                iv1.setImageResource(R.drawable.oven_panel_bake);
+            }else if(button.toLowerCase().equals("settings/clock,sound")){
+                iv1.setImageResource(R.drawable.oven_panel_settings_clock);
+            }else if(button.toLowerCase().equals("settings/clock,clock")){
+                iv1.setImageResource(R.drawable.oven_panel_settings_clock);
+            } else if(button.toLowerCase().equals("cancel")){
+                iv1.setImageResource(R.drawable.oven_cancel_button);
+            } else if(button.toLowerCase().equals("open")){
+                iv1.setImageResource(R.drawable.oven_open);
             } else{
                 iv1.setImageResource(R.drawable.no_image_available);
             }
@@ -477,7 +572,7 @@ public class uiVariant3 extends AppCompatActivity {
             if (index == 1) {
                 iv1.setImageResource(R.drawable.oven_frozen_button);
             } else if (index == 2) {
-                iv1.setImageResource(R.drawable.oven_3_button);
+                iv1.setImageResource(R.drawable.oven_panel_button_3);
             } else if (index == 4) {
                 iv1.setImageResource(R.drawable.oven_cooktime_button);
             } else if (index == 6) {

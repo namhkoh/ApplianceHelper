@@ -72,7 +72,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="303dp"
         android:layout_marginTop="216dp"
-        android:text="@string/nextActivity"
+        android:text="@string/uiPanel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appliance_image" />
+
+    <Button
+        android:id="@+id/task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="216dp"
+        android:text="@string/taskActivity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appliance_image" />
 

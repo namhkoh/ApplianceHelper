@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -47,6 +48,7 @@ public class uiVariant6Oven extends AppCompatActivity {
     boolean timerPressed = false;
     boolean clock_active;
     boolean start_active;
+    boolean is_first = false;
     private boolean bake_pressed;
 
     private int time_position = 0;
@@ -71,6 +73,7 @@ public class uiVariant6Oven extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui_variant6_oven);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TextView lcd = findViewById(R.id.oven_panel_text);
         lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
@@ -318,31 +321,101 @@ public class uiVariant6Oven extends AppCompatActivity {
         //Instructions List
         instructionList = (ArrayList<String>) getIntent().getSerializableExtra("instructions");
 
-        //How many buttons are there in the button array.
-        number_of_steps = myList.size();
-        pressed_wrong = 0;
 
         //Button Hashmap for state
         list = Arrays.asList("settings/clock", "six", "one", "two","three","four","five","nine","seven","eight","zero","start","bake",
                 "cook time","broil","keep warm", "timer","frozen bake","convect modes","oven clean","delay start", "rapid preheat",
                 "on off", "confirm");
-        next_button = new HashMap<String, Boolean>();
-        button_active = new HashMap<String, Boolean>();
-        for (String i : list) {
-            next_button.put(i, false);
-            button_active.put(i, false);
-        }
 
         next.setEnabled(false);
         open.setEnabled(false);
+        hint.setEnabled(false);
 
-        //Current Button
-        current_state = 0;
-        string_button = myList.get(current_state);
+        // Not first time
+        if(uiVariant1.uivariant1Bundle.containsKey("Is First")){
+            System.out.println("Is First: " + uiVariant1.uivariant1Bundle.getBoolean("Is First"));
+            System.out.println("Number Pad: " + uiVariant1.uivariant1Bundle.getBoolean("NumberPad"));
+            load_bundle();
+            Log.d("Load Bundle","Restored");
 
-        //Initial Step
-        next_step(string_button);
+        } //First Time
+        else {
+            is_first = true;
+            //How many buttons are there in the button array.
+            number_of_steps = myList.size();
+            pressed_wrong = 0;
 
+            next_button = new HashMap<String, Boolean>();
+            button_active = new HashMap<String, Boolean>();
+            for (String i : list) {
+                next_button.put(i, false);
+                button_active.put(i, false);
+            }
+
+            //Current Button
+            current_state = 0;
+            string_button = myList.get(current_state);
+
+            //Initial Step
+            next_step(string_button);
+        }
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()){
+            case android.R.id.home:
+                Toast.makeText(getApplicationContext(),"Back button clicked",Toast.LENGTH_SHORT).show();
+                save_bundle();
+                finish();
+        }
+        return true;
+    }
+
+    private void save_bundle(){
+        uiVariant1.uivariant1Bundle.clear();
+        TextView lcd = findViewById(R.id.oven_panel_text);
+        System.out.println(lcd.getText());
+        Log.v("Saved","Save Instance State 2");
+        uiVariant1.uivariant1Bundle.putBoolean("Is First",is_first);
+        uiVariant1.uivariant1Bundle.putSerializable("NextButton", next_button);
+        uiVariant1.uivariant1Bundle.putSerializable("ActiveButton", button_active);
+        //uiVariant1.uivariant1Bundle.putSerializable("WorkingButton", working_button);
+        uiVariant1.uivariant1Bundle.putInt("CurrentState",current_state);
+        uiVariant1.uivariant1Bundle.putInt("PressedWrong",pressed_wrong);
+        uiVariant1.uivariant1Bundle.putString("CurrentTask",current_task);
+        uiVariant1.uivariant1Bundle.putString("lcdstring",lcdString);
+        uiVariant1.uivariant1Bundle.putString("OnScreen",lcd.getText().toString());
+        uiVariant1.uivariant1Bundle.putStringArray("time",time);
+        uiVariant1.uivariant1Bundle.putInt("timeposition",time_position);
+        uiVariant1.uivariant1Bundle.putString("StringButton",string_button);
+        uiVariant1.uivariant1Bundle.putString("InfoButton",info_button);
+        uiVariant1.uivariant1Bundle.putBoolean("NumberPad",numberpad_active);
+        System.out.println("Numberpad " + numberpad_active);
+    }
+
+    private void load_bundle(){
+        TextView lcd = findViewById(R.id.oven_panel_text);
+        is_first = uiVariant1.uivariant1Bundle.getBoolean("Is First");
+        next_button = (HashMap<String, Boolean>) uiVariant1.uivariant1Bundle.getSerializable("NextButton");
+        button_active = (HashMap<String, Boolean>) uiVariant1.uivariant1Bundle.getSerializable("ActiveButton");
+        //working_button = (HashMap<String, Boolean>) uiVariant1.uivariant1Bundle.getSerializable("WorkingButton");
+        current_state = uiVariant1.uivariant1Bundle.getInt("CurrentState");
+        pressed_wrong = uiVariant1.uivariant1Bundle.getInt("PressedWrong");
+        current_task = uiVariant1.uivariant1Bundle.getString("CurrentTask");
+        lcdString = uiVariant1.uivariant1Bundle.getString("lcdstring");
+        time =  uiVariant1.uivariant1Bundle.getStringArray("time");
+        time_position = uiVariant1.uivariant1Bundle.getInt("timeposition");
+        lcd.setText(uiVariant1.uivariant1Bundle.getString("OnScreen"));
+        string_button = uiVariant1.uivariant1Bundle.getString("StringButton");
+        info_button = uiVariant1.uivariant1Bundle.getString("InfoButton");
+        System.out.println("Info Button: " + info_button);
+        System.out.println("String Button: " + string_button);
+        numberpad_active = uiVariant1.uivariant1Bundle.getBoolean("NumberPad");
+        System.out.println("Number Pad: " + uiVariant1.uivariant1Bundle.getBoolean("NumberPad"));
+        System.out.println("NumberPad: " + numberpad_active);
+        uiVariant1.uivariant1Bundle.clear();
     }
 
     private void next_step(String string_button) {
@@ -749,7 +822,8 @@ public class uiVariant6Oven extends AppCompatActivity {
             if (next_button.get("start") == true) {
                 next_button.put("start", false);
             }
-
+            next_button.put("start", false);
+            button_active.put("start",false);
             current_state++;
 
             if (timerPressed == true) {

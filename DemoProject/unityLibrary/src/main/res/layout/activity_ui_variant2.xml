@@ -55,9 +55,19 @@
         android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="305dp"
-        android:layout_marginTop="188dp"
-        android:text="@string/nextActivity"
+        android:layout_marginStart="288dp"
+        android:layout_marginTop="184dp"
+        android:text="@string/uiPanel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lv_steps" />
+
+    <Button
+        android:id="@+id/task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="184dp"
+        android:text="@string/taskActivity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lv_steps" />
 
