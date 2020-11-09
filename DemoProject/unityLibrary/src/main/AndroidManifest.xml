@@ -65,6 +65,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".Pop"
+                    android:theme="@style/BaseUnityTheme.CustomTheme"
+            >
+
+        </activity>
+
         <activity
             android:name=".TaskInstructionActivity"
             android:label="Task"

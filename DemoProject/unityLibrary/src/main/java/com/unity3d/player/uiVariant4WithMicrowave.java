@@ -8,6 +8,7 @@ import android.graphics.BlendMode;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Debug;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
@@ -33,6 +34,7 @@ import androidx.core.content.ContextCompat;
 
 import com.aic.libnilu.nlu.MainManager;
 import com.aic.libnilu.nlu.ResponseObject;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.BufferedReader;
@@ -126,6 +128,19 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
         next.setOnClickListener(v -> {
             //enterFeedback();
             nextTask();
+        });
+
+        /**
+         * Floating button to show the current instructions,
+         * When clicked, will display an opaque background/ view or textview,
+         */
+        FloatingActionButton fabInstructions = findViewById(R.id.instructionHelp);
+        fabInstructions.setOnClickListener(v -> {
+            Log.e("clicked", "here are the instructions");
+            Intent intent = new Intent(getApplicationContext(), Pop.class);
+            intent.putExtra("instructions", list_ui1);
+            startActivity(intent);
+//                startActivity(new Intent(uiVariant4WithMicrowave.this,Pop.class));
         });
 
         /**
