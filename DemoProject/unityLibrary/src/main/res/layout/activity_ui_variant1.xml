@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="276dp"
         android:layout_marginTop="184dp"
-        android:text="@string/nextActivity"
+        android:text="@string/uiPanel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lv_steps" />
 
