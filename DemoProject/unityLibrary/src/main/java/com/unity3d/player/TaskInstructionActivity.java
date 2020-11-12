@@ -71,11 +71,11 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     Intent intent4 = new Intent(getApplicationContext(), uiVariant4WithMicrowave.class);
                     startActivity(intent4);
                     break;
-                case "UnityPlayerActivity":
+                case "uiVariant5":
                     Log.e("taskInstruction", String.valueOf(index));
                     TaskInstructionActivity.indexBundle.putInt("index", index);
                     index++;
-                    Intent intent5 = new Intent(getApplicationContext(), UnityPlayerActivity.class);
+                    Intent intent5 = new Intent(getApplicationContext(), uiVariant5WithMicrowave.class);
                     startActivity(intent5);
                     break;
                 case "uiVariant6":
