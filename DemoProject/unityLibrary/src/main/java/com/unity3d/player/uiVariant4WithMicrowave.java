@@ -2,6 +2,7 @@ package com.unity3d.player;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.BlendMode;
@@ -23,12 +24,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -57,6 +60,8 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
 
     private String lcdString = " ";
     private String altString = " ";
+    private int max_index;
+    //private ArrayAdapter adapter;
 
     private ImageButton SpeechBtn;
     private int index = 0;
@@ -121,6 +126,10 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
         setContentView(R.layout.activity_ui_variant4_with_microwave);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         checkPermission();
+
+        /**
+         * Initializing buttons
+         */
         SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
         final EditText editText = findViewById(R.id.editText);
         next = findViewById(R.id.nextActivity);
@@ -136,10 +145,12 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
          */
         FloatingActionButton fabInstructions = findViewById(R.id.instructionHelp);
         fabInstructions.setOnClickListener(v -> {
-            Log.e("clicked", "here are the instructions");
-            Intent intent = new Intent(getApplicationContext(), Pop.class);
-            intent.putExtra("instructions", list_ui1);
-            startActivity(intent);
+//            Log.e("clicked", "here are the instructions");
+//            Intent intent = new Intent(getApplicationContext(), Pop.class);
+//            intent.putExtra("instructions", list_ui1);
+//            startActivity(intent);
+            openDialog();
+
 //                startActivity(new Intent(uiVariant4WithMicrowave.this,Pop.class));
         });
 
@@ -147,7 +158,9 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
          * Button Initialization start
          */
 
-        //Initialize the time on the screen with the current time.
+        /**
+         * Initialize the time on the screen with the current time.
+         */
         TextView lcd = findViewById(R.id.lcd_text);
         lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
 
@@ -331,40 +344,36 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                 editText.setText(utterance);
 
                 if (utterance.contains("previous")) {
-                    Log.e("previous", String.valueOf(index));
-                    index--;
-                    update(list_ui1.get(index), false);
+                    if (index > 0) {
+                        Log.e("previous", String.valueOf(index));
+                        index--;
+                        update_state(tmpList_ui1.get(index));
+                    } else {
+                        Log.e("previous", "Front of the line");
+                    }
+                    return;
+                } else if (utterance.contains("next")) {
+                    if (index < max_index - 1) {
+                        index++;
+                        Log.e("next", String.valueOf(index));
+                        update_state(tmpList_ui1.get(index));
+                        if (index == max_index - 1) {
+                            Toast.makeText(getApplicationContext(), "Last Step", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Log.e("next", "End of the line");
+                    }
+                    return;
+                } else if (utterance.contains("repeat")) {
+                    initTTS(tmpList_ui1.get(index));
                     return;
                 }
 
+                //Code below is technically an else cause everything above has a return statement.
+
                 String question = editText.getText().toString();
 
-                //String assetName = "video_demo_data26.txt";
-                String assetName = "appliance_test6.txt";
-                String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
-                Log.d("Data File path", filePath);
-
-                String model_file = "model_tiny_9_5.pt";
-                String file_name = Utilities.assetFilePath(getApplicationContext(), model_file);
-                Log.d("Model File Path", file_name);
-
-                String vocab_file = "vocab.txt";
-                String vocab_path = Utilities.assetFilePath(getApplicationContext(), vocab_file);
-                Log.d("Vocab File Path", vocab_path);
-
-                String config_file = "config.json";
-                String config_path = Utilities.assetFilePath(getApplicationContext(), config_file);
-                Log.d("Config File Path", config_path);
-
-                String vocab_class_file = "vocab1.class";
-                String vocab_class_path = Utilities.assetFilePath(getApplicationContext(), vocab_class_file);
-                Log.d("Vocab Class File", vocab_class_path);
-
-                String vocab_slot_file = "vocab1.tag";
-                String vocab_slot_path = Utilities.assetFilePath(getApplicationContext(), vocab_slot_file);
-                Log.d("Vocab Tag Path", vocab_slot_path);
-
-                ResponseObject response = MainManager.getAnswer(question, filePath, file_name, vocab_path, config_path, vocab_class_path, vocab_slot_path);
+                ResponseObject response = Utilities.returnResponse(getApplicationContext(),question);
 
                 //Current task from file2 here Please
                 HashMap<String, String> tmpHash = getData();
@@ -376,68 +385,73 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                 //Some sort of error happened in the NLU part
                 if (response.getDialog_command().equals("no_match")) {
 
-                    if (list_ui1 != null) {
-                        list_ui1.clear();
-                        tmpList_ui1.clear();
-                    }
+                    buttonList = new ArrayList<>();
+                    clear(list_ui1);
+                    success = false;
 
-                    list_ui1.add("No Match");
-                    list_ui1.add("Try again by pressing the red mike button");
-                    initTTS("No Match");
+                    tmpList_ui1.add("No Match");
+                    tmpList_ui1.add("Try again by pressing the red mike button");
+                    buttonList.add("try_again");
+                    buttonList.add("speech");
 
+                    index = 0;
+                    max_index = 2;
+
+                    update(tmpList_ui1.get(index), true);
 
                 } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
 
-                    if (list_ui1 != null) {
-                        list_ui1.clear();
-                        tmpList_ui1.clear();
-                    }
+                    clear(list_ui1);
 
-                    list_ui1.add("Wrong Intent. " + "The current intent is " + response.getIntent());
-                    list_ui1.add("Try again by pressing the red mike button");
-                    initTTS("Wrong Intent");
+                    tmpList_ui1.add("Wrong Intent. " + "The current intent is " + response.getIntent());
+                    tmpList_ui1.add("Try again by pressing the red mike button");
+                    buttonList.add("try_again");
+                    buttonList.add("speech");
+
+                    index = 0;
+                    max_index = 2;
+
+                    update(tmpList_ui1.get(index), true);
 
 
                 } else if (!Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains(response.getAppliance_name().toLowerCase())) {
 
-                    if (list_ui1 != null) {
-                        list_ui1.clear();
-                        tmpList_ui1.clear();
-                    }
+                    clear(list_ui1);
 
-                    list_ui1.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
-                    list_ui1.add("Try again by pressing the red mike button");
-                    initTTS("Wrong appliance");
+                    tmpList_ui1.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
+                    tmpList_ui1.add("Try again by pressing the red mike button");
+                    buttonList.add("try_again");
+                    buttonList.add("speech");
+
+                    index = 0;
+                    max_index = 2;
+
+                    update(tmpList_ui1.get(index), true);
 
                 } else {
                     success = true;
-                    if (list_ui1 != null) {
-                        list_ui1.clear();
-                        tmpList_ui1.clear();
-                    }
-
+                    clear(list_ui1);
                     buttonList = new ArrayList<>();
+                    next.setEnabled(true);
 
                     for (int i = 0; i < response.getSteps().size(); ++i) {
                         String data = response.getSteps().get(i).getText();
                         String button = response.getSteps().get(i).getButton_name();
                         buttonList.add(button);
-                        list_ui1.add(data);
-                        initTTS(data);
-
-                        showToast(data, 1);
-
-                        //tmpList.add(data);
-                        myList = buttonList;
-                        instructionList = list_ui1;
-                        //Get the Next button
-                        string_button = myList.get(current_state);
-                        //How many instructions are there in total
-                        number_of_steps = myList.size();
-                        //Use the String value of the button to go to the next step.
-                        next_step(string_button);
+                        tmpList_ui1.add(data);
                     }
+
+                    //tmpList.add(data);
+                    myList = buttonList;
+                    instructionList = list_ui1;
+
+
                     index = 0;
+                    max_index = response.getSteps().size();
+                    initial_update(tmpList_ui1.get(index));
+
+                    initiate();
+
                 }
                 //update(tmpList.get(index), true);
                 next.setEnabled(true);
@@ -475,48 +489,51 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                 new UtteranceProgressListener() {
                     @Override
                     public void onStart(String utteranceId) {
-                        SpeechBtn.setEnabled(false);
+                        //SpeechBtn.setEnabled(false);
                     }
 
                     @Override
                     public void onDone(String utteranceId) {
-                        if (index < tmpList_ui1.size()) {
+                        if (success == false & (index < max_index - 1)) {
+                            index++;
                             update(tmpList_ui1.get(index), true);
                         }
-
-
-                        Log.d("Speak", String.valueOf(index));
-
-                        index++;
-
-                        if (index == list_ui1.size() & success == true) {
-                            Log.d("Here we go", "Done");
-                            SpeechBtn.setEnabled(false);
-
-                            Handler h = new Handler(getMainLooper());
-
-                            h.postDelayed(() -> {
-
-                                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(getApplicationContext(), "Press Next", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-
-                            }, 3000);
-
-                            Log.d("Here we go", "Done-2");
-                        } else {
-
-                            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    SpeechBtn.setEnabled(true);
-                                }
-                            });
-
-                        }
+//                        if (index < tmpList_ui1.size()) {
+//                            update(tmpList_ui1.get(index), true);
+//                        }
+//
+//
+//                        Log.d("Speak", String.valueOf(index));
+//
+//                        index++;
+//
+//                        if (index == list_ui1.size() & success == true) {
+//                            Log.d("Here we go", "Done");
+//                            SpeechBtn.setEnabled(false);
+//
+//                            Handler h = new Handler(getMainLooper());
+//
+//                            h.postDelayed(() -> {
+//
+//                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        Toast.makeText(getApplicationContext(), "Press Next", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                });
+//
+//                            }, 3000);
+//
+//                        } else {
+//
+//                            new Handler(Looper.getMainLooper()).post(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    SpeechBtn.setEnabled(true);
+//                                }
+//                            });
+//
+//                        }
                     }
 
                     @Override
@@ -568,16 +585,83 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
             working_button.put(i, false);
         }
 
-        pressed_wrong = 0;
+//        if(!(myList == null)){
+//            pressed_wrong = 0;
+//            //Initial Step
+//            current_state = 0;
+////        //Get the Next button
+//            string_button = myList.get(current_state);
+//            //How many instructions are there in total
+//            number_of_steps = myList.size();
+//            //Use the String value of the button to go to the next step.
+//            next_step(string_button);
+//        }
+    }
 
+    public void initiate(){
+        pressed_wrong = 0;
         //Initial Step
         current_state = 0;
 //        //Get the Next button
-//        string_button = myList.get(current_state);
-//        //How many instructions are there in total
-//        number_of_steps = myList.size();
-//        //Use the String value of the button to go to the next step.
-//        next_step(string_button);
+        string_button = myList.get(current_state);
+        //How many instructions are there in total
+        number_of_steps = myList.size();
+        //Use the String value of the button to go to the next step.
+        next_step(string_button);
+    }
+
+    /**
+     * Clear everything from the lists.
+     * @param list_
+     */
+    public void clear(ArrayList<String> list_) {
+        if (list_ != null) {
+            list_ui1.clear();
+            tmpList_ui1.clear();
+        }
+    }
+
+    /**
+     * Used to display the first step in the screen
+     * @param s The text to be updated
+     */
+    void initial_update(String s) {
+        Log.e("UI STEP ", s);
+        list_ui1.add(s);
+        speakText = s;
+        initTTS(speakText);
+    }
+
+    void update_state(String s) {
+        list_ui1.clear();
+        list_ui1.add(s);
+        initTTS(s);
+    }
+
+    public void openDialog(){
+
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 0; i <= index; i++){
+            sb.append(tmpList_ui1.get(i));
+            sb.append("\n");
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        //final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>();
+        builder.setTitle("Instructions");
+        builder.setMessage("Look at this dialog!");
+        builder.setMessage(sb.toString());
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
 
