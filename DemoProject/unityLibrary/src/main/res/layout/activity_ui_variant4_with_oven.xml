@@ -332,7 +332,7 @@
         android:layout_height="64dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="62dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="1dp"
         android:background="@drawable/button_background"
         android:contentDescription="@string/speech_handler"
