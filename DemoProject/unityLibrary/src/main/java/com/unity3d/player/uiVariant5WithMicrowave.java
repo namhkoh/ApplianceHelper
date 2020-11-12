@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+/**
+ * uiPanel supported list view instructions
+ */
 public class uiVariant5WithMicrowave extends AppCompatActivity {
 
     @Override
