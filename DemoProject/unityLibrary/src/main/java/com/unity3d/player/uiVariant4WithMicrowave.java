@@ -450,6 +450,8 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                     max_index = response.getSteps().size();
                     initial_update(tmpList_ui1.get(index));
 
+                    initiate();
+
                 }
                 //update(tmpList.get(index), true);
                 next.setEnabled(true);
@@ -583,16 +585,29 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
             working_button.put(i, false);
         }
 
-        pressed_wrong = 0;
+//        if(!(myList == null)){
+//            pressed_wrong = 0;
+//            //Initial Step
+//            current_state = 0;
+////        //Get the Next button
+//            string_button = myList.get(current_state);
+//            //How many instructions are there in total
+//            number_of_steps = myList.size();
+//            //Use the String value of the button to go to the next step.
+//            next_step(string_button);
+//        }
+    }
 
+    public void initiate(){
+        pressed_wrong = 0;
         //Initial Step
         current_state = 0;
 //        //Get the Next button
-//        string_button = myList.get(current_state);
-//        //How many instructions are there in total
-//        number_of_steps = myList.size();
-//        //Use the String value of the button to go to the next step.
-//        next_step(string_button);
+        string_button = myList.get(current_state);
+        //How many instructions are there in total
+        number_of_steps = myList.size();
+        //Use the String value of the button to go to the next step.
+        next_step(string_button);
     }
 
     /**
