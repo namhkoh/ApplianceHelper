@@ -12,8 +12,11 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,6 +29,17 @@ import java.util.HashMap;
 import java.util.List;
 
 public class uiVariant4WithOven extends AppCompatActivity {
+
+    private ImageButton SpeechBtn;
+    private int index = 0;
+    ArrayList<String> list_ui1 = new ArrayList<>();
+    ArrayList<String> tmpList_ui1 = new ArrayList<>();
+    public static ArrayList<String> buttonList;
+    private static String utterance;
+    private FirebaseAnalytics mFirebaseAnalytics;
+    HashMap<String, String> intentList;
+    Button next;
+    private boolean success = false;
 
     private String lcdString = " ";
     private String current_task = "";
