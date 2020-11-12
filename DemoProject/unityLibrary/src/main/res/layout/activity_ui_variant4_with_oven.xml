@@ -12,27 +12,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="304dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="2dp"
         android:text="@string/nextActivity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/oven_panel_3" />
 
-    <Button
-        android:id="@+id/task"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/hintActivity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/oven_panel_3" />
 
     <Button
         android:id="@+id/open"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="2dp"
         android:text="@string/openActivity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/oven_panel_3" />
@@ -334,5 +325,18 @@
         android:textSize="40sp"
         app:layout_constraintLeft_toLeftOf="@id/oven_panel_2"
         app:layout_constraintTop_toTopOf="@id/oven_panel_2" />
+
+    <ImageButton
+        android:id="@+id/speechButton"
+        android:layout_width="74dp"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/button_background"
+        android:contentDescription="@string/speech_handler"
+        app:layout_constraintStart_toEndOf="@+id/open"
+        app:layout_constraintTop_toBottomOf="@+id/oven_panel_3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

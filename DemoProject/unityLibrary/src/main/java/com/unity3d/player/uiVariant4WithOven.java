@@ -239,14 +239,6 @@ public class uiVariant4WithOven extends AppCompatActivity {
             }
         });
 
-        hint = findViewById(R.id.task);
-        hint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hint();
-            }
-        });
-
         Button open = findViewById(R.id.open);
         open.setOnClickListener(new View.OnClickListener() {
             @Override
