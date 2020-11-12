@@ -46,7 +46,7 @@
         <activity android:name=".uiVariant5WithMicrowave"></activity>
         <activity
             android:name=".uiVariant4WithMicrowave"
-            android:label="uiVariant4Oven"
+            android:label="uiVariant4Microwave"
             android:theme="@style/Theme.AppCompat.Light">
             <intent-filter>
 
