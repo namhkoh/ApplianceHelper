@@ -2,8 +2,337 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/oven_panel_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".uiVariant4WithOven">
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="304dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/nextActivity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oven_panel_3" />
+
+    <Button
+        android:id="@+id/task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/hintActivity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oven_panel_3" />
+
+    <Button
+        android:id="@+id/open"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/openActivity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oven_panel_3" />
+
+    <ImageView
+        android:id="@+id/oven_panel_1"
+        android:layout_width="396dp"
+        android:layout_height="206dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="1dp"
+        android:contentDescription="@string/placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/oven_panel_1" />
+
+    <Button
+        android:id="@+id/oven_frozen"
+        android:layout_width="44dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="64dp"
+        android:text="@string/oven_button"
+        app:layout_constraintStart_toEndOf="@+id/oven_bake"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_1" />
+
+    <Button
+        android:id="@+id/oven_broil"
+        android:layout_width="44dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="64dp"
+        android:text="@string/oven_button"
+        app:layout_constraintStart_toEndOf="@+id/oven_frozen"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_1" />
+
+    <Button
+        android:id="@+id/oven_convect"
+        android:layout_width="44dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="64dp"
+        android:text="@string/oven_button"
+        app:layout_constraintStart_toEndOf="@+id/oven_broil"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_1" />
+
+    <Button
+        android:id="@+id/oven_warm"
+        android:layout_width="44dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="64dp"
+        android:text="@string/oven_button"
+        app:layout_constraintStart_toEndOf="@+id/oven_convect"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_1" />
+
+    <Button
+        android:id="@+id/oven_bake"
+        android:layout_width="44dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="64dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_1"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_1" />
+
+    <Button
+        android:id="@+id/oven_clean"
+        android:layout_width="44dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="152dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_1"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_1" />
+
+    <ImageView
+        android:id="@+id/oven_panel_2"
+        android:layout_width="323dp"
+        android:layout_height="235dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="1dp"
+        android:contentDescription="@string/placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oven_panel_1"
+        app:srcCompat="@drawable/oven_panel_2" />
+
+    <ImageView
+        android:id="@+id/oven_panel_3"
+        android:layout_width="401dp"
+        android:layout_height="229dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="1dp"
+        android:contentDescription="@string/placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oven_panel_2"
+        app:srcCompat="@drawable/oven_panel_3" />
+
+    <Button
+        android:id="@+id/oven_cooktime"
+        android:layout_width="65dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="188dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_2"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_2" />
+
+    <Button
+        android:id="@+id/oven_delay"
+        android:layout_width="65dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="188dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_2"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_2" />
+
+    <Button
+        android:id="@+id/oven_preheat"
+        android:layout_width="65dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="188dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_2"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_2" />
+
+    <Button
+        android:id="@+id/oven_settings"
+        android:layout_width="65dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="188dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_2"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_2" />
+
+    <Button
+        android:id="@+id/oven_1"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
+
+    <Button
+        android:id="@+id/oven_2"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
+
+    <Button
+        android:id="@+id/oven_3"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
+
+    <Button
+        android:id="@+id/oven_4"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="72dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
+
+    <Button
+        android:id="@+id/oven_5"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="72dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
+
+    <Button
+        android:id="@+id/oven_6"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="72dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
+
+    <Button
+        android:id="@+id/oven_7"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="116dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
+
+    <Button
+        android:id="@+id/oven_8"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="116dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
+
+    <Button
+        android:id="@+id/oven_9"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="116dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
+
+    <Button
+        android:id="@+id/oven_0"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="160dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
+
+    <Button
+        android:id="@+id/oven_timer"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="160dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
+
+    <Button
+        android:id="@+id/oven_start"
+        android:layout_width="57dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="216dp"
+        android:layout_marginTop="152dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
+
+    <Button
+        android:id="@+id/oven_onoff"
+        android:layout_width="58dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="216dp"
+        android:layout_marginTop="76dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
+
+    <Button
+        android:id="@+id/oven_confirm"
+        android:layout_width="58dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="284dp"
+        android:layout_marginTop="76dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
+
+    <Button
+        android:id="@+id/oven_cancel"
+        android:layout_width="57dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="288dp"
+        android:layout_marginTop="152dp"
+        android:text="@string/oven_button"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_3"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_3" />
+
+    <TextView
+        android:id="@+id/oven_panel_text"
+        android:layout_width="288dp"
+        android:layout_height="137dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="#242120"
+        android:gravity="center|center_horizontal"
+        android:text="@string/oven_panel_text"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_2"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
