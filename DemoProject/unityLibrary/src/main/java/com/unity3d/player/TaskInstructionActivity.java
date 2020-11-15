@@ -64,11 +64,19 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     startActivity(intent3);
                     break;
                 case "uiVariant4":
-                    Log.e("taskInstruction", String.valueOf(index));
                     TaskInstructionActivity.indexBundle.putInt("index", index);
+                    String incoming_indexString = String.valueOf(index);
+                    HashMap<String, String> tmpHash = getData();
                     index++;
-                    Intent intent4 = new Intent(getApplicationContext(), uiVariant4WithMicrowave.class);
-                    startActivity(intent4);
+                    if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
+                        Intent intent4 = new Intent(getApplicationContext(), uiVariant4WithMicrowave.class);
+                        startActivity(intent4);
+                    } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")) {
+                        Intent intent = new Intent(this, uiVariant4WithOven.class);
+                        startActivity(intent);
+                    } else {
+                        return;
+                    }
                     break;
                 case "uiVariant5":
                     Log.e("taskInstruction", String.valueOf(index));

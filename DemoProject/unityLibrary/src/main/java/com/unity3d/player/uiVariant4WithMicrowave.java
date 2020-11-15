@@ -677,6 +677,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
         ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
         if (incoming_index < instructionList.size() - 1) {
             Intent intent = new Intent(this, TaskInstructionActivity.class);
+            intent.putExtra("newIndex",incoming_index);
             startActivity(intent);
         } else {
             Intent intent = new Intent(this, UserSurveyActivity.class);
