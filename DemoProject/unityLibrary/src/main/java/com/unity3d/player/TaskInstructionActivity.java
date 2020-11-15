@@ -67,7 +67,6 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     Log.e("taskInstruction", String.valueOf(index));
                     TaskInstructionActivity.indexBundle.putInt("index", index);
                     index++;
-                    //Intent intent4 = new Intent(getApplicationContext(), uiVariant4.class);
                     Intent intent4 = new Intent(getApplicationContext(), uiVariant4WithMicrowave.class);
                     startActivity(intent4);
                     break;

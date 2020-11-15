@@ -373,7 +373,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
 
                 String question = editText.getText().toString();
 
-                ResponseObject response = Utilities.returnResponse(getApplicationContext(),question);
+                ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
 
                 //Current task from file2 here Please
                 HashMap<String, String> tmpHash = getData();
@@ -598,7 +598,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
 //        }
     }
 
-    public void initiate(){
+    public void initiate() {
         pressed_wrong = 0;
         //Initial Step
         current_state = 0;
@@ -612,6 +612,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
 
     /**
      * Clear everything from the lists.
+     *
      * @param list_
      */
     public void clear(ArrayList<String> list_) {
@@ -623,6 +624,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
 
     /**
      * Used to display the first step in the screen
+     *
      * @param s The text to be updated
      */
     void initial_update(String s) {
@@ -638,11 +640,11 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
         initTTS(s);
     }
 
-    public void openDialog(){
+    public void openDialog() {
 
         StringBuilder sb = new StringBuilder();
 
-        for(int i = 0; i <= index; i++){
+        for (int i = 0; i <= index; i++) {
             sb.append(tmpList_ui1.get(i));
             sb.append("\n");
         }
@@ -670,6 +672,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
      */
     private void nextTask() {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        String incoming_indexString = String.valueOf(incoming_index);
         HashMap<String, String> tmpHash = getData();
         ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
         if (incoming_index < instructionList.size() - 1) {
