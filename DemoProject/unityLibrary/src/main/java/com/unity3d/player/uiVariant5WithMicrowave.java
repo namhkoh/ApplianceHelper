@@ -675,27 +675,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
             startActivity(intent);
         }
     }
-
-    private void enterFeedback() {
-        int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
-        String incoming_indexString = String.valueOf(incoming_index);
-        HashMap<String, String> tmpHash = getData();
-        if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
-            Intent intent = new Intent(this, uiVariant6.class);
-            intent.putExtra("button", buttonList);
-            intent.putExtra("instructions", list_ui1);
-            startActivity(intent);
-        } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")) {
-            Intent intent = new Intent(this, uiVariant6Oven.class);
-            intent.putExtra("button", buttonList);
-            intent.putExtra("instructions", list_ui1);
-            startActivity(intent);
-        } else {
-            return;
-        }
-        Log.e("entering feedback", "enter");
-    }
-
+    
     private HashMap<String, String> getData() {
         InputStream ls = getResources().openRawResource(R.raw.file2);
         BufferedReader reader = new BufferedReader(new InputStreamReader(ls, StandardCharsets.UTF_8));

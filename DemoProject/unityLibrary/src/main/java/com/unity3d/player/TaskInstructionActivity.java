@@ -63,6 +63,9 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     Intent intent3 = new Intent(getApplicationContext(), uiVariant3.class);
                     startActivity(intent3);
                     break;
+                /**
+                 * if user inputs User4, they will be directed to uiVariant4.
+                 */
                 case "uiVariant4":
                     TaskInstructionActivity.indexBundle.putInt("index", index);
                     String incoming_indexString = String.valueOf(index);
@@ -80,10 +83,18 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     break;
                 case "uiVariant5":
                     Log.e("taskInstruction", String.valueOf(index));
-                    TaskInstructionActivity.indexBundle.putInt("index", index);
+                    String incoming_indexString5 = String.valueOf(index);
+                    HashMap<String, String> tmpHash5 = getData();
                     index++;
-                    Intent intent5 = new Intent(getApplicationContext(), uiVariant5WithMicrowave.class);
-                    startActivity(intent5);
+                    if (Objects.requireNonNull(tmpHash5.get(incoming_indexString5)).toLowerCase().contains("microwave")) {
+                        Intent intent4 = new Intent(getApplicationContext(), uiVariant5WithMicrowave.class);
+                        startActivity(intent4);
+                    } else if (Objects.requireNonNull(tmpHash5.get(incoming_indexString5)).toLowerCase().contains("oven")) {
+                        Intent intent = new Intent(this, uiVariant5WithOven.class);
+                        startActivity(intent);
+                    } else {
+                        return;
+                    }
                     break;
                 case "uiVariant6":
                     Log.e("taskInstruction", String.valueOf(index));
