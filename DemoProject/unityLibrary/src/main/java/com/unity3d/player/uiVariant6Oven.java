@@ -315,6 +315,8 @@ public class uiVariant6Oven extends AppCompatActivity {
         anim.setRepeatMode(Animation.REVERSE);
         anim.setRepeatCount(Animation.INFINITE);
 
+
+
         //List gotten for buttons
         myList = (ArrayList<String>) getIntent().getSerializableExtra("button");
 
