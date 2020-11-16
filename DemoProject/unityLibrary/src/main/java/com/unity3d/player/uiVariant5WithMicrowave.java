@@ -336,31 +336,31 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
                 utterance = matches.get(0);
                 editText.setText(utterance);
 
-                if (utterance.contains("previous")) {
-                    if (index > 0) {
-                        Log.e("previous", String.valueOf(index));
-                        index--;
-                        update_state(tmpList_ui1.get(index));
-                    } else {
-                        Log.e("previous", "Front of the line");
-                    }
-                    return;
-                } else if (utterance.contains("next")) {
-                    if (index < max_index - 1) {
-                        index++;
-                        Log.e("next", String.valueOf(index));
-                        update_state(tmpList_ui1.get(index));
-                        if (index == max_index - 1) {
-                            Toast.makeText(getApplicationContext(), "Last Step", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Log.e("next", "End of the line");
-                    }
-                    return;
-                } else if (utterance.contains("repeat")) {
-                    initTTS(tmpList_ui1.get(index));
-                    return;
-                }
+//                if (utterance.contains("previous")) {
+//                    if (index > 0) {
+//                        Log.e("previous", String.valueOf(index));
+//                        index--;
+//                        update_state(tmpList_ui1.get(index));
+//                    } else {
+//                        Log.e("previous", "Front of the line");
+//                    }
+//                    return;
+//                } else if (utterance.contains("next")) {
+//                    if (index < max_index - 1) {
+//                        index++;
+//                        Log.e("next", String.valueOf(index));
+//                        update_state(tmpList_ui1.get(index));
+//                        if (index == max_index - 1) {
+//                            Toast.makeText(getApplicationContext(), "Last Step", Toast.LENGTH_SHORT).show();
+//                        }
+//                    } else {
+//                        Log.e("next", "End of the line");
+//                    }
+//                    return;
+//                } else if (utterance.contains("repeat")) {
+//                    initTTS(tmpList_ui1.get(index));
+//                    return;
+//                }
 
                 //Code below is technically an else cause everything above has a return statement.
 
@@ -432,7 +432,10 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
                         String button = response.getSteps().get(i).getButton_name();
                         buttonList.add(button);
                         tmpList_ui1.add(data);
+                        initTTS(data);
                     }
+
+                    Log.e("check here!", String.valueOf(tmpList_ui1.size()));
 
                     //tmpList.add(data);
                     myList = buttonList;
@@ -441,7 +444,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
 
                     index = 0;
                     max_index = response.getSteps().size();
-                    initial_update(tmpList_ui1.get(index));
+                    //initial_update(tmpList_ui1.get(index));
 
                     initiate();
 
@@ -633,15 +636,41 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
         initTTS(s);
     }
 
+//    public void openDialog() {
+//
+//        StringBuilder sb = new StringBuilder();
+//
+//        for (int i = 0; i <= index; i++) {
+//            sb.append(tmpList_ui1.get(i));
+//            sb.append("\n");
+//        }
+//
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//
+//        //final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>();
+//        builder.setTitle("Instructions");
+//        builder.setMessage("Look at this dialog!");
+//        builder.setMessage(sb.toString());
+//        builder.setCancelable(false);
+//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                //
+//            }
+//        });
+//        AlertDialog alert = builder.create();
+//        alert.show();
+//    }
+
+    /**
+     * Alternative openDialog method adding all elements to the window box.
+     */
     public void openDialog() {
-
         StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i <= index; i++) {
-            sb.append(tmpList_ui1.get(i));
+        for (String instruction : tmpList_ui1) {
+            sb.append(instruction);
             sb.append("\n");
         }
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         //final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>();
@@ -675,7 +704,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
             startActivity(intent);
         }
     }
-    
+
     private HashMap<String, String> getData() {
         InputStream ls = getResources().openRawResource(R.raw.file2);
         BufferedReader reader = new BufferedReader(new InputStreamReader(ls, StandardCharsets.UTF_8));
