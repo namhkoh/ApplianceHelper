@@ -672,7 +672,6 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
      */
     private void nextTask() {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
-        String incoming_indexString = String.valueOf(incoming_index);
         HashMap<String, String> tmpHash = getData();
         ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
         if (incoming_index < instructionList.size() - 1) {
