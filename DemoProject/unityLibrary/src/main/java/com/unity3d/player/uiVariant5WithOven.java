@@ -566,6 +566,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
                         String button = response.getSteps().get(i).getButton_name();
                         buttonList.add(button);
                         tmpList_ui1.add(data);
+                        initTTS(data);
                     }
 
                     myList = buttonList;
