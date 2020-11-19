@@ -58,6 +58,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
     private Button bakeBtn;
     private Button settingsBtn;
     private ImageButton SpeechBtn;
+    private EditText editText;
     private Button o1, o2, o3, o4, o5, o6, o7, o8, o9, o0; //Keypad
     private Button open, startOvenbtn, cancelOvenBtn, timerBtn, on_offBtn, confirm; //oven3
     private Button cookTimeBtn, delayStartBtn, preheatBtn; //oven2
@@ -125,8 +126,6 @@ public class uiVariant4WithOven extends AppCompatActivity {
         setContentView(R.layout.activity_ui_variant4_with_oven);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
-        final EditText editText = findViewById(R.id.editText);
         TextView lcd = findViewById(R.id.oven_panel_text);
         lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
 
@@ -180,9 +179,8 @@ public class uiVariant4WithOven extends AppCompatActivity {
     }
 
     private void addButtons() {
-
         SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
-
+        editText = findViewById(R.id.editText);
         /**
          * Oven Panels
          */
@@ -471,7 +469,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
                 Log.e("ALL MATCHES", matches.toString());
 
                 utterance = matches.get(0);
-                //editText.setText(utterance);
+                editText.setText(utterance);
 
                 if (utterance.contains("previous")) {
                     if (index > 0) {
@@ -599,13 +597,13 @@ public class uiVariant4WithOven extends AppCompatActivity {
             switch (motionEvent.getAction()) {
                 case MotionEvent.ACTION_UP:
                     mSpeechRecognizer.stopListening();
-                    //editText.setHint("You will see input here");
+                    editText.setHint("You will see input here");
                     break;
 
                 case MotionEvent.ACTION_DOWN:
                     mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
-                    //editText.setText("");
-                    //editText.setHint("Listening...");
+                    editText.setText("");
+                    editText.setHint("Listening...");
                     break;
             }
             return false;
