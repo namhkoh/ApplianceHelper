@@ -351,4 +351,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_info_details" />
 
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="251dp"
+        android:layout_height="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="124dp"
+        android:autofillHints=""
+        android:background="#B2F2F2F2"
+        android:hint="@string/inputString"
+        android:inputType="text"
+        android:scrollHorizontally="false"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@id/oven_panel_2"
+        app:layout_constraintTop_toTopOf="@id/oven_panel_2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
