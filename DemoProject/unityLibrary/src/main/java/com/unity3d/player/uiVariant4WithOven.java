@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -92,6 +93,9 @@ public class uiVariant4WithOven extends AppCompatActivity {
         TextView lcd = findViewById(R.id.oven_panel_text);
         lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
 
+        final EditText editText = findViewById(R.id.editText);
+        SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
+        
         /**
          * Oven panel 1
          */
