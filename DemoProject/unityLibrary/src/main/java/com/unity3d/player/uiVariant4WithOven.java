@@ -1,22 +1,38 @@
 package com.unity3d.player;
 
+import androidx.appcompat.app.AlertDialog;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContextWrapper;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
-import android.view.MenuItem;
+import android.view.ContextThemeWrapper;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aic.libnilu.nlu.ResponseObject;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.BufferedReader;
@@ -27,11 +43,28 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
+import java.util.Set;
 
 public class uiVariant4WithOven extends AppCompatActivity {
 
+
+    /**
+     * Buttons
+     */
+    private Button bakeBtn;
+    private Button settingsBtn;
     private ImageButton SpeechBtn;
+    private EditText editText;
+    private Button o1, o2, o3, o4, o5, o6, o7, o8, o9, o0; //Keypad
+    private Button open, startOvenbtn, cancelOvenBtn, timerBtn, on_offBtn, confirm; //oven3
+    private Button cookTimeBtn, delayStartBtn, preheatBtn; //oven2
+    private Button broilBtn, convectBtn, keepWarmBtn, selfCleanBtn, frozenBakeBtn; //oven1
+
+
     private int index = 0;
     ArrayList<String> list_ui1 = new ArrayList<>();
     ArrayList<String> tmpList_ui1 = new ArrayList<>();
@@ -41,6 +74,10 @@ public class uiVariant4WithOven extends AppCompatActivity {
     HashMap<String, String> intentList;
     Button next;
     private boolean success = false;
+    private int max_index;
+
+    private TextToSpeech textToSpeech;
+    String speakText = "";
 
     private String lcdString = " ";
     private String current_task = "";
@@ -75,11 +112,10 @@ public class uiVariant4WithOven extends AppCompatActivity {
     private ArrayList<String> myList;
     private ArrayList<Button> allButtons;
     ArrayList<String> instructionList;
-    private List<String> list;
+    private List<String> button_hashmap_list;
 
     private HashMap<String, Boolean> next_button;
     private HashMap<String, Boolean> button_active;
-    private Button hint;
 
     private CountDownTimer t;
     private Animation anim;
@@ -93,13 +129,68 @@ public class uiVariant4WithOven extends AppCompatActivity {
         TextView lcd = findViewById(R.id.oven_panel_text);
         lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
 
-        final EditText editText = findViewById(R.id.editText);
-        SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
+        this.addButtons();
+        this.initialize_speaker();
 
+        //Setting alpha value
+        allButtons = getAllButtons();
+
+        setAlphaValue(0, allButtons);
+
+        //Blinking Animation
+        anim = setAnimation();
+
+        //Button Hashmap for button state disable (true/false)
+        initialize_button_list_for_hashmap();
+
+        FloatingActionButton fabInstructions = findViewById(R.id.instructionHelp);
+        fabInstructions.setOnClickListener(v -> {
+            //openDialog();
+            openListViewDialog();
+        });
+
+        next.setEnabled(false);
+        open.setEnabled(false);
+
+    }
+
+    private void initialize_button_list_for_hashmap(){
+        button_hashmap_list = Arrays.asList("settings/clock", "six", "one", "two", "three", "four", "five", "nine", "seven", "eight", "zero", "start", "bake",
+                "cook time", "broil", "keep warm", "timer", "frozen bake", "convect modes", "oven clean", "delay start", "rapid preheat",
+                "on off", "confirm");
+    }
+
+    private ArrayList<Button> getAllButtons(){
+        allButtons = new ArrayList<Button>(Arrays.asList(
+                frozenBakeBtn, cookTimeBtn, o0, o1, o2, o3, o4, o5, o6, o7, o8, o9, startOvenbtn, cancelOvenBtn,
+                bakeBtn, broilBtn, convectBtn, keepWarmBtn, selfCleanBtn, delayStartBtn, preheatBtn, settingsBtn,
+                timerBtn, on_offBtn, confirm
+        ));
+        return allButtons;
+    }
+
+    private Animation setAnimation(){
+        anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(50); //You can manage the blinking time with this parameter
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        return anim;
+    }
+
+    private void addButtons() {
+        SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
+        editText = findViewById(R.id.editText);
         /**
-         * Oven panel 1
+         * Oven Panels
          */
-        Button bakeBtn = findViewById(R.id.oven_bake);
+        addOvenPanel1();
+        addOvenPanel2();
+        addOvenPanel3();
+    }
+
+    private void addOvenPanel1() {
+        bakeBtn = findViewById(R.id.oven_bake);
         bakeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,7 +198,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
             }
         });
 
-        Button frozenBakeBtn = findViewById(R.id.oven_frozen);
+        frozenBakeBtn = findViewById(R.id.oven_frozen);
         frozenBakeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,7 +206,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
             }
         });
 
-        Button broilBtn = findViewById(R.id.oven_broil);
+        broilBtn = findViewById(R.id.oven_broil);
         broilBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,7 +214,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
             }
         });
 
-        Button convectBtn = findViewById(R.id.oven_convect);
+        convectBtn = findViewById(R.id.oven_convect);
         convectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,7 +222,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
             }
         });
 
-        Button keepWarmBtn = findViewById(R.id.oven_warm);
+        keepWarmBtn = findViewById(R.id.oven_warm);
         keepWarmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,42 +230,17 @@ public class uiVariant4WithOven extends AppCompatActivity {
             }
         });
 
-        Button selfCleanBtn = findViewById(R.id.oven_clean);
+        selfCleanBtn = findViewById(R.id.oven_clean);
         selfCleanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 oven_clean();
             }
         });
+    }
 
-        /**
-         * Oven panel 2
-         */
-        Button cookTimeBtn = findViewById(R.id.oven_cooktime);
-        cookTimeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cookTime();
-            }
-        });
-
-        Button delayStartBtn = findViewById(R.id.oven_delay);
-        delayStartBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                delay_start();
-            }
-        });
-
-        Button preheatBtn = findViewById(R.id.oven_preheat);
-        preheatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rapid_predheat();
-            }
-        });
-
-        Button settingsBtn = findViewById(R.id.oven_settings);
+    private void addOvenPanel2() {
+        settingsBtn = findViewById(R.id.oven_settings);
         settingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -182,82 +248,34 @@ public class uiVariant4WithOven extends AppCompatActivity {
             }
         });
 
-        /**
-         * Oven panel 3
-         */
-
-        Button o0 = findViewById(R.id.oven_0);
-        o0.setOnClickListener(new View.OnClickListener() {
+        cookTimeBtn = findViewById(R.id.oven_cooktime);
+        cookTimeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                press0();
-            }
-        });
-        Button o1 = findViewById(R.id.oven_1);
-        o1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                press1();
-            }
-        });
-        Button o2 = findViewById(R.id.oven_2);
-        o2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                press2();
-            }
-        });
-        Button o3 = findViewById(R.id.oven_3);
-        o3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                press3();
-            }
-        });
-        Button o4 = findViewById(R.id.oven_4);
-        o4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                press4();
-            }
-        });
-        Button o5 = findViewById(R.id.oven_5);
-        o5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                press5();
-            }
-        });
-        Button o6 = findViewById(R.id.oven_6);
-        o6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                press6();
-            }
-        });
-        Button o7 = findViewById(R.id.oven_7);
-        o7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                press7();
-            }
-        });
-        Button o8 = findViewById(R.id.oven_8);
-        o8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                press8();
-            }
-        });
-        Button o9 = findViewById(R.id.oven_9);
-        o9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                press9();
+                cookTime();
             }
         });
 
-        Button open = findViewById(R.id.open);
+        delayStartBtn = findViewById(R.id.oven_delay);
+        delayStartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                delay_start();
+            }
+        });
+
+        preheatBtn = findViewById(R.id.oven_preheat);
+        preheatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rapid_predheat();
+            }
+        });
+    }
+
+    private void addOvenPanel3() {
+        this.addNumberPad();
+        open = findViewById(R.id.open);
         open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -265,10 +283,10 @@ public class uiVariant4WithOven extends AppCompatActivity {
             }
         });
 
-        Button next = findViewById(R.id.next);
+        next = findViewById(R.id.next);
         next.setOnClickListener(v -> nextActivity());
 
-        Button startOvenbtn = findViewById(R.id.oven_start);
+        startOvenbtn = findViewById(R.id.oven_start);
         startOvenbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -276,7 +294,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
             }
         });
 
-        Button cancelOvenBtn = findViewById(R.id.oven_cancel);
+        cancelOvenBtn = findViewById(R.id.oven_cancel);
         cancelOvenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -284,7 +302,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
             }
         });
 
-        Button timerBtn = findViewById(R.id.oven_timer);
+        timerBtn = findViewById(R.id.oven_timer);
         timerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -293,7 +311,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
             }
         });
 
-        Button on_offBtn = findViewById(R.id.oven_onoff);
+        on_offBtn = findViewById(R.id.oven_onoff);
         on_offBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -301,144 +319,333 @@ public class uiVariant4WithOven extends AppCompatActivity {
             }
         });
 
-        Button confirm = findViewById(R.id.oven_confirm);
+        confirm = findViewById(R.id.oven_confirm);
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 confirm();
             }
         });
+    }
 
-        //Setting alpha value
-        allButtons = new ArrayList<Button>(Arrays.asList(
-                frozenBakeBtn, cookTimeBtn, o0, o1, o2, o3, o4, o5, o6, o7, o8, o9, startOvenbtn, cancelOvenBtn,
-                bakeBtn, broilBtn, convectBtn, keepWarmBtn, selfCleanBtn, delayStartBtn, preheatBtn, settingsBtn,
-                timerBtn, on_offBtn, confirm
-        ));
+    private void addNumberPad() {
+        o0 = findViewById(R.id.oven_0);
+        o0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                press0();
+            }
+        });
+        o1 = findViewById(R.id.oven_1);
+        o1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                press1();
+            }
+        });
+        o2 = findViewById(R.id.oven_2);
+        o2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                press2();
+            }
+        });
+        o3 = findViewById(R.id.oven_3);
+        o3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                press3();
+            }
+        });
+        o4 = findViewById(R.id.oven_4);
+        o4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                press4();
+            }
+        });
+        o5 = findViewById(R.id.oven_5);
+        o5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                press5();
+            }
+        });
+        o6 = findViewById(R.id.oven_6);
+        o6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                press6();
+            }
+        });
+        o7 = findViewById(R.id.oven_7);
+        o7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                press7();
+            }
+        });
+        o8 = findViewById(R.id.oven_8);
+        o8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                press8();
+            }
+        });
+        o9 = findViewById(R.id.oven_9);
+        o9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                press9();
+            }
+        });
+    }
 
-        setAlphaValue(0, allButtons);
+    private void initiate() {
+        //How many buttons are there in the button array.
+        number_of_steps = myList.size();
+        pressed_wrong = 0;
 
-        //Blinking Animation
-        anim = new AlphaAnimation(0.0f, 1.0f);
-        anim.setDuration(50); //You can manage the blinking time with this parameter
-        anim.setStartOffset(20);
-        anim.setRepeatMode(Animation.REVERSE);
-        anim.setRepeatCount(Animation.INFINITE);
+        next_button = new HashMap<String, Boolean>();
+        button_active = new HashMap<String, Boolean>();
+        for (String i : button_hashmap_list) {
+            next_button.put(i, false);
+            button_active.put(i, false);
+        }
 
-        //List gotten for buttons
-        myList = (ArrayList<String>) getIntent().getSerializableExtra("button");
+        //Current Button
+        current_state = 0;
+        string_button = myList.get(current_state);
 
-        //Instructions List
-        instructionList = (ArrayList<String>) getIntent().getSerializableExtra("instructions");
+        //Initial Step
+        next_step(string_button);
+    }
 
+    private void initialize_speaker() {
+        // SPEECH TO TEXT START
+        final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+        final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
+                Locale.getDefault());
+        mSpeechRecognizer.setRecognitionListener(new RecognitionListener() {
+            @Override
+            public void onReadyForSpeech(Bundle bundle) {
 
-        //Button Hashmap for state
-        list = Arrays.asList("settings/clock", "six", "one", "two","three","four","five","nine","seven","eight","zero","start","bake",
-                "cook time","broil","keep warm", "timer","frozen bake","convect modes","oven clean","delay start", "rapid preheat",
-                "on off", "confirm");
-
-        next.setEnabled(false);
-        open.setEnabled(false);
-        hint.setEnabled(false);
-
-        // Not first time
-        if(uiVariant1.uivariant1Bundle.containsKey("Is First")){
-            System.out.println("Is First: " + uiVariant1.uivariant1Bundle.getBoolean("Is First"));
-            System.out.println("Number Pad: " + uiVariant1.uivariant1Bundle.getBoolean("NumberPad"));
-            load_bundle();
-            Log.d("Load Bundle","Restored");
-
-        } //First Time
-        else {
-            is_first = true;
-            //How many buttons are there in the button array.
-            number_of_steps = myList.size();
-            pressed_wrong = 0;
-
-            next_button = new HashMap<String, Boolean>();
-            button_active = new HashMap<String, Boolean>();
-            for (String i : list) {
-                next_button.put(i, false);
-                button_active.put(i, false);
             }
 
-            //Current Button
-            current_state = 0;
-            string_button = myList.get(current_state);
+            @Override
+            public void onBeginningOfSpeech() {
 
-            //Initial Step
-            next_step(string_button);
-        }
+            }
 
-    }
+            @Override
+            public void onRmsChanged(float v) {
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch(item.getItemId()){
-            case android.R.id.home:
-                Toast.makeText(getApplicationContext(),"Back button clicked",Toast.LENGTH_SHORT).show();
-                save_bundle();
-                finish();
-        }
-        return true;
-    }
+            }
 
-    private void save_bundle(){
-        uiVariant1.uivariant1Bundle.clear();
-        TextView lcd = findViewById(R.id.oven_panel_text);
-        System.out.println(lcd.getText());
-        Log.v("Saved","Save Instance State 2");
-        uiVariant1.uivariant1Bundle.putBoolean("Is First",is_first);
-        uiVariant1.uivariant1Bundle.putSerializable("NextButton", next_button);
-        uiVariant1.uivariant1Bundle.putSerializable("ActiveButton", button_active);
-        //uiVariant1.uivariant1Bundle.putSerializable("WorkingButton", working_button);
-        uiVariant1.uivariant1Bundle.putInt("CurrentState",current_state);
-        uiVariant1.uivariant1Bundle.putInt("PressedWrong",pressed_wrong);
-        uiVariant1.uivariant1Bundle.putString("CurrentTask",current_task);
-        uiVariant1.uivariant1Bundle.putString("lcdstring",lcdString);
-        uiVariant1.uivariant1Bundle.putString("OnScreen",lcd.getText().toString());
-        uiVariant1.uivariant1Bundle.putStringArray("time",time);
-        uiVariant1.uivariant1Bundle.putInt("timeposition",time_position);
-        uiVariant1.uivariant1Bundle.putString("StringButton",string_button);
-        uiVariant1.uivariant1Bundle.putString("InfoButton",info_button);
-        uiVariant1.uivariant1Bundle.putBoolean("NumberPad",numberpad_active);
-        System.out.println("Numberpad " + numberpad_active);
-    }
+            @Override
+            public void onBufferReceived(byte[] bytes) {
 
-    private void load_bundle(){
-        TextView lcd = findViewById(R.id.oven_panel_text);
-        is_first = uiVariant1.uivariant1Bundle.getBoolean("Is First");
-        next_button = (HashMap<String, Boolean>) uiVariant1.uivariant1Bundle.getSerializable("NextButton");
-        button_active = (HashMap<String, Boolean>) uiVariant1.uivariant1Bundle.getSerializable("ActiveButton");
-        //working_button = (HashMap<String, Boolean>) uiVariant1.uivariant1Bundle.getSerializable("WorkingButton");
-        current_state = uiVariant1.uivariant1Bundle.getInt("CurrentState");
-        pressed_wrong = uiVariant1.uivariant1Bundle.getInt("PressedWrong");
-        current_task = uiVariant1.uivariant1Bundle.getString("CurrentTask");
-        lcdString = uiVariant1.uivariant1Bundle.getString("lcdstring");
-        time =  uiVariant1.uivariant1Bundle.getStringArray("time");
-        time_position = uiVariant1.uivariant1Bundle.getInt("timeposition");
-        lcd.setText(uiVariant1.uivariant1Bundle.getString("OnScreen"));
-        string_button = uiVariant1.uivariant1Bundle.getString("StringButton");
-        info_button = uiVariant1.uivariant1Bundle.getString("InfoButton");
-        System.out.println("Info Button: " + info_button);
-        System.out.println("String Button: " + string_button);
-        numberpad_active = uiVariant1.uivariant1Bundle.getBoolean("NumberPad");
-        System.out.println("Number Pad: " + uiVariant1.uivariant1Bundle.getBoolean("NumberPad"));
-        System.out.println("NumberPad: " + numberpad_active);
-        uiVariant1.uivariant1Bundle.clear();
+            }
+
+            @Override
+            public void onEndOfSpeech() {
+                Log.e("onEndOfSpeech", "this is on end of speech.");
+            }
+
+            @Override
+            public void onError(int i) {
+
+            }
+
+            @Override
+            public void onResults(Bundle bundle) {
+
+                //getting all the matches
+                ArrayList<String> matches = bundle
+                        .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                Log.e("ALL MATCHES", matches.toString());
+
+                utterance = matches.get(0);
+                editText.setText(utterance);
+
+                if (utterance.contains("previous")) {
+                    if (index > 0) {
+                        Log.e("previous", String.valueOf(index));
+                        index--;
+                        update_state(tmpList_ui1.get(index));
+                    } else {
+                        Log.e("previous", "Front of the line");
+                    }
+                    return;
+                } else if (utterance.contains("next")) {
+                    if (index < max_index - 1) {
+                        index++;
+                        Log.e("next", String.valueOf(index));
+                        update_state(tmpList_ui1.get(index));
+                        if (index == max_index - 1) {
+                            Toast.makeText(getApplicationContext(), "Last Step", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Log.e("next", "End of the line");
+                    }
+                    return;
+                } else if (utterance.contains("repeat")) {
+                    initTTS(tmpList_ui1.get(index));
+                    return;
+                }
+
+                //Code below is technically an else cause everything above has a return statement.
+
+                String question = utterance;
+
+                ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
+
+                //Current task from file2 here Please
+                HashMap<String, String> tmpHash = getData();
+                int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+                String incoming_indexString = String.valueOf(incoming_index);
+
+                System.out.println(tmpList_ui1.size());
+
+                //Some sort of error happened in the NLU part
+                if (response.getDialog_command().equals("no_match")) {
+
+                    buttonList = new ArrayList<>();
+                    clear(list_ui1);
+                    success = false;
+
+                    tmpList_ui1.add("No Match");
+                    tmpList_ui1.add("Try again by pressing the red mike button");
+                    buttonList.add("try_again");
+                    buttonList.add("speech");
+
+                    index = 0;
+                    max_index = 2;
+
+                    update(tmpList_ui1.get(index), true);
+
+                } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
+
+                    clear(list_ui1);
+
+                    tmpList_ui1.add("Wrong Intent. " + "The current intent is " + response.getIntent());
+                    tmpList_ui1.add("Try again by pressing the red mike button");
+                    buttonList.add("try_again");
+                    buttonList.add("speech");
+
+                    index = 0;
+                    max_index = 2;
+
+                    update(tmpList_ui1.get(index), true);
+
+
+                } else if (!Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains(response.getAppliance_name().toLowerCase())) {
+
+                    clear(list_ui1);
+                    buttonList = new ArrayList<>();
+
+                    tmpList_ui1.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
+                    tmpList_ui1.add("Try again by pressing the red mike button");
+                    buttonList.add("try_again");
+                    buttonList.add("speech");
+
+                    index = 0;
+                    max_index = 2;
+
+                    update(tmpList_ui1.get(index), true);
+
+                } else {
+                    success = true;
+                    clear(list_ui1);
+                    buttonList = new ArrayList<>();
+                    next.setEnabled(true);
+
+                    for (int i = 0; i < response.getSteps().size(); ++i) {
+                        String data = response.getSteps().get(i).getText();
+                        String button = response.getSteps().get(i).getButton_name();
+                        buttonList.add(button);
+                        tmpList_ui1.add(data);
+                    }
+
+                    myList = buttonList;
+                    instructionList = list_ui1;
+
+
+                    index = 0;
+                    max_index = response.getSteps().size();
+                    initial_update(tmpList_ui1.get(index));
+
+                    initiate();
+
+                }
+                next.setEnabled(true);
+            }
+
+            @Override
+            public void onPartialResults(Bundle bundle) {
+            }
+
+            @Override
+            public void onEvent(int i, Bundle bundle) {
+
+            }
+        });
+        SpeechBtn.setOnTouchListener((view, motionEvent) -> {
+            switch (motionEvent.getAction()) {
+                case MotionEvent.ACTION_UP:
+                    mSpeechRecognizer.stopListening();
+                    editText.setHint("You will see input here");
+                    break;
+
+                case MotionEvent.ACTION_DOWN:
+                    mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+                    editText.setText("");
+                    editText.setHint("Listening...");
+                    break;
+            }
+            return false;
+        });
+        // SPEECH TO TEXT END
+        textToSpeech = new TextToSpeech(getApplicationContext(), status -> {
+
+        });
+        textToSpeech.setOnUtteranceProgressListener(
+                new UtteranceProgressListener() {
+                    @Override
+                    public void onStart(String utteranceId) {
+                        //SpeechBtn.setEnabled(false);
+                    }
+
+                    @Override
+                    public void onDone(String utteranceId) {
+                        if (success == false & (index < max_index - 1)) {
+                            index++;
+                            update(tmpList_ui1.get(index), true);
+                        }
+                    }
+
+                    @Override
+                    public void onError(String utteranceId) {
+
+                    }
+                });
     }
 
     private void next_step(String string_button) {
 
         //info_button is for extra information for the settings/clock fields
         arr1 = string_button.split(",");
-        if(arr1.length == 1){
+        if (arr1.length == 1) {
             string_button = arr1[0];
-        }else{
+        } else {
             string_button = arr1[0];
             info_button = arr1[1];
         }
 
+        //Turn on specific buttons.
         if (string_button.equals("no button")) {
             current_state++;
             string_button = myList.get(current_state);
@@ -447,271 +654,258 @@ public class uiVariant4WithOven extends AppCompatActivity {
             debug_next_step_log(string_button);
         }
 
-        if(string_button.equals("number pad")){
+        if (string_button.equals("number pad")) {
             lcdString = "";
             numberpad_active = true;
             previous_state = string_button;
-            current_state+=1;
+            current_state += 1;
             previous_numberpad = true;
             string_button = myList.get(current_state);
             debug_next_step_log(string_button);
-            if(info_button.equals("clock")){
+            if (info_button.equals("clock")) {
 
             }
-            if(string_button.equals("clock")){
+            if (string_button.equals("clock")) {
                 clock_active = true;
-            }
-            else{
+            } else {
                 start_active = true;
             }
-            next_button.put(string_button,true);
+            next_button.put(string_button, true);
             manage_next();
         }
 
-//        else{
-//            next_step_helper(string_button);
-//        }
 
-        if (string_button.equals("settings/clock")) {
-            next_button.put(string_button, true);
-            button_active.put(string_button, true);
-            debug_next_step_log(string_button);
+        Set<String> accept = new HashSet<String>();
+        accept.add("settings/clock");
+        accept.add("six");
+        accept.add("timer");
+        accept.add("broil");
+        accept.add("keep warm");
+        accept.add("one");
+        accept.add("cook time");
+        accept.add("bake");
+        accept.add("two");
+        accept.add("three");
+        accept.add("four");
+        accept.add("five");
+        accept.add("start");
+
+        System.out.println("String Button: " + string_button);
+
+        if(accept.contains(string_button)){
+            next_step_helper(string_button);
         }
 
-        if (string_button.equals("six")) {
-            next_button.put(string_button, true);
-            button_active.put(string_button, true);
-            debug_next_step_log(string_button);
-        }
-
-        if (string_button.equals("timer")) {
-            next_button.put(string_button, true);
-            button_active.put(string_button, true);
-            debug_next_step_log(string_button);
-        }
-
-        if (string_button.equals("broil")) {
-            next_button.put(string_button, true);
-            button_active.put(string_button, true);
-            debug_next_step_log(string_button);
-        }
-
-        if (string_button.equals("keep warm")) {
-            next_button.put(string_button, true);
-            button_active.put(string_button, true);
-            debug_next_step_log(string_button);
-        }
-
-        if (string_button.equals("one")) {
-            next_button.put(string_button, true);
-            button_active.put(string_button, true);
-            debug_next_step_log(string_button);
-        }
-
-        if (string_button.equals("cook time")) {
-            next_button.put(string_button, true);
-            button_active.put(string_button, true);
-            debug_next_step_log(string_button);
-        }
-
-        if (string_button.equals("bake")) {
-            next_button.put(string_button, true);
-            button_active.put(string_button, true);
-            debug_next_step_log(string_button);
-        }
-
-        if (string_button.equals("two")) {
-            next_button.put(string_button, true);
-            button_active.put(string_button, true);
-            debug_next_step_log(string_button);
-        }
-
-        if (string_button.equals("three")) {
-            next_button.put(string_button, true);
-            button_active.put(string_button, true);
-            debug_next_step_log(string_button);
-        }
-
-        if (string_button.equals("four")) {
-            next_button.put(string_button, true);
-            button_active.put(string_button, true);
-            debug_next_step_log(string_button);
-        }
-
-        if (string_button.equals("five")) {
-            next_button.put(string_button, true);
-            button_active.put(string_button, true);
-            debug_next_step_log(string_button);
-        }
-
-        if (string_button.equals("start")) {
-            next_button.put(string_button, true);
-            button_active.put(string_button, true);
-            debug_next_step_log(string_button);
-        }
     }
 
-    private void next_step_helper(String button){
+    private void next_step_helper(String string_button) {
         next_button.put(string_button, true);
         button_active.put(string_button, true);
         debug_next_step_log(string_button);
     }
 
-    private void debug_next_step_log(String string_button){
+    private void debug_next_step_log(String string_button) {
         Log.d("Debug (Next Step)", string_button);
     }
 
-    private void active_inactive_log(boolean active, String msg){
-        if(active == true){
+    private void active_inactive_log(boolean active, String msg) {
+        if (active == true) {
             Log.i("Button Pressed (Active)", msg);
             pressed_wrong = 0;
-            hint.setEnabled(false);
-        } else{
+        } else {
             Log.i("Button Pressed (Inactive)", msg);
             pressed_wrong++;
         }
-        if(pressed_wrong > 5 & current_state < myList.size()){
-            hint.setEnabled(true);
+        if (pressed_wrong > 5 & current_state < myList.size()) {
         }
     }
 
-    private void core_button_support(String button, String lcd_text){
+    public void openDialog() {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i <= index; i++) {
+            sb.append(tmpList_ui1.get(i));
+            sb.append("\n");
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        //final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>();
+        builder.setTitle("Instructions");
+        builder.setMessage("Look at this dialog!");
+        builder.setMessage(sb.toString());
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void openListViewDialog(){
+        String[] list_view = new String[index + 1];
+        for (int i = 0; i <= index; i++) {
+            list_view[i] = tmpList_ui1.get(i);
+        }
+
+        ContextThemeWrapper themedContext = new ContextThemeWrapper(this, android.R.style.Theme_Holo_NoActionBar);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //
+            }
+        });
+
+        final AlertDialog dialog = builder.setTitle("Instructions").setItems(list_view,null).create();
+
+        AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                System.out.println(tmpList_ui1.get(i));
+                initTTS(tmpList_ui1.get(i-1));
+            }
+        };
+
+        dialog.getListView().setOnItemClickListener(listener);
+
+        ListView listView = dialog.getListView();
+        listView.addHeaderView(new View(this));
+        //listView.addFooterView(new View(this));
+        //listView.setHeaderDividersEnabled(true);
+        listView.setDivider(new ColorDrawable(Color.BLACK));
+        listView.setDividerHeight(1);
+
+        dialog.show();
+
+    }
+
+    private void core_button_support(String button, String lcd_text) {
         button_lowercase = button.toLowerCase();
-        if(button_active.get(button_lowercase) == true) {
+        if (button_active.get(button_lowercase) == true) {
             clearClock();
             active_inactive_log(true, button);
             current_task = button_lowercase;
-            if(next_button.get(button_lowercase) == true){
+            if (next_button.get(button_lowercase) == true) {
                 TextView lcd = findViewById(R.id.oven_panel_text);
-                next_button.put(button_lowercase,false);
-                button_active.put(button_lowercase,false);
-                if(lcd_text != null) {
+                next_button.put(button_lowercase, false);
+                button_active.put(button_lowercase, false);
+                if (lcd_text != null) {
                     lcdString = lcd_text;
                     lcd.setText(lcdString);
                     lcdString = "";
                 }
-                if(button_lowercase.equals("settings/clock")){
+                if (button_lowercase.equals("settings/clock")) {
                     settings_clock_working = true;
                     settings_temperature_working = true;
                 }
-                if(button_lowercase.equals("timer")){
+                if (button_lowercase.equals("timer")) {
                     timerPressed = true;
                 }
-                if(button_lowercase.equals("bake")){
+                if (button_lowercase.equals("bake")) {
                     temp_task = button_lowercase;
                     task = button_lowercase;
                     previous_state = button_lowercase;
                 }
-                if(button_lowercase.equals("cook time")){
+                if (button_lowercase.equals("cook time")) {
                     temp_task = "";
                     previous_state = "cooktime";
                     time = new String[]{" ", " ", " ", " "};
-                    time_position=0;
+                    time_position = 0;
                 }
                 numberpad_toggle();
                 current_state++;
                 manage_next();
             }
-        }
-        else{
+        } else {
             active_inactive_log(false, button);
         }
 
     }
 
-    private void timer(){
+    private void timer() {
         core_button_support("Timer", null);
     }
 
-    private void settings_clock(){
+    private void settings_clock() {
         core_button_support("settings/clock", "Settings Clock");
     }
 
-    private void keepWarm(){
+    private void keepWarm() {
         core_button_support("Keep Warm", "Keep warm");
     }
 
-    private void broil(){
+    private void broil() {
         core_button_support("Broil", "Broil");
     }
 
-    private void bake(){
+    private void bake() {
         core_button_support("Bake", "Bake");
     }
 
-    private void convect_modes() { core_button_support("Convect Modes", null); }
-
-    private void oven_clean(){core_button_support("Oven Clean", null); };
-
-    private void frozenBake() {
-        core_button_support("Frozen Bake",null);
-//        TextView ovenLcd = findViewById(R.id.oven_panel_text);
-//        Handler h = new Handler(getMainLooper());
-//        lcdString = "Frozen Bake";
-//        ovenLcd.setTextSize(30);
-//        ovenLcd.setText(lcdString);
-//        h.postDelayed(() -> {
-//            lcdString = "";
-//            lcdString = "Enter food code:";
-//            ovenLcd.setText(lcdString);
-//        }, 2000);
-//        Log.e("Button pressed", "frozenBake");
+    private void convect_modes() {
+        core_button_support("Convect Modes", null);
     }
 
-    private void delay_start(){core_button_support("Delay Start", null);};
+    private void oven_clean() {
+        core_button_support("Oven Clean", null);
+    }
 
-    private void rapid_predheat(){core_button_support("Rapid Preheat", null);};
+    private void frozenBake() {
+        core_button_support("Frozen Bake", null);
+    }
 
-    private void on_off(){core_button_support("On Off", null);};
+    private void delay_start() {
+        core_button_support("Delay Start", null);
+    }
 
-    private void confirm(){core_button_support("Confirm", null);};
+    private void rapid_predheat() {
+        core_button_support("Rapid Preheat", null);
+    }
+
+    private void on_off() {
+        core_button_support("On Off", null);
+    }
+
+    private void confirm() {
+        core_button_support("Confirm", null);
+    }
 
     private void cookTime() {
-        if(bake_pressed){
-            core_button_support("Cook Time", "Cook Time");}
-        else{
+        if (bake_pressed) {
+            core_button_support("Cook Time", "Cook Time");
+        } else {
             active_inactive_log(false, "Cook Time");
         }
     }
 
-    private void hint(){
-        Toast toast = Toast.makeText(getApplicationContext(),instructionList.get(current_state),Toast.LENGTH_SHORT);
-        toast.show();
+    void update_state(String s) {
+        list_ui1.clear();
+        list_ui1.add(s);
+        initTTS(s);
     }
 
-    private void open(){
-        active_inactive_log(false,"Open");
+    private void open() {
+        active_inactive_log(false, "Open");
     }
 
-    private void numberpad_toggle(){
+    private void numberpad_toggle() {
         numberpad_active = false;
         previous_numberpad = false;
     }
 
-    private void manage_next(){
+    private void manage_next() {
         TextView lcd = findViewById(R.id.oven_panel_text);
-        if(current_state >= myList.size()){
+        if (current_state >= myList.size()) {
             finish_task();
-//            try {
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            lcd.clearAnimation();
-//            lcdString = "";
-//            lcdString = "Well Done!";
-//            try {
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            lcdString = "";
-//            lcdString = "Press Next!";
-//            lcd.setText(lcdString);
-//            Button next = findViewById(R.id.next);
-//            next.setEnabled(true);
-        }
-        else {
+        } else {
             string_button = myList.get(current_state);
             next_step(string_button);
         }
@@ -724,6 +918,18 @@ public class uiVariant4WithOven extends AppCompatActivity {
             // blink animation and allow user to alter the time
             lcd.setText(lcdString);
         }
+    }
+
+    /**
+     * Used to display the first step in the screen
+     *
+     * @param s The text to be updated
+     */
+    void initial_update(String s) {
+        Log.e("UI STEP ", s);
+        list_ui1.add(s);
+        speakText = s;
+        initTTS(speakText);
     }
 
     private void clearScreen() {
@@ -749,7 +955,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
         time_map.put(2, " ");
         time_map.put(3, " ");
 
-        if(temp_task.equals("bake")){
+        if (temp_task.equals("bake")) {
             bake_pressed = true;
             lcd.setText(lcdString + "°F");
 
@@ -815,56 +1021,75 @@ public class uiVariant4WithOven extends AppCompatActivity {
     }
 
     public void stopTimer() {
-        t.cancel();
+        if(t != null){
+            t.cancel();
+            t = null;
+        }
     }
 
 
     private void countdown(String number) {
-        Log.d("Debug Countdown",number);
+        Log.d("Debug Countdown", number);
         int time = Integer.parseInt(number);
         int seconds = time / 1000 * 60 * 60 + time / 100 * 60 + time % 100;
         startTimer(seconds * 1000 + 1100, 1000);
     }
 
     private void startOven() {
-        if(button_active.get("start") == true) {
-            active_inactive_log(true,"Start Button");
+        if (button_active.get("start") == true) {
+            active_inactive_log(true, "Start Button");
             if (next_button.get("start") == true) {
                 next_button.put("start", false);
             }
             next_button.put("start", false);
-            button_active.put("start",false);
+            button_active.put("start", false);
             current_state++;
 
             if (timerPressed == true) {
                 countdown(lcdString);
             }
 
-            if(current_task.equals("keep warm")){
+            if (current_task.equals("keep warm")) {
                 countdown("10");
             }
-            if(task.equals("bake")){
-                countdown("10");
-            }
-
-            if(current_task.equals("broil") | current_task.equals("broiling")){
+            if (task.equals("bake")) {
                 countdown("10");
             }
 
-            if(current_state >= myList.size()){
+            if (current_task.equals("broil") | current_task.equals("broiling")) {
+                countdown("10");
+            }
+
+            if (current_state >= myList.size()) {
                 finish_task();
-            }
-            else{
+            } else {
                 string_button = myList.get(current_state);
                 next_step(string_button);
             }
-        }else{
+        } else {
             active_inactive_log(false, "Start Button");
         }
     }
 
+    void update(String s, final boolean forward) {
+        Log.e("UI STEP ", s);
+        Handler h = new Handler(getMainLooper());
+        h.postDelayed(() -> {
+            if (!forward) {
+                list_ui1.remove(tmpList_ui1.get(index));
+                index--;
+                speakText = tmpList_ui1.get(index);
+            } else {
+                list_ui1.add(s);
+                speakText = s;
+            }
+            initTTS(speakText);
+            index++;
+        }, 0);
+    }
 
-    private void finish_task(){
+
+    private void finish_task() {
 
         Handler h = new Handler(getMainLooper());
         Handler h1 = new Handler(getMainLooper());
@@ -889,7 +1114,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
 
     private void cancelOven() {
 
-        System.out.println(current_state+" "+myList.size());
+        System.out.println(current_state + " " + myList.size());
 
         System.out.println(string_button);
 
@@ -897,13 +1122,12 @@ public class uiVariant4WithOven extends AppCompatActivity {
 
         //Not good very limited conditions (If time try to change)
         // Bug may be fixed by putting & !current_task.equals("cook time")
-        if(current_state + 1 == myList.size() & string_button.equals("cancel")){
+        if (current_state + 1 == myList.size() & string_button.equals("cancel")) {
             current_state++;
             System.out.println("946");
             stopTimer();
             finish_task();
-        }
-        else {
+        } else {
             System.out.println("636");
             TextView lcd = findViewById(R.id.oven_panel_text);
 
@@ -928,7 +1152,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
 
             next_button = new HashMap<String, Boolean>();
             button_active = new HashMap<String, Boolean>();
-            for (String i : list) {
+            for (String i : button_hashmap_list) {
                 next_button.put(i, false);
                 button_active.put(i, false);
             }
@@ -953,44 +1177,44 @@ public class uiVariant4WithOven extends AppCompatActivity {
         }
     }
 
-    private void press(String number){
+    private void press(String number) {
         if (time_position < 4) {
             time[time_position] = number;
             time_position++;
         }
     }
 
-    private void press_support(String number, String word){
-        if(numberpad_active == true | button_active.get(word) == true) {
-            active_inactive_log(true,number);
-            if(button_active.get(word) ==  true){
-                button_active.put(word,false);
+    private void press_support(String number, String word) {
+        if (numberpad_active == true | button_active.get(word) == true) {
+            active_inactive_log(true, number);
+            if (button_active.get(word) == true) {
+                button_active.put(word, false);
 
                 TextView lcd = findViewById(R.id.oven_panel_text);
-                if(number.equals("1")){
-                    if(current_task.equals("broil") | current_task.equals("broiling")){
+                if (number.equals("1")) {
+                    if (current_task.equals("broil") | current_task.equals("broiling")) {
                         lcd.setText("High");
                     }
 
-                    if(info_button.equals("sound")){
+                    if (info_button.equals("sound")) {
                         lcd.setText("Sound on");
                     }
 
-                    if(info_button.equals("temperature")){
+                    if (info_button.equals("temperature")) {
                         lcd.setText("Temperature on");
                     }
                 }
-                if(number.equals("2")){
-                    if(info_button.equals("sound")){
+                if (number.equals("2")) {
+                    if (info_button.equals("sound")) {
                         lcd.setText("Sound off");
                     }
 
-                    if(info_button.equals("temperature")){
+                    if (info_button.equals("temperature")) {
                         lcd.setText("Temperature off");
                     }
                 }
-                if(number.equals("3")){
-                    if(info_button.equals("clock")){
+                if (number.equals("3")) {
+                    if (info_button.equals("clock")) {
                         System.out.println("AM");
                         lcd.setText("AM");
                         try {
@@ -1000,21 +1224,21 @@ public class uiVariant4WithOven extends AppCompatActivity {
                         }
                     }
                 }
-                if(number.equals("4")){
-                    if(info_button.equals("clock")){
+                if (number.equals("4")) {
+                    if (info_button.equals("clock")) {
                         lcd.setText("Clock Settings");
                     }
                 }
 
-                if(number.equals("5")){
-                    if(settings_temperature_working){
+                if (number.equals("5")) {
+                    if (settings_temperature_working) {
                         sound_working = true;
                         lcd.setText("Temperature Settings");
                     }
                 }
 
-                if(number.equals("6")){
-                    if(settings_clock_working){
+                if (number.equals("6")) {
+                    if (settings_clock_working) {
                         sound_working = true;
                         lcd.setText("Sound Settings");
                     }
@@ -1023,55 +1247,53 @@ public class uiVariant4WithOven extends AppCompatActivity {
                 numberpad_toggle();
                 current_state++;
                 manage_next();
-            }
-            else{
+            } else {
                 press(number);
                 update(number);
             }
-        }
-        else {
-            active_inactive_log(false,number);
+        } else {
+            active_inactive_log(false, number);
         }
     }
 
     private void press0() {
-        press_support("0","zero");
+        press_support("0", "zero");
     }
 
     private void press1() {
-        press_support("1","one");
+        press_support("1", "one");
     }
 
     private void press2() {
-        press_support("2","two");
+        press_support("2", "two");
     }
 
     private void press3() {
-        press_support("3","three");
+        press_support("3", "three");
     }
 
     private void press4() {
-        press_support("4","four");
+        press_support("4", "four");
     }
 
     private void press5() {
-        press_support("5","five");
+        press_support("5", "five");
     }
 
     private void press6() {
-        press_support("6","six");
+        press_support("6", "six");
     }
 
     private void press7() {
-        press_support("7","seven");
+        press_support("7", "seven");
     }
 
     private void press8() {
-        press_support("8","eight");
+        press_support("8", "eight");
     }
 
     private void press9() {
-        press_support("9","nine");
+        press_support("9", "nine");
     }
 
     private void nextActivity() {
@@ -1092,10 +1314,12 @@ public class uiVariant4WithOven extends AppCompatActivity {
         BufferedReader reader = new BufferedReader(new InputStreamReader(ls, StandardCharsets.UTF_8));
         String line = "";
         HashMap<String, String> resultList = new HashMap<String, String>();
+        intentList = new HashMap<String, String>();
         try {
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split("\t");
                 resultList.put(tokens[0], tokens[1]);
+                intentList.put(tokens[0], tokens[2]);
             }
         } catch (IOException e) {
             Log.wtf("TaskInstructionActivity", "Error reading data file on line" + line, e);
@@ -1110,40 +1334,24 @@ public class uiVariant4WithOven extends AppCompatActivity {
         }
     }
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-    private void stringChecker(String val) {
-        Log.e("Checking string ...", val);
-        Handler h = new Handler(getMainLooper());
-        Handler h1 = new Handler(getMainLooper());
-        TextView ovenLcd = findViewById(R.id.oven_panel_text);
-        if (val.equals("3")) {
-            h.postDelayed(() -> {
-                isCode = true;
-                lcdString = "";
-                lcdString = "Nuggets/Fries";
-                ovenLcd.setText(lcdString);
-                h1.postDelayed(() -> {
-                    lcdString = "";
-                    lcdString = "Enter temperature:";
-                    //isTemp = true;
-                    ovenLcd.setText(lcdString);
-                }, 2000);
-            }, 2000);
-        } else {
-            isTemp = false;
-            isCode = false;
-            Log.e("reached else statement", "check");
+    private void initTTS(String selectedText) {
+        //textToSpeech.setSpeechRate(testingVal);
+        int speechStatus = textToSpeech.speak(selectedText, TextToSpeech.QUEUE_ADD, null, "1");
+        if (speechStatus == TextToSpeech.ERROR) {
+            Log.e("TTS", "Error in converting Text to Speech!");
         }
     }
 
-    private void enterTemperature(String val) {
-        //°F
-        Log.e("Entering temperature", val);
-        TextView ovenLcd = findViewById(R.id.oven_panel_text);
-        lcdString += val;
-        ovenLcd.setText(lcdString + "°F");
+    /**
+     * Clear everything from the lists.
+     *
+     * @param list_
+     */
+    public void clear(ArrayList<String> list_) {
+        if (list_ != null) {
+            list_ui1.clear();
+            tmpList_ui1.clear();
+        }
     }
+
 }

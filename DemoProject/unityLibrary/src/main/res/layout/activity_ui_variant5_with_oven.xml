@@ -357,7 +357,7 @@
         android:layout_height="25dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="36dp"
+        android:layout_marginStart="48dp"
         android:layout_marginTop="124dp"
         android:autofillHints=""
         android:background="#B2F2F2F2"
