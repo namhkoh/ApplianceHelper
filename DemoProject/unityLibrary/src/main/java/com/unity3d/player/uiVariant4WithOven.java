@@ -95,7 +95,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
 
         final EditText editText = findViewById(R.id.editText);
         SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
-        
+
         /**
          * Oven panel 1
          */
