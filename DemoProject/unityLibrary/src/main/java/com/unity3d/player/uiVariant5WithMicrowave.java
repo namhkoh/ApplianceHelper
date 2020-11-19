@@ -375,7 +375,9 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
 
                     index = 0;
                     max_index = response.getSteps().size();
-                    initial_update(tmpList_ui1.get(index));
+
+                    // Commented due to repeated step - Check with Leo
+                    //initial_update(tmpList_ui1.get(index));
 
                     initiate();
 
