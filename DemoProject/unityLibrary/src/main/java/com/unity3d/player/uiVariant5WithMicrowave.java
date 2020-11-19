@@ -42,9 +42,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * uiPanel supported list view instructions
@@ -56,7 +58,13 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
     private int max_index;
     //private ArrayAdapter adapter;
 
+
+    private Button clock, start, cancel, soften, timer, popcorn, pizza, reheat, defrost, open;
+    private Button cook, cooktime, cookpower, potato, add30;
+    private Button m0, m1, m2, m3, m4, m5, m6, m7, m8, m9;
     private ImageButton SpeechBtn;
+
+
     private int index = 0;
     ArrayList<String> list_ui1 = new ArrayList<>();
     ArrayList<String> tmpList_ui1 = new ArrayList<>();
@@ -147,9 +155,6 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
 //                startActivity(new Intent(uiVariant4WithMicrowave.this,Pop.class));
         });
 
-        /**
-         * Button Initialization start
-         */
 
         /**
          * Initialize the time on the screen with the current time.
@@ -157,139 +162,67 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
         TextView lcd = findViewById(R.id.lcd_text);
         lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
 
-        Button clock = findViewById(R.id.microwave_clock);
-        clock.setOnClickListener(v -> {
-            microwaveClock();
-        });
-
-        Button start = findViewById(R.id.microwave_start);
-        start.setOnClickListener(v -> {
-            microwaveStart();
-        });
-
-        Button cancel = findViewById(R.id.microwave_cancel);
-        cancel.setOnClickListener(v -> {
-            microwaveCancel();
-        });
-
-        Button soften = findViewById(R.id.microwave_soften);
-        soften.setOnClickListener(v -> {
-            microwaveSoften();
-        });
-
-        Button timer = findViewById(R.id.microwave_timer);
-        timer.setOnClickListener(v -> {
-            timer();
-        });
-
-        Button m0 = findViewById(R.id.microwave_0);
-        m0.setOnClickListener(v -> {
-            press0();
-        });
-
-        Button m1 = findViewById(R.id.microwave_1);
-        m1.setOnClickListener(v -> {
-            press1();
-        });
-
-        Button m2 = findViewById(R.id.microwave_2);
-        m2.setOnClickListener(v -> {
-            press2();
-        });
-
-        Button m3 = findViewById(R.id.microwave_3);
-        m3.setOnClickListener(v -> {
-            press3();
-        });
-
-        Button m4 = findViewById(R.id.microwave_4);
-        m4.setOnClickListener(v -> {
-            press4();
-        });
-
-        Button m5 = findViewById(R.id.microwave_5);
-        m5.setOnClickListener(v -> {
-            press5();
-        });
-
-        Button m6 = findViewById(R.id.microwave_6);
-        m6.setOnClickListener(v -> {
-            press6();
-        });
-
-        Button m7 = findViewById(R.id.microwave_7);
-        m7.setOnClickListener(v -> {
-            press7();
-        });
-
-        Button m8 = findViewById(R.id.microwave_8);
-        m8.setOnClickListener(v -> {
-            press8();
-        });
-
-        Button m9 = findViewById(R.id.microwave_9);
-        m9.setOnClickListener(v -> {
-            press9();
-        });
-
-        Button reheat = findViewById(R.id.microwave_reheat);
-        reheat.setOnClickListener(v -> {
-            reheat();
-        });
-
-        Button defrost = findViewById(R.id.microwave_defrost);
-        defrost.setOnClickListener(v -> {
-            defrost();
-        });
-
-        Button pizza = findViewById(R.id.microwave_pizza);
-        pizza.setOnClickListener(v -> {
-            pizza();
-        });
-
-        Button popcorn = findViewById(R.id.microwave_popcorn);
-        popcorn.setOnClickListener(v -> {
-            popcorn();
-        });
-
-        Button open = findViewById(R.id.open);
-        open.setOnClickListener(v -> {
-            open_microwave();
-        });
-
-        //Buttons that don't really have anytthing
-        Button potato = findViewById(R.id.microwave_potato);
-        potato.setOnClickListener(v -> {
-            potato();
-        });
-
-        Button cook = findViewById(R.id.microwave_cook);
-        cook.setOnClickListener(v -> {
-            cook();
-        });
-
-        Button cooktime = findViewById(R.id.microwave_cooktime);
-        cooktime.setOnClickListener(v -> {
-            cooktime();
-        });
-
-        Button cookpower = findViewById(R.id.microwave_cookpower);
-        cookpower.setOnClickListener(v -> {
-            cookpower();
-        });
-
-        Button add30 = findViewById(R.id.microwave_30sec);
-        add30.setOnClickListener(v -> {
-            add30();
-        });
-
         /**
-         * Button Initialization end
+         * Button Initialization start
          */
 
+        this.addButtons();
+
+        this.initialize_speaker();
+
+        ArrayList<Button> allButtons = new ArrayList<Button>(Arrays.asList(clock, start, cancel, soften, m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m0,
+                popcorn, potato, pizza, cook, reheat, cooktime, cookpower, defrost,
+                timer, add30));
+
+
+        setAlphaValue(0, allButtons);
+
+        anim = setAnimation();
+
+        tmpList = new ArrayList<String>();
+
+        //Initialize hashmap
+        list = Arrays.asList("clock", "start", "cancel", "timer", "reheat", "defrost", "pizza", "pork",
+                "no button", "number pad", "open", "popcorn", "soften",
+                "potato", "cook", "add30", "cook time", "cook power");
+
+
+        //Next Button is the button I have to Press Next
+        next_button = new HashMap<String, Boolean>();
+        //Active Button is to define what buttons are active.
+        active_button = new HashMap<String, Boolean>();
+        //Working Button is to define features (not buttons) are active.
+        working_button = new HashMap<String, Boolean>();
+        //Initialize everything to false
+        for (String i : list) {
+            next_button.put(i, false);
+            active_button.put(i, false);
+            working_button.put(i, false);
+        }
+
+    }
+
+    private void setAlphaValue(int alpha, ArrayList<Button> allButtons) {
+        for (int i = 0; i < allButtons.size(); i++) {
+            allButtons.get(i).setAlpha(alpha);
+        }
+    }
+
+    private Animation setAnimation() {
+        anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(50); //You can manage the blinking time with this parameter
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        return anim;
+    }
+
+
+    private void initialize_speaker() {
         // SPEECH TO TEXT START
         final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        final EditText editText = findViewById(R.id.editText);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
@@ -336,31 +269,31 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
                 utterance = matches.get(0);
                 editText.setText(utterance);
 
-//                if (utterance.contains("previous")) {
-//                    if (index > 0) {
-//                        Log.e("previous", String.valueOf(index));
-//                        index--;
-//                        update_state(tmpList_ui1.get(index));
-//                    } else {
-//                        Log.e("previous", "Front of the line");
-//                    }
-//                    return;
-//                } else if (utterance.contains("next")) {
-//                    if (index < max_index - 1) {
-//                        index++;
-//                        Log.e("next", String.valueOf(index));
-//                        update_state(tmpList_ui1.get(index));
-//                        if (index == max_index - 1) {
-//                            Toast.makeText(getApplicationContext(), "Last Step", Toast.LENGTH_SHORT).show();
-//                        }
-//                    } else {
-//                        Log.e("next", "End of the line");
-//                    }
-//                    return;
-//                } else if (utterance.contains("repeat")) {
-//                    initTTS(tmpList_ui1.get(index));
-//                    return;
-//                }
+                if (utterance.contains("previous")) {
+                    if (index > 0) {
+                        Log.e("previous", String.valueOf(index));
+                        index--;
+                        update_state(tmpList_ui1.get(index));
+                    } else {
+                        Log.e("previous", "Front of the line");
+                    }
+                    return;
+                } else if (utterance.contains("next")) {
+                    if (index < max_index - 1) {
+                        index++;
+                        Log.e("next", String.valueOf(index));
+                        update_state(tmpList_ui1.get(index));
+                        if (index == max_index - 1) {
+                            Toast.makeText(getApplicationContext(), "Last Step", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Log.e("next", "End of the line");
+                    }
+                    return;
+                } else if (utterance.contains("repeat")) {
+                    initTTS(tmpList_ui1.get(index));
+                    return;
+                }
 
                 //Code below is technically an else cause everything above has a return statement.
 
@@ -435,8 +368,6 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
                         initTTS(data);
                     }
 
-                    Log.e("check here!", String.valueOf(tmpList_ui1.size()));
-
                     //tmpList.add(data);
                     myList = buttonList;
                     instructionList = list_ui1;
@@ -444,7 +375,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
 
                     index = 0;
                     max_index = response.getSteps().size();
-                    //initial_update(tmpList_ui1.get(index));
+                    initial_update(tmpList_ui1.get(index));
 
                     initiate();
 
@@ -494,42 +425,6 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
                             index++;
                             update(tmpList_ui1.get(index), true);
                         }
-//                        if (index < tmpList_ui1.size()) {
-//                            update(tmpList_ui1.get(index), true);
-//                        }
-//
-//
-//                        Log.d("Speak", String.valueOf(index));
-//
-//                        index++;
-//
-//                        if (index == list_ui1.size() & success == true) {
-//                            Log.d("Here we go", "Done");
-//                            SpeechBtn.setEnabled(false);
-//
-//                            Handler h = new Handler(getMainLooper());
-//
-//                            h.postDelayed(() -> {
-//
-//                                new Handler(Looper.getMainLooper()).post(new Runnable() {
-//                                    @Override
-//                                    public void run() {
-//                                        Toast.makeText(getApplicationContext(), "Press Next", Toast.LENGTH_SHORT).show();
-//                                    }
-//                                });
-//
-//                            }, 3000);
-//
-//                        } else {
-//
-//                            new Handler(Looper.getMainLooper()).post(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    SpeechBtn.setEnabled(true);
-//                                }
-//                            });
-//
-//                        }
                     }
 
                     @Override
@@ -537,68 +432,145 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
 
                     }
                 });
+    }
 
-        ArrayList<Button> allButtons = new ArrayList<Button>(Arrays.asList(clock, start, cancel, soften, m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m0,
-                popcorn, potato, pizza, cook, reheat, cooktime, cookpower, defrost,
-                timer, add30));
+    private void addButtons() {
+        clock = findViewById(R.id.microwave_clock);
+        clock.setOnClickListener(v -> {
+            microwaveClock();
+        });
 
-        //What is this set alpha for
-        for (int i = 0; i < allButtons.size(); i++) {
-            allButtons.get(i).setAlpha(0);
-        }
+        start = findViewById(R.id.microwave_start);
+        start.setOnClickListener(v -> {
+            microwaveStart();
+        });
 
-        anim = new AlphaAnimation(0.0f, 1.0f);
-        anim.setDuration(50); //You can manage the blinking time with this parameter
-        anim.setStartOffset(20);
-        anim.setRepeatMode(Animation.REVERSE);
-        anim.setRepeatCount(Animation.INFINITE);
+        cancel = findViewById(R.id.microwave_cancel);
+        cancel.setOnClickListener(v -> {
+            microwaveCancel();
+        });
 
-        //Get data from uiVaraiant 1,2,3,4
-//        myList = (ArrayList<String>) getIntent().getSerializableExtra("button");
-//
-//        instructionList = (ArrayList<String>) getIntent().getSerializableExtra("instructions");
+        soften = findViewById(R.id.microwave_soften);
+        soften.setOnClickListener(v -> {
+            microwaveSoften();
+        });
 
-//        System.out.println(myList);
-//
-//        System.out.println(instructionList);
+        timer = findViewById(R.id.microwave_timer);
+        timer.setOnClickListener(v -> {
+            timer();
+        });
 
-        tmpList = new ArrayList<String>();
+        reheat = findViewById(R.id.microwave_reheat);
+        reheat.setOnClickListener(v -> {
+            reheat();
+        });
 
-        //Initialize hashmap
-        list = Arrays.asList("clock", "start", "cancel", "timer", "reheat", "defrost", "pizza", "pork",
-                "no button", "number pad", "open", "popcorn", "soften",
-                "potato", "cook", "add30", "cook time", "cook power");
-        //Next Button is the button I have to Press Next
-        next_button = new HashMap<String, Boolean>();
-        //Active Button is to define what buttons are active.
-        active_button = new HashMap<String, Boolean>();
-        //Working Button is to define features (not buttons) are active.
-        working_button = new HashMap<String, Boolean>();
-        //Initialize everything to false
-        for (String i : list) {
-            next_button.put(i, false);
-            active_button.put(i, false);
-            working_button.put(i, false);
-        }
+        defrost = findViewById(R.id.microwave_defrost);
+        defrost.setOnClickListener(v -> {
+            defrost();
+        });
 
-//        if(!(myList == null)){
-//            pressed_wrong = 0;
-//            //Initial Step
-//            current_state = 0;
-////        //Get the Next button
-//            string_button = myList.get(current_state);
-//            //How many instructions are there in total
-//            number_of_steps = myList.size();
-//            //Use the String value of the button to go to the next step.
-//            next_step(string_button);
-//        }
+        pizza = findViewById(R.id.microwave_pizza);
+        pizza.setOnClickListener(v -> {
+            pizza();
+        });
+
+        popcorn = findViewById(R.id.microwave_popcorn);
+        popcorn.setOnClickListener(v -> {
+            popcorn();
+        });
+
+        open = findViewById(R.id.open);
+        open.setOnClickListener(v -> {
+            open_microwave();
+        });
+
+        potato = findViewById(R.id.microwave_potato);
+        potato.setOnClickListener(v -> {
+            potato();
+        });
+
+        cook = findViewById(R.id.microwave_cook);
+        cook.setOnClickListener(v -> {
+            cook();
+        });
+
+        cooktime = findViewById(R.id.microwave_cooktime);
+        cooktime.setOnClickListener(v -> {
+            cooktime();
+        });
+
+        cookpower = findViewById(R.id.microwave_cookpower);
+        cookpower.setOnClickListener(v -> {
+            cookpower();
+        });
+
+        add30 = findViewById(R.id.microwave_30sec);
+        add30.setOnClickListener(v -> {
+            add30();
+        });
+
+        this.addNumberPad();
+
+    }
+
+    private void addNumberPad() {
+        m0 = findViewById(R.id.microwave_0);
+        m0.setOnClickListener(v -> {
+            press0();
+        });
+
+        m1 = findViewById(R.id.microwave_1);
+        m1.setOnClickListener(v -> {
+            press1();
+        });
+
+        m2 = findViewById(R.id.microwave_2);
+        m2.setOnClickListener(v -> {
+            press2();
+        });
+
+        m3 = findViewById(R.id.microwave_3);
+        m3.setOnClickListener(v -> {
+            press3();
+        });
+
+        m4 = findViewById(R.id.microwave_4);
+        m4.setOnClickListener(v -> {
+            press4();
+        });
+
+        m5 = findViewById(R.id.microwave_5);
+        m5.setOnClickListener(v -> {
+            press5();
+        });
+
+        m6 = findViewById(R.id.microwave_6);
+        m6.setOnClickListener(v -> {
+            press6();
+        });
+
+        m7 = findViewById(R.id.microwave_7);
+        m7.setOnClickListener(v -> {
+            press7();
+        });
+
+        m8 = findViewById(R.id.microwave_8);
+        m8.setOnClickListener(v -> {
+            press8();
+        });
+
+        m9 = findViewById(R.id.microwave_9);
+        m9.setOnClickListener(v -> {
+            press9();
+        });
     }
 
     public void initiate() {
         pressed_wrong = 0;
         //Initial Step
         current_state = 0;
-//        //Get the Next button
+        //Get the Next button
         string_button = myList.get(current_state);
         //How many instructions are there in total
         number_of_steps = myList.size();
@@ -636,41 +608,15 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
         initTTS(s);
     }
 
-//    public void openDialog() {
-//
-//        StringBuilder sb = new StringBuilder();
-//
-//        for (int i = 0; i <= index; i++) {
-//            sb.append(tmpList_ui1.get(i));
-//            sb.append("\n");
-//        }
-//
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//
-//        //final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>();
-//        builder.setTitle("Instructions");
-//        builder.setMessage("Look at this dialog!");
-//        builder.setMessage(sb.toString());
-//        builder.setCancelable(false);
-//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                //
-//            }
-//        });
-//        AlertDialog alert = builder.create();
-//        alert.show();
-//    }
-
-    /**
-     * Alternative openDialog method adding all elements to the window box.
-     */
     public void openDialog() {
+
         StringBuilder sb = new StringBuilder();
+
         for (String instruction : tmpList_ui1) {
             sb.append(instruction);
             sb.append("\n");
         }
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         //final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>();
@@ -698,6 +644,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
         ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
         if (incoming_index < instructionList.size() - 1) {
             Intent intent = new Intent(this, TaskInstructionActivity.class);
+            intent.putExtra("newIndex", incoming_index);
             startActivity(intent);
         } else {
             Intent intent = new Intent(this, UserSurveyActivity.class);
@@ -1284,46 +1231,21 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
     }
 
     private void next_step(String string_button) {
-        if (string_button.equals("clock")) {
-            active_button.put(string_button, true);
-            next_button.put(string_button, true);
-            Log.e("Button", string_button);
-        }
 
-        if (string_button.equals("reheat")) {
-            active_button.put(string_button, true);
-            next_button.put(string_button, true);
-            Log.e("Button", string_button);
-        }
+        Set<String> accept = new HashSet<String>();
+        accept.add("clock");
+        accept.add("reheat");
+        accept.add("defrost");
+        accept.add("pizza");
+        accept.add("popcorn");
+        accept.add("timer");
+        accept.add("start");
+        accept.add("open");
 
-        if (string_button.equals("defrost")) {
-            active_button.put(string_button, true);
-            next_button.put(string_button, true);
-            Log.e("Button", string_button);
-        }
+        System.out.println("String Button: " + string_button);
 
-        if (string_button.equals("pizza")) {
-            active_button.put(string_button, true);
-            next_button.put(string_button, true);
-            Log.e("Button", string_button);
-        }
-
-        if (string_button.equals("popcorn")) {
-            active_button.put(string_button, true);
-            next_button.put(string_button, true);
-            Log.e("Button", string_button);
-        }
-
-        if (string_button.equals("timer")) {
-            active_button.put(string_button, true);
-            next_button.put(string_button, true);
-            Log.e("Button", string_button);
-        }
-
-        if (string_button.equals("start")) {
-            active_button.put(string_button, true);
-            next_button.put(string_button, true);
-            Log.e("Button", string_button);
+        if (accept.contains(string_button)) {
+            next_step_helper(string_button);
         }
 
         if (string_button.equals("no button")) {
@@ -1331,12 +1253,6 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
             next_button.put(string_button, true);
             Log.e("Button", string_button);
             finish_task();
-        }
-
-        if (string_button.equals("open")) {
-            active_button.put(string_button, true);
-            next_button.put(string_button, true);
-            Log.e("Button", string_button);
         }
 
         if (string_button.equals("number pad")) {
@@ -1357,6 +1273,12 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
             //Activate the next button without deactivating the current button.
             next_button.put(string_button, true);
         }
+    }
+
+    private void next_step_helper(String string_button) {
+        next_button.put(string_button, true);
+        active_button.put(string_button, true);
+        //debug_next_step_log(string_button); //Need to implement if wanted
     }
 
 }
