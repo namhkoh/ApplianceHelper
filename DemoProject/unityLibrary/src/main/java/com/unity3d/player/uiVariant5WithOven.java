@@ -722,8 +722,8 @@ public class uiVariant5WithOven extends AppCompatActivity {
 
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i <= index; i++) {
-            sb.append(tmpList_ui1.get(i));
+        for (String instruction : tmpList_ui1) {
+            sb.append(instruction);
             sb.append("\n");
         }
 
@@ -746,8 +746,16 @@ public class uiVariant5WithOven extends AppCompatActivity {
 
     private void openListViewDialog() {
         String[] list_view = new String[index + 1];
+
+//        for (int i = 0; i <= index; i++) {
+//            list_view[i] = tmpList_ui1.get(i);
+//        }
+
+        // Adds all items to the list but does not return a proper listView. --> Check with Leo.
         for (int i = 0; i <= index; i++) {
-            list_view[i] = tmpList_ui1.get(i);
+            for (String instruction : tmpList_ui1) {
+                list_view[i] = instruction;
+            }
         }
 
         ContextThemeWrapper themedContext = new ContextThemeWrapper(this, android.R.style.Theme_Holo_NoActionBar);
