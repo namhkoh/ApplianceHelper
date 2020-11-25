@@ -88,4 +88,6 @@
 
     <string name="server_button">server</string>
     <string name="instructions"></string>
+
+    <string name="homeButton">End</string>
 </resources>

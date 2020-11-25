@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.StateSet;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
@@ -57,6 +58,10 @@ public class UserSurveyActivity extends AppCompatActivity {
         css = findViewById(R.id.customer_satisfaction_score);
         Button submit = findViewById(R.id.submitButton);
         submit.findViewById(R.id.submitButton);
+        Button goHome = findViewById(R.id.homeButton);
+        goHome.setOnClickListener(v -> {
+            returnHome();
+        });
 
         submit.setOnClickListener(v -> {
             String netScore = String.valueOf(nps.getRating());
@@ -132,8 +137,10 @@ public class UserSurveyActivity extends AppCompatActivity {
         });
 
         additionalFeedback.addTextChangedListener(submitTextWatcher);
+    }
 
-        Intent intent = new Intent(this, UserSurveyActivity.class);
+    private void returnHome() {
+        Intent intent = new Intent(this, UserConsentActivity.class);
         startActivity(intent);
     }
 
