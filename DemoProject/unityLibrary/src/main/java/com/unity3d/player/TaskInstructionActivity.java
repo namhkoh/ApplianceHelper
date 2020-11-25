@@ -85,6 +85,7 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     Log.e("taskInstruction", String.valueOf(index));
                     String incoming_indexString5 = String.valueOf(index);
                     HashMap<String, String> tmpHash5 = getData();
+                    TaskInstructionActivity.indexBundle.putInt("index", index);
                     index++;
                     if (Objects.requireNonNull(tmpHash5.get(incoming_indexString5)).toLowerCase().contains("microwave")) {
                         Intent intent4 = new Intent(getApplicationContext(), uiVariant5WithMicrowave.class);
