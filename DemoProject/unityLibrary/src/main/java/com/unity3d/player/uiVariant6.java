@@ -92,27 +92,27 @@ public class uiVariant6 extends AppCompatActivity {
             microwaveClock();
         });
 
-        Button back = findViewById(R.id.back);
-        back.setOnClickListener(v -> {
-            //NavUtils.navigateUpFromSameTask(this);
-            //microwaveClock();
-
-//            Log.v("Saved","Save Instance State 2");
-//            uiVariant1.uivariant1Bundle.putBoolean("Is First",is_first);
-//            uiVariant1.uivariant1Bundle.putSerializable("NextButton", next_button);
-
-            save_bundle();
-
-//            Intent intent = NavUtils.getParentActivityIntent(this);
-//            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//            NavUtils.navigateUpTo(this,intent);
-
-            finish();
-
-//            Intent intent = new Intent(this, uiVariant1.class);
-//            startActivity(intent);
-
-        });
+//        Button back = findViewById(R.id.back);
+//        back.setOnClickListener(v -> {
+//            //NavUtils.navigateUpFromSameTask(this);
+//            //microwaveClock();
+//
+////            Log.v("Saved","Save Instance State 2");
+////            uiVariant1.uivariant1Bundle.putBoolean("Is First",is_first);
+////            uiVariant1.uivariant1Bundle.putSerializable("NextButton", next_button);
+//
+//            save_bundle();
+//
+////            Intent intent = NavUtils.getParentActivityIntent(this);
+////            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+////            NavUtils.navigateUpTo(this,intent);
+//
+//            finish();
+//
+////            Intent intent = new Intent(this, uiVariant1.class);
+////            startActivity(intent);
+//
+//        });
 
         Button start = findViewById(R.id.microwave_start);
         start.setOnClickListener(v -> {
@@ -288,8 +288,8 @@ public class uiVariant6 extends AppCompatActivity {
 
         //Initialize hashmap
         list = Arrays.asList("clock", "start", "cancel", "timer", "reheat", "defrost", "pizza", "pork",
-                "no button", "number pad","open","popcorn","soften",
-                        "potato","cook","add30","cook time","cook power");
+                "no button", "number pad", "open", "popcorn", "soften",
+                "potato", "cook", "add30", "cook time", "cook power");
 //        //Next Button is the button I have to Press Next
 //        next_button = new HashMap<String, Boolean>();
 //        //Active Button is to define what buttons are active.
@@ -315,13 +315,13 @@ public class uiVariant6 extends AppCompatActivity {
 //        next_step(string_button);
 
         // Not first time
-        if(uiVariant1.uivariant1Bundle.containsKey("Is First")){
+        if (uiVariant1.uivariant1Bundle.containsKey("Is First")) {
             System.out.println("Is First: " + uiVariant1.uivariant1Bundle.getBoolean("Is First"));
             load_bundle();
-            Log.d("Load Bundle","Restored");
+            Log.d("Load Bundle", "Restored");
 
         } //First Time
-        else{
+        else {
             is_first = true;
             //Next Button is the button I have to Press Next
             next_button = new HashMap<String, Boolean>();
@@ -333,7 +333,7 @@ public class uiVariant6 extends AppCompatActivity {
             for (String i : list) {
                 next_button.put(i, false);
                 active_button.put(i, false);
-                working_button.put(i,false);
+                working_button.put(i, false);
             }
 
             pressed_wrong = 0;
@@ -350,37 +350,37 @@ public class uiVariant6 extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch(item.getItemId()){
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case android.R.id.home:
-                Toast.makeText(getApplicationContext(),"Back button clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Back button clicked", Toast.LENGTH_SHORT).show();
                 save_bundle();
                 finish();
         }
         return true;
     }
 
-    private void save_bundle(){
+    private void save_bundle() {
         uiVariant1.uivariant1Bundle.clear();
         TextView lcd = findViewById(R.id.lcd_text);
         System.out.println(lcd.getText());
-        Log.v("Saved","Save Instance State 2");
-        uiVariant1.uivariant1Bundle.putBoolean("Is First",is_first);
+        Log.v("Saved", "Save Instance State 2");
+        uiVariant1.uivariant1Bundle.putBoolean("Is First", is_first);
         uiVariant1.uivariant1Bundle.putSerializable("NextButton", next_button);
         uiVariant1.uivariant1Bundle.putSerializable("ActiveButton", active_button);
         uiVariant1.uivariant1Bundle.putSerializable("WorkingButton", working_button);
-        uiVariant1.uivariant1Bundle.putInt("CurrentState",current_state);
-        uiVariant1.uivariant1Bundle.putInt("PressedWrong",pressed_wrong);
-        uiVariant1.uivariant1Bundle.putString("CurrentTask",current_task);
-        uiVariant1.uivariant1Bundle.putString("lcdstring",lcdString);
-        uiVariant1.uivariant1Bundle.putString("OnScreen",lcd.getText().toString());
-        uiVariant1.uivariant1Bundle.putStringArray("time",time);
-        uiVariant1.uivariant1Bundle.putInt("timeposition",time_position);
-        uiVariant1.uivariant1Bundle.putBoolean("ReheatPressed",reheat_pressed);
-        uiVariant1.uivariant1Bundle.putInt("ReheatPos",reheat_category);
+        uiVariant1.uivariant1Bundle.putInt("CurrentState", current_state);
+        uiVariant1.uivariant1Bundle.putInt("PressedWrong", pressed_wrong);
+        uiVariant1.uivariant1Bundle.putString("CurrentTask", current_task);
+        uiVariant1.uivariant1Bundle.putString("lcdstring", lcdString);
+        uiVariant1.uivariant1Bundle.putString("OnScreen", lcd.getText().toString());
+        uiVariant1.uivariant1Bundle.putStringArray("time", time);
+        uiVariant1.uivariant1Bundle.putInt("timeposition", time_position);
+        uiVariant1.uivariant1Bundle.putBoolean("ReheatPressed", reheat_pressed);
+        uiVariant1.uivariant1Bundle.putInt("ReheatPos", reheat_category);
     }
 
-    private void load_bundle(){
+    private void load_bundle() {
         TextView lcd = findViewById(R.id.lcd_text);
         is_first = uiVariant1.uivariant1Bundle.getBoolean("Is First");
         next_button = (HashMap<String, Boolean>) uiVariant1.uivariant1Bundle.getSerializable("NextButton");
@@ -390,7 +390,7 @@ public class uiVariant6 extends AppCompatActivity {
         pressed_wrong = uiVariant1.uivariant1Bundle.getInt("PressedWrong");
         current_task = uiVariant1.uivariant1Bundle.getString("CurrentTask");
         lcdString = uiVariant1.uivariant1Bundle.getString("lcdstring");
-        time =  uiVariant1.uivariant1Bundle.getStringArray("time");
+        time = uiVariant1.uivariant1Bundle.getStringArray("time");
         time_position = uiVariant1.uivariant1Bundle.getInt("timeposition");
         reheat_pressed = uiVariant1.uivariant1Bundle.getBoolean("ReheatPressed");
         reheat_category = uiVariant1.uivariant1Bundle.getInt("ReheatPos");
@@ -405,7 +405,6 @@ public class uiVariant6 extends AppCompatActivity {
 //        uiVariant1.uivariant1Bundle.putSerializable("NextButton", next_button);
 //        super.onSaveInstanceState(savedInstanceState);
 //    }
-
 
 
     private void next_step(String string_button) {
@@ -501,31 +500,31 @@ public class uiVariant6 extends AppCompatActivity {
         return resultList;
     }
 
-    private void potato(){
-        core_button_support("Potato",null);
+    private void potato() {
+        core_button_support("Potato", null);
     }
 
-    private void cook(){
-        core_button_support("Cook",null);
+    private void cook() {
+        core_button_support("Cook", null);
     }
 
-    private void cooktime(){
-        core_button_support("Cook Time",null);
+    private void cooktime() {
+        core_button_support("Cook Time", null);
     }
 
-    private void cookpower(){
-        core_button_support("Cook Power",null);
+    private void cookpower() {
+        core_button_support("Cook Power", null);
     }
 
-    private void add30(){
-        core_button_support("add30",null);
+    private void add30() {
+        core_button_support("add30", null);
     }
 
 
     //Simulates Opening the microwave.
     private void open_microwave() {
-        if(active_button.get("open")) {
-            active_inactive_log(true,"Open");
+        if (active_button.get("open")) {
+            active_inactive_log(true, "Open");
             TextView lcd = findViewById(R.id.lcd_text);
             lcd.clearAnimation();
             lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
@@ -537,8 +536,8 @@ public class uiVariant6 extends AppCompatActivity {
             numberpad_toggle();
             current_state++;
             manage_next();
-        }else{
-            active_inactive_log(false,"Open");
+        } else {
+            active_inactive_log(false, "Open");
         }
     }
 
@@ -549,7 +548,7 @@ public class uiVariant6 extends AppCompatActivity {
             tmpList.add(number);
             update_number(number);
         } else {
-            if(lcdString.length() < 4) {
+            if (lcdString.length() < 4) {
                 lcdString += number;
                 tmpList.add(number);
             }
@@ -564,34 +563,34 @@ public class uiVariant6 extends AppCompatActivity {
                 update_number(lcdString);
             }
             if (current_task == "Reheat") {
-                active_button.put("reheat",false);
+                active_button.put("reheat", false);
             }
         }
     }
 
-    private void active_inactive_log(boolean active, String msg){
-        if(active == true){
+    private void active_inactive_log(boolean active, String msg) {
+        if (active == true) {
             Log.e("Button Pressed (Active)", msg);
             pressed_wrong = 0;
             hint.setEnabled(false);
-        } else{
+        } else {
             Log.e("Button Pressed (Inactive)", msg);
             pressed_wrong++;
         }
 
         System.out.println(pressed_wrong);
 
-        if(pressed_wrong >= 5 & current_state < myList.size()){
+        if (pressed_wrong >= 5 & current_state < myList.size()) {
             hint.setEnabled(true);
         }
     }
 
-    private void press_helper(String number){
+    private void press_helper(String number) {
         if (active_button.get("number pad")) {
             press(number);
-            active_inactive_log(true,number);
+            active_inactive_log(true, number);
         } else {
-            active_inactive_log(false,number);
+            active_inactive_log(false, number);
         }
     }
 
@@ -635,9 +634,9 @@ public class uiVariant6 extends AppCompatActivity {
         press_helper("9");
     }
 
-    private void hint(){
+    private void hint() {
         Log.e("Button Pressed", "Hint");
-        Toast toast = Toast.makeText(getApplicationContext(),instructionList.get(current_state),Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(getApplicationContext(), instructionList.get(current_state), Toast.LENGTH_SHORT);
         toast.show();
     }
 
@@ -647,7 +646,7 @@ public class uiVariant6 extends AppCompatActivity {
         if (false) {
             super.onBackPressed();
         } else {
-            Log.d("Debug","Back Button Pressed");
+            Log.d("Debug", "Back Button Pressed");
         }
     }
 
@@ -664,8 +663,8 @@ public class uiVariant6 extends AppCompatActivity {
             lcdString = "Ready!";
             lcd.setText(lcdString);
 
-            if(working_button.get("clock")){
-                working_button.put("clock",false);
+            if (working_button.get("clock")) {
+                working_button.put("clock", false);
             }
 
             Button next = findViewById(R.id.Next);
@@ -693,29 +692,29 @@ public class uiVariant6 extends AppCompatActivity {
         next.setEnabled(true);
     }
 
-    private void core_button_support(String button, String lcd_text){
+    private void core_button_support(String button, String lcd_text) {
         button_lowercase = button.toLowerCase();
         if (active_button.get(button_lowercase) == true) {
             active_inactive_log(true, button);
             if (next_button.get(button_lowercase)) {
                 TextView lcd = findViewById(R.id.lcd_text);
-                if(button_lowercase.equals("clock")) {
+                if (button_lowercase.equals("clock")) {
                     clearClock();
                 }
-                if(button_lowercase.equals("timer") | button_lowercase.equals("pizza") | button_lowercase.equals("popcorn") | button_lowercase.equals("defrost")) {
+                if (button_lowercase.equals("timer") | button_lowercase.equals("pizza") | button_lowercase.equals("popcorn") | button_lowercase.equals("defrost")) {
                     clearScreen();
                 }
-                if(button_lowercase.equals("pizza") | button_lowercase.equals("popcorn")){
+                if (button_lowercase.equals("pizza") | button_lowercase.equals("popcorn")) {
                     food_working = true;
                 }
                 current_task = button;
                 //The current feature is now working
-                working_button.put(button_lowercase,true);
+                working_button.put(button_lowercase, true);
                 //As this is the next button deactivate the two buttons.
                 next_button.put(button_lowercase, false);
-                active_button.put(button_lowercase,false);
+                active_button.put(button_lowercase, false);
                 //Set the Screen like that (Can remove in the future)
-                if(lcd_text != null) {
+                if (lcd_text != null) {
                     lcdString = lcd_text;
                     lcd.setText(lcdString);
                     lcdString = "";
@@ -731,11 +730,11 @@ public class uiVariant6 extends AppCompatActivity {
     }
 
     private void microwaveClock() {
-        core_button_support("Clock","  :  ");
+        core_button_support("Clock", "  :  ");
     }
 
     private void timer() {
-        core_button_support("Timer","  :  ");
+        core_button_support("Timer", "  :  ");
     }
 
     public void pizza() {
@@ -759,7 +758,7 @@ public class uiVariant6 extends AppCompatActivity {
             reheatScreen();
             active_inactive_log(true, "Reheat");
             if (next_button.get("reheat") == true) {
-                working_button.put("reheat",true);
+                working_button.put("reheat", true);
                 // Not for reheat because reheat can be pressed multiple times to toggle
                 // next_button.put("reheat",false);
                 // reheat_active = false;
@@ -778,7 +777,7 @@ public class uiVariant6 extends AppCompatActivity {
 
     private void numberpad_toggle() {
         previous_numberpad = false;
-        active_button.put("number pad",false);
+        active_button.put("number pad", false);
 
     }
 
@@ -787,7 +786,7 @@ public class uiVariant6 extends AppCompatActivity {
             if (next_button.get("start") == true) {
                 Log.e("Button", "Clock deactivate");
                 next_button.put("start", false);
-                active_button.put("start",false);
+                active_button.put("start", false);
                 numberpad_toggle();
                 System.out.println(previous_state);
                 if (current_task == "Reheat") {
@@ -801,9 +800,9 @@ public class uiVariant6 extends AppCompatActivity {
                     countdown(lcdString);
                 }
 
-                if(active_button.get("reheat")){
-                    active_button.put("reheat",false);
-                    next_button.put("reheat",false);
+                if (active_button.get("reheat")) {
+                    active_button.put("reheat", false);
+                    next_button.put("reheat", false);
                 }
 
                 if (current_state >= myList.size()) {
@@ -825,11 +824,11 @@ public class uiVariant6 extends AppCompatActivity {
             return;
         }
         if (string_button.equals("clock")) {
-            active_button.put("clock",false);
+            active_button.put("clock", false);
         }
 
-        if(active_button.get("number pad") == true){
-            active_button.put("number pad",false);
+        if (active_button.get("number pad") == true) {
+            active_button.put("number pad", false);
         }
 
     }
@@ -862,7 +861,7 @@ public class uiVariant6 extends AppCompatActivity {
         for (String i : list) {
             next_button.put(i, false);
             active_button.put(i, false);
-            working_button.put(i,false);
+            working_button.put(i, false);
         }
 
         next_step(string_button);
@@ -928,15 +927,15 @@ public class uiVariant6 extends AppCompatActivity {
     private void update_number(String number) {
         System.out.println("Update Number");
         TextView lcd = findViewById(R.id.lcd_text);
-        if(current_task == "Pizza") {
+        if (current_task == "Pizza") {
             lcd.setText(number + ".0 QTY");
-        } else if(current_task == "Popcorn"){
+        } else if (current_task == "Popcorn") {
             lcd.setText(number + ".0 oz");
-        } else if(current_task == "Reheat"){
-            lcd.setTextSize(TypedValue.COMPLEX_UNIT_SP,30);
+        } else if (current_task == "Reheat") {
+            lcd.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
             lcd.setText(number + ".0 servings");
-            lcd.setTextSize(TypedValue.COMPLEX_UNIT_SP,40);
-        }else{
+            lcd.setTextSize(TypedValue.COMPLEX_UNIT_SP, 40);
+        } else {
             lcd.setText(number);
         }
     }
@@ -1008,9 +1007,9 @@ public class uiVariant6 extends AppCompatActivity {
         alt.setText(altString);
         lcd.setText(lcdString);
         if (reheat_category % 3 == 0) {
-            lcd.setTextSize(TypedValue.COMPLEX_UNIT_SP,30);
+            lcd.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
             lcd.setText("Plate of food");
-            lcd.setTextSize(TypedValue.COMPLEX_UNIT_SP,40);
+            lcd.setTextSize(TypedValue.COMPLEX_UNIT_SP, 40);
         } else if (reheat_category % 3 == 1) {
             lcd.setText("Casserole");
         } else {

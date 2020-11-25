@@ -1,5 +1,6 @@
 package com.unity3d.player;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Debug;
@@ -131,6 +132,9 @@ public class UserSurveyActivity extends AppCompatActivity {
         });
 
         additionalFeedback.addTextChangedListener(submitTextWatcher);
+
+        Intent intent = new Intent(this, UserSurveyActivity.class);
+        startActivity(intent);
     }
 
     private TextWatcher submitTextWatcher = new TextWatcher() {
