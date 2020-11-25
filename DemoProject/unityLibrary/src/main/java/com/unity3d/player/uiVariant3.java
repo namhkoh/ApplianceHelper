@@ -477,7 +477,7 @@ public class uiVariant3 extends AppCompatActivity {
         initTTS(k);
         displayPanels2(s);
         adapter.notifyDataSetChanged();
-        initTTS(s);
+        //initTTS(s);
     }
 
     public void runSteps(String s, String k) {
