@@ -1,17 +1,18 @@
 package com.unity3d.player;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.BlendMode;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Debug;
 import android.os.Handler;
-import android.os.Looper;
 import android.provider.Settings;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
@@ -20,22 +21,16 @@ import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
-import com.aic.libnilu.nlu.MainManager;
 import com.aic.libnilu.nlu.ResponseObject;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -55,10 +50,10 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * this class will contain the microwave panel with the speech button.
+ * This class represents the base line user-interface for the user to perform the task instructions
+ * without any help or priors.
  */
-
-public class uiVariant4WithMicrowave extends AppCompatActivity {
+public class BaseLineActivityMicrowave extends AppCompatActivity {
 
     private String lcdString = " ";
     private String altString = " ";
@@ -131,15 +126,13 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ui_variant4_with_microwave);
+        setContentView(R.layout.activity_base_line_microwave);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         checkPermission();
 
         /**
          * Initializing buttons
          */
-        SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
-        final EditText editText = findViewById(R.id.editText);
         next = findViewById(R.id.nextActivity);
         next.setEnabled(false);
         next.setOnClickListener(v -> {
@@ -147,20 +140,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
             nextTask();
         });
 
-        /**
-         * Floating button to show the current instructions,
-         * When clicked, will display an opaque background/ view or textview,
-         */
-        FloatingActionButton fabInstructions = findViewById(R.id.instructionHelp);
-        fabInstructions.setOnClickListener(v -> {
-//            Log.e("clicked", "here are the instructions");
-//            Intent intent = new Intent(getApplicationContext(), Pop.class);
-//            intent.putExtra("instructions", list_ui1);
-//            startActivity(intent);
-            openDialog();
-
-//                startActivity(new Intent(uiVariant4WithMicrowave.this,Pop.class));
-        });
+//
 
 
         /**
@@ -175,7 +155,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
 
         this.addButtons();
 
-        this.initialize_speaker();
+        //this.initialize_speaker();
 
         ArrayList<Button> allButtons = new ArrayList<Button>(Arrays.asList(clock, start, cancel, soften, m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m0,
                 popcorn, potato, pizza, cook, reheat, cooktime, cookpower, defrost,
@@ -225,220 +205,205 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
     }
 
 
-    private void initialize_speaker() {
-        // SPEECH TO TEXT START
-        final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
-        final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        final EditText editText = findViewById(R.id.editText);
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
-                Locale.getDefault());
-        mSpeechRecognizer.setRecognitionListener(new RecognitionListener() {
-            @Override
-            public void onReadyForSpeech(Bundle bundle) {
-
-            }
-
-            @Override
-            public void onBeginningOfSpeech() {
-
-            }
-
-            @Override
-            public void onRmsChanged(float v) {
-
-            }
-
-            @Override
-            public void onBufferReceived(byte[] bytes) {
-
-            }
-
-            @Override
-            public void onEndOfSpeech() {
-                Log.e("onEndOfSpeech", "this is on end of speech.");
-            }
-
-            @Override
-            public void onError(int i) {
-
-            }
-
-            @Override
-            public void onResults(Bundle bundle) {
-
-                //getting all the matches
-                ArrayList<String> matches = bundle
-                        .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-                Log.e("ALL MATCHES", matches.toString());
-
-                utterance = matches.get(0);
-                editText.setText(utterance);
-
-                if (utterance.contains("previous")) {
-                    if (index > 0) {
-                        Log.e("previous", String.valueOf(index));
-                        index--;
-                        update_state(tmpList_ui1.get(index));
-                    } else {
-                        Log.e("previous", "Front of the line");
-                    }
-                    return;
-                } else if (utterance.contains("next")) {
-                    if (index < max_index - 1) {
-                        index++;
-                        Log.e("next", String.valueOf(index));
-                        update_state(tmpList_ui1.get(index));
-                        if (index == max_index - 1) {
-                            Toast.makeText(getApplicationContext(), "Last Step", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Log.e("next", "End of the line");
-                    }
-                    return;
-                } else if (utterance.contains("repeat")) {
-                    initTTS(tmpList_ui1.get(index));
-                    return;
-                }
-
-                //Code below is technically an else cause everything above has a return statement.
-
-                String question = editText.getText().toString();
-
-                ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
-
-                //Current task from file2 here Please
-                HashMap<String, String> tmpHash = getData();
-                int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
-                String incoming_indexString = String.valueOf(incoming_index);
-
-                System.out.println(tmpList_ui1.size());
-
-                //Some sort of error happened in the NLU part
-                if (response.getDialog_command().equals("no_match")) {
-
-                    buttonList = new ArrayList<>();
-                    clear(list_ui1);
-                    success = false;
-
-                    tmpList_ui1.add("No Match");
-                    tmpList_ui1.add("Try again by pressing the red mike button");
-                    buttonList.add("try_again");
-                    buttonList.add("speech");
-
-                    index = 0;
-                    max_index = 2;
-
-                    update(tmpList_ui1.get(index), true);
-
-                } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
-
-                    clear(list_ui1);
-
-                    tmpList_ui1.add("Wrong Intent. " + "The current intent is " + response.getIntent());
-                    tmpList_ui1.add("Try again by pressing the red mike button");
-                    buttonList.add("try_again");
-                    buttonList.add("speech");
-
-                    index = 0;
-                    max_index = 2;
-
-                    update(tmpList_ui1.get(index), true);
-
-
-                } else if (!Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains(response.getAppliance_name().toLowerCase())) {
-
-                    clear(list_ui1);
-
-                    tmpList_ui1.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
-                    tmpList_ui1.add("Try again by pressing the red mike button");
-                    buttonList.add("try_again");
-                    buttonList.add("speech");
-
-                    index = 0;
-                    max_index = 2;
-
-                    update(tmpList_ui1.get(index), true);
-
-                } else {
-                    success = true;
-                    clear(list_ui1);
-                    buttonList = new ArrayList<>();
-                    next.setEnabled(true);
-
-                    for (int i = 0; i < response.getSteps().size(); ++i) {
-                        String data = response.getSteps().get(i).getText();
-                        String button = response.getSteps().get(i).getButton_name();
-                        buttonList.add(button);
-                        tmpList_ui1.add(data);
-                    }
-
-                    //tmpList.add(data);
-                    myList = buttonList;
-                    instructionList = list_ui1;
-
-
-                    index = 0;
-                    max_index = response.getSteps().size();
-                    initial_update(tmpList_ui1.get(index));
-
-                    initiate();
-
-                }
-                //update(tmpList.get(index), true);
-                next.setEnabled(true);
-            }
-
-            @Override
-            public void onPartialResults(Bundle bundle) {
-            }
-
-            @Override
-            public void onEvent(int i, Bundle bundle) {
-
-            }
-        });
-        SpeechBtn.setOnTouchListener((view, motionEvent) -> {
-            switch (motionEvent.getAction()) {
-                case MotionEvent.ACTION_UP:
-                    mSpeechRecognizer.stopListening();
-                    editText.setHint("You will see input here");
-                    break;
-
-                case MotionEvent.ACTION_DOWN:
-                    mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
-                    editText.setText("");
-                    editText.setHint("Listening...");
-                    break;
-            }
-            return false;
-        });
-        // SPEECH TO TEXT END
-        textToSpeech = new TextToSpeech(getApplicationContext(), status -> {
-
-        });
-        textToSpeech.setOnUtteranceProgressListener(
-                new UtteranceProgressListener() {
-                    @Override
-                    public void onStart(String utteranceId) {
-                        //SpeechBtn.setEnabled(false);
-                    }
-
-                    @Override
-                    public void onDone(String utteranceId) {
-                        if (success == false & (index < max_index - 1)) {
-                            index++;
-                            update(tmpList_ui1.get(index), true);
-                        }
-                    }
-
-                    @Override
-                    public void onError(String utteranceId) {
-
-                    }
-                });
-    }
+//    private void initialize_speaker() {
+//        // SPEECH TO TEXT START
+//        final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+//        final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+//        final EditText editText = findViewById(R.id.editText);
+//        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+//                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+//        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
+//                Locale.getDefault());
+//        mSpeechRecognizer.setRecognitionListener(new RecognitionListener() {
+//            @Override
+//            public void onReadyForSpeech(Bundle bundle) {
+//
+//            }
+//
+//            @Override
+//            public void onBeginningOfSpeech() {
+//
+//            }
+//
+//            @Override
+//            public void onRmsChanged(float v) {
+//
+//            }
+//
+//            @Override
+//            public void onBufferReceived(byte[] bytes) {
+//
+//            }
+//
+//            @Override
+//            public void onEndOfSpeech() {
+//                Log.e("onEndOfSpeech", "this is on end of speech.");
+//            }
+//
+//            @Override
+//            public void onError(int i) {
+//
+//            }
+//
+//            @Override
+//            public void onResults(Bundle bundle) {
+//
+//                //getting all the matches
+//                ArrayList<String> matches = bundle
+//                        .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+//                Log.e("ALL MATCHES", matches.toString());
+//
+//                utterance = matches.get(0);
+//                editText.setText(utterance);
+//
+//                if (utterance.contains("previous")) {
+//                    if (index > 0) {
+//                        Log.e("previous", String.valueOf(index));
+//                        index--;
+//                        update_state(tmpList_ui1.get(index));
+//                    } else {
+//                        Log.e("previous", "Front of the line");
+//                    }
+//                    return;
+//                } else if (utterance.contains("next")) {
+//                    if (index < max_index - 1) {
+//                        index++;
+//                        Log.e("next", String.valueOf(index));
+//                        update_state(tmpList_ui1.get(index));
+//                        if (index == max_index - 1) {
+//                            Toast.makeText(getApplicationContext(), "Last Step", Toast.LENGTH_SHORT).show();
+//                        }
+//                    } else {
+//                        Log.e("next", "End of the line");
+//                    }
+//                    return;
+//                } else if (utterance.contains("repeat")) {
+//                    initTTS(tmpList_ui1.get(index));
+//                    return;
+//                }
+//
+//                //Code below is technically an else cause everything above has a return statement.
+//
+//                String question = editText.getText().toString();
+//
+//                ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
+//
+//                //Current task from file2 here Please
+//                HashMap<String, String> tmpHash = getData();
+//                int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+//                String incoming_indexString = String.valueOf(incoming_index);
+//
+//                System.out.println(tmpList_ui1.size());
+//
+//                //Some sort of error happened in the NLU part
+//                if (response.getDialog_command().equals("no_match")) {
+//
+//                    buttonList = new ArrayList<>();
+//                    clear(list_ui1);
+//                    success = false;
+//
+//                    tmpList_ui1.add("No Match");
+//                    tmpList_ui1.add("Try again by pressing the red mike button");
+//                    buttonList.add("try_again");
+//                    buttonList.add("speech");
+//
+//                    index = 0;
+//                    max_index = 2;
+//
+//                    update(tmpList_ui1.get(index), true);
+//
+//                } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
+//
+//                    clear(list_ui1);
+//
+//                    tmpList_ui1.add("Wrong Intent. " + "The current intent is " + response.getIntent());
+//                    tmpList_ui1.add("Try again by pressing the red mike button");
+//                    buttonList.add("try_again");
+//                    buttonList.add("speech");
+//
+//                    index = 0;
+//                    max_index = 2;
+//
+//                    update(tmpList_ui1.get(index), true);
+//
+//
+//                } else if (!Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains(response.getAppliance_name().toLowerCase())) {
+//
+//                    clear(list_ui1);
+//
+//                    tmpList_ui1.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
+//                    tmpList_ui1.add("Try again by pressing the red mike button");
+//                    buttonList.add("try_again");
+//                    buttonList.add("speech");
+//
+//                    index = 0;
+//                    max_index = 2;
+//
+//                    update(tmpList_ui1.get(index), true);
+//
+//                } else {
+//                    success = true;
+//                    clear(list_ui1);
+//                    buttonList = new ArrayList<>();
+//                    next.setEnabled(true);
+//
+//                    for (int i = 0; i < response.getSteps().size(); ++i) {
+//                        String data = response.getSteps().get(i).getText();
+//                        String button = response.getSteps().get(i).getButton_name();
+//                        buttonList.add(button);
+//                        tmpList_ui1.add(data);
+//                    }
+//
+//                    //tmpList.add(data);
+//                    myList = buttonList;
+//                    instructionList = list_ui1;
+//
+//
+//                    index = 0;
+//                    max_index = response.getSteps().size();
+//                    initial_update(tmpList_ui1.get(index));
+//
+//                    initiate();
+//
+//                }
+//                //update(tmpList.get(index), true);
+//                next.setEnabled(true);
+//            }
+//
+//            @Override
+//            public void onPartialResults(Bundle bundle) {
+//            }
+//
+//            @Override
+//            public void onEvent(int i, Bundle bundle) {
+//
+//            }
+//        });
+//        // SPEECH TO TEXT END
+//        textToSpeech = new TextToSpeech(getApplicationContext(), status -> {
+//
+//        });
+//        textToSpeech.setOnUtteranceProgressListener(
+//                new UtteranceProgressListener() {
+//                    @Override
+//                    public void onStart(String utteranceId) {
+//                        //SpeechBtn.setEnabled(false);
+//                    }
+//
+//                    @Override
+//                    public void onDone(String utteranceId) {
+//                        if (success == false & (index < max_index - 1)) {
+//                            index++;
+//                            update(tmpList_ui1.get(index), true);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onError(String utteranceId) {
+//
+//                    }
+//                });
+//    }
 
     private void addButtons() {
         clock = findViewById(R.id.microwave_clock);

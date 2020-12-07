@@ -99,8 +99,21 @@ public class TaskInstructionActivity extends AppCompatActivity {
                 case "uiVariant6":
                     Log.e("taskInstruction", String.valueOf(index));
                     TaskInstructionActivity.indexBundle.putInt("index", index);
+                    String incoming_indexString6 = String.valueOf(index);
+                    HashMap<String, String> tmpHash6 = getData();
                     index++;
-                    enterApplianceUI();
+                    if (Objects.requireNonNull(tmpHash6.get(incoming_indexString6)).toLowerCase().contains("microwave")) {
+                        Intent baseLineIntent1 = new Intent(getApplicationContext(), BaseLineActivityMicrowave.class);
+                        startActivity(baseLineIntent1);
+                    } else if (Objects.requireNonNull(tmpHash6.get(incoming_indexString6)).toLowerCase().contains("oven")) {
+                        Intent baseLineIntent2 = new Intent(this, BaseLineActivityOven.class);
+                        startActivity(baseLineIntent2);
+                    } else {
+                        return;
+                    }
+//                    Intent baseLineIntent = new Intent(getApplicationContext(), BaseLineActivityMicrowave.class);
+//                    startActivity(baseLineIntent);
+                    //enterApplianceUI();
                     break;
             }
         } catch (NullPointerException e) {
