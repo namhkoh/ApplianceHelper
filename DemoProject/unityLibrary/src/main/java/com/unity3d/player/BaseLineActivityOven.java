@@ -66,7 +66,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
     private int index = 0;
     ArrayList<String> list_ui1 = new ArrayList<>();
     ArrayList<String> tmpList_ui1 = new ArrayList<>();
-    public static ArrayList<String> buttonList;
+    public static ArrayList<String> buttonList = new ArrayList<>();
     private static String utterance;
     private FirebaseAnalytics mFirebaseAnalytics;
     HashMap<String, String> intentList;
@@ -430,7 +430,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
         //Some sort of error happened in the NLU part
         if (response.getDialog_command().equals("no_match")) {
 
-            buttonList = new ArrayList<>();
+//            buttonList = new ArrayList<>();
             clear(list_ui1);
             success = false;
 
