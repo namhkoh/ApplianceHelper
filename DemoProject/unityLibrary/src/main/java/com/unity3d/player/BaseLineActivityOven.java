@@ -129,7 +129,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
         lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
 
         this.addButtons();
-        this.initialize_speaker();
+
 
         //Setting alpha value
         allButtons = getAllButtons();
@@ -142,9 +142,9 @@ public class BaseLineActivityOven extends AppCompatActivity {
         //Button Hashmap for button state disable (true/false)
         initialize_button_list_for_hashmap();
 
-
         next.setEnabled(false);
         open.setEnabled(false);
+        this.spawnResponse();
 
     }
 
@@ -415,218 +415,98 @@ public class BaseLineActivityOven extends AppCompatActivity {
         next_step(string_button);
     }
 
-    private void initialize_speaker() {
-        // SPEECH TO TEXT START
-        final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
-        final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
-                Locale.getDefault());
-        mSpeechRecognizer.setRecognitionListener(new RecognitionListener() {
-            @Override
-            public void onReadyForSpeech(Bundle bundle) {
+    private void spawnResponse() {
 
+        HashMap<String, String> tmpHash = getData();
+        int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        String incoming_indexString = String.valueOf(incoming_index);
+        String question = commandList.get(incoming_indexString);
+        Log.e("QUESTION",question);
+
+        ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
+
+        System.out.println(tmpList_ui1.size());
+
+        //Some sort of error happened in the NLU part
+        if (response.getDialog_command().equals("no_match")) {
+
+            buttonList = new ArrayList<>();
+            clear(list_ui1);
+            success = false;
+
+            tmpList_ui1.add("No Match");
+            tmpList_ui1.add("Try again by pressing the red mike button");
+            buttonList.add("try_again");
+            buttonList.add("speech");
+
+            index = 0;
+            max_index = 2;
+
+            update(tmpList_ui1.get(index), true);
+
+        } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
+
+            clear(list_ui1);
+
+            tmpList_ui1.add("Wrong Intent. " + "The current intent is " + response.getIntent());
+            tmpList_ui1.add("Try again by pressing the red mike button");
+            buttonList.add("try_again");
+            buttonList.add("speech");
+
+            index = 0;
+            max_index = 2;
+
+            update(tmpList_ui1.get(index), true);
+
+
+        } else if (!Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains(response.getAppliance_name().toLowerCase())) {
+
+            clear(list_ui1);
+
+            tmpList_ui1.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
+            tmpList_ui1.add("Try again by pressing the red mike button");
+            buttonList.add("try_again");
+            buttonList.add("speech");
+
+            index = 0;
+            max_index = 2;
+
+            update(tmpList_ui1.get(index), true);
+
+        } else {
+            success = true;
+            clear(list_ui1);
+            buttonList = new ArrayList<>();
+            next.setEnabled(true);
+
+            for (int i = 0; i < response.getSteps().size(); ++i) {
+                String data = response.getSteps().get(i).getText();
+                String button = response.getSteps().get(i).getButton_name();
+                buttonList.add(button);
+                tmpList_ui1.add(data);
+//                initTTS(data);
             }
 
-            @Override
-            public void onBeginningOfSpeech() {
-
-            }
-
-            @Override
-            public void onRmsChanged(float v) {
-
-            }
-
-            @Override
-            public void onBufferReceived(byte[] bytes) {
-
-            }
-
-            @Override
-            public void onEndOfSpeech() {
-                Log.e("onEndOfSpeech", "this is on end of speech.");
-            }
-
-            @Override
-            public void onError(int i) {
-
-            }
-
-            @Override
-            public void onResults(Bundle bundle) {
-
-                //getting all the matches
-                ArrayList<String> matches = bundle
-                        .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-                Log.e("ALL MATCHES", matches.toString());
-
-                utterance = matches.get(0);
-                editText.setText(utterance);
-
-                if (utterance.contains("previous")) {
-                    if (index > 0) {
-                        Log.e("previous", String.valueOf(index));
-                        index--;
-                        update_state(tmpList_ui1.get(index));
-                    } else {
-                        Log.e("previous", "Front of the line");
-                    }
-                    return;
-                } else if (utterance.contains("next")) {
-                    if (index < max_index - 1) {
-                        index++;
-                        Log.e("next", String.valueOf(index));
-                        update_state(tmpList_ui1.get(index));
-                        if (index == max_index - 1) {
-                            Toast.makeText(getApplicationContext(), "Last Step", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Log.e("next", "End of the line");
-                    }
-                    return;
-                } else if (utterance.contains("repeat")) {
-                    initTTS(tmpList_ui1.get(index));
-                    return;
-                }
-
-                //Code below is technically an else cause everything above has a return statement.
-
-                String question = utterance;
-
-                ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
-
-                //Current task from file2 here Please
-                HashMap<String, String> tmpHash = getData();
-                int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
-                String incoming_indexString = String.valueOf(incoming_index);
-
-                System.out.println(tmpList_ui1.size());
-
-                //Some sort of error happened in the NLU part
-                if (response.getDialog_command().equals("no_match")) {
-
-                    buttonList = new ArrayList<>();
-                    clear(list_ui1);
-                    success = false;
-
-                    tmpList_ui1.add("No Match");
-                    tmpList_ui1.add("Try again by pressing the red mike button");
-                    buttonList.add("try_again");
-                    buttonList.add("speech");
-
-                    index = 0;
-                    max_index = 2;
-
-                    update(tmpList_ui1.get(index), true);
-
-                } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
-
-                    clear(list_ui1);
-
-                    tmpList_ui1.add("Wrong Intent. " + "The current intent is " + response.getIntent());
-                    tmpList_ui1.add("Try again by pressing the red mike button");
-                    buttonList.add("try_again");
-                    buttonList.add("speech");
-
-                    index = 0;
-                    max_index = 2;
-
-                    update(tmpList_ui1.get(index), true);
+            //tmpList.add(data);
+            myList = buttonList;
+            instructionList = list_ui1;
 
 
-                } else if (!Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains(response.getAppliance_name().toLowerCase())) {
+            index = 0;
+            max_index = response.getSteps().size();
 
-                    clear(list_ui1);
-                    buttonList = new ArrayList<>();
+            // Commented due to repeated step - Check with Leo
+            //initial_update(tmpList_ui1.get(index));
 
-                    tmpList_ui1.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
-                    tmpList_ui1.add("Try again by pressing the red mike button");
-                    buttonList.add("try_again");
-                    buttonList.add("speech");
+            initiate();
 
-                    index = 0;
-                    max_index = 2;
-
-                    update(tmpList_ui1.get(index), true);
-
-                } else {
-                    success = true;
-                    clear(list_ui1);
-                    buttonList = new ArrayList<>();
-                    next.setEnabled(true);
-
-                    for (int i = 0; i < response.getSteps().size(); ++i) {
-                        String data = response.getSteps().get(i).getText();
-                        String button = response.getSteps().get(i).getButton_name();
-                        buttonList.add(button);
-                        tmpList_ui1.add(data);
-                        initTTS(data);
-                    }
-
-                    myList = buttonList;
-                    instructionList = list_ui1;
-
-
-                    index = 0;
-                    max_index = response.getSteps().size();
-                    //initial_update(tmpList_ui1.get(index));
-
-                    initiate();
-
-                }
-                next.setEnabled(true);
-            }
-
-            @Override
-            public void onPartialResults(Bundle bundle) {
-            }
-
-            @Override
-            public void onEvent(int i, Bundle bundle) {
-
-            }
-        });
-        SpeechBtn.setOnTouchListener((view, motionEvent) -> {
-            switch (motionEvent.getAction()) {
-                case MotionEvent.ACTION_UP:
-                    mSpeechRecognizer.stopListening();
-                    editText.setHint("You will see input here");
-                    break;
-
-                case MotionEvent.ACTION_DOWN:
-                    mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
-                    editText.setText("");
-                    editText.setHint("Listening...");
-                    break;
-            }
-            return false;
-        });
-        // SPEECH TO TEXT END
-        textToSpeech = new TextToSpeech(getApplicationContext(), status -> {
-
-        });
-        textToSpeech.setOnUtteranceProgressListener(
-                new UtteranceProgressListener() {
-                    @Override
-                    public void onStart(String utteranceId) {
-                        //SpeechBtn.setEnabled(false);
-                    }
-
-                    @Override
-                    public void onDone(String utteranceId) {
-                        if (success == false & (index < max_index - 1)) {
-                            index++;
-                            update(tmpList_ui1.get(index), true);
-                        }
-                    }
-
-                    @Override
-                    public void onError(String utteranceId) {
-
-                    }
-                });
+        }
+        //update(tmpList.get(index), true);
+        next.setEnabled(true);
+        if (!success & (index < max_index - 1)) {
+            index++;
+            update(tmpList_ui1.get(index), true);
+        }
     }
 
     private void next_step(String string_button) {
@@ -715,31 +595,31 @@ public class BaseLineActivityOven extends AppCompatActivity {
         }
     }
 
-    public void openDialog() {
-
-        StringBuilder sb = new StringBuilder();
-
-        for (String instruction : tmpList_ui1) {
-            sb.append(instruction);
-            sb.append("\n");
-        }
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        //final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>();
-        builder.setTitle("Instructions");
-        builder.setMessage("Look at this dialog!");
-        builder.setMessage(sb.toString());
-        builder.setCancelable(false);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //
-            }
-        });
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
+//    public void openDialog() {
+//
+//        StringBuilder sb = new StringBuilder();
+//
+//        for (String instruction : tmpList_ui1) {
+//            sb.append(instruction);
+//            sb.append("\n");
+//        }
+//
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//
+//        //final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>();
+//        builder.setTitle("Instructions");
+//        builder.setMessage("Look at this dialog!");
+//        builder.setMessage(sb.toString());
+//        builder.setCancelable(false);
+//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                //
+//            }
+//        });
+//        AlertDialog alert = builder.create();
+//        alert.show();
+//    }
 
     private void openListViewDialog() {
 
@@ -749,43 +629,43 @@ public class BaseLineActivityOven extends AppCompatActivity {
 //            list_view[i] = tmpList_ui1.get(i);
 //        }
 
-        String[] list_view = new String[tmpList_ui1.size()];
-        for (int i = 0; i < tmpList_ui1.size(); i++) {
-            list_view[i] = tmpList_ui1.get(i);
-        }
+//        String[] list_view = new String[tmpList_ui1.size()];
+//        for (int i = 0; i < tmpList_ui1.size(); i++) {
+//            list_view[i] = tmpList_ui1.get(i);
+//        }
+//
+//        ContextThemeWrapper themedContext = new ContextThemeWrapper(this, android.R.style.Theme_Holo_NoActionBar);
+//
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//
+//        builder.setCancelable(false);
+//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                //
+//            }
+//        });
 
-        ContextThemeWrapper themedContext = new ContextThemeWrapper(this, android.R.style.Theme_Holo_NoActionBar);
+        //final AlertDialog dialog = builder.setTitle("Instructions").setItems(list_view, null).create();
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                System.out.println(tmpList_ui1.get(i));
+//                initTTS(tmpList_ui1.get(i - 1));
+//            }
+//        };
 
-        builder.setCancelable(false);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //
-            }
-        });
-
-        final AlertDialog dialog = builder.setTitle("Instructions").setItems(list_view, null).create();
-
-        AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                System.out.println(tmpList_ui1.get(i));
-                initTTS(tmpList_ui1.get(i - 1));
-            }
-        };
-
-        dialog.getListView().setOnItemClickListener(listener);
-
-        ListView listView = dialog.getListView();
-        listView.addHeaderView(new View(this));
-        //listView.addFooterView(new View(this));
-        //listView.setHeaderDividersEnabled(true);
-        listView.setDivider(new ColorDrawable(Color.BLACK));
-        listView.setDividerHeight(1);
-
-        dialog.show();
+//        dialog.getListView().setOnItemClickListener(listener);
+//
+//        ListView listView = dialog.getListView();
+//        listView.addHeaderView(new View(this));
+//        //listView.addFooterView(new View(this));
+//        //listView.setHeaderDividersEnabled(true);
+//        listView.setDivider(new ColorDrawable(Color.BLACK));
+//        listView.setDividerHeight(1);
+//
+//        dialog.show();
 
     }
 
@@ -891,7 +771,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
     void update_state(String s) {
         list_ui1.clear();
         list_ui1.add(s);
-        initTTS(s);
+        //initTTS(s);
     }
 
     private void open() {
@@ -931,7 +811,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
         Log.e("UI STEP ", s);
         list_ui1.add(s);
         speakText = s;
-        initTTS(speakText);
+        //initTTS(speakText);
     }
 
     private void clearScreen() {
@@ -1085,7 +965,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
                 list_ui1.add(s);
                 speakText = s;
             }
-            initTTS(speakText);
+            //initTTS(speakText);
             index++;
         }, 0);
     }
@@ -1317,10 +1197,13 @@ public class BaseLineActivityOven extends AppCompatActivity {
         String line = "";
         HashMap<String, String> resultList = new HashMap<String, String>();
         intentList = new HashMap<String, String>();
-        commandList = new HashMap<String,String>();
+        commandList = new HashMap<String, String>();
         try {
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split("\t");
+                Log.e("successful token ", String.valueOf(tokens[1]));
+                Log.e("successful token ", String.valueOf(tokens[2]));
+                Log.e("successful token ", String.valueOf(tokens[3]));
                 resultList.put(tokens[0], tokens[1]);
                 intentList.put(tokens[0], tokens[2]);
                 commandList.put(tokens[0], tokens[3]);
@@ -1335,14 +1218,6 @@ public class BaseLineActivityOven extends AppCompatActivity {
     private void setAlphaValue(int alpha, ArrayList<Button> allButtons) {
         for (int i = 0; i < allButtons.size(); i++) {
             allButtons.get(i).setAlpha(alpha);
-        }
-    }
-
-    private void initTTS(String selectedText) {
-        //textToSpeech.setSpeechRate(testingVal);
-        int speechStatus = textToSpeech.speak(selectedText, TextToSpeech.QUEUE_ADD, null, "1");
-        if (speechStatus == TextToSpeech.ERROR) {
-            Log.e("TTS", "Error in converting Text to Speech!");
         }
     }
 

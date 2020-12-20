@@ -198,7 +198,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         HashMap<String, String> tmpHash = getData();
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         String incoming_indexString = String.valueOf(incoming_index);
-        String question = tmpHash.get(incoming_indexString);
+        String question = commandList.get(incoming_indexString);
 
         ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
 
@@ -495,6 +495,8 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         HashMap<String, String> tmpHash = getData();
         ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
+        System.out.println("instructionList" + instructionList.size());
+        System.out.println("index mate" + incoming_index);
         if (incoming_index < instructionList.size() - 1) {
             Intent intent = new Intent(this, TaskInstructionActivity.class);
             intent.putExtra("newIndex", incoming_index);
