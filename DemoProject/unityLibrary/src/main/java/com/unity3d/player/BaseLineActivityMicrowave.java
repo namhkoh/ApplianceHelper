@@ -633,8 +633,6 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         try {
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split("\t");
-                System.out.println("token 0 " + tokens[0]);
-                System.out.println("token 1 " + tokens[1]);
                 resultList.put(tokens[0], tokens[1]);
                 intentList.put(tokens[0], tokens[2]);
             }
