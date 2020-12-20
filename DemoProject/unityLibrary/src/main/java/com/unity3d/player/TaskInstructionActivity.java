@@ -111,9 +111,6 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     } else {
                         return;
                     }
-//                    Intent baseLineIntent = new Intent(getApplicationContext(), BaseLineActivityMicrowave.class);
-//                    startActivity(baseLineIntent);
-                    //enterApplianceUI();
                     break;
             }
         } catch (NullPointerException e) {
@@ -129,8 +126,6 @@ public class TaskInstructionActivity extends AppCompatActivity {
         TextView task1 = findViewById(R.id.Task);
         HashMap<String, String> tmp = getData();
         task1.setText(tmp.get(indexValueString));
-//        System.out.println(tmp.get(0));
-//        System.out.println(tmp);
     }
 
     private void enterApplianceUI() {
@@ -149,31 +144,6 @@ public class TaskInstructionActivity extends AppCompatActivity {
         Log.e("entering feedback", "enter");
     }
 
-    /**
-     * This method will return a HashMap with an index as the key and an array containing each columns values from file2 in an array.
-     * @return HashMap<String,String[]>
-     */
-    private HashMap<String, String[]> getFile2Data() {
-        InputStream ls = getResources().openRawResource(R.raw.file2);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(ls, StandardCharsets.UTF_8));
-        String line = "";
-        HashMap<String,String[]> resultList = new HashMap<>();
-        try {
-            while ((line = reader.readLine()) != null) {
-                String[] tokens = line.split("\t");
-                String[] values = line.split(" ");
-                System.out.println("tokens" + tokens);
-                System.out.println("values" + values);
-//                values
-//                resultList.put(tokens[0], tokens[1]);
-            }
-        } catch (IOException e) {
-            Log.wtf("TaskInstructionActivity", "Error reading data file on line" + line, e);
-            e.printStackTrace();
-        }
-        return resultList;
-    }
-
     private HashMap<String, String> getData() {
         InputStream ls = getResources().openRawResource(R.raw.file2);
         BufferedReader reader = new BufferedReader(new InputStreamReader(ls, StandardCharsets.UTF_8));
@@ -182,8 +152,6 @@ public class TaskInstructionActivity extends AppCompatActivity {
         try {
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split("\t");
-                System.out.println(tokens[3]);
-                //System.out.println("tokens" + tokens);
                 resultList.put(tokens[0], tokens[1]);
             }
         } catch (IOException e) {
