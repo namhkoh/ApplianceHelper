@@ -1,43 +1,30 @@
 package com.unity3d.player;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.BlendMode;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Debug;
 import android.os.Handler;
-import android.os.Looper;
 import android.provider.Settings;
-import android.speech.RecognitionListener;
-import android.speech.RecognizerIntent;
-import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
-import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
-import com.aic.libnilu.nlu.MainManager;
 import com.aic.libnilu.nlu.ResponseObject;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.BufferedReader;
@@ -50,10 +37,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * uiPanel supported list view instructions
+ */
 public class BaseLineActivityMicrowave extends AppCompatActivity {
 
     private String lcdString = " ";
@@ -65,6 +54,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
     private Button clock, start, cancel, soften, timer, popcorn, pizza, reheat, defrost, open;
     private Button cook, cooktime, cookpower, potato, add30;
     private Button m0, m1, m2, m3, m4, m5, m6, m7, m8, m9;
+    private ImageButton SpeechBtn;
 
 
     private int index = 0;
@@ -72,6 +62,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
     ArrayList<String> tmpList_ui1 = new ArrayList<>();
     public static ArrayList<String> buttonList;
     private static String utterance;
+    private FirebaseAnalytics mFirebaseAnalytics;
     HashMap<String, String> intentList;
     HashMap<String, String> commandList;
     Button next;
@@ -126,34 +117,18 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ui_variant4_with_microwave);
+        setContentView(R.layout.activity_base_line_microwave);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         checkPermission();
 
         /**
          * Initializing buttons
          */
-        final EditText editText = findViewById(R.id.editText);
         next = findViewById(R.id.nextActivity);
         next.setEnabled(false);
         next.setOnClickListener(v -> {
             //enterFeedback();
             nextTask();
-        });
-
-        /**
-         * Floating button to show the current instructions,
-         * When clicked, will display an opaque background/ view or textview,
-         */
-        FloatingActionButton fabInstructions = findViewById(R.id.instructionHelp);
-        fabInstructions.setOnClickListener(v -> {
-//            Log.e("clicked", "here are the instructions");
-//            Intent intent = new Intent(getApplicationContext(), Pop.class);
-//            intent.putExtra("instructions", list_ui1);
-//            startActivity(intent);
-            openDialog();
-
-//                startActivity(new Intent(uiVariant4WithMicrowave.this,Pop.class));
         });
 
 
@@ -168,9 +143,6 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
          */
 
         this.addButtons();
-
-//        this.initialize_speaker();
-        this.spawnResponse();
 
         ArrayList<Button> allButtons = new ArrayList<Button>(Arrays.asList(clock, start, cancel, soften, m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m0,
                 popcorn, potato, pizza, cook, reheat, cooktime, cookpower, defrost,
@@ -201,6 +173,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
             active_button.put(i, false);
             working_button.put(i, false);
         }
+        this.spawnResponse();
 
     }
 
@@ -219,19 +192,16 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         return anim;
     }
 
-    /**
-     * This method will create an instance of a ResponseObject by passing the 4th column in file2.
-     */
+
     private void spawnResponse() {
 
-        //Code below is technically an else cause everything above has a return statement.
-        //Current task from file2 here Please
         HashMap<String, String> tmpHash = getData();
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         String incoming_indexString = String.valueOf(incoming_index);
         String question = tmpHash.get(incoming_indexString);
 
         ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
+
         System.out.println(tmpList_ui1.size());
 
         //Some sort of error happened in the NLU part
@@ -291,6 +261,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
                 String button = response.getSteps().get(i).getButton_name();
                 buttonList.add(button);
                 tmpList_ui1.add(data);
+//                initTTS(data);
             }
 
             //tmpList.add(data);
@@ -300,18 +271,21 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
 
             index = 0;
             max_index = response.getSteps().size();
-            initial_update(tmpList_ui1.get(index));
+
+            // Commented due to repeated step - Check with Leo
+            //initial_update(tmpList_ui1.get(index));
 
             initiate();
 
         }
         //update(tmpList.get(index), true);
         next.setEnabled(true);
-//        if (success == false & (index < max_index - 1)) {
-//            index++;
-//            update(tmpList_ui1.get(index), true);
-//        }
+        if (!success & (index < max_index - 1)) {
+            index++;
+            update(tmpList_ui1.get(index), true);
+        }
     }
+
 
     private void addButtons() {
         clock = findViewById(R.id.microwave_clock);
@@ -491,8 +465,8 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
 
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i <= index; i++) {
-            sb.append(tmpList_ui1.get(i));
+        for (String instruction : tmpList_ui1) {
+            sb.append(instruction);
             sb.append("\n");
         }
 
@@ -790,6 +764,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         if (active_button.get(button_lowercase) == true) {
             active_inactive_log(true, button);
             if (next_button.get(button_lowercase)) {
+                Log.e("NEXT_BUTTON ",String.valueOf(next_button));
                 TextView lcd = findViewById(R.id.lcd_text);
                 if (button_lowercase.equals("clock")) {
                     clearClock();
@@ -1161,4 +1136,5 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         active_button.put(string_button, true);
         //debug_next_step_log(string_button); //Need to implement if wanted
     }
+
 }
