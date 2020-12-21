@@ -49,6 +49,7 @@ public class UserSurveyActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.e("ENTERED","UserSurveyActivity");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_survey);
         apiInterface = APIClient.getClient().create(APIInterface.class);
@@ -133,8 +134,8 @@ public class UserSurveyActivity extends AppCompatActivity {
 
         additionalFeedback.addTextChangedListener(submitTextWatcher);
 
-        Intent intent = new Intent(this, UserSurveyActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, UserSurveyActivity.class);
+//        startActivity(intent);
     }
 
     private TextWatcher submitTextWatcher = new TextWatcher() {

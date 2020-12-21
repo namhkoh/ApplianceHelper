@@ -1183,9 +1183,12 @@ public class BaseLineActivityOven extends AppCompatActivity {
         HashMap<String, String> tmpHash = getData();
         ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
         if (incoming_index < instructionList.size() - 1) {
-            Intent intent = new Intent(this, TaskInstructionActivity.class);
+            Log.e("ENTERED","TASK");
+            //Intent intent = new Intent(this, TaskInstructionActivity.class);
+            Intent intent = new Intent(this, UserSurveyActivity.class);
             startActivity(intent);
         } else {
+            Log.e("ENTERED","SURVEY");
             Intent intent = new Intent(this, UserSurveyActivity.class);
             startActivity(intent);
         }

@@ -112,8 +112,6 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
     /**
      * UI 6 buttons end
      */
-
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -492,11 +490,13 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
      * This function will take the user to TaskUserActivity
      */
     private void nextTask() {
+        System.out.println("im here boss");
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         HashMap<String, String> tmpHash = getData();
         ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
-        System.out.println("instructionList" + instructionList.size());
-        System.out.println("index mate" + incoming_index);
+        Log.e("incoming_index ", String.valueOf(incoming_index));
+        Log.e("instruction_list ", String.valueOf(instructionList.size()));
+        Log.e("values ", String.valueOf(tmpHash.values()));
         if (incoming_index < instructionList.size() - 1) {
             Intent intent = new Intent(this, TaskInstructionActivity.class);
             intent.putExtra("newIndex", incoming_index);
@@ -505,6 +505,8 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
             Intent intent = new Intent(this, UserSurveyActivity.class);
             startActivity(intent);
         }
+//        Intent intent = new Intent(this,DebugActivity.class);
+//        startActivity(intent);
     }
 
     private HashMap<String, String> getData() {
