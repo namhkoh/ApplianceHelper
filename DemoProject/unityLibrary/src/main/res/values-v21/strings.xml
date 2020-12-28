@@ -88,4 +88,11 @@
 
     <string name="server_button">server</string>
     <string name="instructions"></string>
+
+    <string name="confirmation_1">
+        User interaction has been successfully recorded.
+    </string>
+    <string name="confirmation_2">
+        Thank you for your participation.
+    </string>
 </resources>
