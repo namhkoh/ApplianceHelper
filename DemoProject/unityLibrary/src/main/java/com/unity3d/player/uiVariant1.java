@@ -95,25 +95,9 @@ public class uiVariant1 extends AppCompatActivity {
         setContentView(R.layout.activity_ui_variant1);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         checkPermission();
-
         initialize_task();
 
         firebase_instance();
-
-//        //Initializing (Extracting) information from file2.tsv
-//        tmpHash = getData(); //result list. Technically no need to return it to tmpHash as the method getData() initializes everything we want.
-//        incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
-//        incoming_indexString = String.valueOf(incoming_index); // Index value of current task. Used to extract corresponding intents and instructions.
-
-//        // Obtain the FirebaseAnalytics instance.
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-//        Date date = new Date();
-//        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-//        Bundle bundle = new Bundle();
-//        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "testID");
-//        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "testName");
-//        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, dateFormat.format(date));
-//        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
 
         //Set tasks to buttons. SpeechButton, Task button, UI Panel Button (next)
         SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
@@ -181,6 +165,17 @@ public class uiVariant1 extends AppCompatActivity {
 
                 ResponseObject response = Utilities.returnResponse(getApplicationContext(),question);
 
+
+                if(!response.getDialog_command().equals("no_match")){
+                    System.out.println("----------------------------------------------------------");
+                    System.out.println("Question: " + question);
+                    System.out.println("Response Intent: "+response.getIntent());
+                    System.out.println("Response Appliance Name: "+response.getAppliance_name());
+                    System.out.println("Actual Intent: " + intentList.get(incoming_indexString));
+                    System.out.println("Task Name: " + tmpHash.get(incoming_indexString));
+                    System.out.println("----------------------------------------------------------");
+                }
+
                 //Some sort of error happened in the NLU part
                 if (response.getDialog_command().equals("no_match")) {
 
@@ -197,6 +192,7 @@ public class uiVariant1 extends AppCompatActivity {
                 } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
 
                     clear(list);
+
                     list.add("Wrong Intent. " + "The current intent is " + response.getIntent());
                     list.add("Try again by pressing the red mike button");
                     initTTS("Wrong Intent");

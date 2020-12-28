@@ -275,7 +275,6 @@ public class InferenceTask{
                     for(int i=0; i < scores.length; i++){
                         slot_2d[i / 25][i % 25] = scores[i];
                     }
-                    System.out.println("------");
                     for(int i = 0; i<copies.length; i++)
                     {
                         for(int j = 0; j<25; j++)
