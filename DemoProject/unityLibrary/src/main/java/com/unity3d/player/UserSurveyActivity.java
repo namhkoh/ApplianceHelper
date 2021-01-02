@@ -28,6 +28,8 @@ import org.json.JSONObject;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.Temporal;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.security.auth.login.LoginException;
 
@@ -44,6 +46,7 @@ public class UserSurveyActivity extends AppCompatActivity {
     RatingBar css;
     private EditText additionalFeedback;
     APIInterface apiInterface;
+    HashMap<String, String> questionList = new HashMap<>();
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -91,6 +94,9 @@ public class UserSurveyActivity extends AppCompatActivity {
             int buttonsCorrect = 10;
             int buttonsIncorrect = 2;
 
+            questionList = (HashMap<String, String>) uiVariant1.userQuestions.getSerializable("questions");
+
+
             Gson gson = new Gson();
             JSONObject feedbackObject = new JSONObject();
             try {
@@ -114,7 +120,8 @@ public class UserSurveyActivity extends AppCompatActivity {
                     sessionEndVal,
                     totalTimeVal,
                     userConsent,
-                    feedbackValue
+                    feedbackValue,
+                    questionList
             );
             Call<User> call1 = apiInterface.createUser(user);
             call1.enqueue(new Callback<User>() {

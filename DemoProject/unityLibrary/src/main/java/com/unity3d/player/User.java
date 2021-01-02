@@ -2,6 +2,9 @@ package com.unity3d.player;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class User {
 
     @SerializedName("testId")
@@ -22,8 +25,10 @@ public class User {
     private String userConsent;
     @SerializedName("feedback")
     private String feedback;
+    @SerializedName("questions")
+    private HashMap<String, String> questions;
 
-    public User(String testId, String name, Integer buttonsCorrect, Integer buttonsIncorrect, String startSession, String endSession, String totalTime, String userConsent, String feedback) {
+    public User(String testId, String name, Integer buttonsCorrect, Integer buttonsIncorrect, String startSession, String endSession, String totalTime, String userConsent, String feedback, HashMap<String, String> questions) {
         this.testId = testId;
         this.name = name;
         this.buttonsCorrect = buttonsCorrect;
@@ -33,5 +38,6 @@ public class User {
         this.totalTime = totalTime;
         this.userConsent = userConsent;
         this.feedback = feedback;
+        this.questions = questions;
     }
 }
