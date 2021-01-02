@@ -100,7 +100,7 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     Log.e("taskInstruction", String.valueOf(index));
                     TaskInstructionActivity.indexBundle.putInt("index", index);
                     String incoming_indexString6 = String.valueOf(index);
-                    HashMap<String, String> tmpHash6 = getData();
+                    HashMap<String, String> tmpHash6 = getDataBaseline();
                     index++;
                     if (Objects.requireNonNull(tmpHash6.get(incoming_indexString6)).toLowerCase().contains("microwave")) {
                         Intent baseLineIntent1 = new Intent(getApplicationContext(), BaseLineActivityMicrowave.class);
@@ -122,6 +122,7 @@ public class TaskInstructionActivity extends AppCompatActivity {
     }
 
     private void setInstructionText(int indexValue) {
+        String uiVariant = StartScreen.activityBundle.getString("activity");
         String indexValueString = String.valueOf(indexValue);
         TextView task1 = findViewById(R.id.Task);
         HashMap<String, String> tmp = getData();
