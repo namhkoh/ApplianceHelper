@@ -75,7 +75,7 @@ public class uiVariant1 extends AppCompatActivity {
 
     private HashMap<String, String> intentList;
     private HashMap<String, String> tmpHash; //getData
-    private HashMap<String,String> questionList = new HashMap<>();
+    private HashMap<String, String> questionList = new HashMap<>();
 
     Button next;
     Intent intent;
@@ -91,6 +91,7 @@ public class uiVariant1 extends AppCompatActivity {
     private String speakText = "";
 
     public static Bundle userQuestions = new Bundle();
+    boolean is_first = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +115,16 @@ public class uiVariant1 extends AppCompatActivity {
         task.setOnClickListener(v -> {
             task();
         });
+
+        if (uiVariant1.userQuestions.containsKey("Is First")) {
+            System.out.println("Is First: " + uiVariant1.uivariant1Bundle.getBoolean("Is First"));
+            load_bundle();
+            Log.d("Load Bundle", "Restored");
+        } else {
+            is_first = true;
+            questionList = new HashMap<>();
+        }
+
 
         // SPEECH TO TEXT START
         final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
@@ -169,8 +180,10 @@ public class uiVariant1 extends AppCompatActivity {
                 ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
 
                 // Data collection
-                questionList.put(tmpHash.get(incoming_indexString),question);
-                userQuestions.putSerializable("questions",questionList);
+                // Need to store the questions in sequence.
+                questionList.put(tmpHash.get(incoming_indexString), question);
+                userQuestions.putBoolean("Is First", is_first);
+                userQuestions.putSerializable("questions", questionList);
 
 
                 if (!response.getDialog_command().equals("no_match")) {
@@ -493,4 +506,11 @@ public class uiVariant1 extends AppCompatActivity {
         }
     }
 
+    /**
+     * Loading the userQustion bundle
+     */
+    private void load_bundle() {
+        is_first = uiVariant1.userQuestions.getBoolean("Is First");
+        questionList = (HashMap<String, String>) uiVariant1.userQuestions.getSerializable("questions");
+    }
 }
