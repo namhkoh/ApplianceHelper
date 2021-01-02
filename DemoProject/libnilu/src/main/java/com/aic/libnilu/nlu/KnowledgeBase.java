@@ -162,7 +162,7 @@ public class KnowledgeBase {
             e.printStackTrace();
         }
 
-        System.out.println("----------------Data Load Complete----------------------");
+        System.out.println("----------------Data Load Complete-----------------");
     }
 
     /**

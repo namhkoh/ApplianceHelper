@@ -193,6 +193,17 @@ public class uiVariant3 extends AppCompatActivity {
 
                 buttonList = new ArrayList<>();
 
+                if(!response.getDialog_command().equals("no_match")){
+                    System.out.println("----------------------------------------------------------");
+                    System.out.println("Question: " + question);
+                    System.out.println("Response Intent: "+response.getIntent());
+                    System.out.println("Response Appliance Name: "+response.getAppliance_name());
+                    System.out.println("Actual Intent: " + intentList.get(incoming_indexString));
+                    System.out.println("Task Name: " + tmpHash.get(incoming_indexString));
+                    System.out.println("----------------------------------------------------------");
+                }
+
+
                 //Some sort of error happened in the NLU part
                 if (response.getDialog_command().equals("no_match")) {
                     sucess = false;

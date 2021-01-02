@@ -73,9 +73,6 @@ public class MainManager {
                 tokenizer.tokenize(question);
 
                 //Tokenize information
-                System.out.println("tokens returned: " + tokenizer.getTokens());
-                System.out.println("words before token: " + tokenizer.getOriginal_tokens());
-                System.out.println("words after token: " + tokenizer.getSplit_tokens());
 
                 Object[] object_tokens = tokenizer.getTokens().toArray();
 
@@ -91,12 +88,6 @@ public class MainManager {
                 long[] input = tokenizer.getInput();
                 long[] segment = tokenizer.getSegment();
                 long[] copies = tokenizer.getCopies(question);
-
-                System.out.println("tokens: " + Arrays.toString(tokens));
-                System.out.println("select: " + Arrays.toString(select));
-                System.out.println("segment: " + Arrays.toString(segment));
-                System.out.println("copies: " +  Arrays.toString(copies));
-                System.out.println("inputs " + Arrays.toString(input));
 
                 InferenceTask inference = new InferenceTask(modelpath);
                 inference.setVocab(intentpath,slotpath);
@@ -138,16 +129,11 @@ public class MainManager {
 
                 intent = inference.getIntent();
 
-                System.out.println("Intent: 2" + intent);
-
                 //appliance = NLU.getAppliance(knowledge, question);
                 //slot = NLU.getSlotName(knowledge, question);
                 //slot_name = NLU.getSlot(knowledge, question);
-                System.out.println("slot value: " + slot);
 
                 appliance = appliance_tagger;
-                
-                System.out.println("slot name: " + slot_name);
 
                 if(appliance == null){
                     return new ResponseObject(true, "no_match");
@@ -168,11 +154,23 @@ public class MainManager {
                     return new ResponseObject(true, "no_match");
                 }
 
-
-                System.out.println("Here");
                 //The response object or solution.
                 response = current_node.getSolution("instructionStep", question,appliance);
                 response.setIntent(intent);
+
+                System.out.println("---------------------Main Manager-----------------------");
+                System.out.println("tokens returned: " + tokenizer.getTokens());
+                System.out.println("words before token: " + tokenizer.getOriginal_tokens());
+                System.out.println("words after token: " + tokenizer.getSplit_tokens());
+
+                System.out.println("tokens: " + Arrays.toString(tokens));
+                System.out.println("select: " + Arrays.toString(select));
+                System.out.println("segment: " + Arrays.toString(segment));
+                System.out.println("copies: " +  Arrays.toString(copies));
+                System.out.println("inputs " + Arrays.toString(input));
+
+                System.out.println("slot value: " + slot);
+                System.out.println("slot name: " + slot_name);
                 System.out.println("Intent: " + intent);
 
 

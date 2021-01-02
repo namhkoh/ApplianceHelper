@@ -1,6 +1,6 @@
-0	Ask the system to set the clock on the microwave 	set	How do I set the clock on the microwave
-1	Ask the system to set the timer on the microwave	set	How do I set the timer on the microwave
-2	Ask the system to use the reheat feature on the microwave	use	How do I use the reheat feature on the microwave
-3	Ask the system to set the clock on the oven	set	How do I set the clock on the oven
-4	Ask the system to turn the sound off in the oven	on_off	How do I turn off the sound in the oven
-5	Ask the system to cook the fries in the oven	cook 	How do I cook the fries in the oven
+0	Ask the system to cook the fries in the oven	cook	How do I cook the fries in the oven
+1	Ask the system to set the clock on the microwave 	set	How do I set the clock on the microwave
+2	Ask the system to set the timer on the microwave	set	How do I set the timer on the microwave
+3	Ask the system to use the reheat feature on the microwave	use	How do I use the reheat feature on the microwave
+4	Ask the system to set the clock on the oven	set	How do I set the clock on the oven
+5	Ask the system to turn the sound off in the oven	on_off	How do I turn off the sound in the oven
