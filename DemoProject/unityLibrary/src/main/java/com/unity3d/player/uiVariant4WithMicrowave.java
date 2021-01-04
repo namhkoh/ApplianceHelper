@@ -1008,14 +1008,15 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                 numberpad_toggle();
                 System.out.println(previous_state);
                 if (current_task == "Reheat") {
-                    countdown("10");
+                    countdown("3");
                 }
                 if ((current_task == "Pizza") | (current_task == "Popcorn") | (current_task == "Defrost")) {
-                    countdown("10");
+                    countdown("3");
                 }
                 current_state++;
                 if (working_button.get("timer")) {
-                    countdown(lcdString);
+                    //countdown(lcdString);
+                    countdown("3");
                 }
 
                 if (active_button.get("reheat")) {

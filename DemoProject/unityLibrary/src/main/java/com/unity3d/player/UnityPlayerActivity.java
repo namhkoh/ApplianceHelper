@@ -43,18 +43,15 @@ import androidx.core.view.ViewCompat;
 
 import com.company.MainManager;
 import com.company.ResponseObject;
-import com.company.StepObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Scanner;
@@ -296,7 +293,7 @@ public class UnityPlayerActivity extends Activity implements IUnityPlayerLifecyc
         String incoming_indexString = String.valueOf(incoming_index);
         HashMap<String, String> tmpHash = getData();
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
-            Intent intent = new Intent(this, uiVariant6.class);
+            Intent intent = new Intent(this, uiVariant6Microwave.class);
             startActivity(intent);
         } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")){
             Intent intent = new Intent(this, uiVariant6Oven.class);

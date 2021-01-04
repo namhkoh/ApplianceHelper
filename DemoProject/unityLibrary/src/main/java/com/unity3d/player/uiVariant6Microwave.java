@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class uiVariant6 extends AppCompatActivity {
+public class uiVariant6Microwave extends AppCompatActivity {
     private String lcdString = " ";
     private String altString = " ";
     private int variant;
@@ -91,28 +91,6 @@ public class uiVariant6 extends AppCompatActivity {
         clock.setOnClickListener(v -> {
             microwaveClock();
         });
-
-//        Button back = findViewById(R.id.back);
-//        back.setOnClickListener(v -> {
-//            //NavUtils.navigateUpFromSameTask(this);
-//            //microwaveClock();
-//
-////            Log.v("Saved","Save Instance State 2");
-////            uiVariant1.uivariant1Bundle.putBoolean("Is First",is_first);
-////            uiVariant1.uivariant1Bundle.putSerializable("NextButton", next_button);
-//
-//            save_bundle();
-//
-////            Intent intent = NavUtils.getParentActivityIntent(this);
-////            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-////            NavUtils.navigateUpTo(this,intent);
-//
-//            finish();
-//
-////            Intent intent = new Intent(this, uiVariant1.class);
-////            startActivity(intent);
-//
-//        });
 
         Button start = findViewById(R.id.microwave_start);
         start.setOnClickListener(v -> {
@@ -274,9 +252,6 @@ public class uiVariant6 extends AppCompatActivity {
         anim.setRepeatMode(Animation.REVERSE);
         anim.setRepeatCount(Animation.INFINITE);
 
-
-        //////////////////////
-
         //Get data from uiVaraiant 1,2,3,4
         myList = (ArrayList<String>) getIntent().getSerializableExtra("button");
 
@@ -290,33 +265,12 @@ public class uiVariant6 extends AppCompatActivity {
         list = Arrays.asList("clock", "start", "cancel", "timer", "reheat", "defrost", "pizza", "pork",
                 "no button", "number pad", "open", "popcorn", "soften",
                 "potato", "cook", "add30", "cook time", "cook power");
-//        //Next Button is the button I have to Press Next
-//        next_button = new HashMap<String, Boolean>();
-//        //Active Button is to define what buttons are active.
-//        active_button = new HashMap<String, Boolean>();
-//        //Working Button is to define features (not buttons) are active.
-//        working_button = new HashMap<String, Boolean>();
-        //Initialize everything to false
-//        for (String i : list) {
-//            next_button.put(i, false);
-//            active_button.put(i, false);
-//            working_button.put(i,false);
-//        }
-
-//        pressed_wrong = 0;
-//
-//        //Initial Step
-//        current_state = 0;
-//        //Get the Next button
-//        string_button = myList.get(current_state);
-//        //How many instructions are there in total
-//        number_of_steps = myList.size();
-//        //Use the String value of the button to go to the next step.
-//        next_step(string_button);
 
         // Not first time
         if (uiVariant1.uivariant1Bundle.containsKey("Is First")) {
-            System.out.println("Is First: " + uiVariant1.uivariant1Bundle.getBoolean("Is First"));
+            if(Utilities.debug) {
+                System.out.println("Loading bundle. Is First: " + uiVariant1.uivariant1Bundle.getBoolean("Is First"));
+            }
             load_bundle();
             Log.d("Load Bundle", "Restored");
 
@@ -349,6 +303,9 @@ public class uiVariant6 extends AppCompatActivity {
         }
     }
 
+    /**
+     * When back button is pressed. Save Bundle
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -360,11 +317,12 @@ public class uiVariant6 extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Save data so that we can recover it later.
+     */
     private void save_bundle() {
         uiVariant1.uivariant1Bundle.clear();
         TextView lcd = findViewById(R.id.lcd_text);
-        System.out.println(lcd.getText());
-        Log.v("Saved", "Save Instance State 2");
         uiVariant1.uivariant1Bundle.putBoolean("Is First", is_first);
         uiVariant1.uivariant1Bundle.putSerializable("NextButton", next_button);
         uiVariant1.uivariant1Bundle.putSerializable("ActiveButton", active_button);
@@ -378,8 +336,14 @@ public class uiVariant6 extends AppCompatActivity {
         uiVariant1.uivariant1Bundle.putInt("timeposition", time_position);
         uiVariant1.uivariant1Bundle.putBoolean("ReheatPressed", reheat_pressed);
         uiVariant1.uivariant1Bundle.putInt("ReheatPos", reheat_category);
+        if(Utilities.debug){
+            Log.v("Saved", "Save Bundle");
+        }
     }
 
+    /**
+     * Recover from load_bundle
+     */
     private void load_bundle() {
         TextView lcd = findViewById(R.id.lcd_text);
         is_first = uiVariant1.uivariant1Bundle.getBoolean("Is First");
@@ -396,15 +360,10 @@ public class uiVariant6 extends AppCompatActivity {
         reheat_category = uiVariant1.uivariant1Bundle.getInt("ReheatPos");
         lcd.setText(uiVariant1.uivariant1Bundle.getString("OnScreen"));
         uiVariant1.uivariant1Bundle.clear();
+        if(Utilities.debug){
+            Log.v("Load", "Loaded Bundle");
+        }
     }
-
-//    @Override
-//    public void onSaveInstanceState(Bundle savedInstanceState) {
-//        Log.v("Saved","Save Instance State");
-//        uiVariant1.uivariant1Bundle.putBoolean("Is First",is_first);
-//        uiVariant1.uivariant1Bundle.putSerializable("NextButton", next_button);
-//        super.onSaveInstanceState(savedInstanceState);
-//    }
 
 
     private void next_step(String string_button) {
@@ -414,56 +373,56 @@ public class uiVariant6 extends AppCompatActivity {
             Log.e("Button", string_button);
         }
 
-        if (string_button.equals("reheat")) {
+        else if (string_button.equals("reheat")) {
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
-        if (string_button.equals("defrost")) {
+        else if (string_button.equals("defrost")) {
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
-        if (string_button.equals("pizza")) {
+        else if (string_button.equals("pizza")) {
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
-        if (string_button.equals("popcorn")) {
+        else if (string_button.equals("popcorn")) {
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
-        if (string_button.equals("timer")) {
+        else if (string_button.equals("timer")) {
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
-        if (string_button.equals("start")) {
+        else if (string_button.equals("start")) {
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
-        if (string_button.equals("no button")) {
+        else if (string_button.equals("no button")) {
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
             finish_task();
         }
 
-        if (string_button.equals("open")) {
+        else if (string_button.equals("open")) {
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
         }
 
-        if (string_button.equals("number pad")) {
+        else if (string_button.equals("number pad")) {
             //Because number pad doesn't have a specific button to press in order to go to the next step.
             //next_button.put(string_button,true);
             active_button.put(string_button, true);
@@ -529,7 +488,7 @@ public class uiVariant6 extends AppCompatActivity {
             lcd.clearAnimation();
             lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
             try {
-                Thread.sleep(2000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -577,8 +536,6 @@ public class uiVariant6 extends AppCompatActivity {
             Log.e("Button Pressed (Inactive)", msg);
             pressed_wrong++;
         }
-
-        System.out.println(pressed_wrong);
 
         if (pressed_wrong >= 5 & current_state < myList.size()) {
             hint.setEnabled(true);
@@ -764,6 +721,7 @@ public class uiVariant6 extends AppCompatActivity {
                 // reheat_active = false;
                 current_task = "Reheat";
                 lcdString = "";
+                //Changing the three options
                 if (reheat_pressed == false) {
                     current_state++;
                 }
@@ -784,11 +742,11 @@ public class uiVariant6 extends AppCompatActivity {
     private void microwaveStart() {
         if (active_button.get("start")) {
             if (next_button.get("start") == true) {
-                Log.e("Button", "Clock deactivate");
+                //Log.e("Button", "Clock deactivate");
                 next_button.put("start", false);
                 active_button.put("start", false);
                 numberpad_toggle();
-                System.out.println(previous_state);
+                //System.out.println(previous_state);
                 if (current_task == "Reheat") {
                     countdown("3");
                 }
@@ -797,7 +755,6 @@ public class uiVariant6 extends AppCompatActivity {
                 }
                 current_state++;
                 if (working_button.get("timer")) {
-                    //countdown(lcdString);
                     countdown("3");
                 }
 
@@ -850,7 +807,7 @@ public class uiVariant6 extends AppCompatActivity {
         reheat_category = 0;
         pressed_wrong = 0;
         string_button = myList.get(current_state);
-        System.out.println(string_button);
+        //System.out.println(string_button);
 
         //Next Button is the button I have to Press Next
         next_button = new HashMap<String, Boolean>();
@@ -874,8 +831,7 @@ public class uiVariant6 extends AppCompatActivity {
 
 
             public void onTick(long millisUntilFinished) {
-                System.out.println(millisUntilFinished);
-                System.out.println(finish);
+                System.out.println(millisUntilFinished + " " + finish);
                 long remainedSecs = millisUntilFinished / 1000;
                 long hh = (remainedSecs / 60);
                 long mm = (remainedSecs % 60);
@@ -916,7 +872,9 @@ public class uiVariant6 extends AppCompatActivity {
     }
 
     public void stopTimer() {
-        t.cancel();
+        if(t != null) {
+            t.cancel();
+        }
     }
 
     private void countdown(String number) {

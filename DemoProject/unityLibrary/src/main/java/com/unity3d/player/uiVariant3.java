@@ -163,8 +163,8 @@ public class uiVariant3 extends AppCompatActivity {
                 } else if (utterance.toLowerCase().contains("next")) {
                     if(index < max_index - 1) {
                         index++;
-                        Log.e("next", String.valueOf(index));
-                        System.out.println(list);
+                        Log.e("UI STEP", tmpList.get(index));
+                        //System.out.println(list);
                         update_state(tmpList.get(index));
                     }else{
                         Log.e("next","End of the instructions");
@@ -189,18 +189,20 @@ public class uiVariant3 extends AppCompatActivity {
                 int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
                 String incoming_indexString = String.valueOf(incoming_index);
 
-                System.out.println(intentList.get(incoming_indexString));
+                //Prints bake
+                //System.out.println(intentList.get(incoming_indexString));
 
                 buttonList = new ArrayList<>();
-
-                if(!response.getDialog_command().equals("no_match")){
-                    System.out.println("----------------------------------------------------------");
-                    System.out.println("Question: " + question);
-                    System.out.println("Response Intent: "+response.getIntent());
-                    System.out.println("Response Appliance Name: "+response.getAppliance_name());
-                    System.out.println("Actual Intent: " + intentList.get(incoming_indexString));
-                    System.out.println("Task Name: " + tmpHash.get(incoming_indexString));
-                    System.out.println("----------------------------------------------------------");
+                if(Utilities.debug) {
+                    if (!response.getDialog_command().equals("no_match")) {
+                        System.out.println("----------------------------------------------------------");
+                        System.out.println("Question: " + question);
+                        System.out.println("Response Intent: " + response.getIntent());
+                        System.out.println("Response Appliance Name: " + response.getAppliance_name());
+                        System.out.println("Actual Intent: " + intentList.get(incoming_indexString));
+                        System.out.println("Task Name: " + tmpHash.get(incoming_indexString));
+                        System.out.println("----------------------------------------------------------");
+                    }
                 }
 
 
@@ -337,7 +339,6 @@ public class uiVariant3 extends AppCompatActivity {
 
                     @Override
                     public void onDone(String utteranceId) {
-                        Log.e("Debug","On Done");
 
                         if(sucess==false & (index < max_index - 1)){
                             index++;
@@ -381,7 +382,7 @@ public class uiVariant3 extends AppCompatActivity {
         String incoming_indexString = String.valueOf(incoming_index);
         HashMap<String, String> tmpHash = getData();
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
-            Intent intent = new Intent(this, uiVariant6.class);
+            Intent intent = new Intent(this, uiVariant6Microwave.class);
             intent.putExtra("button", buttonList);
             intent.putExtra("instructions", list);
             intent.putExtra("variant",3);
@@ -395,7 +396,7 @@ public class uiVariant3 extends AppCompatActivity {
         } else {
             return;
         }
-        Log.e("entering feedback", "enter");
+        //Log.e("entering feedback", "enter");
     }
 
     /**
@@ -484,11 +485,11 @@ public class uiVariant3 extends AppCompatActivity {
 
     void initial_update(String s, String k){
         TextView step = findViewById(R.id.stepOutput);
+        Log.e("UI STEP Initial", s);
         step.setText(k);
         initTTS(k);
         displayPanels2(s);
         adapter.notifyDataSetChanged();
-        initTTS(s);
     }
 
     public void runSteps(String s, String k) {
@@ -507,8 +508,8 @@ public class uiVariant3 extends AppCompatActivity {
      */
     private void displayPanels2(String button){
         iv1 = (ImageView) findViewById(R.id.appliance_image);
-        System.out.println(button.toLowerCase());
-        System.out.println(current_appliance);
+//        System.out.println(button.toLowerCase());
+//        System.out.println(current_appliance);
 
         if(current_appliance.toLowerCase().equals("oven")) {
             if(button.toLowerCase().equals("speech")){

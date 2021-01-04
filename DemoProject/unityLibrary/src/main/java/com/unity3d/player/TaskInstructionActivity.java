@@ -133,7 +133,7 @@ public class TaskInstructionActivity extends AppCompatActivity {
         String incoming_indexString = String.valueOf(incoming_index);
         HashMap<String, String> tmpHash = getData();
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
-            Intent intent = new Intent(this, uiVariant6.class);
+            Intent intent = new Intent(this, uiVariant6Microwave.class);
             startActivity(intent);
         } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")) {
             Intent intent = new Intent(this, uiVariant6Oven.class);

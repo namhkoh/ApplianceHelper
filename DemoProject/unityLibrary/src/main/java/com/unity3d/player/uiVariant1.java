@@ -36,7 +36,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 
-import com.aic.libnilu.nlu.MainManager;
 import com.aic.libnilu.nlu.ResponseObject;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -50,7 +49,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.prefs.AbstractPreferences;
 
 
 /**
@@ -94,6 +92,7 @@ public class uiVariant1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui_variant1);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         checkPermission();
         initialize_task();
 
@@ -112,6 +111,8 @@ public class uiVariant1 extends AppCompatActivity {
             task();
         });
 
+        final String TAG = "Speech Debug";
+
         // SPEECH TO TEXT START
         final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -122,12 +123,12 @@ public class uiVariant1 extends AppCompatActivity {
         mSpeechRecognizer.setRecognitionListener(new RecognitionListener() {
             @Override
             public void onReadyForSpeech(Bundle bundle) {
-
+                Log.d(TAG,"onReadyForSpeech");
             }
 
             @Override
             public void onBeginningOfSpeech() {
-
+                Log.d(TAG,"onBeginningofSpeech");
             }
 
             @Override
@@ -142,16 +143,18 @@ public class uiVariant1 extends AppCompatActivity {
 
             @Override
             public void onEndOfSpeech() {
-                Log.e("onEndOfSpeech", "this is on end of speech.");
+                Log.e(TAG, "this is on end of speech.");
             }
 
             @Override
             public void onError(int i) {
+                Log.e(TAG, "on Error: " + i);
 
             }
 
             @Override
             public void onResults(Bundle bundle) {
+                Log.e(TAG, "on Results");
 
                 //getting all the matches
                 ArrayList<String> matches = bundle
@@ -160,20 +163,20 @@ public class uiVariant1 extends AppCompatActivity {
 
                 utterance = matches.get(0);
                 editText.setText(utterance);
-
-                String question = editText.getText().toString();
+                String question = utterance;
 
                 ResponseObject response = Utilities.returnResponse(getApplicationContext(),question);
 
-
-                if(!response.getDialog_command().equals("no_match")){
-                    System.out.println("----------------------------------------------------------");
-                    System.out.println("Question: " + question);
-                    System.out.println("Response Intent: "+response.getIntent());
-                    System.out.println("Response Appliance Name: "+response.getAppliance_name());
-                    System.out.println("Actual Intent: " + intentList.get(incoming_indexString));
-                    System.out.println("Task Name: " + tmpHash.get(incoming_indexString));
-                    System.out.println("----------------------------------------------------------");
+                if(Utilities.debug){
+                    if(!response.getDialog_command().equals("no_match")){
+                        System.out.println("----------------------------------------------------------");
+                        System.out.println("Question: " + question);
+                        System.out.println("Response Intent: "+response.getIntent());
+                        System.out.println("Response Appliance Name: "+response.getAppliance_name());
+                        System.out.println("Actual Intent: " + intentList.get(incoming_indexString));
+                        System.out.println("Task Name: " + tmpHash.get(incoming_indexString));
+                        System.out.println("----------------------------------------------------------");
+                    }
                 }
 
                 //Some sort of error happened in the NLU part
@@ -249,6 +252,7 @@ public class uiVariant1 extends AppCompatActivity {
         });
 
         // SPEECH TO TEXT END
+
         textToSpeech = new TextToSpeech(getApplicationContext(), status -> {
 
         });
@@ -265,7 +269,6 @@ public class uiVariant1 extends AppCompatActivity {
                     public void onDone(String utteranceId) {
                         index++;
                         if (index == list.size() & sucess == true) {
-                            Log.d("Log","Speach button deactivated");
                             new Handler(Looper.getMainLooper()).post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -360,27 +363,23 @@ public class uiVariant1 extends AppCompatActivity {
     }
 
     /**
-     * Used to get rid of the lvSteps (Instructions)
-     * Not currently used. Was used when the instructions were given a timer.
-     */
-    private void stop_screen() {
-        lvSteps.setAdapter(null);
-    }
-
-    /**
      * Reminds the user of the current task (What they need to ask to the application)
      */
     private void task() {
         Toast.makeText(getApplicationContext(), tmpHash.get(incoming_indexString), Toast.LENGTH_SHORT).show();
     }
 
-    //Disable back button
+    /**
+        Disable back button
+     */
     @Override
     public void onBackPressed() {
         if (false) {
             super.onBackPressed();
         } else {
-            Log.d("Debug", "Back Button Pressed");
+            if(Utilities.debug) {
+                Log.d("Debug", "Back Button Pressed");
+            }
         }
     }
 
@@ -392,13 +391,13 @@ public class uiVariant1 extends AppCompatActivity {
         String incoming_indexString = String.valueOf(incoming_index);
         HashMap<String, String> tmpHash = getData();
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
-            intent = new Intent(this, uiVariant6.class);
+            intent = new Intent(this, uiVariant6Microwave.class);
             intent.putExtra("button", buttonList);
             intent.putExtra("instructions", list);
             intent.putExtra("variant",1);
             startActivity(intent);
         } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")) {
-            Intent intent = new Intent(this, uiVariant6Oven.class);
+            intent = new Intent(this, uiVariant6Oven.class);
             intent.putExtra("button", buttonList);
             intent.putExtra("instructions", list);
             intent.putExtra("variant", 1);
@@ -406,7 +405,9 @@ public class uiVariant1 extends AppCompatActivity {
         } else {
             return;
         }
-        Log.e("entering feedback", "enter");
+//        if(Utilities.debug) {
+//            Log.e("entering feedback", "enter");
+//        }
     }
 
     /**
@@ -430,30 +431,6 @@ public class uiVariant1 extends AppCompatActivity {
             e.printStackTrace();
         }
         return resultList;
-    }
-
-//  Remove if no errors found. No reason for this to be down here.
-//    private TextToSpeech textToSpeech;
-//    String speakText = "";
-
-    //This method doesn't really seem to be used in uiVariant1
-    //But not removed because it might be used.
-    void update(String s, final boolean forward) {
-        Log.e("UI STEP ", s);
-        Handler h = new Handler(getMainLooper());
-        h.postDelayed(() -> {
-            if (!forward) {
-                list.remove(tmpList.get(index));
-                index--;
-                speakText = tmpList.get(index);
-            } else {
-                list.add(s);
-                speakText = s;
-            }
-            adapter.notifyDataSetChanged();
-            initTTS(speakText);
-            index++;
-        }, 0);
     }
 
     /**
@@ -481,6 +458,37 @@ public class uiVariant1 extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+    }
+
+    /**
+     *  The two methods below doesn't really seem to be used in uiVariant1
+     *  But not removed because it might be used.
+     */
+
+    void update(String s, final boolean forward) {
+        Log.e("UI STEP ", s);
+        Handler h = new Handler(getMainLooper());
+        h.postDelayed(() -> {
+            if (!forward) {
+                list.remove(tmpList.get(index));
+                index--;
+                speakText = tmpList.get(index);
+            } else {
+                list.add(s);
+                speakText = s;
+            }
+            adapter.notifyDataSetChanged();
+            initTTS(speakText);
+            index++;
+        }, 0);
+    }
+
+    /**
+     * Used to get rid of the lvSteps (Instructions)
+     * Not currently used. Was used when the instructions were given a timer.
+     */
+    private void stop_screen() {
+        lvSteps.setAdapter(null);
     }
 
 }

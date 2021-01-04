@@ -85,6 +85,7 @@ public class uiVariant2 extends AppCompatActivity {
     private String incoming_indexString;
     private TextToSpeech textToSpeech;
     private String speakText = "";
+    private HashMap<String, String> intentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,11 +95,6 @@ public class uiVariant2 extends AppCompatActivity {
         checkPermission();
 
         initialize_task();
-
-//        //Initializing (Extracting) information from file2.tsv
-//        tmpHash = getData(); //result list. Technically no need to return it to tmpHash as the method getData() initializes everything we want.
-//        incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
-//        incoming_indexString = String.valueOf(incoming_index); // Index value of current task. Used to extract corresponding intents and instructions.
 
         /**
          * Initializing buttons
@@ -116,6 +112,8 @@ public class uiVariant2 extends AppCompatActivity {
             task();
         });
 
+        final String TAG = "Speech Debug";
+
         /**
          * Speech Recognize
          */
@@ -128,12 +126,12 @@ public class uiVariant2 extends AppCompatActivity {
         mSpeechRecognizer.setRecognitionListener(new RecognitionListener() {
             @Override
             public void onReadyForSpeech(Bundle bundle) {
-
+                Log.d(TAG,"onReadyForSpeech");
             }
 
             @Override
             public void onBeginningOfSpeech() {
-
+                Log.d(TAG,"onBeginningofSpeech");
             }
 
             @Override
@@ -148,16 +146,17 @@ public class uiVariant2 extends AppCompatActivity {
 
             @Override
             public void onEndOfSpeech() {
-                Log.e("onEndOfSpeech", "this is on end of speech.");
+                Log.e(TAG, "this is on end of speech.");
             }
 
             @Override
             public void onError(int i) {
-
+                Log.e(TAG, "on Error: " + i);
             }
 
             @Override
             public void onResults(Bundle bundle) {
+                Log.e(TAG, "on Results");
 
                 //getting all the matches
                 ArrayList<String> matches = bundle
@@ -179,7 +178,7 @@ public class uiVariant2 extends AppCompatActivity {
                 } else if (utterance.contains("next")) {
                     if (index < max_index - 1) {
                         index++;
-                        Log.e("next", String.valueOf(index));
+                        Log.e("UI STEP", tmpList.get(index));
                         update_state(tmpList.get(index));
                         if (index == max_index - 1) {
                             Toast.makeText(getApplicationContext(), "Last Step", Toast.LENGTH_SHORT).show();
@@ -199,15 +198,16 @@ public class uiVariant2 extends AppCompatActivity {
 
                 ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
 
-
-                if(!response.getDialog_command().equals("no_match")){
-                    System.out.println("----------------------------------------------------------");
-                    System.out.println("Question: " + question);
-                    System.out.println("Response Intent: "+response.getIntent());
-                    System.out.println("Response Appliance Name: "+response.getAppliance_name());
-                    //System.out.println("Actual Intent: " + intentList.get(incoming_indexString));
-                    System.out.println("Task Name: " + tmpHash.get(incoming_indexString));
-                    System.out.println("----------------------------------------------------------");
+                if(Utilities.debug) {
+                    if (!response.getDialog_command().equals("no_match")) {
+                        System.out.println("----------------------------------------------------------");
+                        System.out.println("Question: " + question);
+                        System.out.println("Response Intent: " + response.getIntent());
+                        System.out.println("Response Appliance Name: " + response.getAppliance_name());
+                        //System.out.println("Actual Intent: " + intentList.get(incoming_indexString));
+                        System.out.println("Task Name: " + tmpHash.get(incoming_indexString));
+                        System.out.println("----------------------------------------------------------");
+                    }
                 }
 
                 //Some sort of error happened in the NLU part
@@ -225,6 +225,21 @@ public class uiVariant2 extends AppCompatActivity {
                     max_index = 2;
 
                     update(tmpList.get(index), true);
+
+                } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
+
+                    clear(list);
+
+                    list.add("Wrong Intent. " + "The current intent is " + response.getIntent());
+                    list.add("Try again by pressing the red mike button");
+                    initTTS("Wrong Intent");
+
+                } else if (!Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains(response.getAppliance_name().toLowerCase())) {
+
+                    clear(list);
+                    list.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
+                    list.add("Try again by pressing the red mike button");
+                    initTTS("Wrong appliance");
 
                 } else {
                     clear(list);
@@ -294,7 +309,6 @@ public class uiVariant2 extends AppCompatActivity {
 
                     @Override
                     public void onDone(String utteranceId) {
-                        Log.e("Debug", "On Done");
                         if (success == false & (index < max_index - 1)) {
                             index++;
                             update(tmpList.get(index), true);
@@ -380,7 +394,7 @@ public class uiVariant2 extends AppCompatActivity {
         String incoming_indexString = String.valueOf(incoming_index);
         HashMap<String, String> tmpHash = getData();
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
-            Intent intent = new Intent(this, uiVariant6.class);
+            Intent intent = new Intent(this, uiVariant6Microwave.class);
             intent.putExtra("button", buttonList);
             intent.putExtra("instructions", list);
             intent.putExtra("variant", 2);
@@ -394,7 +408,7 @@ public class uiVariant2 extends AppCompatActivity {
         } else {
             return;
         }
-        Log.e("entering feedback", "enter");
+        //Log.e("entering feedback", "enter");
     }
 
     /**
@@ -406,10 +420,12 @@ public class uiVariant2 extends AppCompatActivity {
         BufferedReader reader = new BufferedReader(new InputStreamReader(ls, StandardCharsets.UTF_8));
         String line = "";
         HashMap<String, String> resultList = new HashMap<String, String>();
+        intentList = new HashMap<String, String>();
         try {
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split("\t");
                 resultList.put(tokens[0], tokens[1]);
+                intentList.put(tokens[0], tokens[2]);
             }
         } catch (IOException e) {
             Log.wtf("TaskInstructionActivity", "Error reading data file on line" + line, e);
@@ -418,7 +434,7 @@ public class uiVariant2 extends AppCompatActivity {
         return resultList;
     }
 
-
+    //Used for error message
     void update(String s, final boolean forward) {
         Log.e("UI STEP ", s);
         System.out.println(index);
@@ -445,7 +461,7 @@ public class uiVariant2 extends AppCompatActivity {
      * @param s The text to be updated
      */
     void initial_update(String s) {
-        Log.e("UI STEP ", s);
+        Log.e("UI STEP Initial", s);
         list.add(s);
         speakText = s;
         adapter.notifyDataSetChanged();

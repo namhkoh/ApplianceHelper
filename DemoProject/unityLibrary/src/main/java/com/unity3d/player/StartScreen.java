@@ -123,7 +123,7 @@ public class StartScreen extends AppCompatActivity {
                     startActivity(intent5);
                     break;
                 case "uiVariant6":
-                    Intent intent6 = new Intent(getApplicationContext(), uiVariant6.class);
+                    Intent intent6 = new Intent(getApplicationContext(), uiVariant6Microwave.class);
                     startActivity(intent6);
                     break;
             }

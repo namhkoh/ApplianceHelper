@@ -96,7 +96,7 @@ public class uiMenu extends AppCompatActivity {
     public void openUIVariant6() {
         CardView card_view_6 = (CardView) findViewById(R.id.ui_card_6);
         setCardColour(card_view_6);
-        Intent intent = new Intent(this, uiVariant6.class);
+        Intent intent = new Intent(this, uiVariant6Microwave.class);
         startActivity(intent);
     }
 }
