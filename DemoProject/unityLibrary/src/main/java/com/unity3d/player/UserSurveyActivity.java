@@ -94,8 +94,7 @@ public class UserSurveyActivity extends AppCompatActivity {
             int buttonsCorrect = 10;
             int buttonsIncorrect = 2;
 
-            //questionList = (HashMap<String, String>) uiVariant1.userQuestions.getSerializable("questions");
-            questionList.put("hello","world");
+            questionList = (HashMap<String, String>) uiVariant1.userQuestions.getSerializable("questions");
 
             Gson gson = new Gson();
             JSONObject feedbackObject = new JSONObject();
