@@ -117,10 +117,11 @@ public class uiVariant1 extends AppCompatActivity {
         });
 
         if (uiVariant1.userQuestions.containsKey("Is First")) {
-            System.out.println("Is First: " + uiVariant1.uivariant1Bundle.getBoolean("Is First"));
+            Log.e("Is First", String.valueOf(uiVariant1.uivariant1Bundle.getBoolean("Is First")));
             load_bundle();
             Log.d("Load Bundle", "Restored");
         } else {
+            System.out.println("new hashmap!");
             is_first = true;
             questionList = new HashMap<>();
         }
@@ -177,13 +178,15 @@ public class uiVariant1 extends AppCompatActivity {
 
                 String question = editText.getText().toString();
 
-                ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
-
                 // Data collection
                 // Need to store the questions in sequence.
-                questionList.put(tmpHash.get(incoming_indexString), question);
+                System.out.println("question! " + question);
+                System.out.println("utterance! " + utterance);
+                questionList.put(tmpHash.get(incoming_indexString), utterance);
                 userQuestions.putBoolean("Is First", is_first);
                 userQuestions.putSerializable("questions", questionList);
+
+                ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
 
 
                 if (!response.getDialog_command().equals("no_match")) {
