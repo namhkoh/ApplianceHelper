@@ -123,7 +123,7 @@ public class uiVariant1 extends AppCompatActivity {
         } else {
             System.out.println("new hashmap!");
             is_first = true;
-//            questionList = new HashMap<>();
+            questionList = new HashMap<>();
         }
 
 
