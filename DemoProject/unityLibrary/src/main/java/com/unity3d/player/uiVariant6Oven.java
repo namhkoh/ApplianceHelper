@@ -15,6 +15,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.util.JsonUtils;
+
+import org.w3c.dom.ls.LSOutput;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -395,12 +399,14 @@ public class uiVariant6Oven extends AppCompatActivity {
         uiVariant1.uivariant1Bundle.putString("Task",task);
         uiVariant1.uivariant1Bundle.putBoolean("NumberPad",numberpad_active);
         uiVariant1.uivariant1Bundle.putBoolean("BakePressed",bake_pressed);
+        uiVariant1.uivariant1Bundle.putBoolean("SettingsClockWorking",settings_clock_working);
     }
 
     private void load_bundle(){
         Log.v("Loaded","Loaded Instance State");
         TextView lcd = findViewById(R.id.oven_panel_text);
         task = uiVariant1.uivariant1Bundle.getString("Task");
+        settings_clock_working = uiVariant1.uivariant1Bundle.getBoolean("SettingsClockWorking");
         temp_task = uiVariant1.uivariant1Bundle.getString("TempTask");
         is_first = uiVariant1.uivariant1Bundle.getBoolean("Is First");
         bake_pressed = uiVariant1.uivariant1Bundle.getBoolean("BakePressed");
@@ -455,14 +461,14 @@ public class uiVariant6Oven extends AppCompatActivity {
             debug_next_step_log(string_button);
         }
 
-        if(string_button.equals("number pad")){
+        else if(string_button.equals("number pad")){
             lcdString = "";
             numberpad_active = true;
             previous_state = string_button;
             current_state+=1;
             previous_numberpad = true;
-            string_button = myList.get(current_state);
             debug_next_step_log(string_button);
+            string_button = myList.get(current_state);
             if(info_button.equals("clock")){
 
             }
@@ -476,83 +482,79 @@ public class uiVariant6Oven extends AppCompatActivity {
             manage_next();
         }
 
-//        else{
-//            next_step_helper(string_button);
-//        }
-
-        if (string_button.equals("settings/clock")) {
+        else if (string_button.equals("settings/clock")) {
             next_button.put(string_button, true);
             button_active.put(string_button, true);
             debug_next_step_log(string_button);
         }
 
-        if (string_button.equals("six")) {
+        else if (string_button.equals("six")) {
             next_button.put(string_button, true);
             button_active.put(string_button, true);
             debug_next_step_log(string_button);
         }
 
-        if (string_button.equals("timer")) {
+        else if (string_button.equals("timer")) {
             next_button.put(string_button, true);
             button_active.put(string_button, true);
             debug_next_step_log(string_button);
         }
 
-        if (string_button.equals("broil")) {
+        else if (string_button.equals("broil")) {
             next_button.put(string_button, true);
             button_active.put(string_button, true);
             debug_next_step_log(string_button);
         }
 
-        if (string_button.equals("keep warm")) {
+        else if (string_button.equals("keep warm")) {
             next_button.put(string_button, true);
             button_active.put(string_button, true);
             debug_next_step_log(string_button);
         }
 
-        if (string_button.equals("one")) {
+        else if (string_button.equals("one")) {
             next_button.put(string_button, true);
             button_active.put(string_button, true);
             debug_next_step_log(string_button);
         }
 
-        if (string_button.equals("cook time")) {
+        else if (string_button.equals("cook time")) {
             next_button.put(string_button, true);
             button_active.put(string_button, true);
             debug_next_step_log(string_button);
         }
 
-        if (string_button.equals("bake")) {
+        else if (string_button.equals("bake")) {
             next_button.put(string_button, true);
             button_active.put(string_button, true);
             debug_next_step_log(string_button);
         }
 
-        if (string_button.equals("two")) {
+        else if (string_button.equals("two")) {
             next_button.put(string_button, true);
             button_active.put(string_button, true);
             debug_next_step_log(string_button);
         }
 
-        if (string_button.equals("three")) {
+        else if (string_button.equals("three")) {
             next_button.put(string_button, true);
             button_active.put(string_button, true);
             debug_next_step_log(string_button);
         }
 
-        if (string_button.equals("four")) {
+        else if (string_button.equals("four")) {
             next_button.put(string_button, true);
             button_active.put(string_button, true);
             debug_next_step_log(string_button);
         }
 
-        if (string_button.equals("five")) {
+        else if (string_button.equals("five")) {
             next_button.put(string_button, true);
             button_active.put(string_button, true);
             debug_next_step_log(string_button);
         }
 
-        if (string_button.equals("start")) {
+         else if (string_button.equals("start")) {
             next_button.put(string_button, true);
             button_active.put(string_button, true);
             debug_next_step_log(string_button);
@@ -729,8 +731,8 @@ public class uiVariant6Oven extends AppCompatActivity {
         lcdString += buttonValue;
         TextView lcd = findViewById(R.id.oven_panel_text);
 
-        Log.d("Debug update", buttonValue);
-        Log.d("Debug current size", String.valueOf(tmpList.size()));
+        Log.d("Debug lcdString", lcdString);
+        Log.d("Debug time position", String.valueOf(time_position));
         Log.d("Debug time", Arrays.toString(time));
 
         HashMap<Integer, String> time_map = new HashMap<Integer, String>();
@@ -739,12 +741,13 @@ public class uiVariant6Oven extends AppCompatActivity {
         time_map.put(2, " ");
         time_map.put(3, " ");
 
-        System.out.println("temp task"+temp_task);
-
         if(temp_task.equals("bake")){
             bake_pressed = true;
-            lcd.setText(lcdString + "°F");
+            if(time_position < 4) {
+                lcd.setText(lcdString + "°F");
+            }
 
+         // Time (not bake at the moment)
         } else {
             int temp_position = time_position;
             for (int i = 0; i < time_position; i++) {
@@ -762,10 +765,8 @@ public class uiVariant6Oven extends AppCompatActivity {
         TextView lcd = findViewById(R.id.oven_panel_text);
         t = new CountDownTimer(finish, tick) {
 
-
             public void onTick(long millisUntilFinished) {
-                System.out.println(millisUntilFinished);
-                System.out.println(finish);
+                System.out.println(millisUntilFinished + " " + finish);
                 long remainedSecs = millisUntilFinished / 1000;
                 long hh = (remainedSecs / 60);
                 long mm = (remainedSecs % 60);
@@ -835,23 +836,28 @@ public class uiVariant6Oven extends AppCompatActivity {
             }
 
             if(current_task.equals("keep warm")){
-                countdown("10");
+                countdown("3");
             }
             if(task.equals("bake")){
-                countdown("10");
+                countdown("3");
             }
 
             if(current_task.equals("broil") | current_task.equals("broiling")){
-                countdown("10");
+                countdown("3");
             }
+
+            ///////////////////////////
 
             if(current_state >= myList.size()){
                 finish_task();
             }
+
             else{
                 string_button = myList.get(current_state);
                 next_step(string_button);
             }
+
+
         }else{
             active_inactive_log(false, "Start Button");
         }
@@ -883,11 +889,6 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     private void cancelOven() {
 
-        System.out.println(current_state+" "+myList.size());
-
-        System.out.println(string_button);
-
-        System.out.println(current_task);
 
         //Not good very limited conditions (If time try to change)
         // Bug may be fixed by putting & !current_task.equals("cook time")

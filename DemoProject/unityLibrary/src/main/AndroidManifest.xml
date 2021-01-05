@@ -150,7 +150,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".uiVariant6"
+            android:name=".uiVariant6Microwave"
             android:label="UI Variant 6"
             android:parentActivityName=".uiMenu"
             android:theme="@style/Theme.AppCompat.Light">

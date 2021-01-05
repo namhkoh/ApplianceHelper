@@ -7,7 +7,7 @@
     android:layout_height="730dp"
     android:layout_gravity="center"
     android:background="@drawable/microwave_full_panel"
-    tools:context=".uiVariant6">
+    tools:context=".uiVariant6Microwave">
 
 
     <TextView

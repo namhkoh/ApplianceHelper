@@ -14,11 +14,13 @@ import java.io.OutputStream;
 
 public class Utilities {
 
-    private static String appliance_data = "appliance_test8.txt";
+    private static String appliance_data = "appliance_test10.txt";
 
     private static String model_file = "model_tiny_9_5.pt";
 
     private static String vocab_file_name = "vocab.txt";
+
+    public static Boolean debug = true;
 
     private static String config_file = "config.json";
 

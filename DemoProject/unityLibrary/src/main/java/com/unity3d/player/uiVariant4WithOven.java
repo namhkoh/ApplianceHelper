@@ -636,6 +636,24 @@ public class uiVariant4WithOven extends AppCompatActivity {
 
     private void next_step(String string_button) {
 
+        Set<String> accept = new HashSet<String>();
+        accept.add("settings/clock");
+        accept.add("six");
+        accept.add("timer");
+        accept.add("broil");
+        accept.add("keep warm");
+        accept.add("one");
+        accept.add("cook time");
+        accept.add("bake");
+        accept.add("two");
+        accept.add("three");
+        accept.add("four");
+        accept.add("five");
+        accept.add("start");
+
+        System.out.println("String Button: " + string_button);
+
+
         //info_button is for extra information for the settings/clock fields
         arr1 = string_button.split(",");
         if (arr1.length == 1) {
@@ -654,7 +672,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
             debug_next_step_log(string_button);
         }
 
-        if (string_button.equals("number pad")) {
+        else if (string_button.equals("number pad")) {
             lcdString = "";
             numberpad_active = true;
             previous_state = string_button;
@@ -674,25 +692,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
             manage_next();
         }
 
-
-        Set<String> accept = new HashSet<String>();
-        accept.add("settings/clock");
-        accept.add("six");
-        accept.add("timer");
-        accept.add("broil");
-        accept.add("keep warm");
-        accept.add("one");
-        accept.add("cook time");
-        accept.add("bake");
-        accept.add("two");
-        accept.add("three");
-        accept.add("four");
-        accept.add("five");
-        accept.add("start");
-
-        System.out.println("String Button: " + string_button);
-
-        if(accept.contains(string_button)){
+        else if(accept.contains(string_button)){
             next_step_helper(string_button);
         }
 
@@ -945,8 +945,8 @@ public class uiVariant4WithOven extends AppCompatActivity {
         lcdString += buttonValue;
         TextView lcd = findViewById(R.id.oven_panel_text);
 
-        Log.d("Debug update", buttonValue);
-        Log.d("Debug current size", String.valueOf(tmpList.size()));
+        Log.d("Debug lcdString", lcdString);
+        Log.d("Debug time position", String.valueOf(time_position));
         Log.d("Debug time", Arrays.toString(time));
 
         HashMap<Integer, String> time_map = new HashMap<Integer, String>();
@@ -956,8 +956,10 @@ public class uiVariant4WithOven extends AppCompatActivity {
         time_map.put(3, " ");
 
         if (temp_task.equals("bake")) {
-            bake_pressed = true;
-            lcd.setText(lcdString + "°F");
+            if(time_position < 4) {
+                bake_pressed = true;
+                lcd.setText(lcdString + "°F");
+            }
 
         } else {
             int temp_position = time_position;
@@ -1046,18 +1048,19 @@ public class uiVariant4WithOven extends AppCompatActivity {
             current_state++;
 
             if (timerPressed == true) {
-                countdown(lcdString);
+                //countdown(lcdString);
+                countdown("3");
             }
 
             if (current_task.equals("keep warm")) {
-                countdown("10");
+                countdown("3");
             }
             if (task.equals("bake")) {
-                countdown("10");
+                countdown("3");
             }
 
             if (current_task.equals("broil") | current_task.equals("broiling")) {
-                countdown("10");
+                countdown("3");
             }
 
             if (current_state >= myList.size()) {
@@ -1113,12 +1116,6 @@ public class uiVariant4WithOven extends AppCompatActivity {
 
 
     private void cancelOven() {
-
-        System.out.println(current_state + " " + myList.size());
-
-        System.out.println(string_button);
-
-        System.out.println(current_task);
 
         //Not good very limited conditions (If time try to change)
         // Bug may be fixed by putting & !current_task.equals("cook time")
@@ -1215,13 +1212,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
                 }
                 if (number.equals("3")) {
                     if (info_button.equals("clock")) {
-                        System.out.println("AM");
                         lcd.setText("AM");
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
                     }
                 }
                 if (number.equals("4")) {

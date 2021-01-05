@@ -50,10 +50,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class uiVariant4 extends Activity implements IUnityPlayerLifecycleEvents {
 
@@ -282,7 +280,7 @@ public class uiVariant4 extends Activity implements IUnityPlayerLifecycleEvents 
         String incoming_indexString = String.valueOf(incoming_index);
         HashMap<String, String> tmpHash = getData();
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
-            Intent intent = new Intent(this, uiVariant6.class);
+            Intent intent = new Intent(this, uiVariant6Microwave.class);
             startActivity(intent);
         } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")){
             Intent intent = new Intent(this, uiVariant6Oven.class);
