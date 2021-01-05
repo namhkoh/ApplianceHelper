@@ -30,7 +30,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
     private String lcdString = " ";
     private String altString = " ";
     private int variant;
-    public static Bundle uiVariant6Bundle = new Bundle();
+    public static Bundle buttonHandler = new Bundle();
 
     //For toggling among states
     boolean reheat_pressed = false;
@@ -53,6 +53,9 @@ public class uiVariant6Microwave extends AppCompatActivity {
     HashMap<String, Boolean> next_button;
     HashMap<String, Boolean> active_button;
     HashMap<String, Boolean> working_button;
+    HashMap<String, Integer> correctButtonManager;
+    HashMap<String, Integer> incorrectButtonManager;
+
 
     ArrayList<String> myList;
     ArrayList<String> instructionList;
@@ -74,6 +77,8 @@ public class uiVariant6Microwave extends AppCompatActivity {
     int reheat_category = 0;
     int time_position = 0;
     int pressed_wrong;
+    int correct_press;
+    int incorrect_press;
 
 
     @Override
@@ -272,8 +277,8 @@ public class uiVariant6Microwave extends AppCompatActivity {
                 System.out.println("Loading bundle. Is First: " + uiVariant1.uivariant1Bundle.getBoolean("Is First"));
             }
             load_bundle();
+            save_button_press();
             Log.d("Load Bundle", "Restored");
-
         } //First Time
         else {
             is_first = true;
@@ -283,6 +288,9 @@ public class uiVariant6Microwave extends AppCompatActivity {
             active_button = new HashMap<String, Boolean>();
             //Working Button is to define features (not buttons) are active.
             working_button = new HashMap<String, Boolean>();
+            // Stores the incorrect button count
+            correctButtonManager = new HashMap<String, Integer>();
+            incorrectButtonManager = new HashMap<String, Integer>();
 
             for (String i : list) {
                 next_button.put(i, false);
@@ -364,6 +372,23 @@ public class uiVariant6Microwave extends AppCompatActivity {
             Log.v("Load", "Loaded Bundle");
         }
     }
+
+    /**
+     * Loading the userQuestion bundle
+     */
+    private void save_button_press() {
+        is_first = uiVariant1.userQuestions.getBoolean("Is First");
+        correctButtonManager = (HashMap<String, Integer>) buttonHandler.getSerializable("correct_button");
+        incorrectButtonManager = (HashMap<String, Integer>) buttonHandler.getSerializable("incorrect_button");
+    }
+
+//    @Override
+//    public void onSaveInstanceState(Bundle savedInstanceState) {
+//        Log.v("Saved","Save Instance State");
+//        uiVariant1.uivariant1Bundle.putBoolean("Is First",is_first);
+//        uiVariant1.uivariant1Bundle.putSerializable("NextButton", next_button);
+//        super.onSaveInstanceState(savedInstanceState);
+//    }
 
 
     private void next_step(String string_button) {
@@ -531,12 +556,18 @@ public class uiVariant6Microwave extends AppCompatActivity {
         if (active == true) {
             Log.e("Button Pressed (Active)", msg);
             pressed_wrong = 0;
+            correct_press++;
+            correctButtonManager.put("Button Pressed (Active) " + msg,correct_press);
             hint.setEnabled(false);
         } else {
             Log.e("Button Pressed (Inactive)", msg);
             pressed_wrong++;
+            incorrect_press++;
+            incorrectButtonManager.put("Button Pressed (inactive) " + msg,incorrect_press);
         }
 
+        buttonHandler.putSerializable("correct_button",correctButtonManager);
+        buttonHandler.putSerializable("incorrect_button",incorrectButtonManager);
         if (pressed_wrong >= 5 & current_state < myList.size()) {
             hint.setEnabled(true);
         }
@@ -975,8 +1006,8 @@ public class uiVariant6Microwave extends AppCompatActivity {
             lcd.setText("Pasta");
         }
         reheat_category++;
-
     }
+
 
     /////////////////////////////////////////////////////////////////////////////
 

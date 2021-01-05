@@ -73,6 +73,7 @@ public class uiVariant1 extends AppCompatActivity {
 
     private HashMap<String, String> intentList;
     private HashMap<String, String> tmpHash; //getData
+    private HashMap<String, String> questionList = new HashMap<>();
 
     Button next;
     Intent intent;
@@ -86,6 +87,9 @@ public class uiVariant1 extends AppCompatActivity {
 
     private TextToSpeech textToSpeech;
     private String speakText = "";
+
+    public static Bundle userQuestions = new Bundle();
+    boolean is_first = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +116,16 @@ public class uiVariant1 extends AppCompatActivity {
         });
 
         final String TAG = "Speech Debug";
+        if (uiVariant1.userQuestions.containsKey("Is First")) {
+            Log.e("Is First", String.valueOf(uiVariant1.uivariant1Bundle.getBoolean("Is First")));
+            load_bundle();
+            Log.d("Load Bundle", "Restored");
+        } else {
+            System.out.println("new hashmap!");
+            is_first = true;
+            questionList = new HashMap<>();
+        }
+
 
         // SPEECH TO TEXT START
         final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
@@ -164,8 +178,15 @@ public class uiVariant1 extends AppCompatActivity {
                 utterance = matches.get(0);
                 editText.setText(utterance);
                 String question = utterance;
+                questionList.put(tmpHash.get(incoming_indexString), question);
 
-                ResponseObject response = Utilities.returnResponse(getApplicationContext(),question);
+                // Data collection
+                // Need to store the questions in sequence.
+//                System.out.println("question! " + question);
+//                System.out.println("utterance! " + utterance);
+//                questionList.put(tmpHash.get(incoming_indexString), utterance);
+//                userQuestions.putBoolean("Is First", is_first);
+//                userQuestions.putSerializable("questions", questionList);
 
                 if(Utilities.debug){
                     if(!response.getDialog_command().equals("no_match")){
@@ -176,6 +197,7 @@ public class uiVariant1 extends AppCompatActivity {
                         System.out.println("Actual Intent: " + intentList.get(incoming_indexString));
                         System.out.println("Task Name: " + tmpHash.get(incoming_indexString));
                         System.out.println("----------------------------------------------------------");
+                        questionList.put(tmpHash.get(incoming_indexString), question);
                     }
                 }
 
@@ -190,8 +212,8 @@ public class uiVariant1 extends AppCompatActivity {
 
                     //Adapter is what creates the list on the screen using lv_steps and list.
 
-                //Intent list contains the intent values.
-                //So if the incoming_indexString is 0 the intentList will get me the corresponding intent.
+                    //Intent list contains the intent values.
+                    //So if the incoming_indexString is 0 the intentList will get me the corresponding intent.
                 } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
 
                     clear(list);
@@ -222,6 +244,10 @@ public class uiVariant1 extends AppCompatActivity {
                     }
                     index = 0;
                     next.setEnabled(true);
+                    System.out.println("question! " + question);
+                    System.out.println("utterance! " + utterance);
+                    userQuestions.putBoolean("Is First", is_first);
+                    userQuestions.putSerializable("questions", questionList);
                 }
             }
 
@@ -269,13 +295,14 @@ public class uiVariant1 extends AppCompatActivity {
                     public void onDone(String utteranceId) {
                         index++;
                         if (index == list.size() & sucess == true) {
+                            Log.d("Log", "Speach button deactivated");
                             new Handler(Looper.getMainLooper()).post(new Runnable() {
                                 @Override
                                 public void run() {
                                     SpeechBtn.setEnabled(false);
                                 }
                             });
-                        }else{
+                        } else {
                             new Handler(Looper.getMainLooper()).post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -330,7 +357,7 @@ public class uiVariant1 extends AppCompatActivity {
      * tmpHash: result list. Technically no need to return it to tmpHash as the method getData() initializes everything we want.
      * incoming_indexString: Index value of current task. Used to extract corresponding intents and instructions.
      */
-    private void initialize_task(){
+    private void initialize_task() {
         tmpHash = getData();
         incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         incoming_indexString = String.valueOf(incoming_index);
@@ -339,7 +366,7 @@ public class uiVariant1 extends AppCompatActivity {
     /**
      * Obtain the FirebaseAnalytics instance.
      */
-    private void firebase_instance(){
+    private void firebase_instance() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
@@ -352,9 +379,10 @@ public class uiVariant1 extends AppCompatActivity {
 
     /**
      * Clear everything from the lists.
+     *
      * @param list_
      */
-    public void clear(ArrayList<String> list_){
+    public void clear(ArrayList<String> list_) {
         if (list_ != null) {
             list.clear();
             tmpList.clear();
@@ -394,7 +422,7 @@ public class uiVariant1 extends AppCompatActivity {
             intent = new Intent(this, uiVariant6Microwave.class);
             intent.putExtra("button", buttonList);
             intent.putExtra("instructions", list);
-            intent.putExtra("variant",1);
+            intent.putExtra("variant", 1);
             startActivity(intent);
         } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")) {
             intent = new Intent(this, uiVariant6Oven.class);
@@ -412,6 +440,7 @@ public class uiVariant1 extends AppCompatActivity {
 
     /**
      * Get the data from the task file file2.tsv.
+     *
      * @return Could get rid of this since the objective is to populate resultList and intentList and not just resultList.
      */
     private HashMap<String, String> getData() {
@@ -435,6 +464,7 @@ public class uiVariant1 extends AppCompatActivity {
 
     /**
      * A voice reads the text given in the method.
+     *
      * @param selectedText The String text that is read.
      */
     private void initTTS(String selectedText) {
@@ -491,4 +521,10 @@ public class uiVariant1 extends AppCompatActivity {
         lvSteps.setAdapter(null);
     }
 
+     * Loading the userQustion bundle
+     */
+    private void load_bundle() {
+        is_first = uiVariant1.userQuestions.getBoolean("Is First");
+        questionList = (HashMap<String, String>) uiVariant1.userQuestions.getSerializable("questions");
+    }
 }
