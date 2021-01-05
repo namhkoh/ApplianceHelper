@@ -12,9 +12,13 @@ public class User {
     @SerializedName("name")
     private String name;
     @SerializedName("buttonsCorrect")
-    private Integer buttonsCorrect;
+    private HashMap buttonsCorrect;
+    @SerializedName("totalCorrect")
+    private String totalCorrect;
     @SerializedName("buttonsIncorrect")
-    private Integer buttonsIncorrect;
+    private HashMap buttonsIncorrect;
+    @SerializedName("totalIncorrect")
+    private String totalIncorrect;
     @SerializedName("startSession")
     private String startSession;
     @SerializedName("endSession")
@@ -28,11 +32,13 @@ public class User {
     @SerializedName("questions")
     private HashMap<String, String> questions;
 
-    public User(String testId, String name, Integer buttonsCorrect, Integer buttonsIncorrect, String startSession, String endSession, String totalTime, String userConsent, String feedback, HashMap<String, String> questions) {
+    public User(String testId, String name, HashMap buttonsCorrect, String totalCorrect, HashMap buttonsIncorrect, String totalIncorrect, String startSession, String endSession, String totalTime, String userConsent, String feedback, HashMap<String, String> questions) {
         this.testId = testId;
         this.name = name;
         this.buttonsCorrect = buttonsCorrect;
+        this.totalCorrect = totalCorrect;
         this.buttonsIncorrect = buttonsIncorrect;
+        this.totalIncorrect = totalIncorrect;
         this.startSession = startSession;
         this.endSession = endSession;
         this.totalTime = totalTime;

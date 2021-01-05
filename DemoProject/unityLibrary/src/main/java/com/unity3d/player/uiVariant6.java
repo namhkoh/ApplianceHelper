@@ -30,7 +30,7 @@ public class uiVariant6 extends AppCompatActivity {
     private String lcdString = " ";
     private String altString = " ";
     private int variant;
-    public static Bundle uiVariant6Bundle = new Bundle();
+    public static Bundle buttonHandler = new Bundle();
 
     //For toggling among states
     boolean reheat_pressed = false;
@@ -53,6 +53,9 @@ public class uiVariant6 extends AppCompatActivity {
     HashMap<String, Boolean> next_button;
     HashMap<String, Boolean> active_button;
     HashMap<String, Boolean> working_button;
+    HashMap<String, Integer> correctButtonManager;
+    HashMap<String, Integer> incorrectButtonManager;
+
 
     ArrayList<String> myList;
     ArrayList<String> instructionList;
@@ -74,6 +77,8 @@ public class uiVariant6 extends AppCompatActivity {
     int reheat_category = 0;
     int time_position = 0;
     int pressed_wrong;
+    int correct_press;
+    int incorrect_press;
 
 
     @Override
@@ -318,8 +323,8 @@ public class uiVariant6 extends AppCompatActivity {
         if (uiVariant1.uivariant1Bundle.containsKey("Is First")) {
             System.out.println("Is First: " + uiVariant1.uivariant1Bundle.getBoolean("Is First"));
             load_bundle();
+            save_button_press();
             Log.d("Load Bundle", "Restored");
-
         } //First Time
         else {
             is_first = true;
@@ -329,6 +334,9 @@ public class uiVariant6 extends AppCompatActivity {
             active_button = new HashMap<String, Boolean>();
             //Working Button is to define features (not buttons) are active.
             working_button = new HashMap<String, Boolean>();
+            // Stores the incorrect button count
+            correctButtonManager = new HashMap<String, Integer>();
+            incorrectButtonManager = new HashMap<String, Integer>();
 
             for (String i : list) {
                 next_button.put(i, false);
@@ -396,6 +404,15 @@ public class uiVariant6 extends AppCompatActivity {
         reheat_category = uiVariant1.uivariant1Bundle.getInt("ReheatPos");
         lcd.setText(uiVariant1.uivariant1Bundle.getString("OnScreen"));
         uiVariant1.uivariant1Bundle.clear();
+    }
+
+    /**
+     * Loading the userQuestion bundle
+     */
+    private void save_button_press() {
+        is_first = uiVariant1.userQuestions.getBoolean("Is First");
+        correctButtonManager = (HashMap<String, Integer>) buttonHandler.getSerializable("correct_button");
+        incorrectButtonManager = (HashMap<String, Integer>) buttonHandler.getSerializable("incorrect_button");
     }
 
 //    @Override
@@ -572,14 +589,17 @@ public class uiVariant6 extends AppCompatActivity {
         if (active == true) {
             Log.e("Button Pressed (Active)", msg);
             pressed_wrong = 0;
+            correct_press++;
+            correctButtonManager.put("Button Pressed (Active) " + msg,correct_press);
             hint.setEnabled(false);
         } else {
             Log.e("Button Pressed (Inactive)", msg);
             pressed_wrong++;
+            incorrect_press++;
+            incorrectButtonManager.put("Button Pressed (inactive) " + msg,incorrect_press);
         }
-
-        System.out.println(pressed_wrong);
-
+        buttonHandler.putSerializable("correct_button",correctButtonManager);
+        buttonHandler.putSerializable("incorrect_button",incorrectButtonManager);
         if (pressed_wrong >= 5 & current_state < myList.size()) {
             hint.setEnabled(true);
         }
@@ -1017,8 +1037,8 @@ public class uiVariant6 extends AppCompatActivity {
             lcd.setText("Pasta");
         }
         reheat_category++;
-
     }
+
 
     /////////////////////////////////////////////////////////////////////////////
 

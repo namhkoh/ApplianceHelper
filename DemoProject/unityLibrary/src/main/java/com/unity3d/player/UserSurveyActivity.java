@@ -47,6 +47,10 @@ public class UserSurveyActivity extends AppCompatActivity {
     private EditText additionalFeedback;
     APIInterface apiInterface;
     HashMap<String, String> questionList = new HashMap<>();
+    HashMap<String, Integer> buttonsCorrect = new HashMap<>();
+    HashMap<String, Integer> buttonsIncorrect = new HashMap<>();
+    int totalCorrect = 0;
+    int totalIncorrect = 0;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -91,10 +95,24 @@ public class UserSurveyActivity extends AppCompatActivity {
 
             String userConsent = "true";
 
-            int buttonsCorrect = 10;
-            int buttonsIncorrect = 2;
+            buttonsIncorrect = (HashMap<String, Integer>) uiVariant6.buttonHandler.getSerializable("incorrect_button");
+            buttonsCorrect = (HashMap<String, Integer>) uiVariant6.buttonHandler.getSerializable("correct_button");
+            for (Integer correct : buttonsCorrect.values()) {
+                totalCorrect += correct;
+                System.out.println(totalCorrect);
+            }
+            for (Integer incorrect : buttonsIncorrect.values()) {
+                totalIncorrect += incorrect;
+                System.out.println(totalIncorrect);
+            }
+            String totalCorrectStr = String.valueOf(totalCorrect);
+            String totalIncorrectStr = String.valueOf(totalIncorrect);
+
+
 
             questionList = (HashMap<String, String>) uiVariant1.userQuestions.getSerializable("questions");
+
+            String moreFeedback = additionalFeedback.getText().toString();
 
             Gson gson = new Gson();
             JSONObject feedbackObject = new JSONObject();
@@ -108,13 +126,20 @@ public class UserSurveyActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            try {
+                feedbackObject.put("AdditionalFeedback", moreFeedback);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             String feedbackValue = gson.toJson(feedbackObject);
 
             User user = new User(
                     testId,
                     name,
-                    10,
-                    9,
+                    buttonsCorrect,
+                    totalCorrectStr,
+                    buttonsIncorrect,
+                    totalIncorrectStr,
                     sessionStartVal,
                     sessionEndVal,
                     totalTimeVal,
