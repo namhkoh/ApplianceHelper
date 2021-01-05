@@ -123,7 +123,7 @@ public class uiVariant1 extends AppCompatActivity {
         } else {
             System.out.println("new hashmap!");
             is_first = true;
-            questionList = new HashMap<>();
+//            questionList = new HashMap<>();
         }
 
 
@@ -177,14 +177,15 @@ public class uiVariant1 extends AppCompatActivity {
                 editText.setText(utterance);
 
                 String question = editText.getText().toString();
+                questionList.put(tmpHash.get(incoming_indexString), question);
 
                 // Data collection
                 // Need to store the questions in sequence.
-                System.out.println("question! " + question);
-                System.out.println("utterance! " + utterance);
-                questionList.put(tmpHash.get(incoming_indexString), utterance);
-                userQuestions.putBoolean("Is First", is_first);
-                userQuestions.putSerializable("questions", questionList);
+//                System.out.println("question! " + question);
+//                System.out.println("utterance! " + utterance);
+//                questionList.put(tmpHash.get(incoming_indexString), utterance);
+//                userQuestions.putBoolean("Is First", is_first);
+//                userQuestions.putSerializable("questions", questionList);
 
                 ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
 
@@ -197,6 +198,7 @@ public class uiVariant1 extends AppCompatActivity {
                     System.out.println("Actual Intent: " + intentList.get(incoming_indexString));
                     System.out.println("Task Name: " + tmpHash.get(incoming_indexString));
                     System.out.println("----------------------------------------------------------");
+                    questionList.put(tmpHash.get(incoming_indexString), question);
                 }
 
                 //Some sort of error happened in the NLU part
@@ -242,6 +244,10 @@ public class uiVariant1 extends AppCompatActivity {
                     }
                     index = 0;
                     next.setEnabled(true);
+                    System.out.println("question! " + question);
+                    System.out.println("utterance! " + utterance);
+                    userQuestions.putBoolean("Is First", is_first);
+                    userQuestions.putSerializable("questions", questionList);
                 }
             }
 
