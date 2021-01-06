@@ -112,6 +112,16 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
     /**
      * UI 6 buttons end
      */
+
+    // Data collection variables
+    public static Bundle userQuestions = new Bundle();
+    boolean is_first = false;
+    HashMap<String, Integer> correctButtonManager;
+    HashMap<String, Integer> incorrectButtonManager;
+    int correct_press = 0;
+    int incorrect_press = 0;
+    public static Bundle buttonHandler = new Bundle();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -172,6 +182,17 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
             working_button.put(i, false);
         }
         this.spawnResponse();
+        if (BaseLineActivityMicrowave.userQuestions.containsKey("Is First")) {
+            Log.e("Is First", String.valueOf(BaseLineActivityMicrowave.userQuestions.getBoolean("Is First")));
+            load_bundle();
+            Log.d("Load Bundle", "Restored");
+        } else {
+            System.out.println("new hashmap!");
+            is_first = true;
+            // Stores the incorrect button count
+            correctButtonManager = new HashMap<String, Integer>();
+            incorrectButtonManager = new HashMap<String, Integer>();
+        }
 
     }
 
@@ -655,11 +676,17 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         if (active == true) {
             Log.e("Button Pressed (Active)", msg);
             pressed_wrong = 0;
+            correct_press++;
+            correctButtonManager.put("Button Pressed (Active) " + msg,correct_press);
         } else {
             Log.e("Button Pressed (Inactive)", msg);
             pressed_wrong++;
+            incorrect_press++;
+            incorrectButtonManager.put("Button Pressed (inactive) " + msg,incorrect_press);
         }
 
+        buttonHandler.putSerializable("correct_button",correctButtonManager);
+        buttonHandler.putSerializable("incorrect_button",incorrectButtonManager);
         System.out.println(pressed_wrong);
 
         if (pressed_wrong >= 5 & current_state < myList.size()) {
@@ -1139,6 +1166,12 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         next_button.put(string_button, true);
         active_button.put(string_button, true);
         //debug_next_step_log(string_button); //Need to implement if wanted
+    }
+
+    private void load_bundle() {
+        is_first = BaseLineActivityMicrowave.userQuestions.getBoolean("Is First");
+        correctButtonManager = (HashMap<String, Integer>) BaseLineActivityMicrowave.buttonHandler.getSerializable("correct_button");
+        incorrectButtonManager = (HashMap<String, Integer>) BaseLineActivityMicrowave.buttonHandler.getSerializable("incorrect_button");
     }
 
 }

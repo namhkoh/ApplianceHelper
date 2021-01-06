@@ -119,6 +119,20 @@ public class BaseLineActivityOven extends AppCompatActivity {
     private CountDownTimer t;
     private Animation anim;
 
+    // Data collection variables
+    // Bundle that stores the user questions
+    public static Bundle userQuestions = new Bundle();
+    // Bundle that stores the incorrect and correct button values for the task
+    public static Bundle buttonHandler = new Bundle();
+    // HashMap that stores the correct button values count
+    HashMap<String, Integer> correctButtonManager;
+    // HashMap that stores the incorrect button values
+    HashMap<String, Integer> incorrectButtonManager;
+    // Button press correct count
+    int correct_press = 0;
+    // Button press incorrect count
+    int incorrect_press = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,6 +159,18 @@ public class BaseLineActivityOven extends AppCompatActivity {
         next.setEnabled(false);
         open.setEnabled(false);
         this.spawnResponse();
+        // This part handles the persistence storage using bundles, inspired by Leo's code. - required
+        if (BaseLineActivityOven.userQuestions.containsKey("Is First")) {
+            Log.e("Is First", String.valueOf(BaseLineActivityOven.userQuestions.getBoolean("Is First")));
+            load_bundle();
+            Log.d("Load Bundle", "Restored");
+        } else {
+            System.out.println("new hashmap!");
+            is_first = true;
+            // Stores the incorrect button count
+            correctButtonManager = new HashMap<String, Integer>();
+            incorrectButtonManager = new HashMap<String, Integer>();
+        }
 
     }
 
@@ -587,10 +613,16 @@ public class BaseLineActivityOven extends AppCompatActivity {
         if (active == true) {
             Log.i("Button Pressed (Active)", msg);
             pressed_wrong = 0;
+            correct_press++;
+            correctButtonManager.put("Button Pressed (Active) " + msg,correct_press);
         } else {
             Log.i("Button Pressed (Inactive)", msg);
             pressed_wrong++;
+            incorrect_press++;
+            incorrectButtonManager.put("Button Pressed (inactive) " + msg,incorrect_press);
         }
+        buttonHandler.putSerializable("correct_button",correctButtonManager);
+        buttonHandler.putSerializable("incorrect_button",incorrectButtonManager);
         if (pressed_wrong > 5 & current_state < myList.size()) {
         }
     }
@@ -1222,6 +1254,15 @@ public class BaseLineActivityOven extends AppCompatActivity {
         for (int i = 0; i < allButtons.size(); i++) {
             allButtons.get(i).setAlpha(alpha);
         }
+    }
+
+    /**
+     * This method will load the stored bundles containing the question list and correct button manager.
+     */
+    private void load_bundle() {
+        is_first = uiVariant5WithOven.userQuestions.getBoolean("Is First");
+        correctButtonManager = (HashMap<String, Integer>) BaseLineActivityMicrowave.buttonHandler.getSerializable("correct_button");
+        incorrectButtonManager = (HashMap<String, Integer>) BaseLineActivityMicrowave.buttonHandler.getSerializable("incorrect_button");
     }
 
     /**

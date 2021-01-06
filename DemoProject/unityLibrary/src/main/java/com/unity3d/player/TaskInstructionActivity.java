@@ -83,6 +83,7 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     break;
                 case "uiVariant5":
                     Log.e("taskInstruction", String.valueOf(index));
+                    TaskInstructionActivity.indexBundle.putInt("index", index);
                     String incoming_indexString5 = String.valueOf(index);
                     HashMap<String, String> tmpHash5 = getData();
                     index++;

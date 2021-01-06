@@ -148,10 +148,10 @@ public class UserSurveyActivity extends AppCompatActivity {
                     break;
                 case "uiVariant6":
                     Log.e("Data extracted! ", activityType + " user data collected");
-                    microwaveButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("incorrect_button");
-                    microwaveButtonsCorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("correct_button");
-                    ovenButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("incorrect_button");
-                    ovenButtonsCorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("correct_button");
+                    microwaveButtonsIncorrect = (HashMap<String, Integer>) BaseLineActivityMicrowave.buttonHandler.getSerializable("incorrect_button");
+                    microwaveButtonsCorrect = (HashMap<String, Integer>) BaseLineActivityMicrowave.buttonHandler.getSerializable("correct_button");
+                    ovenButtonsIncorrect = (HashMap<String, Integer>) BaseLineActivityOven.buttonHandler.getSerializable("incorrect_button");
+                    ovenButtonsCorrect = (HashMap<String, Integer>) BaseLineActivityOven.buttonHandler.getSerializable("correct_button");
                     questionList.put("no_input","no_input");
                     break;
             }

@@ -746,10 +746,16 @@ public class uiVariant5WithOven extends AppCompatActivity {
         if (active == true) {
             Log.i("Button Pressed (Active)", msg);
             pressed_wrong = 0;
+            correct_press++;
+            correctButtonManager.put("Button Pressed (Active) " + msg,correct_press);
         } else {
             Log.i("Button Pressed (Inactive)", msg);
             pressed_wrong++;
+            incorrect_press++;
+            incorrectButtonManager.put("Button Pressed (inactive) " + msg,incorrect_press);
         }
+        buttonHandler.putSerializable("correct_button",correctButtonManager);
+        buttonHandler.putSerializable("incorrect_button",incorrectButtonManager);
         if (pressed_wrong > 5 & current_state < myList.size()) {
         }
     }

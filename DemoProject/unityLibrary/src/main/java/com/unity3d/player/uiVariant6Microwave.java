@@ -80,10 +80,6 @@ public class uiVariant6Microwave extends AppCompatActivity {
     int correct_press;
     int incorrect_press;
 
-    // Data collection variables
-    public static Bundle userQuestions = new Bundle();
-    private HashMap<String, String> questionList = new HashMap<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
