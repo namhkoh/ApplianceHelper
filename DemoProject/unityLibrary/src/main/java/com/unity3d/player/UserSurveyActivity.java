@@ -25,6 +25,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.Temporal;
@@ -47,16 +52,20 @@ public class UserSurveyActivity extends AppCompatActivity {
     private EditText additionalFeedback;
     APIInterface apiInterface;
     HashMap<String, String> questionList = new HashMap<>();
-    HashMap<String, Integer> buttonsCorrect = new HashMap<>();
-    HashMap<String, Integer> buttonsIncorrect = new HashMap<>();
-    int totalCorrect = 0;
-    int totalIncorrect = 0;
+    HashMap<String, Integer> microwaveButtonsCorrect = new HashMap<>();
+    HashMap<String, Integer> microwaveButtonsIncorrect = new HashMap<>();
+    HashMap<String, Integer> ovenButtonsCorrect = new HashMap<>();
+    HashMap<String, Integer> ovenButtonsIncorrect = new HashMap<>();
+    int microwaveTotalCorrect = 0;
+    int microwaveTotalIncorrect = 0;
+    int ovenTotalCorrect = 0;
+    int ovenTotalIncorrect = 0;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.e("ENTERED","UserSurveyActivity");
+        Log.e("ENTERED", "UserSurveyActivity");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_survey);
         apiInterface = APIClient.getClient().create(APIInterface.class);
@@ -74,8 +83,7 @@ public class UserSurveyActivity extends AppCompatActivity {
             // Store additional feedback here
             Log.e("Additional User Feedback", additionalFeedback.getText().toString());
 
-            // preparing the data before creating JSON file.
-
+            // Test id
             String testId = (String) StartScreen.userDataBundle.get("testId");
             Log.e("testId", testId);
 
@@ -95,22 +103,81 @@ public class UserSurveyActivity extends AppCompatActivity {
 
             String userConsent = "true";
 
-            buttonsIncorrect = (HashMap<String, Integer>) uiVariant6.buttonHandler.getSerializable("incorrect_button");
-            buttonsCorrect = (HashMap<String, Integer>) uiVariant6.buttonHandler.getSerializable("correct_button");
-            for (Integer correct : buttonsCorrect.values()) {
-                totalCorrect += correct;
-                System.out.println(totalCorrect);
+            // Extract values from each uiVariant
+            String activityType = StartScreen.activityBundle.getString("activity");
+            switch (activityType) {
+                case "uiVariant1":
+                    Log.e("Data extracted! ", activityType + " user data collected");
+                    microwaveButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("incorrect_button");
+                    microwaveButtonsCorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("correct_button");
+                    ovenButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("incorrect_button");
+                    ovenButtonsCorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("correct_button");
+                    questionList = (HashMap<String, String>) uiVariant1.userQuestions.getSerializable("questions");
+                    break;
+                case "uiVariant2":
+                    Log.e("Data extracted! ", activityType + " user data collected");
+                    microwaveButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("incorrect_button");
+                    microwaveButtonsCorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("correct_button");
+                    ovenButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("incorrect_button");
+                    ovenButtonsCorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("correct_button");
+                    questionList = (HashMap<String, String>) uiVariant2.userQuestions.getSerializable("questions");
+                    break;
+                case "uiVariant3":
+                    Log.e("Data extracted! ", activityType + " user data collected");
+                    microwaveButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("incorrect_button");
+                    microwaveButtonsCorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("correct_button");
+                    ovenButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("incorrect_button");
+                    ovenButtonsCorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("correct_button");
+                    questionList = (HashMap<String, String>) uiVariant3.userQuestions.getSerializable("questions");
+                    break;
+                case "uiVariant4":
+                    Log.e("Data extracted! ", activityType + " user data collected");
+                    break;
             }
-            for (Integer incorrect : buttonsIncorrect.values()) {
-                totalIncorrect += incorrect;
-                System.out.println(totalIncorrect);
+            for (Integer correct : microwaveButtonsCorrect.values()) {
+                microwaveTotalCorrect += correct;
+                System.out.println(microwaveTotalCorrect);
             }
-            String totalCorrectStr = String.valueOf(totalCorrect);
-            String totalIncorrectStr = String.valueOf(totalIncorrect);
+            for (Integer incorrect : microwaveButtonsIncorrect.values()) {
+                microwaveTotalIncorrect += incorrect;
+                System.out.println(microwaveTotalIncorrect);
+            }
+            String microwaveTotalCorrectStr = String.valueOf(microwaveTotalCorrect);
+            String microwaveTotalIncorrectStr = String.valueOf(microwaveTotalIncorrect);
 
+            for (Integer correct : ovenButtonsCorrect.values()) {
+                ovenTotalCorrect += correct;
+                System.out.println(ovenTotalCorrect);
+            }
+            for (Integer incorrect : ovenButtonsIncorrect.values()) {
+                ovenTotalIncorrect += incorrect;
+                System.out.println(ovenTotalIncorrect);
+            }
 
+            String ovenTotalCorrectStr = String.valueOf(ovenTotalCorrect);
+            String ovenTotalIncorrectStr = String.valueOf(ovenTotalIncorrect);
 
-            questionList = (HashMap<String, String>) uiVariant1.userQuestions.getSerializable("questions");
+            Gson gsonMicrowave = new Gson();
+            JSONObject microwaveObject = new JSONObject();
+
+            Gson gsonOven = new Gson();
+            JSONObject ovenObjbect = new JSONObject();
+
+            try {
+                microwaveObject.put("Microwave correct", microwaveButtonsCorrect);
+                microwaveObject.put("Microwave correct", microwaveButtonsIncorrect);
+                microwaveObject.put("Microwave Total Correct", microwaveTotalCorrectStr);
+                microwaveObject.put("Microwave Total Incorrect", microwaveTotalIncorrectStr);
+                ovenObjbect.put("Oven correct", ovenButtonsCorrect);
+                ovenObjbect.put("Oven correct", microwaveButtonsCorrect);
+                ovenObjbect.put("Oven Total Correct", ovenTotalCorrectStr);
+                ovenObjbect.put("Oven Total Incorrect", ovenTotalIncorrectStr);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            String microwaveValue = gsonMicrowave.toJson(microwaveObject);
+            String ovenValue = gsonOven.toJson(ovenObjbect);
 
             String moreFeedback = additionalFeedback.getText().toString();
 
@@ -136,10 +203,8 @@ public class UserSurveyActivity extends AppCompatActivity {
             User user = new User(
                     testId,
                     name,
-                    buttonsCorrect,
-                    totalCorrectStr,
-                    buttonsIncorrect,
-                    totalIncorrectStr,
+                    microwaveValue,
+                    ovenValue,
                     sessionStartVal,
                     sessionEndVal,
                     totalTimeVal,
@@ -161,12 +226,11 @@ public class UserSurveyActivity extends AppCompatActivity {
                     Log.e("Error", t.getMessage());
                 }
             });
+
+
         });
 
         additionalFeedback.addTextChangedListener(submitTextWatcher);
-
-//        Intent intent = new Intent(this, UserSurveyActivity.class);
-//        startActivity(intent);
     }
 
     private TextWatcher submitTextWatcher = new TextWatcher() {

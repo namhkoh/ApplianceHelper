@@ -73,6 +73,14 @@ public class uiVariant6Oven extends AppCompatActivity {
     private CountDownTimer t;
     private Animation anim;
 
+    // Data collection variables
+    int correct_press;
+    int incorrect_press;
+    HashMap<String, Integer> correctButtonManager;
+    HashMap<String, Integer> incorrectButtonManager;
+    public static Bundle buttonHandler = new Bundle();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -342,6 +350,7 @@ public class uiVariant6Oven extends AppCompatActivity {
             System.out.println("Is First: " + uiVariant1.uivariant1Bundle.getBoolean("Is First"));
             System.out.println("Number Pad: " + uiVariant1.uivariant1Bundle.getBoolean("NumberPad"));
             load_bundle();
+            save_button_press();
             Log.d("Load Bundle","Restored");
 
         } //First Time
@@ -353,6 +362,9 @@ public class uiVariant6Oven extends AppCompatActivity {
 
             next_button = new HashMap<String, Boolean>();
             button_active = new HashMap<String, Boolean>();
+            // Stores the incorrect button count
+            correctButtonManager = new HashMap<String, Integer>();
+            incorrectButtonManager = new HashMap<String, Integer>();
             for (String i : list) {
                 next_button.put(i, false);
                 button_active.put(i, false);
@@ -424,6 +436,12 @@ public class uiVariant6Oven extends AppCompatActivity {
         lcd.setText(uiVariant1.uivariant1Bundle.getString("OnScreen"));
         uiVariant1.uivariant1Bundle.clear();
         print_bundle();
+    }
+
+    private void save_button_press() {
+        is_first = uiVariant1.userQuestions.getBoolean("Is First");
+        correctButtonManager = (HashMap<String, Integer>) buttonHandler.getSerializable("correct_button");
+        incorrectButtonManager = (HashMap<String, Integer>) buttonHandler.getSerializable("incorrect_button");
     }
 
     private void print_bundle(){
@@ -575,11 +593,17 @@ public class uiVariant6Oven extends AppCompatActivity {
         if(active == true){
             Log.i("Button Pressed (Active)", msg);
             pressed_wrong = 0;
+            correct_press++;
+            correctButtonManager.put("Button Pressed (Active) " + msg,correct_press);
             hint.setEnabled(false);
         } else{
             Log.i("Button Pressed (Inactive)", msg);
             pressed_wrong++;
+            incorrect_press++;
+            incorrectButtonManager.put("Button Pressed (inactive) " + msg,incorrect_press);
         }
+        buttonHandler.putSerializable("correct_button",correctButtonManager);
+        buttonHandler.putSerializable("incorrect_button",incorrectButtonManager);
         if(pressed_wrong > 5 & current_state < myList.size()){
             hint.setEnabled(true);
         }

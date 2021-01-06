@@ -76,6 +76,10 @@ public class uiVariant3 extends AppCompatActivity {
 
     private TextToSpeech textToSpeech;
     String speakText = "";
+    // Data collection variables
+    public static Bundle userQuestions = new Bundle();
+    private HashMap<String, String> questionList = new HashMap<>();
+    boolean is_first = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +103,16 @@ public class uiVariant3 extends AppCompatActivity {
         task.setOnClickListener(v -> {
             task();
         });
+
+        if (uiVariant1.userQuestions.containsKey("Is First")) {
+            Log.e("Is First", String.valueOf(uiVariant3.userQuestions.getBoolean("Is First")));
+            load_bundle();
+            Log.d("Load Bundle", "Restored");
+        } else {
+            System.out.println("new hashmap!");
+            is_first = true;
+            questionList = new HashMap<>();
+        }
 
         /**
          * SPEECH TO TEXT START
@@ -181,6 +195,7 @@ public class uiVariant3 extends AppCompatActivity {
                 String question = utterance;
 
                 ResponseObject response = Utilities.returnResponse(getApplicationContext(),question);
+                questionList.put(tmpHash.get(incoming_indexString), question);
 
                 current_appliance = response.getAppliance_name();
 
@@ -202,6 +217,7 @@ public class uiVariant3 extends AppCompatActivity {
                         System.out.println("Actual Intent: " + intentList.get(incoming_indexString));
                         System.out.println("Task Name: " + tmpHash.get(incoming_indexString));
                         System.out.println("----------------------------------------------------------");
+                        questionList.put(tmpHash.get(incoming_indexString), question);
                     }
                 }
 
@@ -295,6 +311,10 @@ public class uiVariant3 extends AppCompatActivity {
                     max_index = response.getSteps().size();
 
                     initial_update(buttonList.get(index), tmpList.get(index));
+                    System.out.println("question! " + question);
+                    System.out.println("utterance! " + utterance);
+                    uiVariant3.userQuestions.putBoolean("Is First", is_first);
+                    uiVariant3.userQuestions.putSerializable("questions", questionList);
                 }
 
             }
@@ -620,5 +640,10 @@ public class uiVariant3 extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+    }
+
+    private void load_bundle() {
+        is_first = uiVariant3.userQuestions.getBoolean("Is First");
+        questionList = (HashMap<String, String>) uiVariant3.userQuestions.getSerializable("questions");
     }
 }

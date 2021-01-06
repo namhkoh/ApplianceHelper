@@ -117,7 +117,7 @@ public class uiVariant1 extends AppCompatActivity {
 
         final String TAG = "Speech Debug";
         if (uiVariant1.userQuestions.containsKey("Is First")) {
-            Log.e("Is First", String.valueOf(uiVariant1.uivariant1Bundle.getBoolean("Is First")));
+            Log.e("Is First", String.valueOf(uiVariant1.userQuestions.getBoolean("Is First")));
             load_bundle();
             Log.d("Load Bundle", "Restored");
         } else {
@@ -137,12 +137,12 @@ public class uiVariant1 extends AppCompatActivity {
         mSpeechRecognizer.setRecognitionListener(new RecognitionListener() {
             @Override
             public void onReadyForSpeech(Bundle bundle) {
-                Log.d(TAG,"onReadyForSpeech");
+                Log.d(TAG, "onReadyForSpeech");
             }
 
             @Override
             public void onBeginningOfSpeech() {
-                Log.d(TAG,"onBeginningofSpeech");
+                Log.d(TAG, "onBeginningofSpeech");
             }
 
             @Override
@@ -178,6 +178,7 @@ public class uiVariant1 extends AppCompatActivity {
                 utterance = matches.get(0);
                 editText.setText(utterance);
                 String question = utterance;
+                ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
                 questionList.put(tmpHash.get(incoming_indexString), question);
 
                 // Data collection
@@ -188,12 +189,12 @@ public class uiVariant1 extends AppCompatActivity {
 //                userQuestions.putBoolean("Is First", is_first);
 //                userQuestions.putSerializable("questions", questionList);
 
-                if(Utilities.debug){
-                    if(!response.getDialog_command().equals("no_match")){
+                if (Utilities.debug) {
+                    if (!response.getDialog_command().equals("no_match")) {
                         System.out.println("----------------------------------------------------------");
                         System.out.println("Question: " + question);
-                        System.out.println("Response Intent: "+response.getIntent());
-                        System.out.println("Response Appliance Name: "+response.getAppliance_name());
+                        System.out.println("Response Intent: " + response.getIntent());
+                        System.out.println("Response Appliance Name: " + response.getAppliance_name());
                         System.out.println("Actual Intent: " + intentList.get(incoming_indexString));
                         System.out.println("Task Name: " + tmpHash.get(incoming_indexString));
                         System.out.println("----------------------------------------------------------");
@@ -398,14 +399,14 @@ public class uiVariant1 extends AppCompatActivity {
     }
 
     /**
-        Disable back button
+     * Disable back button
      */
     @Override
     public void onBackPressed() {
         if (false) {
             super.onBackPressed();
         } else {
-            if(Utilities.debug) {
+            if (Utilities.debug) {
                 Log.d("Debug", "Back Button Pressed");
             }
         }
@@ -491,8 +492,8 @@ public class uiVariant1 extends AppCompatActivity {
     }
 
     /**
-     *  The two methods below doesn't really seem to be used in uiVariant1
-     *  But not removed because it might be used.
+     * The two methods below doesn't really seem to be used in uiVariant1
+     * But not removed because it might be used.
      */
 
     void update(String s, final boolean forward) {
@@ -521,8 +522,6 @@ public class uiVariant1 extends AppCompatActivity {
         lvSteps.setAdapter(null);
     }
 
-     * Loading the userQustion bundle
-     */
     private void load_bundle() {
         is_first = uiVariant1.userQuestions.getBoolean("Is First");
         questionList = (HashMap<String, String>) uiVariant1.userQuestions.getSerializable("questions");

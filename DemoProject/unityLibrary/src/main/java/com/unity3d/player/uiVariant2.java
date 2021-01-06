@@ -87,6 +87,11 @@ public class uiVariant2 extends AppCompatActivity {
     private String speakText = "";
     private HashMap<String, String> intentList;
 
+    // Data collection variables
+    public static Bundle userQuestions = new Bundle();
+    private HashMap<String, String> questionList = new HashMap<>();
+    boolean is_first = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,6 +118,15 @@ public class uiVariant2 extends AppCompatActivity {
         });
 
         final String TAG = "Speech Debug";
+        if (uiVariant2.userQuestions.containsKey("Is First")) {
+            Log.e("Is First", String.valueOf(uiVariant2.userQuestions.getBoolean("Is First")));
+            load_bundle();
+            Log.d("Load Bundle", "Restored");
+        } else {
+            System.out.println("new hashmap!");
+            is_first = true;
+            questionList = new HashMap<>();
+        }
 
         /**
          * Speech Recognize
@@ -126,12 +140,12 @@ public class uiVariant2 extends AppCompatActivity {
         mSpeechRecognizer.setRecognitionListener(new RecognitionListener() {
             @Override
             public void onReadyForSpeech(Bundle bundle) {
-                Log.d(TAG,"onReadyForSpeech");
+                Log.d(TAG, "onReadyForSpeech");
             }
 
             @Override
             public void onBeginningOfSpeech() {
-                Log.d(TAG,"onBeginningofSpeech");
+                Log.d(TAG, "onBeginningofSpeech");
             }
 
             @Override
@@ -197,8 +211,9 @@ public class uiVariant2 extends AppCompatActivity {
                 String question = editText.getText().toString();
 
                 ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
+                questionList.put(tmpHash.get(incoming_indexString), question);
 
-                if(Utilities.debug) {
+                if (Utilities.debug) {
                     if (!response.getDialog_command().equals("no_match")) {
                         System.out.println("----------------------------------------------------------");
                         System.out.println("Question: " + question);
@@ -207,6 +222,7 @@ public class uiVariant2 extends AppCompatActivity {
                         //System.out.println("Actual Intent: " + intentList.get(incoming_indexString));
                         System.out.println("Task Name: " + tmpHash.get(incoming_indexString));
                         System.out.println("----------------------------------------------------------");
+                        questionList.put(tmpHash.get(incoming_indexString), question);
                     }
                 }
 
@@ -263,7 +279,10 @@ public class uiVariant2 extends AppCompatActivity {
                     index = 0;
                     max_index = response.getSteps().size();
                     initial_update(tmpList.get(index));
-
+                    System.out.println("question! " + question);
+                    System.out.println("utterance! " + utterance);
+                    uiVariant2.userQuestions.putBoolean("Is First", is_first);
+                    uiVariant2.userQuestions.putSerializable("questions", questionList);
 
                 }
 
@@ -358,6 +377,7 @@ public class uiVariant2 extends AppCompatActivity {
 
     /**
      * Clear everything from the lists.
+     *
      * @param list_
      */
     public void clear(ArrayList<String> list_) {
@@ -413,6 +433,7 @@ public class uiVariant2 extends AppCompatActivity {
 
     /**
      * Get the data from the task file file2.tsv.
+     *
      * @return Could get rid of this since the objective is to populate resultList and intentList and not just resultList.
      */
     private HashMap<String, String> getData() {
@@ -458,6 +479,7 @@ public class uiVariant2 extends AppCompatActivity {
 
     /**
      * Used to display the first step in the screen
+     *
      * @param s The text to be updated
      */
     void initial_update(String s) {
@@ -471,6 +493,7 @@ public class uiVariant2 extends AppCompatActivity {
     /**
      * Update the instruction list to the next/previous step
      * Maybe wise to combine with initial_update
+     *
      * @param s The text to be updated
      */
     void update_state(String s) {
@@ -482,6 +505,7 @@ public class uiVariant2 extends AppCompatActivity {
 
     /**
      * A voice reads the text given in the method.
+     *
      * @param selectedText The String text that is read.
      */
     private void initTTS(String selectedText) {
@@ -504,4 +528,10 @@ public class uiVariant2 extends AppCompatActivity {
             finish();
         }
     }
+
+    private void load_bundle() {
+        is_first = uiVariant2.userQuestions.getBoolean("Is First");
+        questionList = (HashMap<String, String>) uiVariant2.userQuestions.getSerializable("questions");
+    }
+
 }
