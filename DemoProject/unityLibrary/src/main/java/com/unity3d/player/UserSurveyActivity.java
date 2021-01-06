@@ -152,7 +152,7 @@ public class UserSurveyActivity extends AppCompatActivity {
                     microwaveButtonsCorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("correct_button");
                     ovenButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("incorrect_button");
                     ovenButtonsCorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("correct_button");
-                    questionList = (HashMap<String, String>) uiVariant6Microwave.userQuestions.getSerializable("questions");
+                    questionList.put("no_input","no_input");
                     break;
             }
 
