@@ -119,12 +119,19 @@ public class uiVariant5WithOven extends AppCompatActivity {
     private Animation anim;
 
     // Data collection variables
+    // Bundle that stores the user questions
     public static Bundle userQuestions = new Bundle();
+    // HashMap where the key is the task and the value is the user input question
     private HashMap<String, String> questionList = new HashMap<>();
+    // Bundle that stores the incorrect and correct button values for the task
     public static Bundle buttonHandler = new Bundle();
+    // HashMap that stores the correct button values count
     HashMap<String, Integer> correctButtonManager;
+    // HashMap that stores the incorrect button values
     HashMap<String, Integer> incorrectButtonManager;
+    // Button press correct count
     int correct_press = 0;
+    // Button press incorrect count
     int incorrect_press = 0;
 
     @Override
@@ -159,6 +166,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
         next.setEnabled(false);
         open.setEnabled(false);
 
+        // This part handles the persistence storage using bundles, inspired by Leo's code. - required
         if (uiVariant5WithOven.userQuestions.containsKey("Is First")) {
             Log.e("Is First", String.valueOf(uiVariant5WithOven.userQuestions.getBoolean("Is First")));
             load_bundle();
@@ -1375,6 +1383,9 @@ public class uiVariant5WithOven extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method will load the stored bundles containing the question list and correct button manager.
+     */
     private void load_bundle() {
         is_first = uiVariant5WithOven.userQuestions.getBoolean("Is First");
         questionList = (HashMap<String, String>) uiVariant4WithOven.userQuestions.getSerializable("questions");
