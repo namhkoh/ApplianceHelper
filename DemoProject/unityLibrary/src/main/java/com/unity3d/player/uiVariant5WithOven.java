@@ -547,7 +547,6 @@ public class uiVariant5WithOven extends AppCompatActivity {
                     max_index = 2;
 
                     update(tmpList_ui1.get(index), true);
-                    questionList.put(tmpHash.get(incoming_indexString), question);
 
                 } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
 
@@ -604,8 +603,8 @@ public class uiVariant5WithOven extends AppCompatActivity {
                     initiate();
                     System.out.println("question! " + question);
                     System.out.println("utterance! " + utterance);
-                    uiVariant4WithMicrowave.userQuestions.putBoolean("Is First", is_first);
-                    uiVariant4WithMicrowave.userQuestions.putSerializable("questions", questionList);
+                    uiVariant5WithOven.userQuestions.putBoolean("Is First", is_first);
+                    uiVariant4WithOven.userQuestions.putSerializable("questions", questionList);
 
                 }
                 next.setEnabled(true);
@@ -1378,7 +1377,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
 
     private void load_bundle() {
         is_first = uiVariant5WithOven.userQuestions.getBoolean("Is First");
-        questionList = (HashMap<String, String>) uiVariant5WithOven.userQuestions.getSerializable("questions");
+        questionList = (HashMap<String, String>) uiVariant4WithOven.userQuestions.getSerializable("questions");
         correctButtonManager = (HashMap<String, Integer>) uiVariant5WithOven.buttonHandler.getSerializable("correct_button");
     }
 

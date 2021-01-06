@@ -406,8 +406,8 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
                     initiate();
                     System.out.println("question! " + question);
                     System.out.println("utterance! " + utterance);
-                    uiVariant4WithMicrowave.userQuestions.putBoolean("Is First", is_first);
-                    uiVariant4WithMicrowave.userQuestions.putSerializable("questions", questionList);
+                    uiVariant5WithMicrowave.userQuestions.putBoolean("Is First", is_first);
+                    uiVariant5WithMicrowave.userQuestions.putSerializable("questions", questionList);
 
                 }
                 //update(tmpList.get(index), true);
