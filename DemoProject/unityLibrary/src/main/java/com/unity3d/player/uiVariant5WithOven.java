@@ -1388,8 +1388,9 @@ public class uiVariant5WithOven extends AppCompatActivity {
      */
     private void load_bundle() {
         is_first = uiVariant5WithOven.userQuestions.getBoolean("Is First");
-        questionList = (HashMap<String, String>) uiVariant4WithOven.userQuestions.getSerializable("questions");
-        correctButtonManager = (HashMap<String, Integer>) uiVariant5WithOven.buttonHandler.getSerializable("correct_button");
+        questionList = (HashMap<String, String>) uiVariant5WithMicrowave.userQuestions.getSerializable("questions");
+        correctButtonManager = (HashMap<String, Integer>) uiVariant5WithMicrowave.buttonHandler.getSerializable("correct_button");
+        incorrectButtonManager = (HashMap<String, Integer>) uiVariant5WithMicrowave.buttonHandler.getSerializable("incorrect_button");
     }
 
 

@@ -146,6 +146,14 @@ public class UserSurveyActivity extends AppCompatActivity {
                     ovenButtonsCorrect = (HashMap<String, Integer>) uiVariant5WithOven.buttonHandler.getSerializable("correct_button");
                     questionList = (HashMap<String, String>) uiVariant5WithMicrowave.userQuestions.getSerializable("questions");
                     break;
+                case "uiVariant6":
+                    Log.e("Data extracted! ", activityType + " user data collected");
+                    microwaveButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("incorrect_button");
+                    microwaveButtonsCorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("correct_button");
+                    ovenButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("incorrect_button");
+                    ovenButtonsCorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("correct_button");
+                    questionList = (HashMap<String, String>) uiVariant6Microwave.userQuestions.getSerializable("questions");
+                    break;
             }
 
             for (Integer correct : microwaveButtonsCorrect.values()) {

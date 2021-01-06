@@ -1321,6 +1321,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
         is_first = uiVariant5WithMicrowave.userQuestions.getBoolean("Is First");
         questionList = (HashMap<String, String>) uiVariant5WithMicrowave.userQuestions.getSerializable("questions");
         correctButtonManager = (HashMap<String, Integer>) uiVariant5WithMicrowave.buttonHandler.getSerializable("correct_button");
+        incorrectButtonManager = (HashMap<String, Integer>) uiVariant5WithMicrowave.buttonHandler.getSerializable("incorrect_button");
     }
 
 }
