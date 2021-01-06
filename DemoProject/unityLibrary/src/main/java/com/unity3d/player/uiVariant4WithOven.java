@@ -120,6 +120,16 @@ public class uiVariant4WithOven extends AppCompatActivity {
     private CountDownTimer t;
     private Animation anim;
 
+    // Data collection variables
+    public static Bundle userQuestions = new Bundle();
+    private HashMap<String, String> questionList = new HashMap<>();
+    public static Bundle buttonHandler = new Bundle();
+    HashMap<String, Integer> correctButtonManager;
+    HashMap<String, Integer> incorrectButtonManager;
+    int correct_press;
+    int incorrect_press;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,16 +161,28 @@ public class uiVariant4WithOven extends AppCompatActivity {
 
         next.setEnabled(false);
         open.setEnabled(false);
+        if (uiVariant4WithOven.userQuestions.containsKey("Is First")) {
+            Log.e("Is First", String.valueOf(uiVariant4WithOven.userQuestions.getBoolean("Is First")));
+            load_bundle();
+            Log.d("Load Bundle", "Restored");
+        } else {
+            System.out.println("new hashmap!");
+            is_first = true;
+            questionList = new HashMap<>();
+            // Stores the incorrect button count
+            correctButtonManager = new HashMap<String, Integer>();
+            incorrectButtonManager = new HashMap<String, Integer>();
+        }
 
     }
 
-    private void initialize_button_list_for_hashmap(){
+    private void initialize_button_list_for_hashmap() {
         button_hashmap_list = Arrays.asList("settings/clock", "six", "one", "two", "three", "four", "five", "nine", "seven", "eight", "zero", "start", "bake",
                 "cook time", "broil", "keep warm", "timer", "frozen bake", "convect modes", "oven clean", "delay start", "rapid preheat",
                 "on off", "confirm");
     }
 
-    private ArrayList<Button> getAllButtons(){
+    private ArrayList<Button> getAllButtons() {
         allButtons = new ArrayList<Button>(Arrays.asList(
                 frozenBakeBtn, cookTimeBtn, o0, o1, o2, o3, o4, o5, o6, o7, o8, o9, startOvenbtn, cancelOvenBtn,
                 bakeBtn, broilBtn, convectBtn, keepWarmBtn, selfCleanBtn, delayStartBtn, preheatBtn, settingsBtn,
@@ -169,7 +191,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
         return allButtons;
     }
 
-    private Animation setAnimation(){
+    private Animation setAnimation() {
         anim = new AlphaAnimation(0.0f, 1.0f);
         anim.setDuration(50); //You can manage the blinking time with this parameter
         anim.setStartOffset(20);
@@ -507,6 +529,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
                 HashMap<String, String> tmpHash = getData();
                 int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
                 String incoming_indexString = String.valueOf(incoming_index);
+                questionList.put(tmpHash.get(incoming_indexString), question);
 
                 System.out.println(tmpList_ui1.size());
 
@@ -526,6 +549,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
                     max_index = 2;
 
                     update(tmpList_ui1.get(index), true);
+                    questionList.put(tmpHash.get(incoming_indexString), question);
 
                 } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
 
@@ -579,7 +603,10 @@ public class uiVariant4WithOven extends AppCompatActivity {
                     initial_update(tmpList_ui1.get(index));
 
                     initiate();
-
+                    System.out.println("question! " + question);
+                    System.out.println("utterance! " + utterance);
+                    uiVariant4WithMicrowave.userQuestions.putBoolean("Is First", is_first);
+                    uiVariant4WithMicrowave.userQuestions.putSerializable("questions", questionList);
                 }
                 next.setEnabled(true);
             }
@@ -670,9 +697,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
             next_step(string_button);
             button_active.put(string_button, true);
             debug_next_step_log(string_button);
-        }
-
-        else if (string_button.equals("number pad")) {
+        } else if (string_button.equals("number pad")) {
             lcdString = "";
             numberpad_active = true;
             previous_state = string_button;
@@ -690,9 +715,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
             }
             next_button.put(string_button, true);
             manage_next();
-        }
-
-        else if(accept.contains(string_button)){
+        } else if (accept.contains(string_button)) {
             next_step_helper(string_button);
         }
 
@@ -746,7 +769,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
         alert.show();
     }
 
-    private void openListViewDialog(){
+    private void openListViewDialog() {
         String[] list_view = new String[index + 1];
         for (int i = 0; i <= index; i++) {
             list_view[i] = tmpList_ui1.get(i);
@@ -764,13 +787,13 @@ public class uiVariant4WithOven extends AppCompatActivity {
             }
         });
 
-        final AlertDialog dialog = builder.setTitle("Instructions").setItems(list_view,null).create();
+        final AlertDialog dialog = builder.setTitle("Instructions").setItems(list_view, null).create();
 
         AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 System.out.println(tmpList_ui1.get(i));
-                initTTS(tmpList_ui1.get(i-1));
+                initTTS(tmpList_ui1.get(i - 1));
             }
         };
 
@@ -956,7 +979,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
         time_map.put(3, " ");
 
         if (temp_task.equals("bake")) {
-            if(time_position < 4) {
+            if (time_position < 4) {
                 bake_pressed = true;
                 lcd.setText(lcdString + "°F");
             }
@@ -1023,7 +1046,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
     }
 
     public void stopTimer() {
-        if(t != null){
+        if (t != null) {
             t.cancel();
             t = null;
         }
@@ -1332,6 +1355,14 @@ public class uiVariant4WithOven extends AppCompatActivity {
             Log.e("TTS", "Error in converting Text to Speech!");
         }
     }
+
+    private void load_bundle() {
+        is_first = uiVariant4WithOven.userQuestions.getBoolean("Is First");
+        questionList = (HashMap<String, String>) uiVariant4WithOven.userQuestions.getSerializable("questions");
+        correctButtonManager = (HashMap<String, Integer>) uiVariant4WithOven.buttonHandler.getSerializable("correct_button");
+
+    }
+
 
     /**
      * Clear everything from the lists.
