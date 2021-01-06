@@ -120,6 +120,16 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
      * UI 6 buttons end
      */
 
+    // Data collection variables
+    public static Bundle userQuestions = new Bundle();
+    private HashMap<String, String> questionList = new HashMap<>();
+    boolean is_first = false;
+    HashMap<String, Integer> correctButtonManager;
+    HashMap<String, Integer> incorrectButtonManager;
+    int correct_press = 0;
+    int incorrect_press = 0;
+    public static Bundle buttonHandler = new Bundle();
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,6 +208,18 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
             next_button.put(i, false);
             active_button.put(i, false);
             working_button.put(i, false);
+        }
+        if (uiVariant5WithMicrowave.userQuestions.containsKey("Is First")) {
+            Log.e("Is First", String.valueOf(uiVariant5WithMicrowave.userQuestions.getBoolean("Is First")));
+            load_bundle();
+            Log.d("Load Bundle", "Restored");
+        } else {
+            System.out.println("new hashmap!");
+            is_first = true;
+            questionList = new HashMap<>();
+            // Stores the incorrect button count
+            correctButtonManager = new HashMap<String, Integer>();
+            incorrectButtonManager = new HashMap<String, Integer>();
         }
 
     }
@@ -305,6 +327,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
                 HashMap<String, String> tmpHash = getData();
                 int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
                 String incoming_indexString = String.valueOf(incoming_index);
+                questionList.put(tmpHash.get(incoming_indexString), question);
 
                 System.out.println(tmpList_ui1.size());
 
@@ -324,6 +347,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
                     max_index = 2;
 
                     update(tmpList_ui1.get(index), true);
+                    questionList.put(tmpHash.get(incoming_indexString), question);
 
                 } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
 
@@ -380,6 +404,10 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
                     //initial_update(tmpList_ui1.get(index));
 
                     initiate();
+                    System.out.println("question! " + question);
+                    System.out.println("utterance! " + utterance);
+                    uiVariant4WithMicrowave.userQuestions.putBoolean("Is First", is_first);
+                    uiVariant4WithMicrowave.userQuestions.putSerializable("questions", questionList);
 
                 }
                 //update(tmpList.get(index), true);
@@ -798,11 +826,17 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
         if (active == true) {
             Log.e("Button Pressed (Active)", msg);
             pressed_wrong = 0;
+            correct_press++;
+            correctButtonManager.put("Button Pressed (Active) " + msg,correct_press);
         } else {
             Log.e("Button Pressed (Inactive)", msg);
             pressed_wrong++;
+            incorrect_press++;
+            incorrectButtonManager.put("Button Pressed (inactive) " + msg,incorrect_press);
         }
 
+        buttonHandler.putSerializable("correct_button",correctButtonManager);
+        buttonHandler.putSerializable("incorrect_button",incorrectButtonManager);
         System.out.println(pressed_wrong);
 
         if (pressed_wrong >= 5 & current_state < myList.size()) {
@@ -1281,6 +1315,12 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
         next_button.put(string_button, true);
         active_button.put(string_button, true);
         //debug_next_step_log(string_button); //Need to implement if wanted
+    }
+
+    private void load_bundle() {
+        is_first = uiVariant5WithMicrowave.userQuestions.getBoolean("Is First");
+        questionList = (HashMap<String, String>) uiVariant5WithMicrowave.userQuestions.getSerializable("questions");
+        correctButtonManager = (HashMap<String, Integer>) uiVariant5WithMicrowave.buttonHandler.getSerializable("correct_button");
     }
 
 }

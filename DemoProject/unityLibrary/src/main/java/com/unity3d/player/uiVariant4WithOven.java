@@ -1360,7 +1360,6 @@ public class uiVariant4WithOven extends AppCompatActivity {
         is_first = uiVariant4WithOven.userQuestions.getBoolean("Is First");
         questionList = (HashMap<String, String>) uiVariant4WithOven.userQuestions.getSerializable("questions");
         correctButtonManager = (HashMap<String, Integer>) uiVariant4WithOven.buttonHandler.getSerializable("correct_button");
-
     }
 
 

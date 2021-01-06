@@ -118,6 +118,15 @@ public class uiVariant5WithOven extends AppCompatActivity {
     private CountDownTimer t;
     private Animation anim;
 
+    // Data collection variables
+    public static Bundle userQuestions = new Bundle();
+    private HashMap<String, String> questionList = new HashMap<>();
+    public static Bundle buttonHandler = new Bundle();
+    HashMap<String, Integer> correctButtonManager;
+    HashMap<String, Integer> incorrectButtonManager;
+    int correct_press = 0;
+    int incorrect_press = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -149,6 +158,19 @@ public class uiVariant5WithOven extends AppCompatActivity {
 
         next.setEnabled(false);
         open.setEnabled(false);
+
+        if (uiVariant5WithOven.userQuestions.containsKey("Is First")) {
+            Log.e("Is First", String.valueOf(uiVariant5WithOven.userQuestions.getBoolean("Is First")));
+            load_bundle();
+            Log.d("Load Bundle", "Restored");
+        } else {
+            System.out.println("new hashmap!");
+            is_first = true;
+            questionList = new HashMap<>();
+            // Stores the incorrect button count
+            correctButtonManager = new HashMap<String, Integer>();
+            incorrectButtonManager = new HashMap<String, Integer>();
+        }
 
     }
 
@@ -505,6 +527,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
                 HashMap<String, String> tmpHash = getData();
                 int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
                 String incoming_indexString = String.valueOf(incoming_index);
+                questionList.put(tmpHash.get(incoming_indexString), question);
 
                 System.out.println(tmpList_ui1.size());
 
@@ -524,6 +547,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
                     max_index = 2;
 
                     update(tmpList_ui1.get(index), true);
+                    questionList.put(tmpHash.get(incoming_indexString), question);
 
                 } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
 
@@ -578,6 +602,10 @@ public class uiVariant5WithOven extends AppCompatActivity {
                     //initial_update(tmpList_ui1.get(index));
 
                     initiate();
+                    System.out.println("question! " + question);
+                    System.out.println("utterance! " + utterance);
+                    uiVariant4WithMicrowave.userQuestions.putBoolean("Is First", is_first);
+                    uiVariant4WithMicrowave.userQuestions.putSerializable("questions", questionList);
 
                 }
                 next.setEnabled(true);
@@ -1347,6 +1375,13 @@ public class uiVariant5WithOven extends AppCompatActivity {
             Log.e("TTS", "Error in converting Text to Speech!");
         }
     }
+
+    private void load_bundle() {
+        is_first = uiVariant5WithOven.userQuestions.getBoolean("Is First");
+        questionList = (HashMap<String, String>) uiVariant5WithOven.userQuestions.getSerializable("questions");
+        correctButtonManager = (HashMap<String, Integer>) uiVariant5WithOven.buttonHandler.getSerializable("correct_button");
+    }
+
 
     /**
      * Clear everything from the lists.
