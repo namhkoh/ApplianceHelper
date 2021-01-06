@@ -59,7 +59,7 @@ public class StartScreen extends AppCompatActivity {
         });
 
         TextView instructionalText = findViewById(R.id.instructions);
-        CharSequence instruction1 = "You will be asked to perform 3 distinct tasks on two kitchen appliances through the designated UI variant.";
+        CharSequence instruction1 = "You will be asked to perform 6 distinct tasks on two kitchen appliances through the designated UI variant.";
         CharSequence instruction2 = "Each task will be described before the action.";
         CharSequence instruction3 = "Once you have completed the task, please move to the replication phase.";
         CharSequence instruction4 = "After the replication, head towards the survey and provide feedback and ratings.";

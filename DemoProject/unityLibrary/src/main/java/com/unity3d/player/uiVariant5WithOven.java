@@ -154,7 +154,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
         //Blinking Animation
         anim = setAnimation();
 
-        //Button Hashmap for button state disable (true/false)
+        //Button Hashmap for button state `disa`ble (true/false)
         initialize_button_list_for_hashmap();
 
         FloatingActionButton fabInstructions = findViewById(R.id.instructionHelp);
