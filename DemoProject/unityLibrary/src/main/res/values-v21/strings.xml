@@ -88,4 +88,10 @@
 
     <string name="server_button">server</string>
     <string name="instructions"></string>
+
+
+    <string name="user_confirmation">
+        Thank you so much for your participation!</string>
+    <string name="user_confirmation_title">
+        User participation confirmation</string>
 </resources>
