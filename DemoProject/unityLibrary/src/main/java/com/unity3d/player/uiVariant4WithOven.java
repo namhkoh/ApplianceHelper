@@ -542,8 +542,8 @@ public class uiVariant4WithOven extends AppCompatActivity {
 
                     tmpList_ui1.add("No Match");
                     tmpList_ui1.add("Try again by pressing the red mike button");
-                    buttonList.add("try_again");
-                    buttonList.add("speech");
+//                    buttonList.add("try_again");
+//                    buttonList.add("speech");
 
                     index = 0;
                     max_index = 2;
@@ -557,8 +557,8 @@ public class uiVariant4WithOven extends AppCompatActivity {
 
                     tmpList_ui1.add("Wrong Intent. " + "The current intent is " + response.getIntent());
                     tmpList_ui1.add("Try again by pressing the red mike button");
-                    buttonList.add("try_again");
-                    buttonList.add("speech");
+//                    buttonList.add("try_again");
+//                    buttonList.add("speech");
 
                     index = 0;
                     max_index = 2;
@@ -573,8 +573,8 @@ public class uiVariant4WithOven extends AppCompatActivity {
 
                     tmpList_ui1.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
                     tmpList_ui1.add("Try again by pressing the red mike button");
-                    buttonList.add("try_again");
-                    buttonList.add("speech");
+//                    buttonList.add("try_again");
+//                    buttonList.add("speech");
 
                     index = 0;
                     max_index = 2;
@@ -732,14 +732,16 @@ public class uiVariant4WithOven extends AppCompatActivity {
     }
 
     private void active_inactive_log(boolean active, String msg) {
-        if (active == true) {
-            Log.i("Button Pressed (Active)", msg);
-            pressed_wrong = 0;
-        } else {
-            Log.i("Button Pressed (Inactive)", msg);
-            pressed_wrong++;
-        }
-        if (pressed_wrong > 5 & current_state < myList.size()) {
+        if(success) {
+            if (active == true) {
+                Log.i("Button Pressed (Active)", msg);
+                pressed_wrong = 0;
+            } else {
+                Log.i("Button Pressed (Inactive)", msg);
+                pressed_wrong++;
+            }
+            if (pressed_wrong > 5 & current_state < myList.size()) {
+            }
         }
     }
 
@@ -811,44 +813,46 @@ public class uiVariant4WithOven extends AppCompatActivity {
     }
 
     private void core_button_support(String button, String lcd_text) {
-        button_lowercase = button.toLowerCase();
-        if (button_active.get(button_lowercase) == true) {
-            clearClock();
-            active_inactive_log(true, button);
-            current_task = button_lowercase;
-            if (next_button.get(button_lowercase) == true) {
-                TextView lcd = findViewById(R.id.oven_panel_text);
-                next_button.put(button_lowercase, false);
-                button_active.put(button_lowercase, false);
-                if (lcd_text != null) {
-                    lcdString = lcd_text;
-                    lcd.setText(lcdString);
-                    lcdString = "";
+        if(success) {
+            button_lowercase = button.toLowerCase();
+            if (button_active.get(button_lowercase) == true) {
+                clearClock();
+                active_inactive_log(true, button);
+                current_task = button_lowercase;
+                if (next_button.get(button_lowercase) == true) {
+                    TextView lcd = findViewById(R.id.oven_panel_text);
+                    next_button.put(button_lowercase, false);
+                    button_active.put(button_lowercase, false);
+                    if (lcd_text != null) {
+                        lcdString = lcd_text;
+                        lcd.setText(lcdString);
+                        lcdString = "";
+                    }
+                    if (button_lowercase.equals("settings/clock")) {
+                        settings_clock_working = true;
+                        settings_temperature_working = true;
+                    }
+                    if (button_lowercase.equals("timer")) {
+                        timerPressed = true;
+                    }
+                    if (button_lowercase.equals("bake")) {
+                        temp_task = button_lowercase;
+                        task = button_lowercase;
+                        previous_state = button_lowercase;
+                    }
+                    if (button_lowercase.equals("cook time")) {
+                        temp_task = "";
+                        previous_state = "cooktime";
+                        time = new String[]{" ", " ", " ", " "};
+                        time_position = 0;
+                    }
+                    numberpad_toggle();
+                    current_state++;
+                    manage_next();
                 }
-                if (button_lowercase.equals("settings/clock")) {
-                    settings_clock_working = true;
-                    settings_temperature_working = true;
-                }
-                if (button_lowercase.equals("timer")) {
-                    timerPressed = true;
-                }
-                if (button_lowercase.equals("bake")) {
-                    temp_task = button_lowercase;
-                    task = button_lowercase;
-                    previous_state = button_lowercase;
-                }
-                if (button_lowercase.equals("cook time")) {
-                    temp_task = "";
-                    previous_state = "cooktime";
-                    time = new String[]{" ", " ", " ", " "};
-                    time_position = 0;
-                }
-                numberpad_toggle();
-                current_state++;
-                manage_next();
+            } else {
+                active_inactive_log(false, button);
             }
-        } else {
-            active_inactive_log(false, button);
         }
 
     }
@@ -1061,39 +1065,41 @@ public class uiVariant4WithOven extends AppCompatActivity {
     }
 
     private void startOven() {
-        if (button_active.get("start") == true) {
-            active_inactive_log(true, "Start Button");
-            if (next_button.get("start") == true) {
+        if(success) {
+            if (button_active.get("start") == true) {
+                active_inactive_log(true, "Start Button");
+                if (next_button.get("start") == true) {
+                    next_button.put("start", false);
+                }
                 next_button.put("start", false);
-            }
-            next_button.put("start", false);
-            button_active.put("start", false);
-            current_state++;
+                button_active.put("start", false);
+                current_state++;
 
-            if (timerPressed == true) {
-                //countdown(lcdString);
-                countdown("3");
-            }
+                if (timerPressed == true) {
+                    //countdown(lcdString);
+                    countdown("3");
+                }
 
-            if (current_task.equals("keep warm")) {
-                countdown("3");
-            }
-            if (task.equals("bake")) {
-                countdown("3");
-            }
+                if (current_task.equals("keep warm")) {
+                    countdown("3");
+                }
+                if (task.equals("bake")) {
+                    countdown("3");
+                }
 
-            if (current_task.equals("broil") | current_task.equals("broiling")) {
-                countdown("3");
-            }
+                if (current_task.equals("broil") | current_task.equals("broiling")) {
+                    countdown("3");
+                }
 
-            if (current_state >= myList.size()) {
-                finish_task();
+                if (current_state >= myList.size()) {
+                    finish_task();
+                } else {
+                    string_button = myList.get(current_state);
+                    next_step(string_button);
+                }
             } else {
-                string_button = myList.get(current_state);
-                next_step(string_button);
+                active_inactive_log(false, "Start Button");
             }
-        } else {
-            active_inactive_log(false, "Start Button");
         }
     }
 
@@ -1139,61 +1145,62 @@ public class uiVariant4WithOven extends AppCompatActivity {
 
 
     private void cancelOven() {
-
-        //Not good very limited conditions (If time try to change)
-        // Bug may be fixed by putting & !current_task.equals("cook time")
-        if (current_state + 1 == myList.size() & string_button.equals("cancel")) {
-            current_state++;
-            System.out.println("946");
-            stopTimer();
-            finish_task();
-        } else {
-            System.out.println("636");
-            TextView lcd = findViewById(R.id.oven_panel_text);
-
-            stopTimer();
-
-            if (current_task.equals("timer")) {
+        if(success) {
+            //Not good very limited conditions (If time try to change)
+            // Bug may be fixed by putting & !current_task.equals("cook time")
+            if (current_state + 1 == myList.size() & string_button.equals("cancel")) {
+                current_state++;
+                System.out.println("946");
                 stopTimer();
-            }
+                finish_task();
+            } else {
+                System.out.println("636");
+                TextView lcd = findViewById(R.id.oven_panel_text);
 
-            if (current_task.equals("broil") | current_task.equals("broiling")) {
                 stopTimer();
+
+                if (current_task.equals("timer")) {
+                    stopTimer();
+                }
+
+                if (current_task.equals("broil") | current_task.equals("broiling")) {
+                    stopTimer();
+                }
+
+                lcd.clearAnimation();
+
+                //Reset
+                Button next = findViewById(R.id.next);
+                next.setEnabled(false);
+                lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
+                time = new String[]{" ", " ", " ", " "};
+                time_position = 0;
+
+                next_button = new HashMap<String, Boolean>();
+                button_active = new HashMap<String, Boolean>();
+                for (String i : button_hashmap_list) {
+                    next_button.put(i, false);
+                    button_active.put(i, false);
+                }
+
+                isTemp = false;
+                isCode = false;
+                numberpad_active = false;
+                previous_numberpad = false;
+                settings_clock_working = false;
+                sound_working = false;
+                settings_temperature_working = false;
+                timerPressed = false;
+
+                lcdString = " ";
+                current_task = "";
+                temp_task = "";
+                info_button = "nothing";
+
+                current_state = 0;
+                string_button = myList.get(current_state);
+                next_step(string_button);
             }
-
-            lcd.clearAnimation();
-
-            //Reset
-            Button next = findViewById(R.id.next);
-            next.setEnabled(false);
-            lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
-            time = new String[]{" ", " ", " ", " "};
-            time_position = 0;
-
-            next_button = new HashMap<String, Boolean>();
-            button_active = new HashMap<String, Boolean>();
-            for (String i : button_hashmap_list) {
-                next_button.put(i, false);
-                button_active.put(i, false);
-            }
-
-            isTemp = false;
-            isCode = false;
-            numberpad_active = false;
-            previous_numberpad = false;
-            settings_clock_working = false;
-            sound_working = false;
-            settings_temperature_working = false;
-            timerPressed = false;
-
-            lcdString = " ";
-            current_task = "";
-            temp_task = "";
-            info_button = "nothing";
-
-            current_state = 0;
-            string_button = myList.get(current_state);
-            next_step(string_button);
         }
     }
 
@@ -1205,68 +1212,70 @@ public class uiVariant4WithOven extends AppCompatActivity {
     }
 
     private void press_support(String number, String word) {
-        if (numberpad_active == true | button_active.get(word) == true) {
-            active_inactive_log(true, number);
-            if (button_active.get(word) == true) {
-                button_active.put(word, false);
+        if(success) {
+            if (numberpad_active == true | button_active.get(word) == true) {
+                active_inactive_log(true, number);
+                if (button_active.get(word) == true) {
+                    button_active.put(word, false);
 
-                TextView lcd = findViewById(R.id.oven_panel_text);
-                if (number.equals("1")) {
-                    if (current_task.equals("broil") | current_task.equals("broiling")) {
-                        lcd.setText("High");
+                    TextView lcd = findViewById(R.id.oven_panel_text);
+                    if (number.equals("1")) {
+                        if (current_task.equals("broil") | current_task.equals("broiling")) {
+                            lcd.setText("High");
+                        }
+
+                        if (info_button.equals("sound")) {
+                            lcd.setText("Sound on");
+                        }
+
+                        if (info_button.equals("temperature")) {
+                            lcd.setText("Temperature on");
+                        }
+                    }
+                    if (number.equals("2")) {
+                        if (info_button.equals("sound")) {
+                            lcd.setText("Sound off");
+                        }
+
+                        if (info_button.equals("temperature")) {
+                            lcd.setText("Temperature off");
+                        }
+                    }
+                    if (number.equals("3")) {
+                        if (info_button.equals("clock")) {
+                            lcd.setText("AM");
+                        }
+                    }
+                    if (number.equals("4")) {
+                        if (info_button.equals("clock")) {
+                            lcd.setText("Clock Settings");
+                        }
                     }
 
-                    if (info_button.equals("sound")) {
-                        lcd.setText("Sound on");
+                    if (number.equals("5")) {
+                        if (settings_temperature_working) {
+                            sound_working = true;
+                            lcd.setText("Temperature Settings");
+                        }
                     }
 
-                    if (info_button.equals("temperature")) {
-                        lcd.setText("Temperature on");
+                    if (number.equals("6")) {
+                        if (settings_clock_working) {
+                            sound_working = true;
+                            lcd.setText("Sound Settings");
+                        }
                     }
+
+                    numberpad_toggle();
+                    current_state++;
+                    manage_next();
+                } else {
+                    press(number);
+                    update(number);
                 }
-                if (number.equals("2")) {
-                    if (info_button.equals("sound")) {
-                        lcd.setText("Sound off");
-                    }
-
-                    if (info_button.equals("temperature")) {
-                        lcd.setText("Temperature off");
-                    }
-                }
-                if (number.equals("3")) {
-                    if (info_button.equals("clock")) {
-                        lcd.setText("AM");
-                    }
-                }
-                if (number.equals("4")) {
-                    if (info_button.equals("clock")) {
-                        lcd.setText("Clock Settings");
-                    }
-                }
-
-                if (number.equals("5")) {
-                    if (settings_temperature_working) {
-                        sound_working = true;
-                        lcd.setText("Temperature Settings");
-                    }
-                }
-
-                if (number.equals("6")) {
-                    if (settings_clock_working) {
-                        sound_working = true;
-                        lcd.setText("Sound Settings");
-                    }
-                }
-
-                numberpad_toggle();
-                current_state++;
-                manage_next();
             } else {
-                press(number);
-                update(number);
+                active_inactive_log(false, number);
             }
-        } else {
-            active_inactive_log(false, number);
         }
     }
 

@@ -823,32 +823,36 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
     }
 
     private void active_inactive_log(boolean active, String msg) {
-        if (active == true) {
-            Log.e("Button Pressed (Active)", msg);
-            pressed_wrong = 0;
-            correct_press++;
-            correctButtonManager.put("Button Pressed (Active) " + msg,correct_press);
-        } else {
-            Log.e("Button Pressed (Inactive)", msg);
-            pressed_wrong++;
-            incorrect_press++;
-            incorrectButtonManager.put("Button Pressed (inactive) " + msg,incorrect_press);
-        }
+        if(success) {
+            if (active == true) {
+                Log.e("Button Pressed (Active)", msg);
+                pressed_wrong = 0;
+                correct_press++;
+                correctButtonManager.put("Button Pressed (Active) " + msg, correct_press);
+            } else {
+                Log.e("Button Pressed (Inactive)", msg);
+                pressed_wrong++;
+                incorrect_press++;
+                incorrectButtonManager.put("Button Pressed (inactive) " + msg, incorrect_press);
+            }
 
-        buttonHandler.putSerializable("correct_button",correctButtonManager);
-        buttonHandler.putSerializable("incorrect_button",incorrectButtonManager);
-        System.out.println(pressed_wrong);
+            buttonHandler.putSerializable("correct_button", correctButtonManager);
+            buttonHandler.putSerializable("incorrect_button", incorrectButtonManager);
+            System.out.println(pressed_wrong);
 
-        if (pressed_wrong >= 5 & current_state < myList.size()) {
+            if (pressed_wrong >= 5 & current_state < myList.size()) {
+            }
         }
     }
 
     private void press_helper(String number) {
-        if (active_button.get("number pad")) {
-            press(number);
-            active_inactive_log(true, number);
-        } else {
-            active_inactive_log(false, number);
+        if(success) {
+            if (active_button.get("number pad")) {
+                press(number);
+                active_inactive_log(true, number);
+            } else {
+                active_inactive_log(false, number);
+            }
         }
     }
 
@@ -941,39 +945,41 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
     }
 
     private void core_button_support(String button, String lcd_text) {
-        button_lowercase = button.toLowerCase();
-        if (active_button.get(button_lowercase) == true) {
-            active_inactive_log(true, button);
-            if (next_button.get(button_lowercase)) {
-                TextView lcd = findViewById(R.id.lcd_text);
-                if (button_lowercase.equals("clock")) {
-                    clearClock();
+        if(success) {
+            button_lowercase = button.toLowerCase();
+            if (active_button.get(button_lowercase) == true) {
+                active_inactive_log(true, button);
+                if (next_button.get(button_lowercase)) {
+                    TextView lcd = findViewById(R.id.lcd_text);
+                    if (button_lowercase.equals("clock")) {
+                        clearClock();
+                    }
+                    if (button_lowercase.equals("timer") | button_lowercase.equals("pizza") | button_lowercase.equals("popcorn") | button_lowercase.equals("defrost")) {
+                        clearScreen();
+                    }
+                    if (button_lowercase.equals("pizza") | button_lowercase.equals("popcorn")) {
+                        food_working = true;
+                    }
+                    current_task = button;
+                    //The current feature is now working
+                    working_button.put(button_lowercase, true);
+                    //As this is the next button deactivate the two buttons.
+                    next_button.put(button_lowercase, false);
+                    active_button.put(button_lowercase, false);
+                    //Set the Screen like that (Can remove in the future)
+                    if (lcd_text != null) {
+                        lcdString = lcd_text;
+                        lcd.setText(lcdString);
+                        lcdString = "";
+                    }
+                    //To determine what type of update it should do.
+                    numberpad_toggle();
+                    current_state++;
+                    manage_next();
                 }
-                if (button_lowercase.equals("timer") | button_lowercase.equals("pizza") | button_lowercase.equals("popcorn") | button_lowercase.equals("defrost")) {
-                    clearScreen();
-                }
-                if (button_lowercase.equals("pizza") | button_lowercase.equals("popcorn")) {
-                    food_working = true;
-                }
-                current_task = button;
-                //The current feature is now working
-                working_button.put(button_lowercase, true);
-                //As this is the next button deactivate the two buttons.
-                next_button.put(button_lowercase, false);
-                active_button.put(button_lowercase, false);
-                //Set the Screen like that (Can remove in the future)
-                if (lcd_text != null) {
-                    lcdString = lcd_text;
-                    lcd.setText(lcdString);
-                    lcdString = "";
-                }
-                //To determine what type of update it should do.
-                numberpad_toggle();
-                current_state++;
-                manage_next();
+            } else {
+                active_inactive_log(false, button);
             }
-        } else {
-            active_inactive_log(false, button);
         }
     }
 
@@ -1030,39 +1036,41 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
     }
 
     private void microwaveStart() {
-        if (active_button.get("start")) {
-            if (next_button.get("start") == true) {
-                Log.e("Button", "Clock deactivate");
-                next_button.put("start", false);
-                active_button.put("start", false);
-                numberpad_toggle();
-                System.out.println(previous_state);
-                if (current_task == "Reheat") {
-                    countdown("10");
-                }
-                if ((current_task == "Pizza") | (current_task == "Popcorn") | (current_task == "Defrost")) {
-                    countdown("10");
-                }
-                current_state++;
-                if (working_button.get("timer")) {
-                    countdown(lcdString);
-                }
+        if(success) {
+            if (active_button.get("start")) {
+                if (next_button.get("start") == true) {
+                    Log.e("Button", "Clock deactivate");
+                    next_button.put("start", false);
+                    active_button.put("start", false);
+                    numberpad_toggle();
+                    System.out.println(previous_state);
+                    if (current_task == "Reheat") {
+                        countdown("10");
+                    }
+                    if ((current_task == "Pizza") | (current_task == "Popcorn") | (current_task == "Defrost")) {
+                        countdown("10");
+                    }
+                    current_state++;
+                    if (working_button.get("timer")) {
+                        countdown(lcdString);
+                    }
 
-                if (active_button.get("reheat")) {
-                    active_button.put("reheat", false);
-                    next_button.put("reheat", false);
-                }
+                    if (active_button.get("reheat")) {
+                        active_button.put("reheat", false);
+                        next_button.put("reheat", false);
+                    }
 
-                if (current_state >= myList.size()) {
-                    finish_task();
-                } else {
-                    string_button = myList.get(current_state);
-                    next_step(string_button);
+                    if (current_state >= myList.size()) {
+                        finish_task();
+                    } else {
+                        string_button = myList.get(current_state);
+                        next_step(string_button);
+                    }
                 }
+                Log.e("Button Pressed (Active)", "Start");
+            } else {
+                Log.e("Button Pressed (Inactive)", "Start");
             }
-            Log.e("Button Pressed (Active)", "Start");
-        } else {
-            Log.e("Button Pressed (Inactive)", "Start");
         }
     }
 
@@ -1082,37 +1090,39 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
     }
 
     private void microwaveCancel() {
-        cancel(string_button);
-        //refreshTime();
-        TextView lcd = findViewById(R.id.lcd_text);
-        lcd.clearAnimation();
-        //Button next = findViewById(R.id.Next);
-        next.setEnabled(false);
-        //lcdString = DateTimeHandler.getCurrentTime("hh:mm");
-        lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
-        time = new String[]{" ", " ", " ", " "};
-        reheat_pressed = false;
-        time_position = 0;
-        current_state = 0;
-        reheat_category = 0;
-        pressed_wrong = 0;
-        string_button = myList.get(current_state);
-        System.out.println(string_button);
+        if(success) {
+            cancel(string_button);
+            //refreshTime();
+            TextView lcd = findViewById(R.id.lcd_text);
+            lcd.clearAnimation();
+            //Button next = findViewById(R.id.Next);
+            next.setEnabled(false);
+            //lcdString = DateTimeHandler.getCurrentTime("hh:mm");
+            lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
+            time = new String[]{" ", " ", " ", " "};
+            reheat_pressed = false;
+            time_position = 0;
+            current_state = 0;
+            reheat_category = 0;
+            pressed_wrong = 0;
+            string_button = myList.get(current_state);
+            System.out.println(string_button);
 
-        //Next Button is the button I have to Press Next
-        next_button = new HashMap<String, Boolean>();
-        //Active Button is to define what buttons are active.
-        active_button = new HashMap<String, Boolean>();
-        //Working Button is to define features (not buttons) are active.
-        working_button = new HashMap<String, Boolean>();
-        //Initialize everything to false
-        for (String i : list) {
-            next_button.put(i, false);
-            active_button.put(i, false);
-            working_button.put(i, false);
+            //Next Button is the button I have to Press Next
+            next_button = new HashMap<String, Boolean>();
+            //Active Button is to define what buttons are active.
+            active_button = new HashMap<String, Boolean>();
+            //Working Button is to define features (not buttons) are active.
+            working_button = new HashMap<String, Boolean>();
+            //Initialize everything to false
+            for (String i : list) {
+                next_button.put(i, false);
+                active_button.put(i, false);
+                working_button.put(i, false);
+            }
+
+            next_step(string_button);
         }
-
-        next_step(string_button);
     }
 
     public void startTimer(final long finish, long tick) {
