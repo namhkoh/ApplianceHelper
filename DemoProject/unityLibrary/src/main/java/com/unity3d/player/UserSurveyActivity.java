@@ -249,7 +249,8 @@ public class UserSurveyActivity extends AppCompatActivity {
                 }
             });
 
-
+            Intent end = new Intent(getApplicationContext(), EndActivityScreen.class);
+            startActivity(end);
         });
 
         additionalFeedback.addTextChangedListener(submitTextWatcher);

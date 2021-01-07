@@ -91,7 +91,7 @@
 
 
     <string name="user_confirmation">
-        Thank you so much for your participation!</string>
+        Thank you so much for your participation! You may now exit the application.</string>
     <string name="user_confirmation_title">
         User participation confirmation</string>
 </resources>
