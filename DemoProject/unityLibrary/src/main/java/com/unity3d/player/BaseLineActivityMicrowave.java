@@ -218,6 +218,8 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         String incoming_indexString = String.valueOf(incoming_index);
         String question = commandList.get(incoming_indexString);
+        System.out.println(commandList.get(incoming_indexString));
+        Log.e("microwave_question", question);
 
         ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
 
@@ -531,7 +533,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
     }
 
     private HashMap<String, String> getData() {
-        InputStream ls = getResources().openRawResource(R.raw.file2);
+        InputStream ls = getResources().openRawResource(R.raw.file3);
         BufferedReader reader = new BufferedReader(new InputStreamReader(ls, StandardCharsets.UTF_8));
         String line = "";
         HashMap<String, String> resultList = new HashMap<String, String>();
@@ -677,16 +679,16 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
             Log.e("Button Pressed (Active)", msg);
             pressed_wrong = 0;
             correct_press++;
-            correctButtonManager.put("Button Pressed (Active) " + msg,correct_press);
+            correctButtonManager.put("Button Pressed (Active) " + msg, correct_press);
         } else {
             Log.e("Button Pressed (Inactive)", msg);
             pressed_wrong++;
             incorrect_press++;
-            incorrectButtonManager.put("Button Pressed (inactive) " + msg,incorrect_press);
+            incorrectButtonManager.put("Button Pressed (inactive) " + msg, incorrect_press);
         }
 
-        buttonHandler.putSerializable("correct_button",correctButtonManager);
-        buttonHandler.putSerializable("incorrect_button",incorrectButtonManager);
+        buttonHandler.putSerializable("correct_button", correctButtonManager);
+        buttonHandler.putSerializable("incorrect_button", incorrectButtonManager);
         System.out.println(pressed_wrong);
 
         if (pressed_wrong >= 5 & current_state < myList.size()) {
@@ -795,7 +797,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         if (active_button.get(button_lowercase) == true) {
             active_inactive_log(true, button);
             if (next_button.get(button_lowercase)) {
-                Log.e("NEXT_BUTTON ",String.valueOf(next_button));
+                Log.e("NEXT_BUTTON ", String.valueOf(next_button));
                 TextView lcd = findViewById(R.id.lcd_text);
                 if (button_lowercase.equals("clock")) {
                     clearClock();
