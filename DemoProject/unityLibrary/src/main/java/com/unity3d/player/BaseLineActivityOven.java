@@ -447,7 +447,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         String incoming_indexString = String.valueOf(incoming_index);
         String question = commandList.get(incoming_indexString);
-        Log.e("QUESTION",question);
+        Log.e("QUESTION_OVEN",question);
 
         ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
 
@@ -1217,7 +1217,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
         if (incoming_index < instructionList.size() - 1) {
             Log.e("ENTERED","TASK");
             //Intent intent = new Intent(this, TaskInstructionActivity.class);
-            Intent intent = new Intent(this, UserSurveyActivity.class);
+            Intent intent = new Intent(this, TaskInstructionActivity.class);
             startActivity(intent);
         } else {
             Log.e("ENTERED","SURVEY");
@@ -1227,7 +1227,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
     }
 
     private HashMap<String, String> getData() {
-        InputStream ls = getResources().openRawResource(R.raw.file2);
+        InputStream ls = getResources().openRawResource(R.raw.file3);
         BufferedReader reader = new BufferedReader(new InputStreamReader(ls, StandardCharsets.UTF_8));
         String line = "";
         HashMap<String, String> resultList = new HashMap<String, String>();
@@ -1236,9 +1236,9 @@ public class BaseLineActivityOven extends AppCompatActivity {
         try {
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split("\t");
-                Log.e("successful token ", String.valueOf(tokens[1]));
-                Log.e("successful token ", String.valueOf(tokens[2]));
-                Log.e("successful token ", String.valueOf(tokens[3]));
+//                Log.e("successful token ", String.valueOf(tokens[1]));
+//                Log.e("successful token ", String.valueOf(tokens[2]));
+//                Log.e("successful token ", String.valueOf(tokens[3]));
                 resultList.put(tokens[0], tokens[1]);
                 intentList.put(tokens[0], tokens[2]);
                 commandList.put(tokens[0], tokens[3]);
