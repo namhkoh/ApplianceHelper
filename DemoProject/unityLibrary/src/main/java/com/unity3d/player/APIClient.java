@@ -16,8 +16,8 @@ public class APIClient {
 
 
         retrofit = new Retrofit.Builder()
-//                .baseUrl("http://192.168.35.43:3030/")
-                .baseUrl("http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/")
+                .baseUrl("http://192.168.35.43:3030/")
+//                .baseUrl("http://namho@ec2-18-217-40-32.us-east-2.compute.amazonaws.com:3030/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
