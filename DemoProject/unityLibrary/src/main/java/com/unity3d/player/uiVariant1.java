@@ -78,8 +78,6 @@ public class uiVariant1 extends AppCompatActivity {
     private HashMap<String, String> intentList;
     private HashMap<String, String> tmpHash; //getData
 
-    private HashMap<String, String> testHash;
-
     Button next;
     Intent intent;
     Button task;
@@ -100,7 +98,6 @@ public class uiVariant1 extends AppCompatActivity {
     private HashMap<String, String> userSequence = new HashMap<>();
     private HashMap<String, String> inputQuestions = new HashMap<>();
     boolean is_first = false;
-    long pressTime = Instant.now().getEpochSecond();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

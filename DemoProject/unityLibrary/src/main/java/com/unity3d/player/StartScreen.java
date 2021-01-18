@@ -31,6 +31,9 @@ public class StartScreen extends AppCompatActivity {
     public static Bundle activityBundle = new Bundle();
     public static Bundle userDataBundle = new Bundle();
 
+    private HashMap<String, String> testHash;
+    public static Bundle userQuestions = new Bundle();
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +46,8 @@ public class StartScreen extends AppCompatActivity {
             name = nameInput.getText().toString();
             String str = StartScreen.activityBundle.getString("testId");
             long sessionStart = Instant.now().getEpochSecond();
-            StartScreen.userDataBundle.putLong("sessionStart",sessionStart);
-            StartScreen.userDataBundle.putString("name",name);
+            StartScreen.userDataBundle.putLong("sessionStart", sessionStart);
+            StartScreen.userDataBundle.putString("name", name);
 
 
 //            Bundle userData = new Bundle();
@@ -67,9 +70,11 @@ public class StartScreen extends AppCompatActivity {
         instructionalText.setText(bl);
 
         nameInput.addTextChangedListener(submitTextWatcher);
+        testHash = (HashMap<String, String>) UserConsentActivity.userQuestions.getSerializable("questions");
+        Log.e("incoming", String.valueOf(testHash));
     }
 
-    private void enterInstructions(){
+    private void enterInstructions() {
         Intent intent = new Intent(this, TaskInstructionActivity.class);
         startActivity(intent);
     }
@@ -166,7 +171,7 @@ public class StartScreen extends AppCompatActivity {
             // generate a random number between
             // 0 to AlphaNumericString variable length
             int index
-                    = (int)(AlphaNumericString.length()
+                    = (int) (AlphaNumericString.length()
                     * Math.random());
 
             // add Character one by one in end of sb

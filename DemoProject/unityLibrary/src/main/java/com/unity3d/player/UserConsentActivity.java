@@ -1,6 +1,7 @@
 package com.unity3d.player;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.aic.libnilu.NiluLibProcess;
@@ -28,6 +30,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,6 +57,12 @@ public class UserConsentActivity extends AppCompatActivity {
     public static Bundle userDataBundle = new Bundle();
     private FirebaseAnalytics mFirebaseAnalytics;
 
+    // Data collection pipeline
+    public static Bundle userQuestions = new Bundle();
+    private HashMap<String, String> inputQuestions = new HashMap<>();
+    boolean is_first = false;
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,23 +105,37 @@ public class UserConsentActivity extends AppCompatActivity {
         acceptConsent.setOnClickListener(v -> {
             testId = testIDInput.getText().toString();
             StartScreen.activityBundle.putString("testId", testId);
-            StartScreen.userDataBundle.putString("testId",testId);
+            StartScreen.userDataBundle.putString("testId", testId);
             getActivity(testId);
         });
 
         CheckBox userCheck = findViewById(R.id.accept_box);
         userCheck.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
+                // User activity press check
+                inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " User checks box");
+                userQuestions.putSerializable("questions", inputQuestions);
                 acceptConsent.setEnabled(true);
             } else {
+                inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " User un-checks box");
+                userQuestions.putSerializable("questions", inputQuestions);
                 acceptConsent.setEnabled(false);
             }
         });
 
-        testIDInput.addTextChangedListener(submitTextWatcher);
+        if (UserConsentActivity.userQuestions.containsKey("Is First")) {
+            Log.e("Is First", String.valueOf(UserConsentActivity.userQuestions.getBoolean("Is First")));
+            load_bundle();
+            Log.d("Load Bundle", "Restored");
+        } else {
+            System.out.println("new hashmap!");
+            is_first = true;
+            inputQuestions = new HashMap<>();
+        }
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void getActivity(String id) {
         // verify if check box has been checked
         HashMap<String, String> tmpHash = getData();
@@ -121,9 +144,13 @@ public class UserConsentActivity extends AppCompatActivity {
             HashMap<String, String> tmp = getData();
             UserConsentActivity.activityBundle.putString("activity", tmp.get(id));
             Intent intent = new Intent(this, StartScreen.class);
+            inputQuestions.put(String.valueOf(Instant.now().getEpochSecond())," " + testId + " consent accepted");
+            userQuestions.putSerializable("questions", inputQuestions);
             startActivity(intent);
         } else {
             showToast("Please enter the correct testID!");
+            inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Wrong testID entered");
+            userQuestions.putSerializable("questions", inputQuestions);
             Intent intent = new Intent(this, UserConsentActivity.class);
             startActivity(intent);
         }
@@ -156,18 +183,24 @@ public class UserConsentActivity extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             String userIdInput = testIDInput.getText().toString().trim();
-
+//            System.out.println(userIdInput);
             //acceptConsent.setEnabled(!userIdInput.isEmpty());
         }
 
         @Override
         public void afterTextChanged(Editable s) {
-
+//            System.out.println(s);
         }
     };
 
     private void showToast(String text) {
         Toast.makeText(UserConsentActivity.this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void load_bundle() {
+        is_first = UserConsentActivity.userQuestions.getBoolean("Is First");
+        inputQuestions = (HashMap<String, String>) uiVariant1.userQuestions.getSerializable("questions");
     }
 
 }
