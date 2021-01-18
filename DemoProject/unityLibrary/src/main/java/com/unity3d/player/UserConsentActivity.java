@@ -113,25 +113,25 @@ public class UserConsentActivity extends AppCompatActivity {
         userCheck.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 // User activity press check
-                inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " User checks box");
+                inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "User checks box");
                 userQuestions.putSerializable("questions", inputQuestions);
                 acceptConsent.setEnabled(true);
             } else {
-                inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " User un-checks box");
+                inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "User un-checks box");
                 userQuestions.putSerializable("questions", inputQuestions);
                 acceptConsent.setEnabled(false);
             }
         });
 
-        if (UserConsentActivity.userQuestions.containsKey("Is First")) {
-            Log.e("Is First", String.valueOf(UserConsentActivity.userQuestions.getBoolean("Is First")));
-            load_bundle();
-            Log.d("Load Bundle", "Restored");
-        } else {
-            System.out.println("new hashmap!");
-            is_first = true;
-            inputQuestions = new HashMap<>();
-        }
+//        if (UserConsentActivity.userQuestions.containsKey("Is First")) {
+//            Log.e("Is First", String.valueOf(UserConsentActivity.userQuestions.getBoolean("Is First")));
+//            load_bundle();
+//            Log.d("Load Bundle", "Restored");
+//        } else {
+//            System.out.println("new hashmap!");
+//            is_first = true;
+//            inputQuestions = new HashMap<>();
+//        }
 
     }
 
@@ -144,12 +144,12 @@ public class UserConsentActivity extends AppCompatActivity {
             HashMap<String, String> tmp = getData();
             UserConsentActivity.activityBundle.putString("activity", tmp.get(id));
             Intent intent = new Intent(this, StartScreen.class);
-            inputQuestions.put(String.valueOf(Instant.now().getEpochSecond())," " + testId + " consent accepted");
+            inputQuestions.put(String.valueOf(Instant.now().getEpochSecond())," " + testId + "consent accepted");
             userQuestions.putSerializable("questions", inputQuestions);
             startActivity(intent);
         } else {
             showToast("Please enter the correct testID!");
-            inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Wrong testID entered");
+            inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Wrong testID entered");
             userQuestions.putSerializable("questions", inputQuestions);
             Intent intent = new Intent(this, UserConsentActivity.class);
             startActivity(intent);
@@ -197,10 +197,10 @@ public class UserConsentActivity extends AppCompatActivity {
         Toast.makeText(UserConsentActivity.this, text, Toast.LENGTH_SHORT).show();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void load_bundle() {
-        is_first = UserConsentActivity.userQuestions.getBoolean("Is First");
-        inputQuestions = (HashMap<String, String>) uiVariant1.userQuestions.getSerializable("questions");
-    }
+//    @RequiresApi(api = Build.VERSION_CODES.O)
+//    private void load_bundle() {
+//        is_first = UserConsentActivity.userQuestions.getBoolean("Is First");
+//        inputQuestions = (HashMap<String, String>) uiVariant1.userQuestions.getSerializable("questions");
+//    }
 
 }

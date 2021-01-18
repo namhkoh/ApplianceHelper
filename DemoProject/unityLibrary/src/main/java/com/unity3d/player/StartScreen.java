@@ -31,6 +31,7 @@ public class StartScreen extends AppCompatActivity {
     public static Bundle activityBundle = new Bundle();
     public static Bundle userDataBundle = new Bundle();
 
+    // Data collection pipeline
     private HashMap<String, String> testHash;
     public static Bundle userQuestions = new Bundle();
 
@@ -48,6 +49,10 @@ public class StartScreen extends AppCompatActivity {
             long sessionStart = Instant.now().getEpochSecond();
             StartScreen.userDataBundle.putLong("sessionStart", sessionStart);
             StartScreen.userDataBundle.putString("name", name);
+            testHash = (HashMap<String, String>) UserConsentActivity.userQuestions.getSerializable("questions");
+            testHash.put(String.valueOf(Instant.now().getEpochSecond()), name + " as name entered");
+            userQuestions.putSerializable("questions", testHash);
+            Log.e("incoming", String.valueOf(testHash));
 
 
 //            Bundle userData = new Bundle();
@@ -70,8 +75,6 @@ public class StartScreen extends AppCompatActivity {
         instructionalText.setText(bl);
 
         nameInput.addTextChangedListener(submitTextWatcher);
-        testHash = (HashMap<String, String>) UserConsentActivity.userQuestions.getSerializable("questions");
-        Log.e("incoming", String.valueOf(testHash));
     }
 
     private void enterInstructions() {

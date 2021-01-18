@@ -131,7 +131,7 @@ public class uiVariant1 extends AppCompatActivity {
         } else {
             System.out.println("new hashmap!");
             is_first = true;
-            inputQuestions = new HashMap<>();
+            inputQuestions = (HashMap<String, String>) StartScreen.userQuestions.getSerializable("questions");
         }
 
 
