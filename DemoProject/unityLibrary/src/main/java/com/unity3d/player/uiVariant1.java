@@ -134,7 +134,8 @@ public class uiVariant1 extends AppCompatActivity {
             inputQuestions = (HashMap<String, String>) StartScreen.userQuestions.getSerializable("questions");
         }
 
-
+        inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), tmpHash.get(incoming_indexString));
+        userQuestions.putSerializable("questions", inputQuestions);
         // SPEECH TO TEXT START
         final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -181,7 +182,7 @@ public class uiVariant1 extends AppCompatActivity {
                 //getting all the matches
                 ArrayList<String> matches = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                 Log.e("ALL MATCHES", matches.toString());
-                inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), matches.toString());
+                inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "User voice input: " + matches.toString());
                 userQuestions.putBoolean("Is First", is_first);
                 userQuestions.putSerializable("questions", inputQuestions);
                 Log.e("1", " value stored");
