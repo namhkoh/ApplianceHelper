@@ -184,15 +184,9 @@ public class uiVariant1 extends AppCompatActivity {
                 //getting all the matches
                 ArrayList<String> matches = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                 Log.e("ALL MATCHES", matches.toString());
-//                inputQuestions.put(String.valueOf(pressTime), matches.toString());
                 inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), matches.toString());
                 userQuestions.putBoolean("Is First", is_first);
                 userQuestions.putSerializable("questions", inputQuestions);
-                testHash = (HashMap<String, String>) userQuestions.getSerializable("questions");
-                System.out.println(testHash.size());
-                System.out.println(testHash);
-//                System.out.println(pressTime);
-//                System.out.println(Instant.now().getEpochSecond());
                 Log.e("1", " value stored");
 
                 utterance = matches.get(0);
@@ -209,11 +203,6 @@ public class uiVariant1 extends AppCompatActivity {
                         System.out.println("Actual Intent: " + intentList.get(incoming_indexString));
                         System.out.println("Task Name: " + tmpHash.get(incoming_indexString));
                         System.out.println("----------------------------------------------------------");
-//                        Log.e("2", " value stored");
-////                        inputQuestions.put(String.valueOf(pressTime), matches.toString());
-//                        inputQuestions.put("1", "hello1");
-//                        userQuestions.putSerializable("questions", inputQuestions);
-//                        System.out.println(testHash.size());
                     }
                 }
 
@@ -223,11 +212,6 @@ public class uiVariant1 extends AppCompatActivity {
                     list.add("No Match");
                     list.add("Try again by pressing the red mike button");
                     initTTS("No Match");
-//                    Log.e("3", " value stored");
-//                    inputQuestions.put(String.valueOf(pressTime), matches.toString());
-//                    inputQuestions.put("2", "hello2");
-//                    userQuestions.putSerializable("questions", inputQuestions);
-//                    System.out.println(testHash.size());
 
                     //Adapter is what creates the list on the screen using lv_steps and list.
 
@@ -238,22 +222,12 @@ public class uiVariant1 extends AppCompatActivity {
                     list.add("Wrong Intent. " + "The current intent is " + response.getIntent());
                     list.add("Try again by pressing the red mike button");
                     initTTS("Wrong Intent");
-//                    Log.e("4", " value stored");
-////                    inputQuestions.put(String.valueOf(pressTime), matches.toString());
-//                    inputQuestions.put("3", "hello3");
-//                    userQuestions.putSerializable("questions", inputQuestions);
-//                    System.out.println(testHash.size());
 
                 } else if (!Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains(response.getAppliance_name().toLowerCase())) {
                     clear(list);
                     list.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
                     list.add("Try again by pressing the red mike button");
                     initTTS("Wrong appliance");
-//                    Log.e("5", " value stored");
-////                    inputQuestions.put(String.valueOf(pressTime), matches.toString());
-//                    inputQuestions.put("4", "hello4");
-//                    userQuestions.putSerializable("questions", inputQuestions);
-//                    System.out.println(testHash.size());
 
                 } else {
                     SpeechBtn.setEnabled(false);
@@ -271,13 +245,6 @@ public class uiVariant1 extends AppCompatActivity {
                     next.setEnabled(true);
                     System.out.println("question! " + question);
                     System.out.println("utterance! " + utterance);
-                    //userQuestions.putBoolean("Is First", is_first);
-                    //userQuestions.putSerializable("questions", inputQuestions);
-//                    inputQuestions.put(String.valueOf(pressTime), matches.toString());
-                    inputQuestions.put("5", "hello5");
-                    userQuestions.putSerializable("questions", inputQuestions);
-                    System.out.println(testHash.size());
-                    Log.e("6", " value stored");
                 }
             }
 
