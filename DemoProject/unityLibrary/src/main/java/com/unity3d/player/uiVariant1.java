@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -32,6 +33,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -44,6 +46,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -59,6 +62,7 @@ import java.util.Objects;
  * The user may come back to uiVariant6 if they forgot what the instructions were and go back.
  * The status from uiVariant6 will be saved in uivariant1Bundle.
  */
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class uiVariant1 extends AppCompatActivity {
 
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -73,7 +77,8 @@ public class uiVariant1 extends AppCompatActivity {
 
     private HashMap<String, String> intentList;
     private HashMap<String, String> tmpHash; //getData
-    private HashMap<String, String> questionList = new HashMap<>();
+
+    private HashMap<String, String> testHash;
 
     Button next;
     Intent intent;
@@ -88,8 +93,14 @@ public class uiVariant1 extends AppCompatActivity {
     private TextToSpeech textToSpeech;
     private String speakText = "";
 
+    public static Bundle userBundle = new Bundle();
+
+
     public static Bundle userQuestions = new Bundle();
+    private HashMap<String, String> userSequence = new HashMap<>();
+    private HashMap<String, String> inputQuestions = new HashMap<>();
     boolean is_first = false;
+    long pressTime = Instant.now().getEpochSecond();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,7 +134,7 @@ public class uiVariant1 extends AppCompatActivity {
         } else {
             System.out.println("new hashmap!");
             is_first = true;
-            questionList = new HashMap<>();
+            inputQuestions = new HashMap<>();
         }
 
 
@@ -171,23 +182,23 @@ public class uiVariant1 extends AppCompatActivity {
                 Log.e(TAG, "on Results");
 
                 //getting all the matches
-                ArrayList<String> matches = bundle
-                        .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                ArrayList<String> matches = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                 Log.e("ALL MATCHES", matches.toString());
+//                inputQuestions.put(String.valueOf(pressTime), matches.toString());
+                inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), matches.toString());
+                userQuestions.putBoolean("Is First", is_first);
+                userQuestions.putSerializable("questions", inputQuestions);
+                testHash = (HashMap<String, String>) userQuestions.getSerializable("questions");
+                System.out.println(testHash.size());
+                System.out.println(testHash);
+//                System.out.println(pressTime);
+//                System.out.println(Instant.now().getEpochSecond());
+                Log.e("1", " value stored");
 
                 utterance = matches.get(0);
                 editText.setText(utterance);
                 String question = utterance;
                 ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
-                questionList.put(tmpHash.get(incoming_indexString), question);
-
-                // Data collection
-                // Need to store the questions in sequence.
-//                System.out.println("question! " + question);
-//                System.out.println("utterance! " + utterance);
-//                questionList.put(tmpHash.get(incoming_indexString), utterance);
-//                userQuestions.putBoolean("Is First", is_first);
-//                userQuestions.putSerializable("questions", questionList);
 
                 if (Utilities.debug) {
                     if (!response.getDialog_command().equals("no_match")) {
@@ -198,44 +209,57 @@ public class uiVariant1 extends AppCompatActivity {
                         System.out.println("Actual Intent: " + intentList.get(incoming_indexString));
                         System.out.println("Task Name: " + tmpHash.get(incoming_indexString));
                         System.out.println("----------------------------------------------------------");
-                        questionList.put(tmpHash.get(incoming_indexString), question);
+//                        Log.e("2", " value stored");
+////                        inputQuestions.put(String.valueOf(pressTime), matches.toString());
+//                        inputQuestions.put("1", "hello1");
+//                        userQuestions.putSerializable("questions", inputQuestions);
+//                        System.out.println(testHash.size());
                     }
                 }
 
                 //Some sort of error happened in the NLU part
                 if (response.getDialog_command().equals("no_match")) {
-
                     clear(list);
-
                     list.add("No Match");
                     list.add("Try again by pressing the red mike button");
                     initTTS("No Match");
+//                    Log.e("3", " value stored");
+//                    inputQuestions.put(String.valueOf(pressTime), matches.toString());
+//                    inputQuestions.put("2", "hello2");
+//                    userQuestions.putSerializable("questions", inputQuestions);
+//                    System.out.println(testHash.size());
 
                     //Adapter is what creates the list on the screen using lv_steps and list.
 
                     //Intent list contains the intent values.
                     //So if the incoming_indexString is 0 the intentList will get me the corresponding intent.
                 } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
-
                     clear(list);
-
                     list.add("Wrong Intent. " + "The current intent is " + response.getIntent());
                     list.add("Try again by pressing the red mike button");
                     initTTS("Wrong Intent");
+//                    Log.e("4", " value stored");
+////                    inputQuestions.put(String.valueOf(pressTime), matches.toString());
+//                    inputQuestions.put("3", "hello3");
+//                    userQuestions.putSerializable("questions", inputQuestions);
+//                    System.out.println(testHash.size());
 
                 } else if (!Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains(response.getAppliance_name().toLowerCase())) {
-
                     clear(list);
                     list.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
                     list.add("Try again by pressing the red mike button");
                     initTTS("Wrong appliance");
+//                    Log.e("5", " value stored");
+////                    inputQuestions.put(String.valueOf(pressTime), matches.toString());
+//                    inputQuestions.put("4", "hello4");
+//                    userQuestions.putSerializable("questions", inputQuestions);
+//                    System.out.println(testHash.size());
 
                 } else {
                     SpeechBtn.setEnabled(false);
                     clear(list);
                     sucess = true;
                     buttonList = new ArrayList<>();
-
                     for (int i = 0; i < response.getSteps().size(); ++i) {
                         String data = response.getSteps().get(i).getText();
                         String button = response.getSteps().get(i).getButton_name();
@@ -247,8 +271,13 @@ public class uiVariant1 extends AppCompatActivity {
                     next.setEnabled(true);
                     System.out.println("question! " + question);
                     System.out.println("utterance! " + utterance);
-                    userQuestions.putBoolean("Is First", is_first);
-                    userQuestions.putSerializable("questions", questionList);
+                    //userQuestions.putBoolean("Is First", is_first);
+                    //userQuestions.putSerializable("questions", inputQuestions);
+//                    inputQuestions.put(String.valueOf(pressTime), matches.toString());
+                    inputQuestions.put("5", "hello5");
+                    userQuestions.putSerializable("questions", inputQuestions);
+                    System.out.println(testHash.size());
+                    Log.e("6", " value stored");
                 }
             }
 
@@ -417,6 +446,7 @@ public class uiVariant1 extends AppCompatActivity {
      */
     private void enterFeedback() {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        HashMap<String, String> tmpQuestions = (HashMap<String, String>) userQuestions.getSerializable("questions");
         String incoming_indexString = String.valueOf(incoming_index);
         HashMap<String, String> tmpHash = getData();
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
@@ -424,12 +454,14 @@ public class uiVariant1 extends AppCompatActivity {
             intent.putExtra("button", buttonList);
             intent.putExtra("instructions", list);
             intent.putExtra("variant", 1);
+            intent.putExtra("questions", tmpQuestions);
             startActivity(intent);
         } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")) {
             intent = new Intent(this, uiVariant6Oven.class);
             intent.putExtra("button", buttonList);
             intent.putExtra("instructions", list);
             intent.putExtra("variant", 1);
+            intent.putExtra("questions", tmpQuestions);
             startActivity(intent);
         } else {
             return;
@@ -524,6 +556,6 @@ public class uiVariant1 extends AppCompatActivity {
 
     private void load_bundle() {
         is_first = uiVariant1.userQuestions.getBoolean("Is First");
-        questionList = (HashMap<String, String>) uiVariant1.userQuestions.getSerializable("questions");
+        inputQuestions = (HashMap<String, String>) uiVariant1.userQuestions.getSerializable("questions");
     }
 }

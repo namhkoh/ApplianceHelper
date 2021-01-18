@@ -11,10 +11,6 @@ public class User {
     private String testId;
     @SerializedName("name")
     private String name;
-    @SerializedName("buttonsCorrect")
-    private String buttonsCorrect;
-    @SerializedName("buttonsIncorrect")
-    private String buttonsIncorrect;
     @SerializedName("startSession")
     private String startSession;
     @SerializedName("endSession")
@@ -25,19 +21,17 @@ public class User {
     private String userConsent;
     @SerializedName("feedback")
     private String feedback;
-    @SerializedName("questions")
-    private HashMap<String, String> questions;
+    @SerializedName("userSequence")
+    private HashMap<String, String> userSequence;
 
-    public User(String testId, String name, String buttonsCorrect, String buttonsIncorrect, String startSession, String endSession, String totalTime, String userConsent, String feedback, HashMap<String, String> questions) {
+    public User(String testId, String name, String startSession, String endSession, String totalTime, String userConsent, String feedback, HashMap<String, String> userSequence) {
         this.testId = testId;
         this.name = name;
-        this.buttonsCorrect = buttonsCorrect;
-        this.buttonsIncorrect = buttonsIncorrect;
         this.startSession = startSession;
         this.endSession = endSession;
         this.totalTime = totalTime;
         this.userConsent = userConsent;
         this.feedback = feedback;
-        this.questions = questions;
+        this.userSequence = userSequence;
     }
 }

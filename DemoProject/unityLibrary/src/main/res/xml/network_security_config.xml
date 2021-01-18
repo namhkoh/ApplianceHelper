@@ -2,7 +2,7 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">ec2-18-217-40-32.us-east-2.compute.amazonaws.com</domain>
-        <domain includeSubdomains="true">192.168.35.43</domain>
+        <domain includeSubdomains="true">192.168.40.60</domain>
     </domain-config>
 </network-security-config>
 

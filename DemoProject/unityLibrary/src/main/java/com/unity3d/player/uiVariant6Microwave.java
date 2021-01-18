@@ -1,6 +1,7 @@
 package com.unity3d.player;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 
@@ -30,7 +32,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
     private String lcdString = " ";
     private String altString = " ";
     private int variant;
-    public static Bundle buttonHandler = new Bundle();
+    private HashMap<String,String> tmpQuestions;
 
     //For toggling among states
     boolean reheat_pressed = false;
@@ -53,8 +55,6 @@ public class uiVariant6Microwave extends AppCompatActivity {
     HashMap<String, Boolean> next_button;
     HashMap<String, Boolean> active_button;
     HashMap<String, Boolean> working_button;
-    HashMap<String, Integer> correctButtonManager;
-    HashMap<String, Integer> incorrectButtonManager;
 
 
     ArrayList<String> myList;
@@ -77,9 +77,16 @@ public class uiVariant6Microwave extends AppCompatActivity {
     int reheat_category = 0;
     int time_position = 0;
     int pressed_wrong;
-    int correct_press;
-    int incorrect_press;
 
+//    int correct_press;
+//    int incorrect_press;
+
+//    HashMap<String, Integer> correctButtonManager;
+//    HashMap<String, Integer> incorrectButtonManager;
+//    public static Bundle buttonHandler = new Bundle();
+    HashMap<String, String> userSequenceManager;
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -263,6 +270,8 @@ public class uiVariant6Microwave extends AppCompatActivity {
 
         variant = (int) getIntent().getSerializableExtra("variant");
 
+        tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+
         tmpList = new ArrayList<String>();
 
         //Initialize hashmap
@@ -272,7 +281,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
 
         // Not first time
         if (uiVariant1.uivariant1Bundle.containsKey("Is First")) {
-            if(Utilities.debug) {
+            if (Utilities.debug) {
                 System.out.println("Loading bundle. Is First: " + uiVariant1.uivariant1Bundle.getBoolean("Is First"));
             }
             load_bundle();
@@ -288,8 +297,11 @@ public class uiVariant6Microwave extends AppCompatActivity {
             //Working Button is to define features (not buttons) are active.
             working_button = new HashMap<String, Boolean>();
             // Stores the incorrect button count
-            correctButtonManager = new HashMap<String, Integer>();
-            incorrectButtonManager = new HashMap<String, Integer>();
+//            correctButtonManager = new HashMap<String, Integer>();
+//            incorrectButtonManager = new HashMap<String, Integer>();
+
+            //
+            userSequenceManager = new HashMap<String, String>();
 
             for (String i : list) {
                 next_button.put(i, false);
@@ -313,6 +325,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
     /**
      * When back button is pressed. Save Bundle
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -327,6 +340,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
     /**
      * Save data so that we can recover it later.
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void save_bundle() {
         uiVariant1.uivariant1Bundle.clear();
         TextView lcd = findViewById(R.id.lcd_text);
@@ -343,7 +357,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
         uiVariant1.uivariant1Bundle.putInt("timeposition", time_position);
         uiVariant1.uivariant1Bundle.putBoolean("ReheatPressed", reheat_pressed);
         uiVariant1.uivariant1Bundle.putInt("ReheatPos", reheat_category);
-        if(Utilities.debug){
+        if (Utilities.debug) {
             Log.v("Saved", "Save Bundle");
         }
     }
@@ -351,6 +365,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
     /**
      * Recover from load_bundle
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void load_bundle() {
         TextView lcd = findViewById(R.id.lcd_text);
         is_first = uiVariant1.uivariant1Bundle.getBoolean("Is First");
@@ -367,7 +382,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
         reheat_category = uiVariant1.uivariant1Bundle.getInt("ReheatPos");
         lcd.setText(uiVariant1.uivariant1Bundle.getString("OnScreen"));
         uiVariant1.uivariant1Bundle.clear();
-        if(Utilities.debug){
+        if (Utilities.debug) {
             Log.v("Load", "Loaded Bundle");
         }
     }
@@ -375,10 +390,12 @@ public class uiVariant6Microwave extends AppCompatActivity {
     /**
      * Loading the userQuestion bundle
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void save_button_press() {
         is_first = uiVariant1.userQuestions.getBoolean("Is First");
-        correctButtonManager = (HashMap<String, Integer>) buttonHandler.getSerializable("correct_button");
-        incorrectButtonManager = (HashMap<String, Integer>) buttonHandler.getSerializable("incorrect_button");
+//        correctButtonManager = (HashMap<String, Integer>) buttonHandler.getSerializable("correct_button");
+//        incorrectButtonManager = (HashMap<String, Integer>) buttonHandler.getSerializable("incorrect_button");
+
     }
 
 //    @Override
@@ -395,58 +412,40 @@ public class uiVariant6Microwave extends AppCompatActivity {
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
-        }
-
-        else if (string_button.equals("reheat")) {
+        } else if (string_button.equals("reheat")) {
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
-        }
-
-        else if (string_button.equals("defrost")) {
+        } else if (string_button.equals("defrost")) {
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
-        }
-
-        else if (string_button.equals("pizza")) {
+        } else if (string_button.equals("pizza")) {
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
-        }
-
-        else if (string_button.equals("popcorn")) {
+        } else if (string_button.equals("popcorn")) {
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
-        }
-
-        else if (string_button.equals("timer")) {
+        } else if (string_button.equals("timer")) {
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
-        }
-
-        else if (string_button.equals("start")) {
+        } else if (string_button.equals("start")) {
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
-        }
-
-        else if (string_button.equals("no button")) {
+        } else if (string_button.equals("no button")) {
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
             finish_task();
-        }
-
-        else if (string_button.equals("open")) {
+        } else if (string_button.equals("open")) {
             active_button.put(string_button, true);
             next_button.put(string_button, true);
             Log.e("Button", string_button);
-        }
-
-        else if (string_button.equals("number pad")) {
+        } else if (string_button.equals("number pad")) {
             //Because number pad doesn't have a specific button to press in order to go to the next step.
             //next_button.put(string_button,true);
             active_button.put(string_button, true);
@@ -555,18 +554,18 @@ public class uiVariant6Microwave extends AppCompatActivity {
         if (active == true) {
             Log.e("Button Pressed (Active)", msg);
             pressed_wrong = 0;
-            correct_press++;
-            correctButtonManager.put("Button Pressed (Active) " + msg,correct_press);
+//            correct_press++;
+//            correctButtonManager.put("Button Pressed (Active) " + msg, correct_press);
             hint.setEnabled(false);
         } else {
             Log.e("Button Pressed (Inactive)", msg);
             pressed_wrong++;
-            incorrect_press++;
-            incorrectButtonManager.put("Button Pressed (inactive) " + msg,incorrect_press);
+//            incorrect_press++;
+//            incorrectButtonManager.put("Button Pressed (inactive) " + msg, incorrect_press);
         }
 
-        buttonHandler.putSerializable("correct_button",correctButtonManager);
-        buttonHandler.putSerializable("incorrect_button",incorrectButtonManager);
+//        buttonHandler.putSerializable("correct_button", correctButtonManager);
+//        buttonHandler.putSerializable("incorrect_button", incorrectButtonManager);
         if (pressed_wrong >= 5 & current_state < myList.size()) {
             hint.setEnabled(true);
         }
@@ -902,7 +901,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
     }
 
     public void stopTimer() {
-        if(t != null) {
+        if (t != null) {
             t.cancel();
         }
     }
