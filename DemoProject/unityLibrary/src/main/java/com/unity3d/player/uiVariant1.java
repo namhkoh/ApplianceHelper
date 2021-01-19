@@ -52,6 +52,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.HashMap;
 
 
 /**
@@ -136,6 +137,8 @@ public class uiVariant1 extends AppCompatActivity {
 
         inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), tmpHash.get(incoming_indexString));
         userQuestions.putSerializable("questions", inputQuestions);
+        Log.e("NEXT ACTIVITY",tmpHash.get(incoming_indexString));
+
         // SPEECH TO TEXT START
         final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -151,7 +154,7 @@ public class uiVariant1 extends AppCompatActivity {
 
             @Override
             public void onBeginningOfSpeech() {
-                Log.d(TAG, "onBeginningofSpeech");
+                Log.d(TAG, "onBeginningfSpeech");
             }
 
             @Override
@@ -412,6 +415,7 @@ public class uiVariant1 extends AppCompatActivity {
     private void enterFeedback() {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         HashMap<String, String> tmpQuestions = (HashMap<String, String>) userQuestions.getSerializable("questions");
+        tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()),"Entering UI panel");
         String incoming_indexString = String.valueOf(incoming_index);
         HashMap<String, String> tmpHash = getData();
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {

@@ -22,6 +22,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.HashMap;
 
 public class StartScreen extends AppCompatActivity {
     private String name;

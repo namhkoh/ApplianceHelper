@@ -26,10 +26,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
+import java.util.HashMap;
 
 public class uiVariant6Oven extends AppCompatActivity {
 
@@ -81,9 +84,14 @@ public class uiVariant6Oven extends AppCompatActivity {
     HashMap<String, Integer> correctButtonManager;
     HashMap<String, Integer> incorrectButtonManager;
     public static Bundle buttonHandler = new Bundle();
+    Intent intent;
 
-
+    /**
+     * Proper data collection pipeline
+     */
+    public static Bundle userQuestions = new Bundle();
     HashMap<String, String> tmpQuestions;
+    boolean is_first_oven = true;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -340,6 +348,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         //Instructions List
         instructionList = (ArrayList<String>) getIntent().getSerializableExtra("instructions");
 
+        //inputQuestion List
         tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
 
 
@@ -359,9 +368,7 @@ public class uiVariant6Oven extends AppCompatActivity {
             load_bundle();
             save_button_press();
             Log.d("Load Bundle", "Restored");
-
-        } //First Time
-        else {
+        } else {
             is_first = true;
             //How many buttons are there in the button array.
             number_of_steps = myList.size();
@@ -372,6 +379,7 @@ public class uiVariant6Oven extends AppCompatActivity {
             // Stores the incorrect button count
             correctButtonManager = new HashMap<String, Integer>();
             incorrectButtonManager = new HashMap<String, Integer>();
+            tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
             for (String i : list) {
                 next_button.put(i, false);
                 button_active.put(i, false);
@@ -451,6 +459,7 @@ public class uiVariant6Oven extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void save_button_press() {
         is_first = uiVariant1.userQuestions.getBoolean("Is First");
+        tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
         correctButtonManager = (HashMap<String, Integer>) buttonHandler.getSerializable("correct_button");
         incorrectButtonManager = (HashMap<String, Integer>) buttonHandler.getSerializable("incorrect_button");
     }
@@ -571,19 +580,50 @@ public class uiVariant6Oven extends AppCompatActivity {
         Log.d("Debug (Next Step)", string_button);
     }
 
+    private static String randomStringGenerator(int length, String seedChars) {
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        Random rand = new Random();
+        while (i < length) {
+            sb.append(seedChars.charAt(rand.nextInt(seedChars.length())));
+            i++;
+        }
+        return sb.toString();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void active_inactive_log(boolean active, String msg) {
+        String asciiUpperCase = "ABCDEFGHIJKLMNOPQRSTUWXYZ";
+        String asciiLowerCase = asciiUpperCase.toLowerCase();
+        String digits = "0123456789";
+        String asciiChars = asciiUpperCase + asciiLowerCase + digits;
+        // Generating random string for
         if (active == true) {
             Log.i("Button Pressed (Active)", msg);
             pressed_wrong = 0;
             correct_press++;
+
             correctButtonManager.put("Button Pressed (Active) " + msg, correct_press);
+            //tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()) + " " + randomStringGenerator(3, asciiChars), " Button Pressed (Active) " + msg);
+            tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Button Pressed (Active) " + msg);
+            System.out.println(Instant.now().getEpochSecond());
+            System.out.println(randomStringGenerator(3, asciiChars));
+            System.out.println(tmpQuestions);
+            System.out.println(tmpQuestions.size());
             hint.setEnabled(false);
         } else {
             Log.i("Button Pressed (Inactive)", msg);
             pressed_wrong++;
             incorrect_press++;
             incorrectButtonManager.put("Button Pressed (inactive) " + msg, incorrect_press);
+            //tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " " + randomStringGenerator(3, asciiChars) + " Button Pressed (Inactive) " + msg);
+            tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Button Pressed (Inactive) " + msg);
+            System.out.println(Instant.now().getEpochSecond());
+            System.out.println(randomStringGenerator(3, asciiChars));
+            System.out.println(tmpQuestions);
+            System.out.println(tmpQuestions.size());
         }
+        userQuestions.putSerializable("questions", tmpQuestions);
         buttonHandler.putSerializable("correct_button", correctButtonManager);
         buttonHandler.putSerializable("incorrect_button", incorrectButtonManager);
         if (pressed_wrong > 5 & current_state < myList.size()) {
@@ -591,6 +631,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void core_button_support(String button, String lcd_text) {
         button_lowercase = button.toLowerCase();
         if (button_active.get(button_lowercase) == true) {
@@ -634,37 +675,46 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void timer() {
         core_button_support("Timer", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void settings_clock() {
         core_button_support("settings/clock", "Settings Clock");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void keepWarm() {
         core_button_support("Keep Warm", "Keep warm");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void broil() {
         core_button_support("Broil", "Broil");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void bake() {
         core_button_support("Bake", "Bake");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void convect_modes() {
         core_button_support("Convect Modes", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void oven_clean() {
         core_button_support("Oven Clean", null);
     }
 
     ;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void frozenBake() {
+
         core_button_support("Frozen Bake", null);
 //        TextView ovenLcd = findViewById(R.id.oven_panel_text);
 //        Handler h = new Handler(getMainLooper());
@@ -679,30 +729,35 @@ public class uiVariant6Oven extends AppCompatActivity {
 //        Log.e("Button pressed", "frozenBake");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void delay_start() {
         core_button_support("Delay Start", null);
     }
 
     ;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void rapid_predheat() {
         core_button_support("Rapid Preheat", null);
     }
 
     ;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void on_off() {
         core_button_support("On Off", null);
     }
 
     ;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void confirm() {
         core_button_support("Confirm", null);
     }
 
     ;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void cookTime() {
         if (bake_pressed) {
             core_button_support("Cook Time", "Cook Time");
@@ -716,6 +771,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         toast.show();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void open() {
         active_inactive_log(false, "Open");
     }
@@ -847,6 +903,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         startTimer(seconds * 1000 + 1100, 1000);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void startOven() {
         if (button_active.get("start") == true) {
             active_inactive_log(true, "Start Button");
@@ -976,6 +1033,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press_support(String number, String word) {
         if (numberpad_active == true | button_active.get(word) == true) {
             active_inactive_log(true, number);
@@ -1047,55 +1105,67 @@ public class uiVariant6Oven extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press0() {
         press_support("0", "zero");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press1() {
         press_support("1", "one");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press2() {
         press_support("2", "two");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press3() {
         press_support("3", "three");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press4() {
         press_support("4", "four");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press5() {
         press_support("5", "five");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press6() {
         press_support("6", "six");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press7() {
         press_support("7", "seven");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press8() {
         press_support("8", "eight");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press9() {
         press_support("9", "nine");
     }
 
     private void nextActivity() {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        HashMap<String, String> tmpQuestions = (HashMap<String, String>) userQuestions.getSerializable("questions");
         HashMap<String, String> tmpHash = getData();
         ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
         if (incoming_index < instructionList.size() - 1) {
-            Intent intent = new Intent(this, TaskInstructionActivity.class);
+            intent = new Intent(this, TaskInstructionActivity.class);
             startActivity(intent);
         } else {
-            Intent intent = new Intent(this, UserSurveyActivity.class);
+            intent = new Intent(this, UserSurveyActivity.class);
+            intent.putExtra("userQuestions", tmpQuestions);
             startActivity(intent);
         }
     }

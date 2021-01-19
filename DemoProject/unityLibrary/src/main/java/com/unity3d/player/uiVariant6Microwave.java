@@ -22,17 +22,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Random;
 
 
 public class uiVariant6Microwave extends AppCompatActivity {
     private String lcdString = " ";
     private String altString = " ";
     private int variant;
-    private HashMap<String,String> tmpQuestions;
 
     //For toggling among states
     boolean reheat_pressed = false;
@@ -71,6 +73,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
 
     List<String> list;
     Button hint;
+    Intent intent;
 
     int current_state;
     int number_of_steps;
@@ -81,10 +84,16 @@ public class uiVariant6Microwave extends AppCompatActivity {
 //    int correct_press;
 //    int incorrect_press;
 
-//    HashMap<String, Integer> correctButtonManager;
+    //    HashMap<String, Integer> correctButtonManager;
 //    HashMap<String, Integer> incorrectButtonManager;
 //    public static Bundle buttonHandler = new Bundle();
     HashMap<String, String> userSequenceManager;
+
+    /**
+     * Proper data collection pipeline
+     */
+    public static Bundle userQuestions = new Bundle();
+    HashMap<String, String> tmpQuestions;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -228,13 +237,17 @@ public class uiVariant6Microwave extends AppCompatActivity {
         Button next = findViewById(R.id.Next);
         next.setOnClickListener(v -> {
             int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+            tmpQuestions = (HashMap<String, String>) userQuestions.getSerializable("questions");
+            Log.e("tmpQuestions_prebext", String.valueOf(tmpQuestions));
             HashMap<String, String> tmpHash = getData();
             ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
             if (incoming_index < instructionList.size() - 1) {
-                Intent intent = new Intent(this, TaskInstructionActivity.class);
+                intent = new Intent(this, TaskInstructionActivity.class);
                 startActivity(intent);
             } else {
-                Intent intent = new Intent(this, UserSurveyActivity.class);
+                intent = new Intent(this, UserSurveyActivity.class);
+                Log.e("userQuestions_microwave", String.valueOf(tmpQuestions));
+                intent.putExtra("userQuestions", tmpQuestions);
                 startActivity(intent);
             }
         });
@@ -271,6 +284,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
         variant = (int) getIntent().getSerializableExtra("variant");
 
         tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        Log.e("MAJOR FDEBUG", String.valueOf(tmpQuestions));
 
         tmpList = new ArrayList<String>();
 
@@ -300,7 +314,10 @@ public class uiVariant6Microwave extends AppCompatActivity {
 //            correctButtonManager = new HashMap<String, Integer>();
 //            incorrectButtonManager = new HashMap<String, Integer>();
 
-            //
+            //inputQuestion List
+            tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+            System.out.println(tmpQuestions);
+
             userSequenceManager = new HashMap<String, String>();
 
             for (String i : list) {
@@ -393,6 +410,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void save_button_press() {
         is_first = uiVariant1.userQuestions.getBoolean("Is First");
+        tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
 //        correctButtonManager = (HashMap<String, Integer>) buttonHandler.getSerializable("correct_button");
 //        incorrectButtonManager = (HashMap<String, Integer>) buttonHandler.getSerializable("incorrect_button");
 
@@ -482,28 +500,34 @@ public class uiVariant6Microwave extends AppCompatActivity {
         return resultList;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void potato() {
         core_button_support("Potato", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void cook() {
         core_button_support("Cook", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void cooktime() {
         core_button_support("Cook Time", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void cookpower() {
         core_button_support("Cook Power", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void add30() {
         core_button_support("add30", null);
     }
 
 
     //Simulates Opening the microwave.
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void open_microwave() {
         if (active_button.get("open")) {
             active_inactive_log(true, "Open");
@@ -550,20 +574,46 @@ public class uiVariant6Microwave extends AppCompatActivity {
         }
     }
 
+    private static String randomStringGenerator(int length, String seedChars) {
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        Random rand = new Random();
+        while (i < length) {
+            sb.append(seedChars.charAt(rand.nextInt(seedChars.length())));
+            i++;
+        }
+        return sb.toString();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void active_inactive_log(boolean active, String msg) {
+        String asciiUpperCase = "ABCDEFGHIJKLMNOPQRSTUWXYZ";
+        String asciiLowerCase = asciiUpperCase.toLowerCase();
+        String digits = "0123456789";
+        String asciiChars = asciiUpperCase + asciiLowerCase + digits;
         if (active == true) {
             Log.e("Button Pressed (Active)", msg);
             pressed_wrong = 0;
+            tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Button Pressed (Active) " + msg);
+            System.out.println(Instant.now().getEpochSecond());
+            System.out.println(randomStringGenerator(3, asciiChars));
+            System.out.println(tmpQuestions);
+            System.out.println(tmpQuestions.size());
 //            correct_press++;
 //            correctButtonManager.put("Button Pressed (Active) " + msg, correct_press);
             hint.setEnabled(false);
         } else {
             Log.e("Button Pressed (Inactive)", msg);
             pressed_wrong++;
+            tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Button Pressed (Inactive) " + msg);
+            System.out.println(Instant.now().getEpochSecond());
+            System.out.println(randomStringGenerator(3, asciiChars));
+            System.out.println(tmpQuestions);
+            System.out.println(tmpQuestions.size());
 //            incorrect_press++;
 //            incorrectButtonManager.put("Button Pressed (inactive) " + msg, incorrect_press);
         }
-
+        userQuestions.putSerializable("questions", tmpQuestions);
 //        buttonHandler.putSerializable("correct_button", correctButtonManager);
 //        buttonHandler.putSerializable("incorrect_button", incorrectButtonManager);
         if (pressed_wrong >= 5 & current_state < myList.size()) {
@@ -571,6 +621,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press_helper(String number) {
         if (active_button.get("number pad")) {
             press(number);
@@ -580,42 +631,52 @@ public class uiVariant6Microwave extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press0() {
         press_helper("0");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press1() {
         press_helper("1");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press2() {
         press_helper("2");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press3() {
         press_helper("3");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press4() {
         press_helper("4");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press5() {
         press_helper("5");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press6() {
         press_helper("6");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press7() {
         press_helper("7");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press8() {
         press_helper("8");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press9() {
         press_helper("9");
     }
@@ -678,6 +739,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
         next.setEnabled(true);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void core_button_support(String button, String lcd_text) {
         button_lowercase = button.toLowerCase();
         if (active_button.get(button_lowercase) == true) {
@@ -715,30 +777,37 @@ public class uiVariant6Microwave extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void microwaveClock() {
         core_button_support("Clock", "  :  ");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void timer() {
         core_button_support("Timer", "  :  ");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void pizza() {
         core_button_support("Pizza", "0.0 QTY");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void popcorn() {
         core_button_support("Popcorn", "0.0 oz");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void defrost() {
         core_button_support("Defrost", "  :  ");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void microwaveSoften() {
         core_button_support("soften", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void reheat() {
         if (active_button.get("reheat")) {
             reheatScreen();

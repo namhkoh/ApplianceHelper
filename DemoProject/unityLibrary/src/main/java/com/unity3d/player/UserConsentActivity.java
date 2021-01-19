@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -59,6 +60,7 @@ public class UserConsentActivity extends AppCompatActivity {
 
     // Data collection pipeline
     public static Bundle userQuestions = new Bundle();
+    //    private HashMap<String, String> inputQuestions = new HashMap<>();
     private HashMap<String, String> inputQuestions = new HashMap<>();
     boolean is_first = false;
 
@@ -144,12 +146,12 @@ public class UserConsentActivity extends AppCompatActivity {
             HashMap<String, String> tmp = getData();
             UserConsentActivity.activityBundle.putString("activity", tmp.get(id));
             Intent intent = new Intent(this, StartScreen.class);
-            inputQuestions.put(String.valueOf(Instant.now().getEpochSecond())," " + testId + "consent accepted");
+            inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " " + testId + " consent accepted");
             userQuestions.putSerializable("questions", inputQuestions);
             startActivity(intent);
         } else {
             showToast("Please enter the correct testID!");
-            inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Wrong testID entered");
+            inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Wrong testID entered");
             userQuestions.putSerializable("questions", inputQuestions);
             Intent intent = new Intent(this, UserConsentActivity.class);
             startActivity(intent);

@@ -35,6 +35,7 @@ import java.time.Instant;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashMap;
 
 import javax.security.auth.login.LoginException;
 
@@ -51,7 +52,8 @@ public class UserSurveyActivity extends AppCompatActivity {
     RatingBar css;
     private EditText additionalFeedback;
     APIInterface apiInterface;
-    HashMap<String, String> questionList = new HashMap<>();
+    HashMap<String, String> questionList;
+    HashMap<String, String> questionList1 = new HashMap<>();
     HashMap<String, Integer> microwaveButtonsCorrect = new HashMap<>();
     HashMap<String, Integer> microwaveButtonsIncorrect = new HashMap<>();
     HashMap<String, Integer> ovenButtonsCorrect = new HashMap<>();
@@ -60,6 +62,9 @@ public class UserSurveyActivity extends AppCompatActivity {
     int microwaveTotalIncorrect = 0;
     int ovenTotalCorrect = 0;
     int ovenTotalIncorrect = 0;
+
+    public static Bundle userQuestions = new Bundle();
+    Boolean is_first;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -74,6 +79,10 @@ public class UserSurveyActivity extends AppCompatActivity {
         css = findViewById(R.id.customer_satisfaction_score);
         Button submit = findViewById(R.id.submitButton);
         submit.findViewById(R.id.submitButton);
+
+//        Intent intent = getIntent();
+//        questionList = (HashMap<String, String>) intent.getSerializableExtra("userQuestions");
+//        Log.e("HELLLO", String.valueOf(questionList));
 
         submit.setOnClickListener(v -> {
             String netScore = String.valueOf(nps.getRating());
@@ -112,7 +121,13 @@ public class UserSurveyActivity extends AppCompatActivity {
 //                    microwaveButtonsCorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("correct_button");
                     ovenButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("incorrect_button");
                     ovenButtonsCorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("correct_button");
-                    questionList = (HashMap<String, String>) uiVariant1.userQuestions.getSerializable("questions");
+                    //questionList = (HashMap<String, String>) uiVariant6Oven.userQuestions.getSerializable("questions");
+
+
+                    Intent intent = getIntent();
+                    questionList = (HashMap<String, String>) intent.getSerializableExtra("userQuestions");
+                    Log.e("HELLLO", String.valueOf(questionList));
+                    //questionList = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
                     break;
                 case "uiVariant2":
                     Log.e("Data extracted! ", activityType + " user data collected");
@@ -152,7 +167,7 @@ public class UserSurveyActivity extends AppCompatActivity {
                     microwaveButtonsCorrect = (HashMap<String, Integer>) BaseLineActivityMicrowave.buttonHandler.getSerializable("correct_button");
                     ovenButtonsIncorrect = (HashMap<String, Integer>) BaseLineActivityOven.buttonHandler.getSerializable("incorrect_button");
                     ovenButtonsCorrect = (HashMap<String, Integer>) BaseLineActivityOven.buttonHandler.getSerializable("correct_button");
-                    questionList.put("no_input","no_input");
+                    questionList.put("no_input", "no_input");
                     break;
             }
 
@@ -274,4 +289,5 @@ public class UserSurveyActivity extends AppCompatActivity {
     private void showToast(String inputText) {
         Toast.makeText(this, inputText + " Star", Toast.LENGTH_SHORT).show();
     }
+
 }
