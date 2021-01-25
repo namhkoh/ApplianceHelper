@@ -126,17 +126,17 @@ public class uiVariant1 extends AppCompatActivity {
         });
 
         final String TAG = "Speech Debug";
-//        if (uiVariant1.userQuestions.containsKey("Is First")) {
-//            Log.e("Is First", String.valueOf(uiVariant1.userQuestions.getBoolean("Is First")));
-//            load_bundle();
-////            inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
-//            Log.d("Load Bundle", "Restored");
-//        } else {
-//            System.out.println("new hashmap!");
-//            is_first = true;
+        if (uiVariant1.userQuestions.containsKey("Is First")) {
+            Log.e("Is First", String.valueOf(uiVariant1.userQuestions.getBoolean("Is First")));
+            load_bundle();
 //            inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
-//            Log.e("inputQuestions_uiVariant1", String.valueOf(inputQuestions));
-//        }
+            Log.d("Load Bundle", "Restored");
+        } else {
+            System.out.println("new hashmap!");
+            is_first = true;
+            inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+            Log.e("inputQuestions_uiVariant1", String.valueOf(inputQuestions));
+        }
         inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), tmpHash.get(incoming_indexString));
         userQuestions.putSerializable("questions", inputQuestions);
         Log.e("NEXT ACTIVITY", tmpHash.get(incoming_indexString));
@@ -530,6 +530,7 @@ public class uiVariant1 extends AppCompatActivity {
 
     private void load_bundle() {
         is_first = uiVariant1.userQuestions.getBoolean("Is First");
-        inputQuestions = (HashMap<String, String>) uiVariant1.userQuestions.getSerializable("questions");
+        //inputQuestions = (HashMap<String, String>) uiVariant1.userQuestions.getSerializable("questions");
+        inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
     }
 }
