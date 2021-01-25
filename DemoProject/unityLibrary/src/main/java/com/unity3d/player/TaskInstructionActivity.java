@@ -1,6 +1,7 @@
 package com.unity3d.player;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
@@ -15,38 +17,57 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Objects;
 
 public class TaskInstructionActivity extends AppCompatActivity {
     public static Bundle indexBundle = new Bundle();
     public static int index = 0;
+    /**
+     * Proper data collection pipeline
+     */
+    public static Bundle userQuestions = new Bundle();
+    HashMap<String, String> tmpQuestions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_instruction);
+
+        tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        Log.e("TASK_INSTRUCTION_ONCREATE", String.valueOf(tmpQuestions));
+
         Log.e("onCreate Index", String.valueOf(index));
         Button Enter = findViewById(R.id.Enter);
         Enter.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 enterActivity();
             }
         });
         setInstructionText(index);
+
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void enterActivity() {
         String str = StartScreen.activityBundle.getString("activity");
         try {
             switch (str) {
                 case "uiVariant1":
                     Log.e("taskInstruction", String.valueOf(index));
+                    tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+                    System.out.println(Instant.now().getEpochSecond());
+                    tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering uiVariant1");
+
+                    Log.e("TASK_INSTRUCTION_ENTER_ACTIVITY", String.valueOf(tmpQuestions));
                     TaskInstructionActivity.indexBundle.putInt("index", index);
+
                     index++;
                     Intent intent1 = new Intent(getApplicationContext(), uiVariant1.class);
-                    //Intent intent1 = new Intent(getApplicationContext(), uiVariant1.class);
+                    intent1.putExtra("questions", tmpQuestions);
                     startActivity(intent1);
                     break;
                 case "uiVariant2":

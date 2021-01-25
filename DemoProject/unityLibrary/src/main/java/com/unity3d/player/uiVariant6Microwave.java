@@ -243,11 +243,12 @@ public class uiVariant6Microwave extends AppCompatActivity {
             ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
             if (incoming_index < instructionList.size() - 1) {
                 intent = new Intent(this, TaskInstructionActivity.class);
+                intent.putExtra("questions", tmpQuestions);
+                Log.e("userQuestions_microwave", String.valueOf(tmpQuestions));
                 startActivity(intent);
             } else {
                 intent = new Intent(this, UserSurveyActivity.class);
-                Log.e("userQuestions_microwave", String.valueOf(tmpQuestions));
-                intent.putExtra("userQuestions", tmpQuestions);
+                intent.putExtra("questions", tmpQuestions);
                 startActivity(intent);
             }
         });
@@ -284,7 +285,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
         variant = (int) getIntent().getSerializableExtra("variant");
 
         tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
-        Log.e("MAJOR FDEBUG", String.valueOf(tmpQuestions));
+        Log.e("tmpQuestions_uiVariant6Microwave", String.valueOf(tmpQuestions));
 
         tmpList = new ArrayList<String>();
 
@@ -316,7 +317,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
 
             //inputQuestion List
             tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
-            System.out.println(tmpQuestions);
+            Log.e("MICROWAVE_LANDED", String.valueOf(tmpQuestions));
 
             userSequenceManager = new HashMap<String, String>();
 

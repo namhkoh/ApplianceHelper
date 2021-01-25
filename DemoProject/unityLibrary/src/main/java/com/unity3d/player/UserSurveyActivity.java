@@ -125,7 +125,7 @@ public class UserSurveyActivity extends AppCompatActivity {
 
 
                     Intent intent = getIntent();
-                    questionList = (HashMap<String, String>) intent.getSerializableExtra("userQuestions");
+                    questionList = (HashMap<String, String>) intent.getSerializableExtra("questions");
                     Log.e("HELLLO", String.valueOf(questionList));
                     //questionList = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
                     break;

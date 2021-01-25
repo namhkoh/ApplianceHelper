@@ -380,6 +380,7 @@ public class uiVariant6Oven extends AppCompatActivity {
             correctButtonManager = new HashMap<String, Integer>();
             incorrectButtonManager = new HashMap<String, Integer>();
             tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+            Log.e("tmpQuestions_uiVariant6Oven", String.valueOf(tmpQuestions));
             for (String i : list) {
                 next_button.put(i, false);
                 button_active.put(i, false);
@@ -1162,10 +1163,12 @@ public class uiVariant6Oven extends AppCompatActivity {
         ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
         if (incoming_index < instructionList.size() - 1) {
             intent = new Intent(this, TaskInstructionActivity.class);
+            intent.putExtra("questions", tmpQuestions);
+            Log.e("ui6Oven", String.valueOf(tmpQuestions));
             startActivity(intent);
         } else {
             intent = new Intent(this, UserSurveyActivity.class);
-            intent.putExtra("userQuestions", tmpQuestions);
+            intent.putExtra("questions", tmpQuestions);
             startActivity(intent);
         }
     }

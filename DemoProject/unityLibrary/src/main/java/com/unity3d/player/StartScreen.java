@@ -87,6 +87,8 @@ public class StartScreen extends AppCompatActivity {
         HashMap<String, String> tmp = getData();
         StartScreen.activityBundle.putString("activity", tmp.get(id));
         Intent intent = new Intent(this, TaskInstructionActivity.class);
+        intent.putExtra("questions", testHash);
+        Log.e("TEST HASH", String.valueOf(testHash));
         startActivity(intent);
     }
 
