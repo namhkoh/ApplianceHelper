@@ -419,10 +419,11 @@ public class uiVariant1 extends AppCompatActivity {
         //tmpQuestions = (HashMap<String, String>) userQuestions.getSerializable("questions");
         tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
         Log.e("CURRENT_USERDATA", String.valueOf(tmpQuestions));
-        tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering UI panel");
+        //tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering UI panel");
         String incoming_indexString = String.valueOf(incoming_index);
         HashMap<String, String> tmpHash = getData();
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
+            tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering microwave UI panel");
             Log.e("sending_to_microwave", String.valueOf(tmpQuestions));
             intent = new Intent(this, uiVariant6Microwave.class);
             intent.putExtra("button", buttonList);
@@ -431,6 +432,7 @@ public class uiVariant1 extends AppCompatActivity {
             intent.putExtra("questions", tmpQuestions);
             startActivity(intent);
         } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")) {
+            tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering oven UI panel");
             intent = new Intent(this, uiVariant6Oven.class);
             intent.putExtra("button", buttonList);
             intent.putExtra("instructions", list);
