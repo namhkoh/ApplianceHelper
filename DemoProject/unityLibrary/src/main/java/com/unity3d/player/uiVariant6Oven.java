@@ -380,6 +380,9 @@ public class uiVariant6Oven extends AppCompatActivity {
             correctButtonManager = new HashMap<String, Integer>();
             incorrectButtonManager = new HashMap<String, Integer>();
             tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+
+            //tmpQuestions = new HashMap<String, String>();
+
             Log.e("tmpQuestions_uiVariant6Oven", String.valueOf(tmpQuestions));
             for (String i : list) {
                 next_button.put(i, false);
@@ -461,8 +464,6 @@ public class uiVariant6Oven extends AppCompatActivity {
     private void save_button_press() {
         is_first = uiVariant1.userQuestions.getBoolean("Is First");
         tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
-        correctButtonManager = (HashMap<String, Integer>) buttonHandler.getSerializable("correct_button");
-        incorrectButtonManager = (HashMap<String, Integer>) buttonHandler.getSerializable("incorrect_button");
     }
 
     private void print_bundle() {
@@ -604,7 +605,6 @@ public class uiVariant6Oven extends AppCompatActivity {
             pressed_wrong = 0;
             correct_press++;
 
-            correctButtonManager.put("Button Pressed (Active) " + msg, correct_press);
             //tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()) + " " + randomStringGenerator(3, asciiChars), " Button Pressed (Active) " + msg);
             tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Button Pressed (Active) " + msg);
             System.out.println(Instant.now().getEpochSecond());
@@ -616,7 +616,6 @@ public class uiVariant6Oven extends AppCompatActivity {
             Log.i("Button Pressed (Inactive)", msg);
             pressed_wrong++;
             incorrect_press++;
-            incorrectButtonManager.put("Button Pressed (inactive) " + msg, incorrect_press);
             //tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " " + randomStringGenerator(3, asciiChars) + " Button Pressed (Inactive) " + msg);
             tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Button Pressed (Inactive) " + msg);
             System.out.println(Instant.now().getEpochSecond());

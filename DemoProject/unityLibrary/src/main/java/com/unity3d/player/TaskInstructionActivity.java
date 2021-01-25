@@ -61,10 +61,8 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
                     System.out.println(Instant.now().getEpochSecond());
                     tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering uiVariant1");
-
                     Log.e("TASK_INSTRUCTION_ENTER_ACTIVITY", String.valueOf(tmpQuestions));
                     TaskInstructionActivity.indexBundle.putInt("index", index);
-
                     index++;
                     Intent intent1 = new Intent(getApplicationContext(), uiVariant1.class);
                     intent1.putExtra("questions", tmpQuestions);
@@ -72,9 +70,14 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     break;
                 case "uiVariant2":
                     Log.e("taskInstruction", String.valueOf(index));
+                    tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+                    System.out.println(Instant.now().getEpochSecond());
+                    tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering uiVariant2");
+                    Log.e("TASK_INSTRUCTION_ENTER_ACTIVITY", String.valueOf(tmpQuestions));
                     TaskInstructionActivity.indexBundle.putInt("index", index);
                     index++;
                     Intent intent2 = new Intent(getApplicationContext(), uiVariant2.class);
+                    intent2.putExtra("questions", tmpQuestions);
                     startActivity(intent2);
                     break;
                 case "uiVariant3":
