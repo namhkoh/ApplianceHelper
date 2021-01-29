@@ -94,12 +94,18 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     TaskInstructionActivity.indexBundle.putInt("index", index);
                     String incoming_indexString = String.valueOf(index);
                     HashMap<String, String> tmpHash = getData();
+                    tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+                    System.out.println(Instant.now().getEpochSecond());
+                    tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering uiVariant4");
+                    Log.e("TASK_INSTRUCTION_ENTER_ACTIVITY", String.valueOf(tmpQuestions));
                     index++;
                     if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
                         Intent intent4 = new Intent(getApplicationContext(), uiVariant4WithMicrowave.class);
+                        intent4.putExtra("questions", tmpQuestions);
                         startActivity(intent4);
                     } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")) {
                         Intent intent = new Intent(this, uiVariant4WithOven.class);
+                        intent.putExtra("questions", tmpQuestions);
                         startActivity(intent);
                     } else {
                         return;

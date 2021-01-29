@@ -120,8 +120,8 @@ public class UserSurveyActivity extends AppCompatActivity {
                     Log.e("Data extracted! ", activityType + " user data collected");
 //                    microwaveButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("incorrect_button");
 //                    microwaveButtonsCorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("correct_button");
-                    ovenButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("incorrect_button");
-                    ovenButtonsCorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("correct_button");
+//                    ovenButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("incorrect_button");
+//                    ovenButtonsCorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("correct_button");
                     //questionList = (HashMap<String, String>) uiVariant6Oven.userQuestions.getSerializable("questions");
 
 
@@ -136,17 +136,18 @@ public class UserSurveyActivity extends AppCompatActivity {
                     Log.e("Data extracted! ", activityType + " user data collected");
 //                    microwaveButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("incorrect_button");
 //                    microwaveButtonsCorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("correct_button");
-                    ovenButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("incorrect_button");
-                    ovenButtonsCorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("correct_button");
+//                    ovenButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("incorrect_button");
+//                    ovenButtonsCorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("correct_button");
                     questionList = (HashMap<String, String>) uiVariant3.userQuestions.getSerializable("questions");
                     break;
                 case "uiVariant4":
                     Log.e("Data extracted! ", activityType + " user data collected");
-                    microwaveButtonsIncorrect = (HashMap<String, Integer>) uiVariant4WithMicrowave.buttonHandler.getSerializable("incorrect_button");
-                    microwaveButtonsCorrect = (HashMap<String, Integer>) uiVariant4WithMicrowave.buttonHandler.getSerializable("correct_button");
-                    ovenButtonsIncorrect = (HashMap<String, Integer>) uiVariant4WithOven.buttonHandler.getSerializable("incorrect_button");
-                    ovenButtonsCorrect = (HashMap<String, Integer>) uiVariant4WithOven.buttonHandler.getSerializable("correct_button");
-                    questionList = (HashMap<String, String>) uiVariant4WithMicrowave.userQuestions.getSerializable("questions");
+//                    microwaveButtonsIncorrect = (HashMap<String, Integer>) uiVariant4WithMicrowave.buttonHandler.getSerializable("incorrect_button");
+//                    microwaveButtonsCorrect = (HashMap<String, Integer>) uiVariant4WithMicrowave.buttonHandler.getSerializable("correct_button");
+//                    questionList = (HashMap<String, String>) uiVariant4WithMicrowave.userQuestions.getSerializable("questions");
+                    intent = getIntent();
+                    questionList = (HashMap<String, String>) intent.getSerializableExtra("questions");
+                    Log.e("HELLLO", String.valueOf(questionList));
                     break;
                 case "uiVariant5":
                     Log.e("Data extracted! ", activityType + " user data collected");
@@ -166,50 +167,6 @@ public class UserSurveyActivity extends AppCompatActivity {
                     break;
             }
 
-            for (Integer correct : microwaveButtonsCorrect.values()) {
-                microwaveTotalCorrect += correct;
-                System.out.println(microwaveTotalCorrect);
-            }
-            for (Integer incorrect : microwaveButtonsIncorrect.values()) {
-                microwaveTotalIncorrect += incorrect;
-                System.out.println(microwaveTotalIncorrect);
-            }
-            String microwaveTotalCorrectStr = String.valueOf(microwaveTotalCorrect);
-            String microwaveTotalIncorrectStr = String.valueOf(microwaveTotalIncorrect);
-
-            for (Integer correct : ovenButtonsCorrect.values()) {
-                ovenTotalCorrect += correct;
-                System.out.println(ovenTotalCorrect);
-            }
-            for (Integer incorrect : ovenButtonsIncorrect.values()) {
-                ovenTotalIncorrect += incorrect;
-                System.out.println(ovenTotalIncorrect);
-            }
-
-            String ovenTotalCorrectStr = String.valueOf(ovenTotalCorrect);
-            String ovenTotalIncorrectStr = String.valueOf(ovenTotalIncorrect);
-
-            Gson gsonMicrowave = new Gson();
-            JSONObject microwaveObject = new JSONObject();
-
-            Gson gsonOven = new Gson();
-            JSONObject ovenObjbect = new JSONObject();
-
-            try {
-                microwaveObject.put("Microwave correct", microwaveButtonsCorrect);
-                microwaveObject.put("Microwave correct", microwaveButtonsIncorrect);
-                microwaveObject.put("Microwave Total Correct", microwaveTotalCorrectStr);
-                microwaveObject.put("Microwave Total Incorrect", microwaveTotalIncorrectStr);
-                ovenObjbect.put("Oven correct", ovenButtonsCorrect);
-                ovenObjbect.put("Oven correct", microwaveButtonsCorrect);
-                ovenObjbect.put("Oven Total Correct", ovenTotalCorrectStr);
-                ovenObjbect.put("Oven Total Incorrect", ovenTotalIncorrectStr);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            String microwaveValue = gsonMicrowave.toJson(microwaveObject);
-            String ovenValue = gsonOven.toJson(ovenObjbect);
 
             String moreFeedback = additionalFeedback.getText().toString();
 

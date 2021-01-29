@@ -1,5 +1,6 @@
 package com.unity3d.player;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -40,6 +42,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -120,16 +123,14 @@ public class uiVariant4WithOven extends AppCompatActivity {
     private CountDownTimer t;
     private Animation anim;
 
-    // Data collection variables
+
+
     public static Bundle userQuestions = new Bundle();
-    private HashMap<String, String> questionList = new HashMap<>();
-    public static Bundle buttonHandler = new Bundle();
-    HashMap<String, Integer> correctButtonManager;
-    HashMap<String, Integer> incorrectButtonManager;
-    int correct_press;
-    int incorrect_press;
+    private HashMap<String, String> userSequence = new HashMap<>();
+    HashMap<String, String> tmpQuestions;
+    private HashMap<String, String> inputQuestions = new HashMap<>();
 
-
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,6 +151,10 @@ public class uiVariant4WithOven extends AppCompatActivity {
         //Blinking Animation
         anim = setAnimation();
 
+        //inputQuestion List
+        tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        Log.e("ENTERING 4 OVEN", String.valueOf(tmpQuestions));
+
         //Button Hashmap for button state disable (true/false)
         initialize_button_list_for_hashmap();
 
@@ -168,10 +173,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
         } else {
             System.out.println("new hashmap!");
             is_first = true;
-            questionList = new HashMap<>();
-            // Stores the incorrect button count
-            correctButtonManager = new HashMap<String, Integer>();
-            incorrectButtonManager = new HashMap<String, Integer>();
+            inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
         }
 
     }
@@ -200,6 +202,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
         return anim;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void addButtons() {
         SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
         editText = findViewById(R.id.editText);
@@ -211,6 +214,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
         addOvenPanel3();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void addOvenPanel1() {
         bakeBtn = findViewById(R.id.oven_bake);
         bakeBtn.setOnClickListener(new View.OnClickListener() {
@@ -261,6 +265,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void addOvenPanel2() {
         settingsBtn = findViewById(R.id.oven_settings);
         settingsBtn.setOnClickListener(new View.OnClickListener() {
@@ -295,6 +300,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void addOvenPanel3() {
         this.addNumberPad();
         open = findViewById(R.id.open);
@@ -350,6 +356,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void addNumberPad() {
         o0 = findViewById(R.id.oven_0);
         o0.setOnClickListener(new View.OnClickListener() {
@@ -482,6 +489,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
 
             }
 
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResults(Bundle bundle) {
 
@@ -489,6 +497,10 @@ public class uiVariant4WithOven extends AppCompatActivity {
                 ArrayList<String> matches = bundle
                         .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                 Log.e("ALL MATCHES", matches.toString());
+                inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "User voice input: " + matches.toString());
+                userQuestions.putBoolean("Is First", is_first);
+                userQuestions.putSerializable("questions", inputQuestions);
+                Log.e("1", " value stored");
 
                 utterance = matches.get(0);
                 editText.setText(utterance);
@@ -529,7 +541,6 @@ public class uiVariant4WithOven extends AppCompatActivity {
                 HashMap<String, String> tmpHash = getData();
                 int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
                 String incoming_indexString = String.valueOf(incoming_index);
-                questionList.put(tmpHash.get(incoming_indexString), question);
 
                 System.out.println(tmpList_ui1.size());
 
@@ -549,7 +560,6 @@ public class uiVariant4WithOven extends AppCompatActivity {
                     max_index = 2;
 
                     update(tmpList_ui1.get(index), true);
-                    questionList.put(tmpHash.get(incoming_indexString), question);
 
                 } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
 
@@ -606,7 +616,6 @@ public class uiVariant4WithOven extends AppCompatActivity {
                     System.out.println("question! " + question);
                     System.out.println("utterance! " + utterance);
                     uiVariant4WithMicrowave.userQuestions.putBoolean("Is First", is_first);
-                    uiVariant4WithMicrowave.userQuestions.putSerializable("questions", questionList);
                 }
                 next.setEnabled(true);
             }
@@ -731,15 +740,25 @@ public class uiVariant4WithOven extends AppCompatActivity {
         Log.d("Debug (Next Step)", string_button);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void active_inactive_log(boolean active, String msg) {
-        if(success) {
+        if (success) {
             if (active == true) {
                 Log.i("Button Pressed (Active)", msg);
                 pressed_wrong = 0;
+                tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Button Pressed (Active) " + msg);
+                System.out.println(Instant.now().getEpochSecond());
+                System.out.println(tmpQuestions);
+                System.out.println(tmpQuestions.size());
             } else {
                 Log.i("Button Pressed (Inactive)", msg);
                 pressed_wrong++;
+                tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Button Pressed (Inactive) " + msg);
+                System.out.println(Instant.now().getEpochSecond());
+                System.out.println(tmpQuestions);
+                System.out.println(tmpQuestions.size());
             }
+            userQuestions.putSerializable("questions", tmpQuestions);
             if (pressed_wrong > 5 & current_state < myList.size()) {
             }
         }
@@ -812,8 +831,9 @@ public class uiVariant4WithOven extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void core_button_support(String button, String lcd_text) {
-        if(success) {
+        if (success) {
             button_lowercase = button.toLowerCase();
             if (button_active.get(button_lowercase) == true) {
                 clearClock();
@@ -856,54 +876,67 @@ public class uiVariant4WithOven extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void timer() {
         core_button_support("Timer", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void settings_clock() {
         core_button_support("settings/clock", "Settings Clock");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void keepWarm() {
         core_button_support("Keep Warm", "Keep warm");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void broil() {
         core_button_support("Broil", "Broil");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void bake() {
         core_button_support("Bake", "Bake");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void convect_modes() {
         core_button_support("Convect Modes", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void oven_clean() {
         core_button_support("Oven Clean", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void frozenBake() {
         core_button_support("Frozen Bake", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void delay_start() {
         core_button_support("Delay Start", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void rapid_predheat() {
         core_button_support("Rapid Preheat", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void on_off() {
         core_button_support("On Off", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void confirm() {
         core_button_support("Confirm", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void cookTime() {
         if (bake_pressed) {
             core_button_support("Cook Time", "Cook Time");
@@ -918,6 +951,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
         initTTS(s);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void open() {
         active_inactive_log(false, "Open");
     }
@@ -1063,8 +1097,9 @@ public class uiVariant4WithOven extends AppCompatActivity {
         startTimer(seconds * 1000 + 1100, 1000);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void startOven() {
-        if(success) {
+        if (success) {
             if (button_active.get("start") == true) {
                 active_inactive_log(true, "Start Button");
                 if (next_button.get("start") == true) {
@@ -1145,7 +1180,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
 
     private void cancelOven() {
 
-        if(success) {
+        if (success) {
 
             //Not good very limited conditions (If time try to change)
             // Bug may be fixed by putting & !current_task.equals("cook time")
@@ -1212,8 +1247,9 @@ public class uiVariant4WithOven extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press_support(String number, String word) {
-        if(success) {
+        if (success) {
             if (numberpad_active == true | button_active.get(word) == true) {
                 active_inactive_log(true, number);
                 if (button_active.get(word) == true) {
@@ -1280,55 +1316,68 @@ public class uiVariant4WithOven extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press0() {
         press_support("0", "zero");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press1() {
         press_support("1", "one");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press2() {
         press_support("2", "two");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press3() {
         press_support("3", "three");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press4() {
         press_support("4", "four");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press5() {
         press_support("5", "five");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press6() {
         press_support("6", "six");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press7() {
         press_support("7", "seven");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press8() {
         press_support("8", "eight");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press9() {
         press_support("9", "nine");
     }
 
     private void nextActivity() {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        HashMap<String, String> tmpQuestions = (HashMap<String, String>) userQuestions.getSerializable("questions");
         HashMap<String, String> tmpHash = getData();
         ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
         if (incoming_index < instructionList.size() - 1) {
             Intent intent = new Intent(this, TaskInstructionActivity.class);
+            intent.putExtra("questions", tmpQuestions);
             startActivity(intent);
         } else {
             Intent intent = new Intent(this, UserSurveyActivity.class);
+            intent.putExtra("questions", tmpQuestions);
             startActivity(intent);
         }
     }
@@ -1366,11 +1415,18 @@ public class uiVariant4WithOven extends AppCompatActivity {
         }
     }
 
+    //    private void load_bundle() {
+//        is_first = uiVariant4WithOven.userQuestions.getBoolean("Is First");
+//        questionList = (HashMap<String, String>) uiVariant4WithOven.userQuestions.getSerializable("questions");
+//        correctButtonManager = (HashMap<String, Integer>) uiVariant4WithOven.buttonHandler.getSerializable("correct_button");
+//        incorrectButtonManager = (HashMap<String, Integer>) uiVariant4WithOven.buttonHandler.getSerializable("incorrect_button");
+//    }
     private void load_bundle() {
         is_first = uiVariant4WithOven.userQuestions.getBoolean("Is First");
-        questionList = (HashMap<String, String>) uiVariant4WithOven.userQuestions.getSerializable("questions");
-        correctButtonManager = (HashMap<String, Integer>) uiVariant4WithOven.buttonHandler.getSerializable("correct_button");
-        incorrectButtonManager = (HashMap<String, Integer>) uiVariant4WithOven.buttonHandler.getSerializable("incorrect_button");
+        //tmpQuestions = (HashMap<String, String>) uiVariant4WithMicrowave.userQuestions.getSerializable("questions");
+        inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+//        correctButtonManager = (HashMap<String, Integer>) uiVariant4WithMicrowave.buttonHandler.getSerializable("correct_button");
+//        incorrectButtonManager = (HashMap<String, Integer>) uiVariant4WithMicrowave.buttonHandler.getSerializable("incorrect_button");
     }
 
 
