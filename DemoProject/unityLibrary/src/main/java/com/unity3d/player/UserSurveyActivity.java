@@ -62,6 +62,7 @@ public class UserSurveyActivity extends AppCompatActivity {
     int microwaveTotalIncorrect = 0;
     int ovenTotalCorrect = 0;
     int ovenTotalIncorrect = 0;
+    Intent intent;
 
     public static Bundle userQuestions = new Bundle();
     Boolean is_first;
@@ -116,28 +117,19 @@ public class UserSurveyActivity extends AppCompatActivity {
             String activityType = StartScreen.activityBundle.getString("activity");
             switch (activityType) {
                 case "uiVariant1":
+                    Log.e("Data extracted! ", activityType + " user data collected");
+                    intent = getIntent();
+                    questionList = (HashMap<String, String>) intent.getSerializableExtra("questions");
+                    Log.e("uiVariant1 ", String.valueOf(questionList));
+                    break;
                 case "uiVariant2":
                     Log.e("Data extracted! ", activityType + " user data collected");
-//                    microwaveButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("incorrect_button");
-//                    microwaveButtonsCorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("correct_button");
-//                    ovenButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("incorrect_button");
-//                    ovenButtonsCorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("correct_button");
-                    //questionList = (HashMap<String, String>) uiVariant6Oven.userQuestions.getSerializable("questions");
-
-
-                    Intent intent = getIntent();
+                    intent = getIntent();
                     questionList = (HashMap<String, String>) intent.getSerializableExtra("questions");
-                    Log.e("HELLLO", String.valueOf(questionList));
-                    //questionList = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+                    Log.e("uiVariant2 ", String.valueOf(questionList));
                     break;
-//                    microwaveButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("incorrect_button");
-//                    microwaveButtonsCorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("correct_button");
                 case "uiVariant3":
                     Log.e("Data extracted! ", activityType + " user data collected");
-//                    microwaveButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("incorrect_button");
-//                    microwaveButtonsCorrect = (HashMap<String, Integer>) uiVariant6Microwave.buttonHandler.getSerializable("correct_button");
-//                    ovenButtonsIncorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("incorrect_button");
-//                    ovenButtonsCorrect = (HashMap<String, Integer>) uiVariant6Oven.buttonHandler.getSerializable("correct_button");
                     questionList = (HashMap<String, String>) uiVariant3.userQuestions.getSerializable("questions");
                     break;
                 case "uiVariant4":

@@ -104,7 +104,7 @@ public class uiVariant2 extends AppCompatActivity {
         setContentView(R.layout.activity_ui_variant2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         checkPermission();
-
+        Log.e("ON_create", "hello there");
         initialize_task();
 
         /**
@@ -124,6 +124,7 @@ public class uiVariant2 extends AppCompatActivity {
         });
 
         final String TAG = "Speech Debug";
+
         if (uiVariant2.userQuestions.containsKey("Is First")) {
             Log.e("Is First", String.valueOf(uiVariant2.userQuestions.getBoolean("Is First")));
             load_bundle();
@@ -189,7 +190,8 @@ public class uiVariant2 extends AppCompatActivity {
                 userQuestions.putBoolean("Is First", is_first);
                 userQuestions.putSerializable("questions", inputQuestions);
                 Log.e("1", " value stored");
-
+                Log.e("inputQuestions_onResults ", String.valueOf(inputQuestions));
+                load_bundle();
                 utterance = matches.get(0);
                 editText.setText(utterance);
 
@@ -383,6 +385,17 @@ public class uiVariant2 extends AppCompatActivity {
         });
         lvSteps.setAdapter(adapter);
     }
+//
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == 1) {
+//            if (resultCode == RESULT_OK) {
+//                inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+//                Log.e("inputQuestions_LOADED", String.valueOf(inputQuestions));
+//                Log.e("inputQuestions_LOADED", String.valueOf(inputQuestions));
+//            }
+//        }
+//    }
 
     /**
      * Clear everything from the lists.
@@ -422,8 +435,9 @@ public class uiVariant2 extends AppCompatActivity {
     private void enterFeedback() {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         String incoming_indexString = String.valueOf(incoming_index);
-        tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
-        Log.e("CURRENT_USER_DATA", String.valueOf(tmpQuestions));
+        //tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        tmpQuestions = (HashMap<String, String>) userQuestions.getSerializable("questions");
+        Log.e("uiVariant2_current_data", String.valueOf(tmpQuestions));
         HashMap<String, String> tmpHash = getData();
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
             tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering microwave UI panel");

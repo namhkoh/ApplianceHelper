@@ -2,6 +2,7 @@ package com.unity3d.player;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.os.Build;
@@ -33,6 +34,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.HashMap;
+
+import kotlin.text.UStringsKt;
 
 public class uiVariant6Oven extends AppCompatActivity {
 
@@ -91,6 +94,7 @@ public class uiVariant6Oven extends AppCompatActivity {
      */
     public static Bundle userQuestions = new Bundle();
     HashMap<String, String> tmpQuestions;
+    HashMap<String, String> primeQUestions;
     boolean is_first_oven = true;
 
 
@@ -404,9 +408,16 @@ public class uiVariant6Oven extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                Log.e("Event Captured: ", "back button pressed");
+                Log.e("tmpQuestions_check", String.valueOf(tmpQuestions));
+                //Intent intent = new Intent();
+                //intent.putExtra("questions", tmpQuestions);
+                //setResult(RESULT_OK, intent);
                 //Toast.makeText(getApplicationContext(),"Back button clicked",Toast.LENGTH_SHORT).show();
                 save_bundle();
                 finish();
+                //return true;
+                //startActivity(intent);
         }
         return true;
     }
