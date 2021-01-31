@@ -815,8 +815,9 @@ public class uiVariant5WithOven extends AppCompatActivity {
         alert.show();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void openListViewDialog() {
-
+        inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Button Pressed (Active) Helper Button");
 //        String[] list_view = new String[index + 1];
 //
 //        for (int i = 0; i <= index; i++) {

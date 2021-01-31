@@ -124,7 +124,6 @@ public class uiVariant4WithOven extends AppCompatActivity {
     private Animation anim;
 
 
-
     public static Bundle userQuestions = new Bundle();
     private HashMap<String, String> userSequence = new HashMap<>();
     HashMap<String, String> tmpQuestions;
@@ -790,7 +789,10 @@ public class uiVariant4WithOven extends AppCompatActivity {
         alert.show();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void openListViewDialog() {
+        inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Button Pressed (Active) Helper Button");
+        //userQuestions.putSerializable("questions", inputQuestions);
         String[] list_view = new String[index + 1];
         for (int i = 0; i <= index; i++) {
             list_view[i] = tmpList_ui1.get(i);

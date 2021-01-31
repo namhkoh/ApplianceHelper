@@ -660,7 +660,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
     }
 
     public void openDialog() {
-
+        inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Button Pressed (Active) Helper Button");
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i <= index; i++) {

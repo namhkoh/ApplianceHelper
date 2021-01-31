@@ -658,8 +658,9 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
         initTTS(s);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void openDialog() {
-
+        inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Button Pressed (Active) Helper Button");
         StringBuilder sb = new StringBuilder();
 
         for (String instruction : tmpList_ui1) {
