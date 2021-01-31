@@ -134,20 +134,15 @@ public class UserSurveyActivity extends AppCompatActivity {
                     break;
                 case "uiVariant4":
                     Log.e("Data extracted! ", activityType + " user data collected");
-//                    microwaveButtonsIncorrect = (HashMap<String, Integer>) uiVariant4WithMicrowave.buttonHandler.getSerializable("incorrect_button");
-//                    microwaveButtonsCorrect = (HashMap<String, Integer>) uiVariant4WithMicrowave.buttonHandler.getSerializable("correct_button");
-//                    questionList = (HashMap<String, String>) uiVariant4WithMicrowave.userQuestions.getSerializable("questions");
                     intent = getIntent();
                     questionList = (HashMap<String, String>) intent.getSerializableExtra("questions");
-                    Log.e("HELLLO", String.valueOf(questionList));
+                    Log.e("uiVariant4", String.valueOf(questionList));
                     break;
                 case "uiVariant5":
                     Log.e("Data extracted! ", activityType + " user data collected");
-                    microwaveButtonsIncorrect = (HashMap<String, Integer>) uiVariant5WithMicrowave.buttonHandler.getSerializable("incorrect_button");
-                    microwaveButtonsCorrect = (HashMap<String, Integer>) uiVariant5WithMicrowave.buttonHandler.getSerializable("correct_button");
-                    ovenButtonsIncorrect = (HashMap<String, Integer>) uiVariant5WithOven.buttonHandler.getSerializable("incorrect_button");
-                    ovenButtonsCorrect = (HashMap<String, Integer>) uiVariant5WithOven.buttonHandler.getSerializable("correct_button");
-                    questionList = (HashMap<String, String>) uiVariant5WithMicrowave.userQuestions.getSerializable("questions");
+                    intent = getIntent();
+                    questionList = (HashMap<String, String>) intent.getSerializableExtra("questions");
+                    Log.e("uiVariant5", String.valueOf(questionList));
                     break;
                 case "uiVariant6":
                     Log.e("Data extracted! ", activityType + " user data collected");
