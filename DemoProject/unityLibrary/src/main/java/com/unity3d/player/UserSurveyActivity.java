@@ -148,7 +148,6 @@ public class UserSurveyActivity extends AppCompatActivity {
                     Log.e("Data extracted! ", activityType + " user data collected");
                     intent = getIntent();
                     questionList = (HashMap<String, String>) intent.getSerializableExtra("questions");
-                    questionList.put("no_input", "no_input");
                     Log.e("BaseLineUI", String.valueOf(questionList));
                     break;
             }

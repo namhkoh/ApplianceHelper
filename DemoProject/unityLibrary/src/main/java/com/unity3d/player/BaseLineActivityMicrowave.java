@@ -1,5 +1,6 @@
 package com.unity3d.player;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -10,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -32,6 +34,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -114,7 +117,6 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
      */
 
     // Data collection variables
-    public static Bundle userQuestions = new Bundle();
     boolean is_first = false;
     HashMap<String, Integer> correctButtonManager;
     HashMap<String, Integer> incorrectButtonManager;
@@ -122,6 +124,11 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
     int incorrect_press = 0;
     public static Bundle buttonHandler = new Bundle();
 
+    public static Bundle userQuestions = new Bundle();
+    HashMap<String, String> tmpQuestions;
+    private HashMap<String, String> inputQuestions = new HashMap<>();
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -161,6 +168,10 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
 
         anim = setAnimation();
 
+        //inputQuestion List
+        tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        Log.e("ENTERING BASELINEUI_OVEN", String.valueOf(tmpQuestions));
+
         tmpList = new ArrayList<String>();
 
         //Initialize hashmap
@@ -190,9 +201,13 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
             System.out.println("new hashmap!");
             is_first = true;
             // Stores the incorrect button count
-            correctButtonManager = new HashMap<String, Integer>();
-            incorrectButtonManager = new HashMap<String, Integer>();
+            inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
         }
+        int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        HashMap<String, String> tmpHash = getData();
+        inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), tmpHash.get(String.valueOf(incoming_index)));
+        userQuestions.putSerializable("questions", inputQuestions);
+        Log.e("NEXT ACTIVITY", tmpHash.get(String.valueOf(incoming_index)));
 
     }
 
@@ -516,20 +531,18 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         System.out.println("im here boss");
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         HashMap<String, String> tmpHash = getData();
+        HashMap<String, String> tmpQuestions = (HashMap<String, String>) userQuestions.getSerializable("questions");
         ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
-        Log.e("incoming_index ", String.valueOf(incoming_index));
-        Log.e("instruction_list ", String.valueOf(instructionList.size()));
-        Log.e("values ", String.valueOf(tmpHash.values()));
         if (incoming_index < instructionList.size() - 1) {
             Intent intent = new Intent(this, TaskInstructionActivity.class);
             intent.putExtra("newIndex", incoming_index);
+            intent.putExtra("questions", tmpQuestions);
             startActivity(intent);
         } else {
             Intent intent = new Intent(this, UserSurveyActivity.class);
+            intent.putExtra("questions", tmpQuestions);
             startActivity(intent);
         }
-//        Intent intent = new Intent(this,DebugActivity.class);
-//        startActivity(intent);
     }
 
     private HashMap<String, String> getData() {
@@ -678,17 +691,19 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         if (active == true) {
             Log.e("Button Pressed (Active)", msg);
             pressed_wrong = 0;
-            correct_press++;
-            correctButtonManager.put("Button Pressed (Active) " + msg, correct_press);
+            tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Button Pressed (Active) " + msg);
+            System.out.println(Instant.now().getEpochSecond());
+            System.out.println(tmpQuestions);
+            System.out.println(tmpQuestions.size());
         } else {
             Log.e("Button Pressed (Inactive)", msg);
             pressed_wrong++;
-            incorrect_press++;
-            incorrectButtonManager.put("Button Pressed (inactive) " + msg, incorrect_press);
+            tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Button Pressed (Active) " + msg);
+            System.out.println(Instant.now().getEpochSecond());
+            System.out.println(tmpQuestions);
+            System.out.println(tmpQuestions.size());
         }
-
-        buttonHandler.putSerializable("correct_button", correctButtonManager);
-        buttonHandler.putSerializable("incorrect_button", incorrectButtonManager);
+        userQuestions.putSerializable("questions", tmpQuestions);
         System.out.println(pressed_wrong);
 
         if (pressed_wrong >= 5 & current_state < myList.size()) {
@@ -1172,8 +1187,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
 
     private void load_bundle() {
         is_first = BaseLineActivityMicrowave.userQuestions.getBoolean("Is First");
-        correctButtonManager = (HashMap<String, Integer>) BaseLineActivityMicrowave.buttonHandler.getSerializable("correct_button");
-        incorrectButtonManager = (HashMap<String, Integer>) BaseLineActivityMicrowave.buttonHandler.getSerializable("incorrect_button");
+        inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
     }
 
 }

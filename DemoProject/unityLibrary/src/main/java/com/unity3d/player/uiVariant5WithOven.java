@@ -121,12 +121,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
     private CountDownTimer t;
     private Animation anim;
 
-    // Data collection variables
-    // Bundle that stores the user questions
-//    public static Bundle userQuestions = new Bundle();
-//    // HashMap where the key is the task and the value is the user input question
-//    private HashMap<String, String> questionList = new HashMap<>();
-//    // Bundle that stores the incorrect and correct button values for the task
+
     public static Bundle buttonHandler = new Bundle();
     // HashMap that stores the correct button values count
     HashMap<String, Integer> correctButtonManager;
