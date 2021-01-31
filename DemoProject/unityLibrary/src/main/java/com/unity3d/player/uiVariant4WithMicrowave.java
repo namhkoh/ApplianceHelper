@@ -85,7 +85,6 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
     Button next;
     private boolean success = false;
     public static Bundle buttonHandler = new Bundle();
-
     /**
      * UI 6 buttons start
      */
@@ -240,9 +239,11 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
             correctButtonManager = new HashMap<String, Integer>();
             incorrectButtonManager = new HashMap<String, Integer>();
         }
-//        inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), tmpHash.get(incoming_indexString));
-//        userQuestions.putSerializable("questions", inputQuestions);
-//        Log.e("NEXT ACTIVITY", tmpHash.get(incoming_indexString));
+        int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        HashMap<String, String> tmpHash = getData();
+        inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), tmpHash.get(String.valueOf(incoming_index)));
+        userQuestions.putSerializable("questions", inputQuestions);
+        Log.e("NEXT ACTIVITY", tmpHash.get(String.valueOf(incoming_index)));
 
     }
 

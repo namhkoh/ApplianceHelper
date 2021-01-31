@@ -120,8 +120,6 @@ public class BaseLineActivityOven extends AppCompatActivity {
     private Animation anim;
 
     // Data collection variables
-    // Bundle that stores the user questions
-    public static Bundle userQuestions = new Bundle();
     // Bundle that stores the incorrect and correct button values for the task
     public static Bundle buttonHandler = new Bundle();
     // HashMap that stores the correct button values count
@@ -132,6 +130,10 @@ public class BaseLineActivityOven extends AppCompatActivity {
     int correct_press = 0;
     // Button press incorrect count
     int incorrect_press = 0;
+
+    public static Bundle userQuestions = new Bundle();
+    HashMap<String, String> tmpQuestions;
+    private HashMap<String, String> inputQuestions = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +155,10 @@ public class BaseLineActivityOven extends AppCompatActivity {
         //Blinking Animation
         anim = setAnimation();
 
+        //inputQuestion List
+        tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        Log.e("ENTERING BASELINEUI_OVEN", String.valueOf(tmpQuestions));
+
         //Button Hashmap for button state disable (true/false)
         initialize_button_list_for_hashmap();
 
@@ -167,9 +173,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
         } else {
             System.out.println("new hashmap!");
             is_first = true;
-            // Stores the incorrect button count
-            correctButtonManager = new HashMap<String, Integer>();
-            incorrectButtonManager = new HashMap<String, Integer>();
+            inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
         }
 
     }
@@ -447,7 +451,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         String incoming_indexString = String.valueOf(incoming_index);
         String question = commandList.get(incoming_indexString);
-        Log.e("QUESTION_OVEN",question);
+        Log.e("QUESTION_OVEN", question);
 
         ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
 
@@ -614,15 +618,15 @@ public class BaseLineActivityOven extends AppCompatActivity {
             Log.i("Button Pressed (Active)", msg);
             pressed_wrong = 0;
             correct_press++;
-            correctButtonManager.put("Button Pressed (Active) " + msg,correct_press);
+            correctButtonManager.put("Button Pressed (Active) " + msg, correct_press);
         } else {
             Log.i("Button Pressed (Inactive)", msg);
             pressed_wrong++;
             incorrect_press++;
-            incorrectButtonManager.put("Button Pressed (inactive) " + msg,incorrect_press);
+            incorrectButtonManager.put("Button Pressed (inactive) " + msg, incorrect_press);
         }
-        buttonHandler.putSerializable("correct_button",correctButtonManager);
-        buttonHandler.putSerializable("incorrect_button",incorrectButtonManager);
+        buttonHandler.putSerializable("correct_button", correctButtonManager);
+        buttonHandler.putSerializable("incorrect_button", incorrectButtonManager);
         if (pressed_wrong > 5 & current_state < myList.size()) {
         }
     }
@@ -1215,12 +1219,12 @@ public class BaseLineActivityOven extends AppCompatActivity {
         HashMap<String, String> tmpHash = getData();
         ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
         if (incoming_index < instructionList.size() - 1) {
-            Log.e("ENTERED","TASK");
+            Log.e("ENTERED", "TASK");
             //Intent intent = new Intent(this, TaskInstructionActivity.class);
             Intent intent = new Intent(this, TaskInstructionActivity.class);
             startActivity(intent);
         } else {
-            Log.e("ENTERED","SURVEY");
+            Log.e("ENTERED", "SURVEY");
             Intent intent = new Intent(this, UserSurveyActivity.class);
             startActivity(intent);
         }
@@ -1261,8 +1265,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
      */
     private void load_bundle() {
         is_first = uiVariant5WithOven.userQuestions.getBoolean("Is First");
-        correctButtonManager = (HashMap<String, Integer>) BaseLineActivityMicrowave.buttonHandler.getSerializable("correct_button");
-        incorrectButtonManager = (HashMap<String, Integer>) BaseLineActivityMicrowave.buttonHandler.getSerializable("incorrect_button");
+        inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
     }
 
     /**

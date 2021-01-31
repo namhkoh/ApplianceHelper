@@ -118,7 +118,7 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     HashMap<String, String> tmpHash5 = getData();
                     tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
                     System.out.println(Instant.now().getEpochSecond());
-                    tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering uiVariant4");
+                    tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering uiVariant5");
                     Log.e("TASK_INSTRUCTION_ENTER_ACTIVITY", String.valueOf(tmpQuestions));
                     index++;
                     if (Objects.requireNonNull(tmpHash5.get(incoming_indexString5)).toLowerCase().contains("microwave")) {
@@ -138,12 +138,18 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     TaskInstructionActivity.indexBundle.putInt("index", index);
                     String incoming_indexString6 = String.valueOf(index);
                     HashMap<String, String> tmpHash6 = getData();
+                    tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+                    System.out.println(Instant.now().getEpochSecond());
+                    tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering BaseLineUI");
+                    Log.e("TASK_INSTRUCTION_ENTER_ACTIVITY", String.valueOf(tmpQuestions));
                     index++;
                     if (Objects.requireNonNull(tmpHash6.get(incoming_indexString6)).toLowerCase().contains("microwave")) {
                         Intent baseLineIntent1 = new Intent(getApplicationContext(), BaseLineActivityMicrowave.class);
+                        baseLineIntent1.putExtra("questions", tmpQuestions);
                         startActivity(baseLineIntent1);
                     } else if (Objects.requireNonNull(tmpHash6.get(incoming_indexString6)).toLowerCase().contains("oven")) {
                         Intent baseLineIntent2 = new Intent(this, BaseLineActivityOven.class);
+                        baseLineIntent2.putExtra("questions", tmpQuestions);
                         startActivity(baseLineIntent2);
                     } else {
                         return;

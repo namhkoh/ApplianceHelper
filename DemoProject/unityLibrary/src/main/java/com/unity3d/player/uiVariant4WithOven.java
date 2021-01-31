@@ -174,6 +174,11 @@ public class uiVariant4WithOven extends AppCompatActivity {
             is_first = true;
             inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
         }
+        int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        HashMap<String, String> tmpHash = getData();
+        inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), tmpHash.get(String.valueOf(incoming_index)));
+        userQuestions.putSerializable("questions", inputQuestions);
+        Log.e("NEXT ACTIVITY", tmpHash.get(String.valueOf(incoming_index)));
 
     }
 
@@ -496,6 +501,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
                 ArrayList<String> matches = bundle
                         .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                 Log.e("ALL MATCHES", matches.toString());
+
                 inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "User voice input: " + matches.toString());
                 userQuestions.putBoolean("Is First", is_first);
                 userQuestions.putSerializable("questions", inputQuestions);

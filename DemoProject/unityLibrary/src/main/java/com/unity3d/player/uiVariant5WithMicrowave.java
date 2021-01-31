@@ -77,7 +77,6 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
     HashMap<String, String> intentList;
     Button next;
     private boolean success = false;
-
     /**
      * UI 6 buttons start
      */
@@ -233,6 +232,11 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
             correctButtonManager = new HashMap<String, Integer>();
             incorrectButtonManager = new HashMap<String, Integer>();
         }
+        int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+        HashMap<String, String> tmpHash = getData();
+        inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), tmpHash.get(String.valueOf(incoming_index)));
+        userQuestions.putSerializable("questions", inputQuestions);
+        Log.e("NEXT ACTIVITY", tmpHash.get(String.valueOf(incoming_index)));
 
     }
 
