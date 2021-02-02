@@ -40,6 +40,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
@@ -76,9 +77,12 @@ public class uiVariant3 extends AppCompatActivity {
 
     private TextToSpeech textToSpeech;
     String speakText = "";
+
     // Data collection variables
     public static Bundle userQuestions = new Bundle();
-    private HashMap<String, String> questionList = new HashMap<>();
+    private HashMap<String, String> userSequence = new HashMap<>();
+    HashMap<String, String> tmpQuestions;
+    private HashMap<String, String> inputQuestions = new HashMap<>();
     boolean is_first = false;
 
     @Override
@@ -104,15 +108,18 @@ public class uiVariant3 extends AppCompatActivity {
             task();
         });
 
-        if (uiVariant1.userQuestions.containsKey("Is First")) {
+        if (uiVariant3.userQuestions.containsKey("Is First")) {
             Log.e("Is First", String.valueOf(uiVariant3.userQuestions.getBoolean("Is First")));
             load_bundle();
             Log.d("Load Bundle", "Restored");
         } else {
             System.out.println("new hashmap!");
             is_first = true;
-            questionList = new HashMap<>();
+            inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
         }
+        inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), tmpHash.get(incoming_indexString));
+        userQuestions.putSerializable("questions", inputQuestions);
+        Log.e("NEXT ACTIVITY", tmpHash.get(incoming_indexString));
 
         /**
          * SPEECH TO TEXT START
@@ -161,6 +168,11 @@ public class uiVariant3 extends AppCompatActivity {
                 ArrayList<String> matches = bundle
                         .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                 Log.e("ALL MATCHES", matches.toString());
+                inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "User voice input: " + matches.toString());
+                userQuestions.putBoolean("Is First", is_first);
+                userQuestions.putSerializable("questions", inputQuestions);
+                Log.e("1", " value stored");
+                Log.e("inputQuestions_onResults ", String.valueOf(inputQuestions));
 
                 utterance = matches.get(0);
                 editText.setText(utterance);
@@ -195,7 +207,6 @@ public class uiVariant3 extends AppCompatActivity {
                 String question = utterance;
 
                 ResponseObject response = Utilities.returnResponse(getApplicationContext(),question);
-                questionList.put(tmpHash.get(incoming_indexString), question);
 
                 current_appliance = response.getAppliance_name();
 
@@ -217,7 +228,6 @@ public class uiVariant3 extends AppCompatActivity {
                         System.out.println("Actual Intent: " + intentList.get(incoming_indexString));
                         System.out.println("Task Name: " + tmpHash.get(incoming_indexString));
                         System.out.println("----------------------------------------------------------");
-                        questionList.put(tmpHash.get(incoming_indexString), question);
                     }
                 }
 
@@ -314,7 +324,6 @@ public class uiVariant3 extends AppCompatActivity {
                     System.out.println("question! " + question);
                     System.out.println("utterance! " + utterance);
                     uiVariant3.userQuestions.putBoolean("Is First", is_first);
-                    uiVariant3.userQuestions.putSerializable("questions", questionList);
                 }
 
             }
@@ -400,23 +409,40 @@ public class uiVariant3 extends AppCompatActivity {
     private void enterFeedback() {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         String incoming_indexString = String.valueOf(incoming_index);
+        tmpQuestions = (HashMap<String, String>) userQuestions.getSerializable("questions");
         HashMap<String, String> tmpHash = getData();
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
             Intent intent = new Intent(this, uiVariant6Microwave.class);
             intent.putExtra("button", buttonList);
             intent.putExtra("instructions", list);
             intent.putExtra("variant",3);
-            startActivity(intent);
+            intent.putExtra("questions", tmpQuestions);
+            startActivityForResult(intent,1);
         } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")){
             Intent intent = new Intent(this, uiVariant6Oven.class);
             intent.putExtra("button", buttonList);
             intent.putExtra("instructions", list);
             intent.putExtra("variant",3);
-            startActivity(intent);
+            intent.putExtra("questions", tmpQuestions);
+            startActivityForResult(intent,1);
         } else {
             return;
         }
-        //Log.e("entering feedback", "enter");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                inputQuestions = (HashMap<String, String>) data.getSerializableExtra("questions");
+                userQuestions.putSerializable("questions", tmpQuestions);
+                Log.e("received", String.valueOf(inputQuestions));
+            }
+            if (resultCode == RESULT_CANCELED) {
+                Log.e("ERROR", "issue!");
+            }
+        }
     }
 
     /**
@@ -643,7 +669,8 @@ public class uiVariant3 extends AppCompatActivity {
     }
 
     private void load_bundle() {
-        is_first = uiVariant3.userQuestions.getBoolean("Is First");
-        questionList = (HashMap<String, String>) uiVariant3.userQuestions.getSerializable("questions");
+        is_first = uiVariant2.userQuestions.getBoolean("Is First");
+        inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        Log.e("inputQuestions_LOADED", String.valueOf(inputQuestions));
     }
 }
