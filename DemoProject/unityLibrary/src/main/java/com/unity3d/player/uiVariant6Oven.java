@@ -108,6 +108,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         TextView lcd = findViewById(R.id.oven_panel_text);
         lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
 
+
         /**
          * Oven panel 1
          */
@@ -387,7 +388,7 @@ public class uiVariant6Oven extends AppCompatActivity {
 
             //tmpQuestions = new HashMap<String, String>();
 
-            Log.e("tmpQuestions_uiVariant6Oven", String.valueOf(tmpQuestions));
+            Log.e("tmpQuestions_uiVarxiant6Oven", String.valueOf(tmpQuestions));
             for (String i : list) {
                 next_button.put(i, false);
                 button_active.put(i, false);
@@ -408,16 +409,14 @@ public class uiVariant6Oven extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Log.e("Event Captured: ", "back button pressed");
                 Log.e("tmpQuestions_check", String.valueOf(tmpQuestions));
-                //Intent intent = new Intent();
-                //intent.putExtra("questions", tmpQuestions);
-                //setResult(RESULT_OK, intent);
-                //Toast.makeText(getApplicationContext(),"Back button clicked",Toast.LENGTH_SHORT).show();
+                tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Returned to uiVariant2");
                 save_bundle();
+                save_button_press();
+                Intent intent = getIntent();
+                intent.putExtra("questions", tmpQuestions);
+                setResult(RESULT_OK, intent);
                 finish();
-                //return true;
-                //startActivity(intent);
         }
         return true;
     }

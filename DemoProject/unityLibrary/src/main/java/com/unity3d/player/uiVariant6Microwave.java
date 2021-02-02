@@ -348,8 +348,13 @@ public class uiVariant6Microwave extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                //Toast.makeText(getApplicationContext(), "Back button clicked", Toast.LENGTH_SHORT).show();
+                Log.e("tmpQuestions_check", String.valueOf(tmpQuestions));
+                tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Returned to uiVariant2");
                 save_bundle();
+                save_button_press();
+                Intent intent = getIntent();
+                intent.putExtra("questions", tmpQuestions);
+                setResult(RESULT_OK, intent);
                 finish();
         }
         return true;
