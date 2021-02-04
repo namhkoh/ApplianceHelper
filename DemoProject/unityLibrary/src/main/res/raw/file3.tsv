@@ -1,2 +1,6 @@
 0	Try to cook the fries in the oven	cook	How do I cook the fries in the oven
 1	Try to set the clock on the microwave	set	How do I set the clock on the microwave
+2	Try to set the timer on the microwave	set	How do I set the timer on the microwave
+3	Try to use the reheat feature on the microwave	use	How do I use the reheat feature on the microwave
+4	Try to set the clock on the oven	set	How do I set the clock on the oven
+5	Try to turn the sound off in the oven	on_off	How do I turn off the sound in the oven
