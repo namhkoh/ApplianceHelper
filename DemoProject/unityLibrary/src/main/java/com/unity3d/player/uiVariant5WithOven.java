@@ -49,6 +49,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Random;
 import java.util.Set;
 
 public class uiVariant5WithOven extends AppCompatActivity {
@@ -120,7 +121,6 @@ public class uiVariant5WithOven extends AppCompatActivity {
 
     private CountDownTimer t;
     private Animation anim;
-
 
     public static Bundle buttonHandler = new Bundle();
     // HashMap that stores the correct button values count
@@ -763,6 +763,17 @@ public class uiVariant5WithOven extends AppCompatActivity {
         Log.d("Debug (Next Step)", string_button);
     }
 
+    private static String randomStringGenerator(int length, String seedChars) {
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        Random rand = new Random();
+        while (i < length) {
+            sb.append(seedChars.charAt(rand.nextInt(seedChars.length())));
+            i++;
+        }
+        return sb.toString();
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void active_inactive_log(boolean active, String msg) {
         if (success) {
@@ -1209,8 +1220,9 @@ public class uiVariant5WithOven extends AppCompatActivity {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void cancelOven() {
-
+        tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Button Pressed (Inactive) " + "Cancel button");
         if (success) {
 
             //Not good very limited conditions (If time try to change)

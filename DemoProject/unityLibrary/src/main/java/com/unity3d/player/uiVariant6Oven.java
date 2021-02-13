@@ -605,20 +605,13 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void active_inactive_log(boolean active, String msg) {
-        String asciiUpperCase = "ABCDEFGHIJKLMNOPQRSTUWXYZ";
-        String asciiLowerCase = asciiUpperCase.toLowerCase();
-        String digits = "0123456789";
-        String asciiChars = asciiUpperCase + asciiLowerCase + digits;
         // Generating random string for
         if (active == true) {
             Log.i("Button Pressed (Active)", msg);
             pressed_wrong = 0;
             correct_press++;
-
-            //tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()) + " " + randomStringGenerator(3, asciiChars), " Button Pressed (Active) " + msg);
             tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Button Pressed (Active) " + msg);
             System.out.println(Instant.now().getEpochSecond());
-            System.out.println(randomStringGenerator(3, asciiChars));
             System.out.println(tmpQuestions);
             System.out.println(tmpQuestions.size());
             hint.setEnabled(false);
@@ -626,10 +619,8 @@ public class uiVariant6Oven extends AppCompatActivity {
             Log.i("Button Pressed (Inactive)", msg);
             pressed_wrong++;
             incorrect_press++;
-            //tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " " + randomStringGenerator(3, asciiChars) + " Button Pressed (Inactive) " + msg);
             tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Button Pressed (Inactive) " + msg);
             System.out.println(Instant.now().getEpochSecond());
-            System.out.println(randomStringGenerator(3, asciiChars));
             System.out.println(tmpQuestions);
             System.out.println(tmpQuestions.size());
         }
@@ -978,9 +969,10 @@ public class uiVariant6Oven extends AppCompatActivity {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void cancelOven() {
 
-
+        tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Button Pressed (Inactive) " + "Cancel button");
         //Not good very limited conditions (If time try to change)
         // Bug may be fixed by putting & !current_task.equals("cook time")
         if (current_state + 1 == myList.size() & string_button.equals("cancel")) {

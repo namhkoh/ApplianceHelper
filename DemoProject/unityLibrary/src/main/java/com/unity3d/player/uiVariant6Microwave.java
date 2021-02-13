@@ -593,31 +593,21 @@ public class uiVariant6Microwave extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void active_inactive_log(boolean active, String msg) {
-        String asciiUpperCase = "ABCDEFGHIJKLMNOPQRSTUWXYZ";
-        String asciiLowerCase = asciiUpperCase.toLowerCase();
-        String digits = "0123456789";
-        String asciiChars = asciiUpperCase + asciiLowerCase + digits;
         if (active == true) {
             Log.e("Button Pressed (Active)", msg);
             pressed_wrong = 0;
             tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Button Pressed (Active) " + msg);
             System.out.println(Instant.now().getEpochSecond());
-            System.out.println(randomStringGenerator(3, asciiChars));
             System.out.println(tmpQuestions);
             System.out.println(tmpQuestions.size());
-//            correct_press++;
-//            correctButtonManager.put("Button Pressed (Active) " + msg, correct_press);
             hint.setEnabled(false);
         } else {
             Log.e("Button Pressed (Inactive)", msg);
             pressed_wrong++;
             tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Button Pressed (Inactive) " + msg);
             System.out.println(Instant.now().getEpochSecond());
-            System.out.println(randomStringGenerator(3, asciiChars));
             System.out.println(tmpQuestions);
             System.out.println(tmpQuestions.size());
-//            incorrect_press++;
-//            incorrectButtonManager.put("Button Pressed (inactive) " + msg, incorrect_press);
         }
         userQuestions.putSerializable("questions", tmpQuestions);
 //        buttonHandler.putSerializable("correct_button", correctButtonManager);
