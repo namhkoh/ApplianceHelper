@@ -129,9 +129,6 @@ public class uiVariant4WithOven extends AppCompatActivity {
 
 
     public static Bundle userQuestions = new Bundle();
-    private HashMap<String, String> userSequence = new HashMap<>();
-    //    HashMap<String, String> tmpQuestions;
-//    private HashMap<String, String> inputQuestions = new HashMap<>();
     Multimap<String, String> tmpQuestions = ArrayListMultimap.create();
     private Multimap<String, String> inputQuestions = ArrayListMultimap.create();
 

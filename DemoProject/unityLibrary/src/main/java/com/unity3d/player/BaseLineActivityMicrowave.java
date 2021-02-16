@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
@@ -27,12 +28,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aic.libnilu.nlu.ResponseObject;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -125,8 +129,8 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
     public static Bundle buttonHandler = new Bundle();
 
     public static Bundle userQuestions = new Bundle();
-    HashMap<String, String> tmpQuestions;
-    private HashMap<String, String> inputQuestions = new HashMap<>();
+    Multimap<String, String> tmpQuestions = ArrayListMultimap.create();
+    private Multimap<String, String> inputQuestions = ArrayListMultimap.create();
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -169,7 +173,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         anim = setAnimation();
 
         //inputQuestion List
-        tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        tmpQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
         Log.e("ENTERING BASELINEUI_OVEN", String.valueOf(tmpQuestions));
 
         tmpList = new ArrayList<String>();
@@ -201,12 +205,12 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
             System.out.println("new hashmap!");
             is_first = true;
             // Stores the incorrect button count
-            inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+            inputQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
         }
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         HashMap<String, String> tmpHash = getData();
         inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), tmpHash.get(String.valueOf(incoming_index)));
-        userQuestions.putSerializable("questions", inputQuestions);
+        userQuestions.putSerializable("questions", (Serializable) inputQuestions);
         Log.e("NEXT ACTIVITY", tmpHash.get(String.valueOf(incoming_index)));
 
     }
@@ -322,7 +326,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         }
     }
 
-
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void addButtons() {
         clock = findViewById(R.id.microwave_clock);
         clock.setOnClickListener(v -> {
@@ -403,6 +407,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void addNumberPad() {
         m0 = findViewById(R.id.microwave_0);
         m0.setOnClickListener(v -> {
@@ -531,16 +536,16 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         System.out.println("im here boss");
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         HashMap<String, String> tmpHash = getData();
-        HashMap<String, String> tmpQuestions = (HashMap<String, String>) userQuestions.getSerializable("questions");
+        Multimap<String, String> tmpQuestions = (Multimap<String, String>) userQuestions.getSerializable("questions");
         ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
         if (incoming_index < instructionList.size() - 1) {
             Intent intent = new Intent(this, TaskInstructionActivity.class);
             intent.putExtra("newIndex", incoming_index);
-            intent.putExtra("questions", tmpQuestions);
+            intent.putExtra("questions", (Serializable) tmpQuestions);
             startActivity(intent);
         } else {
             Intent intent = new Intent(this, UserSurveyActivity.class);
-            intent.putExtra("questions", tmpQuestions);
+            intent.putExtra("questions", (Serializable) tmpQuestions);
             startActivity(intent);
         }
     }
@@ -619,28 +624,34 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
     /**
      * Button methods and logic
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void potato() {
         core_button_support("Potato", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void cook() {
         core_button_support("Cook", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void cooktime() {
         core_button_support("Cook Time", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void cookpower() {
         core_button_support("Cook Power", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void add30() {
         core_button_support("add30", null);
     }
 
 
     //Simulates Opening the microwave.
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void open_microwave() {
         if (active_button.get("open")) {
             active_inactive_log(true, "Open");
@@ -687,6 +698,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void active_inactive_log(boolean active, String msg) {
         if (active == true) {
             Log.e("Button Pressed (Active)", msg);
@@ -703,13 +715,14 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
             System.out.println(tmpQuestions);
             System.out.println(tmpQuestions.size());
         }
-        userQuestions.putSerializable("questions", tmpQuestions);
+        userQuestions.putSerializable("questions", (Serializable) tmpQuestions);
         System.out.println(pressed_wrong);
 
         if (pressed_wrong >= 5 & current_state < myList.size()) {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press_helper(String number) {
         if (active_button.get("number pad")) {
             press(number);
@@ -719,42 +732,52 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press0() {
         press_helper("0");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press1() {
         press_helper("1");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press2() {
         press_helper("2");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press3() {
         press_helper("3");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press4() {
         press_helper("4");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press5() {
         press_helper("5");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press6() {
         press_helper("6");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press7() {
         press_helper("7");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press8() {
         press_helper("8");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void press9() {
         press_helper("9");
     }
@@ -807,6 +830,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         next.setEnabled(true);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void core_button_support(String button, String lcd_text) {
         button_lowercase = button.toLowerCase();
         if (active_button.get(button_lowercase) == true) {
@@ -845,30 +869,37 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void microwaveClock() {
         core_button_support("Clock", "  :  ");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void timer() {
         core_button_support("Timer", "  :  ");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void pizza() {
         core_button_support("Pizza", "0.0 QTY");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void popcorn() {
         core_button_support("Popcorn", "0.0 oz");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void defrost() {
         core_button_support("Defrost", "  :  ");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void microwaveSoften() {
         core_button_support("soften", null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void reheat() {
         if (active_button.get("reheat")) {
             reheatScreen();
@@ -1187,7 +1218,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
 
     private void load_bundle() {
         is_first = BaseLineActivityMicrowave.userQuestions.getBoolean("Is First");
-        inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        inputQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
     }
 
 }

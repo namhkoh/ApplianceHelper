@@ -34,12 +34,15 @@ import android.widget.Toast;
 
 import com.aic.libnilu.nlu.ResponseObject;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -123,20 +126,14 @@ public class BaseLineActivityOven extends AppCompatActivity {
     private Animation anim;
 
     // Data collection variables
-    // Bundle that stores the incorrect and correct button values for the task
-    public static Bundle buttonHandler = new Bundle();
-    // HashMap that stores the correct button values count
-    HashMap<String, Integer> correctButtonManager;
-    // HashMap that stores the incorrect button values
-    HashMap<String, Integer> incorrectButtonManager;
     // Button press correct count
     int correct_press = 0;
     // Button press incorrect count
     int incorrect_press = 0;
 
     public static Bundle userQuestions = new Bundle();
-    HashMap<String, String> tmpQuestions;
-    private HashMap<String, String> inputQuestions = new HashMap<>();
+    Multimap<String, String> tmpQuestions = ArrayListMultimap.create();
+    private Multimap<String, String> inputQuestions = ArrayListMultimap.create();
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -160,7 +157,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
         anim = setAnimation();
 
         //inputQuestion List
-        tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        tmpQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
         Log.e("ENTERING BASELINEUI_OVEN", String.valueOf(tmpQuestions));
 
         //Button Hashmap for button state disable (true/false)
@@ -177,12 +174,12 @@ public class BaseLineActivityOven extends AppCompatActivity {
         } else {
             System.out.println("new hashmap!");
             is_first = true;
-            inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+            inputQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
         }
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         HashMap<String, String> tmpHash = getData();
         inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), tmpHash.get(String.valueOf(incoming_index)));
-        userQuestions.putSerializable("questions", inputQuestions);
+        userQuestions.putSerializable("questions", (Serializable) inputQuestions);
         Log.e("NEXT ACTIVITY", tmpHash.get(String.valueOf(incoming_index)));
 
     }
@@ -646,7 +643,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
             System.out.println(tmpQuestions);
             System.out.println(tmpQuestions.size());
         }
-        userQuestions.putSerializable("questions", tmpQuestions);
+        userQuestions.putSerializable("questions", (Serializable) tmpQuestions);
         if (pressed_wrong > 5 & current_state < myList.size()) {
         }
     }
@@ -1263,18 +1260,18 @@ public class BaseLineActivityOven extends AppCompatActivity {
 
     private void nextActivity() {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
-        HashMap<String, String> tmpQuestions = (HashMap<String, String>) userQuestions.getSerializable("questions");
+        Multimap<String, String> tmpQuestions = (Multimap<String, String>) userQuestions.getSerializable("questions");
         HashMap<String, String> tmpHash = getData();
         ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
         if (incoming_index < instructionList.size() - 1) {
             Log.e("ENTERED", "TASK");
             Intent intent = new Intent(this, TaskInstructionActivity.class);
-            intent.putExtra("questions", tmpQuestions);
+            intent.putExtra("questions", (Serializable) tmpQuestions);
             startActivity(intent);
         } else {
             Log.e("ENTERED", "SURVEY");
             Intent intent = new Intent(this, UserSurveyActivity.class);
-            intent.putExtra("questions", tmpQuestions);
+            intent.putExtra("questions", (Serializable) tmpQuestions);
             startActivity(intent);
         }
     }
@@ -1314,7 +1311,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
      */
     private void load_bundle() {
         is_first = BaseLineActivityOven.userQuestions.getBoolean("Is First");
-        inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        inputQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
     }
 
     /**
