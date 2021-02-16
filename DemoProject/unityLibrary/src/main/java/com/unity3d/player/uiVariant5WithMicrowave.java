@@ -34,12 +34,15 @@ import android.widget.Toast;
 
 import com.aic.libnilu.nlu.ResponseObject;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -132,8 +135,8 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
     // Data collection variables - true
     public static Bundle userQuestions = new Bundle();
     private HashMap<String, String> userSequence = new HashMap<>();
-    HashMap<String, String> tmpQuestions;
-    private HashMap<String, String> inputQuestions = new HashMap<>();
+    Multimap<String, String> tmpQuestions = ArrayListMultimap.create();
+    private Multimap<String, String> inputQuestions = ArrayListMultimap.create();
     boolean is_first = false;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -199,7 +202,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
         tmpList = new ArrayList<String>();
 
         //inputQuestion List
-        tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        tmpQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
         System.out.println(tmpQuestions);
 
         //Initialize hashmap
@@ -227,7 +230,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
         } else {
             System.out.println("new hashmap!");
             is_first = true;
-            inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+            inputQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
             // Stores the incorrect button count
             correctButtonManager = new HashMap<String, Integer>();
             incorrectButtonManager = new HashMap<String, Integer>();
@@ -235,7 +238,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         HashMap<String, String> tmpHash = getData();
         inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), tmpHash.get(String.valueOf(incoming_index)));
-        userQuestions.putSerializable("questions", inputQuestions);
+        userQuestions.putSerializable("questions", (Serializable) inputQuestions);
         Log.e("NEXT ACTIVITY", tmpHash.get(String.valueOf(incoming_index)));
 
     }
@@ -307,7 +310,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
                 Log.e("ALL MATCHES", matches.toString());
                 inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "User voice input: " + matches.toString());
                 userQuestions.putBoolean("Is First", is_first);
-                userQuestions.putSerializable("questions", inputQuestions);
+                userQuestions.putSerializable("questions", (Serializable) inputQuestions);
                 Log.e("1", " value stored");
 
                 utterance = matches.get(0);
@@ -695,17 +698,17 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
      */
     private void nextTask() {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
-        HashMap<String, String> tmpQuestions = (HashMap<String, String>) userQuestions.getSerializable("questions");
+        Multimap<String, String> tmpQuestions = (Multimap<String, String>) userQuestions.getSerializable("questions");
         HashMap<String, String> tmpHash = getData();
         ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
         if (incoming_index < instructionList.size() - 1) {
             Intent intent = new Intent(this, TaskInstructionActivity.class);
             intent.putExtra("newIndex", incoming_index);
-            intent.putExtra("questions", tmpQuestions);
+            intent.putExtra("questions", (Serializable) tmpQuestions);
             startActivity(intent);
         } else {
             Intent intent = new Intent(this, UserSurveyActivity.class);
-            intent.putExtra("questions", tmpQuestions);
+            intent.putExtra("questions", (Serializable) tmpQuestions);
             startActivity(intent);
         }
     }
@@ -882,7 +885,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
                 System.out.println(tmpQuestions);
                 System.out.println(tmpQuestions.size());
             }
-            userQuestions.putSerializable("questions", tmpQuestions);
+            userQuestions.putSerializable("questions", (Serializable) tmpQuestions);
             System.out.println(pressed_wrong);
 
             if (pressed_wrong >= 5 & current_state < myList.size()) {
@@ -1401,7 +1404,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
 
     private void load_bundle() {
         is_first = uiVariant5WithMicrowave.userQuestions.getBoolean("Is First");
-        inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        inputQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
     }
 
 }
