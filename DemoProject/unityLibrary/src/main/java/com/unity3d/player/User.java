@@ -1,9 +1,15 @@
 package com.unity3d.player;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 
 public class User {
 
@@ -22,9 +28,10 @@ public class User {
     @SerializedName("feedback")
     private String feedback;
     @SerializedName("userSequence")
-    private HashMap<String, String> userSequence;
+    private JsonObject userSequence;
+    //private HashMultimap<String, String> userSequence;
 
-    public User(String testId, String name, String startSession, String endSession, String totalTime, String userConsent, String feedback, HashMap<String, String> userSequence) {
+    public User(String testId, String name, String startSession, String endSession, String totalTime, String userConsent, String feedback, JsonObject userSequence) {
         this.testId = testId;
         this.name = name;
         this.startSession = startSession;

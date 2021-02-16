@@ -16,11 +16,20 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.MultimapBuilder;
+import com.google.common.collect.Multimaps;
+import com.google.common.collect.Ordering;
+import com.google.common.collect.SortedSetMultimap;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.internal.$Gson$Preconditions;
 
+import org.checkerframework.common.reflection.qual.GetConstructor;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,8 +43,14 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.security.auth.login.LoginException;
 
@@ -52,16 +67,9 @@ public class UserSurveyActivity extends AppCompatActivity {
     RatingBar css;
     private EditText additionalFeedback;
     APIInterface apiInterface;
-    HashMap<String, String> questionList;
-    HashMap<String, String> questionList1 = new HashMap<>();
-    HashMap<String, Integer> microwaveButtonsCorrect = new HashMap<>();
-    HashMap<String, Integer> microwaveButtonsIncorrect = new HashMap<>();
-    HashMap<String, Integer> ovenButtonsCorrect = new HashMap<>();
-    HashMap<String, Integer> ovenButtonsIncorrect = new HashMap<>();
-    int microwaveTotalCorrect = 0;
-    int microwaveTotalIncorrect = 0;
-    int ovenTotalCorrect = 0;
-    int ovenTotalIncorrect = 0;
+    //HashMap<String, String> questionList;
+    Multimap<String, String> questionList = ArrayListMultimap.create();
+    Multimap<String, String> sorted = MultimapBuilder.treeKeys(Ordering.arbitrary()).arrayListValues().build();
     Intent intent;
 
     public static Bundle userQuestions = new Bundle();
@@ -80,10 +88,6 @@ public class UserSurveyActivity extends AppCompatActivity {
         css = findViewById(R.id.customer_satisfaction_score);
         Button submit = findViewById(R.id.submitButton);
         submit.findViewById(R.id.submitButton);
-
-//        Intent intent = getIntent();
-//        questionList = (HashMap<String, String>) intent.getSerializableExtra("userQuestions");
-//        Log.e("HELLLO", String.valueOf(questionList));
 
         submit.setOnClickListener(v -> {
             String netScore = String.valueOf(nps.getRating());
@@ -119,35 +123,40 @@ public class UserSurveyActivity extends AppCompatActivity {
                 case "uiVariant1":
                     Log.e("Data extracted! ", activityType + " user data collected");
                     intent = getIntent();
-                    questionList = (HashMap<String, String>) intent.getSerializableExtra("questions");
+                    questionList = (Multimap<String, String>) intent.getSerializableExtra("questions");
+//                    sorted = (Multimap<String, String>) intent.getSerializableExtra("questions");
                     Log.e("uiVariant1 ", String.valueOf(questionList));
+                    Log.e("uiVariant1_length ", String.valueOf(questionList.size()));
                     break;
                 case "uiVariant2":
                     Log.e("Data extracted! ", activityType + " user data collected");
                     intent = getIntent();
-                    questionList = (HashMap<String, String>) intent.getSerializableExtra("questions");
+                    questionList = (Multimap<String, String>) intent.getSerializableExtra("questions");
                     Log.e("uiVariant2 ", String.valueOf(questionList));
+                    Log.e("uiVariant2_length ", String.valueOf(questionList.size()));
                     break;
                 case "uiVariant3":
                     Log.e("Data extracted! ", activityType + " user data collected");
-                    questionList = (HashMap<String, String>) uiVariant3.userQuestions.getSerializable("questions");
+                    questionList = (Multimap<String, String>) uiVariant3.userQuestions.getSerializable("questions");
+                    Log.e("uiVariant3 ", String.valueOf(questionList));
+                    Log.e("uiVariant3_length ", String.valueOf(questionList.size()));
                     break;
                 case "uiVariant4":
                     Log.e("Data extracted! ", activityType + " user data collected");
                     intent = getIntent();
-                    questionList = (HashMap<String, String>) intent.getSerializableExtra("questions");
+                    questionList = (Multimap<String, String>) intent.getSerializableExtra("questions");
                     Log.e("uiVariant4", String.valueOf(questionList));
                     break;
                 case "uiVariant5":
                     Log.e("Data extracted! ", activityType + " user data collected");
                     intent = getIntent();
-                    questionList = (HashMap<String, String>) intent.getSerializableExtra("questions");
+                    questionList = (Multimap<String, String>) intent.getSerializableExtra("questions");
                     Log.e("uiVariant5", String.valueOf(questionList));
                     break;
                 case "uiVariant6":
                     Log.e("Data extracted! ", activityType + " user data collected");
                     intent = getIntent();
-                    questionList = (HashMap<String, String>) intent.getSerializableExtra("questions");
+                    questionList = (Multimap<String, String>) intent.getSerializableExtra("questions");
                     Log.e("BaseLineUI", String.valueOf(questionList));
                     break;
             }
@@ -157,6 +166,7 @@ public class UserSurveyActivity extends AppCompatActivity {
 
             Gson gson = new Gson();
             JSONObject feedbackObject = new JSONObject();
+            JSONObject userObject = new JSONObject();
             try {
                 feedbackObject.put("NetScore", netScore);
             } catch (JSONException e) {
@@ -172,7 +182,17 @@ public class UserSurveyActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            try {
+                userObject.put("userSequence",  questionList.asMap());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             String feedbackValue = gson.toJson(feedbackObject);
+            String userValue = gson.toJson(userObject);
+
+            JsonParser jp = new JsonParser();
+            JsonObject jo = (JsonObject)jp.parse(userObject.toString());
+
 
             User user = new User(
                     testId,
@@ -182,7 +202,7 @@ public class UserSurveyActivity extends AppCompatActivity {
                     totalTimeVal,
                     userConsent,
                     feedbackValue,
-                    questionList
+                    jo
             );
             Call<User> call1 = apiInterface.createUser(user);
             call1.enqueue(new Callback<User>() {

@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Parcelable;
 import android.provider.Settings;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
@@ -36,11 +37,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.aic.libnilu.nlu.ResponseObject;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -83,8 +87,10 @@ public class uiVariant3 extends AppCompatActivity {
     // Data collection variables
     public static Bundle userQuestions = new Bundle();
     private HashMap<String, String> userSequence = new HashMap<>();
-    HashMap<String, String> tmpQuestions;
-    private HashMap<String, String> inputQuestions = new HashMap<>();
+    //    HashMap<String, String> tmpQuestions;
+//    private HashMap<String, String> inputQuestions = new HashMap<>();
+    Multimap<String, String> tmpQuestions = ArrayListMultimap.create();
+    private Multimap<String, String> inputQuestions = ArrayListMultimap.create();
     boolean is_first = false;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -118,10 +124,10 @@ public class uiVariant3 extends AppCompatActivity {
         } else {
             System.out.println("new hashmap!");
             is_first = true;
-            inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+            inputQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
         }
         inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), tmpHash.get(incoming_indexString));
-        userQuestions.putSerializable("questions", inputQuestions);
+        userQuestions.putSerializable("questions", (Serializable) inputQuestions);
         Log.e("NEXT ACTIVITY", tmpHash.get(incoming_indexString));
 
         /**
@@ -173,7 +179,7 @@ public class uiVariant3 extends AppCompatActivity {
                 Log.e("ALL MATCHES", matches.toString());
                 inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "User voice input: " + matches.toString());
                 userQuestions.putBoolean("Is First", is_first);
-                userQuestions.putSerializable("questions", inputQuestions);
+                userQuestions.putSerializable("questions", (Serializable) inputQuestions);
                 Log.e("1", " value stored");
                 Log.e("inputQuestions_onResults ", String.valueOf(inputQuestions));
 
@@ -181,25 +187,25 @@ public class uiVariant3 extends AppCompatActivity {
                 editText.setText(utterance);
 
                 if (utterance.contains("previous")) {
-                    if(index > 0) {
+                    if (index > 0) {
                         Log.e("previous", String.valueOf(index));
                         index--;
                         update_state(tmpList.get(index));
-                    }else{
+                    } else {
                         Log.e("previous", "Beginning of the instructions");
                     }
                     return;
                 } else if (utterance.toLowerCase().contains("next")) {
-                    if(index < max_index - 1) {
+                    if (index < max_index - 1) {
                         index++;
                         Log.e("UI STEP", tmpList.get(index));
                         //System.out.println(list);
                         update_state(tmpList.get(index));
-                    }else{
-                        Log.e("next","End of the instructions");
+                    } else {
+                        Log.e("next", "End of the instructions");
                     }
                     return;
-                } else if (utterance.contains("repeat")){
+                } else if (utterance.contains("repeat")) {
                     initTTS(tmpList.get(index));
                     return;
                 }
@@ -209,7 +215,7 @@ public class uiVariant3 extends AppCompatActivity {
 
                 String question = utterance;
 
-                ResponseObject response = Utilities.returnResponse(getApplicationContext(),question);
+                ResponseObject response = Utilities.returnResponse(getApplicationContext(), question);
 
                 current_appliance = response.getAppliance_name();
 
@@ -222,7 +228,7 @@ public class uiVariant3 extends AppCompatActivity {
                 //System.out.println(intentList.get(incoming_indexString));
 
                 buttonList = new ArrayList<>();
-                if(Utilities.debug) {
+                if (Utilities.debug) {
                     if (!response.getDialog_command().equals("no_match")) {
                         System.out.println("----------------------------------------------------------");
                         System.out.println("Question: " + question);
@@ -300,7 +306,7 @@ public class uiVariant3 extends AppCompatActivity {
 
                     update_state(buttonList.get(index));
 
-                } else  {
+                } else {
                     next.setEnabled(true);
                     sucess = true;
                     if (list != null) {
@@ -372,16 +378,16 @@ public class uiVariant3 extends AppCompatActivity {
                     @Override
                     public void onDone(String utteranceId) {
 
-                        if(sucess==false & (index < max_index - 1)){
+                        if (sucess == false & (index < max_index - 1)) {
                             index++;
                             Handler h = new Handler(getMainLooper());
                             h.postDelayed(() -> {
-                            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    update_state(tmpList.get(index));
-                                }
-                            });
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        update_state(tmpList.get(index));
+                                    }
+                                });
                             }, 3000);
                         }
                     }
@@ -412,22 +418,22 @@ public class uiVariant3 extends AppCompatActivity {
     private void enterFeedback() {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         String incoming_indexString = String.valueOf(incoming_index);
-        tmpQuestions = (HashMap<String, String>) userQuestions.getSerializable("questions");
+        tmpQuestions = (Multimap<String, String>) userQuestions.getSerializable("questions");
         HashMap<String, String> tmpHash = getData();
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
             Intent intent = new Intent(this, uiVariant6Microwave.class);
             intent.putExtra("button", buttonList);
             intent.putExtra("instructions", list);
-            intent.putExtra("variant",3);
-            intent.putExtra("questions", tmpQuestions);
-            startActivityForResult(intent,1);
-        } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")){
+            intent.putExtra("variant", 3);
+            intent.putExtra("questions", (Serializable) tmpQuestions);
+            startActivityForResult(intent, 1);
+        } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")) {
             Intent intent = new Intent(this, uiVariant6Oven.class);
             intent.putExtra("button", buttonList);
             intent.putExtra("instructions", list);
-            intent.putExtra("variant",3);
-            intent.putExtra("questions", tmpQuestions);
-            startActivityForResult(intent,1);
+            intent.putExtra("variant", 3);
+            intent.putExtra("questions", (Serializable) tmpQuestions);
+            startActivityForResult(intent, 1);
         } else {
             return;
         }
@@ -438,8 +444,8 @@ public class uiVariant3 extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
-                inputQuestions = (HashMap<String, String>) data.getSerializableExtra("questions");
-                userQuestions.putSerializable("questions", tmpQuestions);
+                inputQuestions = (Multimap<String, String>) data.getSerializableExtra("questions");
+                userQuestions.putSerializable("questions", (Serializable) tmpQuestions);
                 Log.e("received", String.valueOf(inputQuestions));
             }
             if (resultCode == RESULT_CANCELED) {
@@ -450,6 +456,7 @@ public class uiVariant3 extends AppCompatActivity {
 
     /**
      * Get the data from the task file file2.tsv.
+     *
      * @return Could get rid of this since the objective is to populate resultList and intentList and not just resultList.
      */
     private HashMap<String, String> getData() {
@@ -522,7 +529,7 @@ public class uiVariant3 extends AppCompatActivity {
         System.out.println(index);
     }
 
-    void update_state(String s){
+    void update_state(String s) {
         TextView step = findViewById(R.id.stepOutput);
         list.clear();
         list.add(s);
@@ -532,7 +539,7 @@ public class uiVariant3 extends AppCompatActivity {
         initTTS(s);
     }
 
-    void initial_update(String s, String k){
+    void initial_update(String s, String k) {
         TextView step = findViewById(R.id.stepOutput);
         Log.e("UI STEP Initial", s);
         step.setText(k);
@@ -553,61 +560,62 @@ public class uiVariant3 extends AppCompatActivity {
 
     /**
      * Used to display the button images.
+     *
      * @param button The name of the button.
      */
-    private void displayPanels2(String button){
+    private void displayPanels2(String button) {
         iv1 = (ImageView) findViewById(R.id.appliance_image);
 //        System.out.println(button.toLowerCase());
 //        System.out.println(current_appliance);
 
-        if(current_appliance.toLowerCase().equals("oven")) {
-            if(button.toLowerCase().equals("speech")){
+        if (current_appliance.toLowerCase().equals("oven")) {
+            if (button.toLowerCase().equals("speech")) {
                 iv1.setImageResource(R.drawable.speech);
-            } else if(button.toLowerCase().equals("try_again")){
+            } else if (button.toLowerCase().equals("try_again")) {
                 iv1.setImageResource(R.drawable.try_again);
-            } else if(button.toLowerCase().equals("two")){
+            } else if (button.toLowerCase().equals("two")) {
                 iv1.setImageResource(R.drawable.oven_panel_button_2);
-            }else if(button.toLowerCase().equals("three")){
+            } else if (button.toLowerCase().equals("three")) {
                 iv1.setImageResource(R.drawable.oven_panel_button_3);
-            }else if(button.toLowerCase().equals("six")){
+            } else if (button.toLowerCase().equals("six")) {
                 iv1.setImageResource(R.drawable.oven_panel_button_6);
-            }else if(button.toLowerCase().equals("four")){
+            } else if (button.toLowerCase().equals("four")) {
                 iv1.setImageResource(R.drawable.oven_panel_button_4);
-            }else if(button.toLowerCase().equals("start")){
+            } else if (button.toLowerCase().equals("start")) {
                 iv1.setImageResource(R.drawable.oven_start_button);
-            }else if(button.toLowerCase().equals("cook time")){
+            } else if (button.toLowerCase().equals("cook time")) {
                 iv1.setImageResource(R.drawable.oven_panel_cook_time);
-            }else if(button.toLowerCase().equals("number pad")){
+            } else if (button.toLowerCase().equals("number pad")) {
                 iv1.setImageResource(R.drawable.oven_panel_number_pad);
-            }else if(button.toLowerCase().equals("bake")){
+            } else if (button.toLowerCase().equals("bake")) {
                 iv1.setImageResource(R.drawable.oven_panel_bake);
-            }else if(button.toLowerCase().equals("settings/clock,sound")){
+            } else if (button.toLowerCase().equals("settings/clock,sound")) {
                 iv1.setImageResource(R.drawable.oven_panel_settings_clock);
-            }else if(button.toLowerCase().equals("settings/clock,clock")){
+            } else if (button.toLowerCase().equals("settings/clock,clock")) {
                 iv1.setImageResource(R.drawable.oven_panel_settings_clock);
-            } else if(button.toLowerCase().equals("cancel")){
+            } else if (button.toLowerCase().equals("cancel")) {
                 iv1.setImageResource(R.drawable.oven_cancel_button);
-            } else if(button.toLowerCase().equals("open")){
+            } else if (button.toLowerCase().equals("open")) {
                 iv1.setImageResource(R.drawable.oven_open);
-            } else{
+            } else {
                 iv1.setImageResource(R.drawable.no_image_available);
             }
-        } else{
+        } else {
             if (button.toLowerCase().equals("clock")) {
                 iv1.setImageResource(R.drawable.microwave_clock_button);
             } else if (button.toLowerCase().equals("number pad")) {
                 iv1.setImageResource(R.drawable.microwave_number_pad);
-            } else if(button.toLowerCase().equals("timer")){
+            } else if (button.toLowerCase().equals("timer")) {
                 iv1.setImageResource(R.drawable.microwave_timer);
-            } else if(button.toLowerCase().equals("reheat")){
+            } else if (button.toLowerCase().equals("reheat")) {
                 iv1.setImageResource(R.drawable.microwave_reheat);
-            } else if(button.toLowerCase().equals("speech")){
+            } else if (button.toLowerCase().equals("speech")) {
                 iv1.setImageResource(R.drawable.speech);
-            } else if(button.toLowerCase().equals("try_again")){
+            } else if (button.toLowerCase().equals("try_again")) {
                 iv1.setImageResource(R.drawable.try_again);
-            } else if(button.toLowerCase().equals("start")){
+            } else if (button.toLowerCase().equals("start")) {
                 iv1.setImageResource(R.drawable.microwave_start_button);
-            }else{
+            } else {
                 iv1.setImageResource(R.drawable.no_image_available);
             }
         }
@@ -673,7 +681,7 @@ public class uiVariant3 extends AppCompatActivity {
 
     private void load_bundle() {
         is_first = uiVariant2.userQuestions.getBoolean("Is First");
-        inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        inputQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
         Log.e("inputQuestions_LOADED", String.valueOf(inputQuestions));
     }
 }

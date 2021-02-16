@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.provider.Settings;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
@@ -36,6 +37,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aic.libnilu.nlu.ResponseObject;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 //import com.company.MainManager;
 //import com.company.ResponseObject;
 
@@ -43,6 +46,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -93,8 +97,10 @@ public class uiVariant2 extends AppCompatActivity {
     // Data collection variables
     public static Bundle userQuestions = new Bundle();
     private HashMap<String, String> userSequence = new HashMap<>();
-    HashMap<String, String> tmpQuestions;
-    private HashMap<String, String> inputQuestions = new HashMap<>();
+    //    HashMap<String, String> tmpQuestions;
+//    private HashMap<String, String> inputQuestions = new HashMap<>();
+    Multimap<String, String> tmpQuestions = ArrayListMultimap.create();
+    private Multimap<String, String> inputQuestions = ArrayListMultimap.create();
     boolean is_first = false;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -132,11 +138,11 @@ public class uiVariant2 extends AppCompatActivity {
         } else {
             System.out.println("new hashmap!");
             is_first = true;
-            inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+            inputQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
             Log.e("inputQuestions_uiVariant2", String.valueOf(inputQuestions));
         }
         inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), tmpHash.get(incoming_indexString));
-        userQuestions.putSerializable("questions", inputQuestions);
+        userQuestions.putSerializable("questions", (Serializable) inputQuestions);
         Log.e("NEXT ACTIVITY", tmpHash.get(incoming_indexString));
 
         /**
@@ -188,7 +194,7 @@ public class uiVariant2 extends AppCompatActivity {
                 Log.e("ALL MATCHES", matches.toString());
                 inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "User voice input: " + matches.toString());
                 userQuestions.putBoolean("Is First", is_first);
-                userQuestions.putSerializable("questions", inputQuestions);
+                userQuestions.putSerializable("questions", (Serializable) inputQuestions);
                 Log.e("1", " value stored");
                 Log.e("inputQuestions_onResults ", String.valueOf(inputQuestions));
                 //load_bundle();
@@ -426,7 +432,7 @@ public class uiVariant2 extends AppCompatActivity {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         String incoming_indexString = String.valueOf(incoming_index);
         //tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
-        tmpQuestions = (HashMap<String, String>) userQuestions.getSerializable("questions");
+        tmpQuestions = (Multimap<String, String>) userQuestions.getSerializable("questions");
         Log.e("uiVariant2_current_data", String.valueOf(tmpQuestions));
         HashMap<String, String> tmpHash = getData();
         if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
@@ -435,15 +441,15 @@ public class uiVariant2 extends AppCompatActivity {
             intent.putExtra("button", buttonList);
             intent.putExtra("instructions", list);
             intent.putExtra("variant", 2);
-            intent.putExtra("questions", tmpQuestions);
-            startActivityForResult(intent,1);
+            intent.putExtra("questions", (Serializable) tmpQuestions);
+            startActivityForResult(intent, 1);
         } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")) {
             tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering oven UI panel");
             Intent intent = new Intent(this, uiVariant6Oven.class);
             intent.putExtra("button", buttonList);
             intent.putExtra("instructions", list);
             intent.putExtra("variant", 2);
-            intent.putExtra("questions", tmpQuestions);
+            intent.putExtra("questions", (Serializable) tmpQuestions);
             startActivityForResult(intent, 1);
         } else {
             return;
@@ -457,8 +463,8 @@ public class uiVariant2 extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
-                inputQuestions = (HashMap<String, String>) data.getSerializableExtra("questions");
-                userQuestions.putSerializable("questions", tmpQuestions);
+                inputQuestions = (Multimap<String, String>) data.getSerializableExtra("questions");
+                userQuestions.putSerializable("questions", (Serializable) tmpQuestions);
                 Log.e("received", String.valueOf(inputQuestions));
             }
             if (resultCode == RESULT_CANCELED) {
@@ -567,7 +573,7 @@ public class uiVariant2 extends AppCompatActivity {
 
     private void load_bundle() {
         is_first = uiVariant2.userQuestions.getBoolean("Is First");
-        inputQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        inputQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
         Log.e("inputQuestions_LOADED", String.valueOf(inputQuestions));
     }
 

@@ -3,6 +3,7 @@ package com.unity3d.player;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -14,10 +15,15 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.HashMap;
@@ -33,7 +39,9 @@ public class StartScreen extends AppCompatActivity {
     public static Bundle userDataBundle = new Bundle();
 
     // Data collection pipeline
-    private HashMap<String, String> testHash;
+    //private HashMap<String, String> testHash;
+//    private Multimap<String, String> testHash = ArrayListMultimap.create();
+    private Multimap<String, String> testHash = HashMultimap.create();
     public static Bundle userQuestions = new Bundle();
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -50,9 +58,9 @@ public class StartScreen extends AppCompatActivity {
             long sessionStart = Instant.now().getEpochSecond();
             StartScreen.userDataBundle.putLong("sessionStart", sessionStart);
             StartScreen.userDataBundle.putString("name", name);
-            testHash = (HashMap<String, String>) UserConsentActivity.userQuestions.getSerializable("questions");
+            testHash = (Multimap<String, String>) UserConsentActivity.userQuestions.getSerializable("questions");
             testHash.put(String.valueOf(Instant.now().getEpochSecond()), name + " as name entered");
-            userQuestions.putSerializable("questions", testHash);
+            userQuestions.putSerializable("questions", (Serializable) testHash);
             Log.e("incoming", String.valueOf(testHash));
 
 
@@ -87,7 +95,7 @@ public class StartScreen extends AppCompatActivity {
         HashMap<String, String> tmp = getData();
         StartScreen.activityBundle.putString("activity", tmp.get(id));
         Intent intent = new Intent(this, TaskInstructionActivity.class);
-        intent.putExtra("questions", testHash);
+        intent.putExtra("questions", (Serializable) testHash);
         Log.e("TEST HASH", String.valueOf(testHash));
         startActivity(intent);
     }

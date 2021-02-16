@@ -17,6 +17,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.aic.libnilu.NiluLibProcess;
+import com.google.common.collect.Multimap;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 
@@ -27,6 +28,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -48,6 +50,9 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
+import com.google.common.collect.ArrayListMultimap;
+
+
 
 public class UserConsentActivity extends AppCompatActivity {
 
@@ -59,9 +64,11 @@ public class UserConsentActivity extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
 
     // Data collection pipeline
+
     public static Bundle userQuestions = new Bundle();
-    //    private HashMap<String, String> inputQuestions = new HashMap<>();
-    private HashMap<String, String> inputQuestions = new HashMap<>();
+    //private HashMap<String, String> inputQuestions = new HashMap<>();
+
+    private Multimap<String, String> inputQuestions = ArrayListMultimap.create();
     boolean is_first = false;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -116,11 +123,11 @@ public class UserConsentActivity extends AppCompatActivity {
             if (isChecked) {
                 // User activity press check
                 inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "User checks box");
-                userQuestions.putSerializable("questions", inputQuestions);
+                userQuestions.putSerializable("questions", (Serializable) inputQuestions);
                 acceptConsent.setEnabled(true);
             } else {
                 inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "User un-checks box");
-                userQuestions.putSerializable("questions", inputQuestions);
+                userQuestions.putSerializable("questions", (Serializable) inputQuestions);
                 acceptConsent.setEnabled(false);
             }
         });
@@ -147,12 +154,12 @@ public class UserConsentActivity extends AppCompatActivity {
             UserConsentActivity.activityBundle.putString("activity", tmp.get(id));
             Intent intent = new Intent(this, StartScreen.class);
             inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " " + testId + " consent accepted");
-            userQuestions.putSerializable("questions", inputQuestions);
+            userQuestions.putSerializable("questions", (Serializable) inputQuestions);
             startActivity(intent);
         } else {
             showToast("Please enter the correct testID!");
             inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Wrong testID entered");
-            userQuestions.putSerializable("questions", inputQuestions);
+            userQuestions.putSerializable("questions", (Serializable) inputQuestions);
             Intent intent = new Intent(this, UserConsentActivity.class);
             startActivity(intent);
         }

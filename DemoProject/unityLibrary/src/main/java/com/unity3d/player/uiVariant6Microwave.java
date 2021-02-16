@@ -17,10 +17,14 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -81,19 +85,15 @@ public class uiVariant6Microwave extends AppCompatActivity {
     int time_position = 0;
     int pressed_wrong;
 
-//    int correct_press;
-//    int incorrect_press;
-
-    //    HashMap<String, Integer> correctButtonManager;
-//    HashMap<String, Integer> incorrectButtonManager;
-//    public static Bundle buttonHandler = new Bundle();
     HashMap<String, String> userSequenceManager;
 
     /**
      * Proper data collection pipeline
      */
     public static Bundle userQuestions = new Bundle();
-    HashMap<String, String> tmpQuestions;
+    //HashMap<String, String> tmpQuestions;
+    Multimap<String, String> tmpQuestions = ArrayListMultimap.create();
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -237,18 +237,18 @@ public class uiVariant6Microwave extends AppCompatActivity {
         Button next = findViewById(R.id.Next);
         next.setOnClickListener(v -> {
             int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
-            tmpQuestions = (HashMap<String, String>) userQuestions.getSerializable("questions");
+            tmpQuestions = (Multimap<String, String>) userQuestions.getSerializable("questions");
             Log.e("tmpQuestions_prebext", String.valueOf(tmpQuestions));
             HashMap<String, String> tmpHash = getData();
             ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
             if (incoming_index < instructionList.size() - 1) {
                 intent = new Intent(this, TaskInstructionActivity.class);
-                intent.putExtra("questions", tmpQuestions);
+                intent.putExtra("questions", (Serializable) tmpQuestions);
                 Log.e("userQuestions_microwave", String.valueOf(tmpQuestions));
                 startActivity(intent);
             } else {
                 intent = new Intent(this, UserSurveyActivity.class);
-                intent.putExtra("questions", tmpQuestions);
+                intent.putExtra("questions", (Serializable) tmpQuestions);
                 startActivity(intent);
             }
         });
@@ -284,7 +284,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
 
         variant = (int) getIntent().getSerializableExtra("variant");
 
-        tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        tmpQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
         Log.e("tmpQuestions_uiVariant6Microwave", String.valueOf(tmpQuestions));
 
         tmpList = new ArrayList<String>();
@@ -316,7 +316,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
 //            incorrectButtonManager = new HashMap<String, Integer>();
 
             //inputQuestion List
-            tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+            tmpQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
             Log.e("MICROWAVE_LANDED", String.valueOf(tmpQuestions));
 
             userSequenceManager = new HashMap<String, String>();
@@ -353,7 +353,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
                 save_bundle();
                 save_button_press();
                 Intent intent = getIntent();
-                intent.putExtra("questions", tmpQuestions);
+                intent.putExtra("questions", (Serializable) tmpQuestions);
                 setResult(RESULT_OK, intent);
                 finish();
         }
@@ -416,7 +416,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void save_button_press() {
         is_first = uiVariant1.userQuestions.getBoolean("Is First");
-        tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        tmpQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
 //        correctButtonManager = (HashMap<String, Integer>) buttonHandler.getSerializable("correct_button");
 //        incorrectButtonManager = (HashMap<String, Integer>) buttonHandler.getSerializable("incorrect_button");
 
@@ -609,7 +609,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
             System.out.println(tmpQuestions);
             System.out.println(tmpQuestions.size());
         }
-        userQuestions.putSerializable("questions", tmpQuestions);
+        userQuestions.putSerializable("questions", (Serializable) tmpQuestions);
 //        buttonHandler.putSerializable("correct_button", correctButtonManager);
 //        buttonHandler.putSerializable("incorrect_button", incorrectButtonManager);
         if (pressed_wrong >= 5 & current_state < myList.size()) {

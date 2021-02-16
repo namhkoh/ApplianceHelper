@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.util.JsonUtils;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 
 import org.w3c.dom.ls.LSOutput;
 
@@ -26,6 +29,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -93,9 +97,8 @@ public class uiVariant6Oven extends AppCompatActivity {
      * Proper data collection pipeline
      */
     public static Bundle userQuestions = new Bundle();
-    HashMap<String, String> tmpQuestions;
-    HashMap<String, String> primeQUestions;
-    boolean is_first_oven = true;
+    //HashMap<String, String> tmpQuestions;
+    private Multimap<String, String> tmpQuestions = ArrayListMultimap.create();
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -354,7 +357,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         instructionList = (ArrayList<String>) getIntent().getSerializableExtra("instructions");
 
         //inputQuestion List
-        tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        tmpQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
 
 
         //Button Hashmap for state
@@ -384,7 +387,7 @@ public class uiVariant6Oven extends AppCompatActivity {
             // Stores the incorrect button count
             correctButtonManager = new HashMap<String, Integer>();
             incorrectButtonManager = new HashMap<String, Integer>();
-            tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+            tmpQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
 
             //tmpQuestions = new HashMap<String, String>();
 
@@ -414,7 +417,7 @@ public class uiVariant6Oven extends AppCompatActivity {
                 save_bundle();
                 save_button_press();
                 Intent intent = getIntent();
-                intent.putExtra("questions", tmpQuestions);
+                intent.putExtra("questions", (Serializable) tmpQuestions);
                 setResult(RESULT_OK, intent);
                 finish();
         }
@@ -473,7 +476,7 @@ public class uiVariant6Oven extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void save_button_press() {
         is_first = uiVariant1.userQuestions.getBoolean("Is First");
-        tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        tmpQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
     }
 
     private void print_bundle() {
@@ -624,7 +627,7 @@ public class uiVariant6Oven extends AppCompatActivity {
             System.out.println(tmpQuestions);
             System.out.println(tmpQuestions.size());
         }
-        userQuestions.putSerializable("questions", tmpQuestions);
+        userQuestions.putSerializable("questions", (Serializable) tmpQuestions);
         buttonHandler.putSerializable("correct_button", correctButtonManager);
         buttonHandler.putSerializable("incorrect_button", incorrectButtonManager);
         if (pressed_wrong > 5 & current_state < myList.size()) {
@@ -1159,17 +1162,17 @@ public class uiVariant6Oven extends AppCompatActivity {
 
     private void nextActivity() {
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
-        HashMap<String, String> tmpQuestions = (HashMap<String, String>) userQuestions.getSerializable("questions");
+        Multimap<String, String> tmpQuestions = (Multimap<String, String>) userQuestions.getSerializable("questions");
         HashMap<String, String> tmpHash = getData();
         ArrayList<String> instructionList = new ArrayList<>(tmpHash.values());
         if (incoming_index < instructionList.size() - 1) {
             intent = new Intent(this, TaskInstructionActivity.class);
-            intent.putExtra("questions", tmpQuestions);
+            intent.putExtra("questions", (Serializable) tmpQuestions);
             Log.e("ui6Oven", String.valueOf(tmpQuestions));
             startActivity(intent);
         } else {
             intent = new Intent(this, UserSurveyActivity.class);
-            intent.putExtra("questions", tmpQuestions);
+            intent.putExtra("questions", (Serializable) tmpQuestions);
             startActivity(intent);
         }
     }

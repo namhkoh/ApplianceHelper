@@ -12,10 +12,14 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.HashMap;
@@ -28,14 +32,16 @@ public class TaskInstructionActivity extends AppCompatActivity {
      * Proper data collection pipeline
      */
     public static Bundle userQuestions = new Bundle();
-    HashMap<String, String> tmpQuestions;
+    //HashMap<String, String> tmpQuestions;
+    Multimap<String, String> tmpQuestions = ArrayListMultimap.create();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_instruction);
 
-        tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+        tmpQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
         Log.e("TASK_INSTRUCTION_ONCREATE", String.valueOf(tmpQuestions));
 
         Log.e("onCreate Index", String.valueOf(index));
@@ -58,38 +64,38 @@ public class TaskInstructionActivity extends AppCompatActivity {
             switch (str) {
                 case "uiVariant1":
                     Log.e("taskInstruction", String.valueOf(index));
-                    tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+                    tmpQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
                     System.out.println(Instant.now().getEpochSecond());
                     tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering uiVariant1");
                     Log.e("TASK_INSTRUCTION_ENTER_ACTIVITY", String.valueOf(tmpQuestions));
                     TaskInstructionActivity.indexBundle.putInt("index", index);
                     index++;
                     Intent intent1 = new Intent(getApplicationContext(), uiVariant1.class);
-                    intent1.putExtra("questions", tmpQuestions);
+                    intent1.putExtra("questions", (Serializable) tmpQuestions);
                     startActivity(intent1);
                     break;
                 case "uiVariant2":
                     Log.e("taskInstruction", String.valueOf(index));
-                    tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+                    tmpQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
                     System.out.println(Instant.now().getEpochSecond());
                     tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering uiVariant2");
                     Log.e("TASK_INSTRUCTION_ENTER_ACTIVITY", String.valueOf(tmpQuestions));
                     TaskInstructionActivity.indexBundle.putInt("index", index);
                     index++;
                     Intent intent2 = new Intent(getApplicationContext(), uiVariant2.class);
-                    intent2.putExtra("questions", tmpQuestions);
+                    intent2.putExtra("questions", (Serializable) tmpQuestions);
                     startActivity(intent2);
                     break;
                 case "uiVariant3":
                     Log.e("taskInstruction", String.valueOf(index));
-                    tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+                    tmpQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
                     System.out.println(Instant.now().getEpochSecond());
                     tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering uiVariant3");
                     Log.e("TASK_INSTRUCTION_ENTER_ACTIVITY", String.valueOf(tmpQuestions));
                     TaskInstructionActivity.indexBundle.putInt("index", index);
                     index++;
                     Intent intent3 = new Intent(getApplicationContext(), uiVariant3.class);
-                    intent3.putExtra("questions", tmpQuestions);
+                    intent3.putExtra("questions", (Serializable) tmpQuestions);
                     startActivity(intent3);
                     break;
                 /**
@@ -99,18 +105,18 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     TaskInstructionActivity.indexBundle.putInt("index", index);
                     String incoming_indexString = String.valueOf(index);
                     HashMap<String, String> tmpHash = getData();
-                    tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+                    tmpQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
                     System.out.println(Instant.now().getEpochSecond());
                     tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering uiVariant4");
                     Log.e("TASK_INSTRUCTION_ENTER_ACTIVITY", String.valueOf(tmpQuestions));
                     index++;
                     if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("microwave")) {
                         Intent intent4 = new Intent(getApplicationContext(), uiVariant4WithMicrowave.class);
-                        intent4.putExtra("questions", tmpQuestions);
+                        intent4.putExtra("questions", (Serializable) tmpQuestions);
                         startActivity(intent4);
                     } else if (Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains("oven")) {
                         Intent intent = new Intent(this, uiVariant4WithOven.class);
-                        intent.putExtra("questions", tmpQuestions);
+                        intent.putExtra("questions", (Serializable) tmpQuestions);
                         startActivity(intent);
                     } else {
                         return;
@@ -121,18 +127,18 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     TaskInstructionActivity.indexBundle.putInt("index", index);
                     String incoming_indexString5 = String.valueOf(index);
                     HashMap<String, String> tmpHash5 = getData();
-                    tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+                    tmpQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
                     System.out.println(Instant.now().getEpochSecond());
                     tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering uiVariant5");
                     Log.e("TASK_INSTRUCTION_ENTER_ACTIVITY", String.valueOf(tmpQuestions));
                     index++;
                     if (Objects.requireNonNull(tmpHash5.get(incoming_indexString5)).toLowerCase().contains("microwave")) {
                         Intent intent4 = new Intent(getApplicationContext(), uiVariant5WithMicrowave.class);
-                        intent4.putExtra("questions", tmpQuestions);
+                        intent4.putExtra("questions", (Serializable) tmpQuestions);
                         startActivity(intent4);
                     } else if (Objects.requireNonNull(tmpHash5.get(incoming_indexString5)).toLowerCase().contains("oven")) {
                         Intent intent = new Intent(this, uiVariant5WithOven.class);
-                        intent.putExtra("questions", tmpQuestions);
+                        intent.putExtra("questions", (Serializable) tmpQuestions);
                         startActivity(intent);
                     } else {
                         return;
@@ -143,18 +149,18 @@ public class TaskInstructionActivity extends AppCompatActivity {
                     TaskInstructionActivity.indexBundle.putInt("index", index);
                     String incoming_indexString6 = String.valueOf(index);
                     HashMap<String, String> tmpHash6 = getData();
-                    tmpQuestions = (HashMap<String, String>) getIntent().getSerializableExtra("questions");
+                    tmpQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
                     System.out.println(Instant.now().getEpochSecond());
                     tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Entering BaseLineUI");
                     Log.e("TASK_INSTRUCTION_ENTER_ACTIVITY", String.valueOf(tmpQuestions));
                     index++;
                     if (Objects.requireNonNull(tmpHash6.get(incoming_indexString6)).toLowerCase().contains("microwave")) {
                         Intent baseLineIntent1 = new Intent(getApplicationContext(), BaseLineActivityMicrowave.class);
-                        baseLineIntent1.putExtra("questions", tmpQuestions);
+                        baseLineIntent1.putExtra("questions", (Serializable) tmpQuestions);
                         startActivity(baseLineIntent1);
                     } else if (Objects.requireNonNull(tmpHash6.get(incoming_indexString6)).toLowerCase().contains("oven")) {
                         Intent baseLineIntent2 = new Intent(this, BaseLineActivityOven.class);
-                        baseLineIntent2.putExtra("questions", tmpQuestions);
+                        baseLineIntent2.putExtra("questions", (Serializable) tmpQuestions);
                         startActivity(baseLineIntent2);
                     } else {
                         return;
