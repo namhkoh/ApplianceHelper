@@ -13,18 +13,18 @@
         android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="157dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="64dp"
         android:text="@string/submitButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userFeedback" />
 
     <EditText
         android:id="@+id/userFeedback"
-        android:layout_width="291dp"
-        android:layout_height="125dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="289dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="36dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/final_feedback"
@@ -57,34 +57,40 @@
 
     <TextView
         android:id="@+id/css_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="31dp"
+        android:layout_width="336dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="17dp"
         android:text="@string/css_text"
         android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/customer_satisfaction_score" />
 
     <TextView
         android:id="@+id/final_feedback"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="17dp"
         android:text="@string/final_feedback_title"
         android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/net_promoter_score" />
 
     <TextView
         android:id="@+id/nps_text"
-        android:layout_width="331dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="36dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="68dp"
+        android:layout_marginEnd="17dp"
         android:text="@string/nps_text"
         android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

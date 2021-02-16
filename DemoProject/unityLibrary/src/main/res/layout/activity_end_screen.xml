@@ -9,9 +9,10 @@
 
     <TextView
         android:id="@+id/user_title"
-        android:layout_width="353dp"
-        android:layout_height="42dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
+        android:layout_marginEnd="17dp"
         android:text="@string/user_confirmation_title"
         android:textColor="#000000"
         android:textSize="25sp"
@@ -21,13 +22,15 @@
 
     <TextView
         android:id="@+id/user_text"
-        android:layout_width="352dp"
-        android:layout_height="101dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="29dp"
         android:layout_marginTop="200dp"
+        android:layout_marginEnd="17dp"
         android:text="@string/user_confirmation"
         android:textColor="#000000"
         android:textSize="21sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_title" />
 
