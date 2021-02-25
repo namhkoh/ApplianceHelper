@@ -252,6 +252,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
     }
 
     private void setAlphaValue(int alpha, ArrayList<Button> allButtons) {
+        System.out.println("buttons are hidden!");
         for (int i = 0; i < allButtons.size(); i++) {
             allButtons.get(i).setAlpha(alpha);
         }
@@ -299,6 +300,10 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
 
             @Override
             public void onEndOfSpeech() {
+                ArrayList<Button> allButtons = new ArrayList<Button>(Arrays.asList(clock, start, cancel, soften, m0, m1, m2, m3, m4, m5, m6, m7, m8, m9,
+                        popcorn, potato, pizza, cook, reheat, cooktime, cookpower, defrost,
+                        timer, add30));
+                setAlphaValue(0, allButtons);
                 Log.e("onEndOfSpeech", "this is on end of speech.");
             }
 
@@ -336,6 +341,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                         index++;
                         Log.e("next", String.valueOf(index));
                         update_state(tmpList_ui1.get(index));
+                        showButton(myList.get(index));
                         if (index == max_index - 1) {
                             Toast.makeText(getApplicationContext(), "Last Step", Toast.LENGTH_SHORT).show();
                         }
@@ -422,8 +428,9 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
 
                     //tmpList.add(data);
                     myList = buttonList;
+                    showButton(myList.get(index));
                     instructionList = list_ui1;
-
+                    System.out.println(myList);
 
                     index = 0;
                     max_index = response.getSteps().size();
@@ -452,6 +459,10 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                 case MotionEvent.ACTION_UP:
                     mSpeechRecognizer.stopListening();
                     editText.setHint("You will see input here");
+                    ArrayList<Button> allButtons = new ArrayList<Button>(Arrays.asList(clock, start, cancel, soften, m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m0,
+                            popcorn, potato, pizza, cook, reheat, cooktime, cookpower, defrost,
+                            timer, add30));
+                    setAlphaValue(0, allButtons);
                     break;
 
                 case MotionEvent.ACTION_DOWN:
@@ -1340,6 +1351,37 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
         reheat_category++;
     }
 
+    /**
+     * This function will take the button list as an input and highlight the button at
+     * each increment of current index value
+     */
+    private void showButton(String buttonName) {
+        System.out.println("curr index : " + index);
+        // get the current button name for task
+        Log.e("!!!", buttonName);
+        // Find the corresponding uiButton for the button name
+        if (buttonName.equals("clock")) {
+            clock.setAlpha(1);
+        } else if (buttonName.equals("number pad")) {
+            m0.setAlpha(1);
+            m1.setAlpha(1);
+            m2.setAlpha(1);
+            m3.setAlpha(1);
+            m4.setAlpha(1);
+            m5.setAlpha(1);
+            m6.setAlpha(1);
+            m7.setAlpha(1);
+            m8.setAlpha(1);
+            m9.setAlpha(1);
+        } else if (buttonName.equals("timer")) {
+            timer.setAlpha(1);
+        } else if (buttonName.equals("start")) {
+            start.setAlpha(1);
+        } else if (buttonName.equals("reheat")) {
+            reheat.setAlpha(1);
+        }
+    }
+
     private void next_step(String string_button) {
 
         Set<String> accept = new HashSet<String>();
@@ -1353,6 +1395,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
         accept.add("open");
 
         System.out.println("String Button: " + string_button);
+        //highLightButton(string_button);
 
         if (accept.contains(string_button)) {
             next_step_helper(string_button);

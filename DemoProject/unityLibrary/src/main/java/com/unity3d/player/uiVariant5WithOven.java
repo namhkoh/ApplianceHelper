@@ -465,6 +465,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
         //Current Button
         current_state = 0;
         string_button = myList.get(current_state);
+        Log.e("TAG",string_button);
 
         //Initial Step
         next_step(string_button);
@@ -622,6 +623,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
                         String button = response.getSteps().get(i).getButton_name();
                         buttonList.add(button);
                         tmpList_ui1.add(data);
+                        // Try to control the speed
                         initTTS(data);
                     }
 
@@ -996,6 +998,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
     void update_state(String s) {
         list_ui1.clear();
         list_ui1.add(s);
+        Log.e("s",s);
         initTTS(s);
     }
 
@@ -1460,7 +1463,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
     }
 
     private void initTTS(String selectedText) {
-        //textToSpeech.setSpeechRate(testingVal);
+//        textToSpeech.setSpeechRate((float) 0.6);
         int speechStatus = textToSpeech.speak(selectedText, TextToSpeech.QUEUE_ADD, null, "1");
         if (speechStatus == TextToSpeech.ERROR) {
             Log.e("TTS", "Error in converting Text to Speech!");
