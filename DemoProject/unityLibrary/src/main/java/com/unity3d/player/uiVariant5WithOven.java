@@ -43,7 +43,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
+import java.sql.Time;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,6 +56,8 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class uiVariant5WithOven extends AppCompatActivity {
 
@@ -124,6 +128,8 @@ public class uiVariant5WithOven extends AppCompatActivity {
 
     private CountDownTimer t;
     private Animation anim;
+
+    int testIndex = 0;
 
     public static Bundle buttonHandler = new Bundle();
     // HashMap that stores the correct button values count
@@ -465,7 +471,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
         //Current Button
         current_state = 0;
         string_button = myList.get(current_state);
-        Log.e("TAG",string_button);
+        Log.e("TAG", string_button);
 
         //Initial Step
         next_step(string_button);
@@ -563,7 +569,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
                 int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
                 String incoming_indexString = String.valueOf(incoming_index);
 
-                System.out.println(tmpList_ui1.size());
+                System.out.println("tmpList_ui1 size check: " + tmpList_ui1.size());
 
                 //Some sort of error happened in the NLU part
                 if (response.getDialog_command().equals("no_match")) {
@@ -617,29 +623,27 @@ public class uiVariant5WithOven extends AppCompatActivity {
                     clear(list_ui1);
                     buttonList = new ArrayList<>();
                     next.setEnabled(true);
-
+                    Handler handler = new Handler(getMainLooper());
                     for (int i = 0; i < response.getSteps().size(); ++i) {
                         String data = response.getSteps().get(i).getText();
                         String button = response.getSteps().get(i).getButton_name();
                         buttonList.add(button);
                         tmpList_ui1.add(data);
-                        // Try to control the speed
-                        initTTS(data);
+                        //initTTS(data);
+                        //showButton(button);
                     }
+                    System.out.println("tmpList size: " + tmpList_ui1.size());
 
                     myList = buttonList;
                     instructionList = list_ui1;
-
-
+                    revealButton(tmpList_ui1, myList);
                     index = 0;
                     max_index = response.getSteps().size();
                     //initial_update(tmpList_ui1.get(index));
+                    //tester();
 
                     initiate();
-                    System.out.println("question! " + question);
-                    System.out.println("utterance! " + utterance);
                     uiVariant5WithOven.userQuestions.putBoolean("Is First", is_first);
-
                 }
                 next.setEnabled(true);
             }
@@ -692,6 +696,97 @@ public class uiVariant5WithOven extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    /**
+     * Tester function
+     */
+    private void tester() {
+        Handler h = new Handler(getMainLooper());
+
+
+//        h.postDelayed(() -> {
+//            System.out.println("hello world 1");
+//            showButton("bake");
+//        }, 1000);
+//
+//        h.postDelayed(() -> {
+//            System.out.println("hello world 2");
+//            showButton("number pad");
+//        }, 5000);
+//
+//        h.postDelayed(() -> {
+//            System.out.println("hello world 3");
+//            showButton("cook time");
+//        }, 9000);
+    }
+
+    /**
+     * This function will highlight the buttons according to the current task.
+     * ArrayList<String> ints
+     */
+    private void revealButton(ArrayList<String> instructions, ArrayList<String> buttons) {
+//        for (int i = 0; i < instructions.size(); i++) {
+//            int finalI = i;
+//            new Handler().postDelayed(() -> {
+//                System.out.println(instructions.get(finalI));
+//                // TTS solutions
+//                initTTS(instructions.get(finalI));
+//                //initTTS_new(instructions.get(finalI), finalI);
+//                // Show Button
+//                showButton(buttons.get(finalI));
+//            }, i * 4000);
+//        }
+        for (int i = 0; i < buttons.size(); i++) {
+            int finalI = i;
+//            new Handler().postDelayed(() -> showButton(buttons.get(finalI)), i * 5000);
+            new Handler().postDelayed(() -> {
+                setAlphaValue(0, allButtons);
+                showButton(buttons.get(finalI), instructions, finalI);
+            }, i * 5000);
+
+        }
+    }
+
+    /**
+     * This function will take the button list as an input and highlight the button at
+     * each increment of current index value
+     */
+    private void showButton(String buttonName, ArrayList<String> instructions, int ind) {
+        // get the current button name for task
+        Log.e("!!!", buttonName);
+        initTTS(instructions.get(ind));
+        // Find the corresponding uiButton for the button name
+        if (buttonName.equals("bake")) {
+            bakeBtn.setAlpha(1);
+            System.out.println("Reached!");
+        } else if (buttonName.equals("number pad")) {
+            o1.setAlpha(1);
+            o2.setAlpha(1);
+            o3.setAlpha(1);
+            o4.setAlpha(1);
+            o5.setAlpha(1);
+            o6.setAlpha(1);
+            o7.setAlpha(1);
+            o8.setAlpha(1);
+            o9.setAlpha(1);
+        } else if (buttonName.equals("start")) {
+            startOvenbtn.setAlpha(1);
+        } else if (buttonName.equals("cancel")) {
+            cancelOvenBtn.setAlpha(1);
+        } else if (buttonName.equals("cook time")) {
+            cookTimeBtn.setAlpha(1);
+        } else if (buttonName.equals("settings/clock,clock") || buttonName.equals("settings/clock,sound")) {
+            settingsBtn.setAlpha(1);
+        } else if (buttonName.equals("four")) {
+            o4.setAlpha(1);
+        } else if (buttonName.equals("three")) {
+            o3.setAlpha(1);
+        } else if (buttonName.equals("six")) {
+            o6.setAlpha(1);
+        } else if (buttonName.equals("two")) {
+            o2.setAlpha(1);
+        }
     }
 
     private void next_step(String string_button) {
@@ -998,7 +1093,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
     void update_state(String s) {
         list_ui1.clear();
         list_ui1.add(s);
-        Log.e("s",s);
+        Log.e("s", s);
         initTTS(s);
     }
 
@@ -1197,6 +1292,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
                 list_ui1.add(s);
                 speakText = s;
             }
+            Log.e("SpeakText", speakText);
             initTTS(speakText);
             index++;
         }, 0);
@@ -1463,8 +1559,19 @@ public class uiVariant5WithOven extends AppCompatActivity {
     }
 
     private void initTTS(String selectedText) {
-//        textToSpeech.setSpeechRate((float) 0.6);
+        //Log.e("initTTS", selectedText);
         int speechStatus = textToSpeech.speak(selectedText, TextToSpeech.QUEUE_ADD, null, "1");
+        textToSpeech.playSilentUtterance(1500, TextToSpeech.QUEUE_ADD, null);
+        if (speechStatus == TextToSpeech.ERROR) {
+            Log.e("TTS", "Error in converting Text to Speech!");
+        }
+    }
+
+    private void initTTS_new(String selectedText, int ind) {
+        //Log.e("initTTS", selectedText);
+        int speechStatus = textToSpeech.speak(selectedText, TextToSpeech.QUEUE_ADD, null, "1");
+        // uncomment to set the pause.
+        textToSpeech.playSilentUtterance(1000 * ind, TextToSpeech.QUEUE_ADD, null);
         if (speechStatus == TextToSpeech.ERROR) {
             Log.e("TTS", "Error in converting Text to Speech!");
         }

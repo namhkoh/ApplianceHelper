@@ -527,6 +527,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
                         index++;
                         Log.e("next", String.valueOf(index));
                         update_state(tmpList_ui1.get(index));
+                        Log.e("tmpList next", String.valueOf(tmpList_ui1));
                         showButton(myList.get(index));
                         if (index == max_index - 1) {
                             Toast.makeText(getApplicationContext(), "Last Step", Toast.LENGTH_SHORT).show();
@@ -552,6 +553,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
                 String incoming_indexString = String.valueOf(incoming_index);
 
                 System.out.println(tmpList_ui1.size());
+                Log.e("tmpList up", String.valueOf(tmpList_ui1));
 
                 //Some sort of error happened in the NLU part
                 if (response.getDialog_command().equals("no_match")) {
@@ -627,6 +629,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
                     initiate();
                     System.out.println("question! " + question);
                     System.out.println("utterance! " + utterance);
+                    Log.e("tmpList last", String.valueOf(tmpList_ui1));
                     uiVariant4WithMicrowave.userQuestions.putBoolean("Is First", is_first);
                 }
                 next.setEnabled(true);
@@ -726,7 +729,6 @@ public class uiVariant4WithOven extends AppCompatActivity {
         } else if (buttonName.equals("two")) {
             o2.setAlpha(1);
         }
-
     }
 
     private void next_step(String string_button) {
@@ -1013,6 +1015,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
     }
 
     void update_state(String s) {
+        Log.e("update_string",s);
         list_ui1.clear();
         list_ui1.add(s);
         initTTS(s);
