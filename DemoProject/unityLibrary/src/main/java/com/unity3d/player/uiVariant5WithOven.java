@@ -699,47 +699,12 @@ public class uiVariant5WithOven extends AppCompatActivity {
     }
 
     /**
-     * Tester function
-     */
-    private void tester() {
-        Handler h = new Handler(getMainLooper());
-
-
-//        h.postDelayed(() -> {
-//            System.out.println("hello world 1");
-//            showButton("bake");
-//        }, 1000);
-//
-//        h.postDelayed(() -> {
-//            System.out.println("hello world 2");
-//            showButton("number pad");
-//        }, 5000);
-//
-//        h.postDelayed(() -> {
-//            System.out.println("hello world 3");
-//            showButton("cook time");
-//        }, 9000);
-    }
-
-    /**
      * This function will highlight the buttons according to the current task.
      * ArrayList<String> ints
      */
     private void revealButton(ArrayList<String> instructions, ArrayList<String> buttons) {
-//        for (int i = 0; i < instructions.size(); i++) {
-//            int finalI = i;
-//            new Handler().postDelayed(() -> {
-//                System.out.println(instructions.get(finalI));
-//                // TTS solutions
-//                initTTS(instructions.get(finalI));
-//                //initTTS_new(instructions.get(finalI), finalI);
-//                // Show Button
-//                showButton(buttons.get(finalI));
-//            }, i * 4000);
-//        }
         for (int i = 0; i < buttons.size(); i++) {
             int finalI = i;
-//            new Handler().postDelayed(() -> showButton(buttons.get(finalI)), i * 5000);
             new Handler().postDelayed(() -> {
                 setAlphaValue(0, allButtons);
                 showButton(buttons.get(finalI), instructions, finalI);
