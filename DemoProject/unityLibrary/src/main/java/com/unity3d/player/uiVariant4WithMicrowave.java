@@ -319,7 +319,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                 userQuestions.putBoolean("Is First", is_first);
                 userQuestions.putSerializable("questions", (Serializable) inputQuestions);
                 Log.e("1", " value stored");
-                utterance = matches.get(0);
+                utterance = matches.get(0).toLowerCase();
                 editText.setText(utterance);
 
                 if (utterance.contains("previous")) {
@@ -666,29 +666,32 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void openDialog() {
-        inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Button Pressed (Active) Helper Button");
-        StringBuilder sb = new StringBuilder();
+        if(tmpList_ui1.size() != 0) {
+            inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Button Pressed (Active) Helper Button");
+            StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i <= index; i++) {
-            sb.append(tmpList_ui1.get(i));
-            sb.append("\n");
-        }
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        //final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>();
-        builder.setTitle("Instructions");
-        builder.setMessage("Look at this dialog!");
-        builder.setMessage(sb.toString());
-        builder.setCancelable(false);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //
+            for (int i = 0; i <= index; i++) {
+                sb.append(tmpList_ui1.get(i));
+                sb.append("\n");
             }
-        });
-        AlertDialog alert = builder.create();
-        alert.show();
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            //final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>();
+            builder.setTitle("Instructions");
+            builder.setMessage("Look at this dialog!");
+            builder.setMessage(sb.toString());
+            builder.setCancelable(false);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
     }
 
 

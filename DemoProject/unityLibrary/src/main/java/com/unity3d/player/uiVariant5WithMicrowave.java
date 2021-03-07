@@ -313,7 +313,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
                 userQuestions.putSerializable("questions", (Serializable) inputQuestions);
                 Log.e("1", " value stored");
 
-                utterance = matches.get(0);
+                utterance = matches.get(0).toLowerCase();
                 editText.setText(utterance);
 
                 if (utterance.contains("previous")) {

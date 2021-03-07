@@ -81,6 +81,7 @@ public class uiVariant6Oven extends AppCompatActivity {
     private HashMap<String, Boolean> next_button;
     private HashMap<String, Boolean> button_active;
     private Button hint;
+    private Button next;
 
     private CountDownTimer t;
     private Animation anim;
@@ -289,7 +290,7 @@ public class uiVariant6Oven extends AppCompatActivity {
             }
         });
 
-        Button next = findViewById(R.id.next);
+        next = findViewById(R.id.next);
         next.setOnClickListener(v -> nextActivity());
 
         Button startOvenbtn = findViewById(R.id.oven_start);
@@ -369,6 +370,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         open.setEnabled(false);
         hint.setEnabled(false);
 
+
         // Not first time
         if (uiVariant1.uivariant1Bundle.containsKey("Is First")) {
             System.out.println("Is First: " + uiVariant1.uivariant1Bundle.getBoolean("Is First"));
@@ -446,6 +448,11 @@ public class uiVariant6Oven extends AppCompatActivity {
         uiVariant1.uivariant1Bundle.putBoolean("NumberPad", numberpad_active);
         uiVariant1.uivariant1Bundle.putBoolean("BakePressed", bake_pressed);
         uiVariant1.uivariant1Bundle.putBoolean("SettingsClockWorking", settings_clock_working);
+        if(next.isEnabled()){
+            uiVariant1.uivariant1Bundle.putBoolean("NextEnabled", true);
+        }else{
+            uiVariant1.uivariant1Bundle.putBoolean("NextEnabled", false);
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -469,6 +476,7 @@ public class uiVariant6Oven extends AppCompatActivity {
         info_button = uiVariant1.uivariant1Bundle.getString("InfoButton");
         numberpad_active = uiVariant1.uivariant1Bundle.getBoolean("NumberPad");
         lcd.setText(uiVariant1.uivariant1Bundle.getString("OnScreen"));
+        next.setEnabled(uiVariant1.uivariant1Bundle.getBoolean("NextEnabled"));
         uiVariant1.uivariant1Bundle.clear();
         print_bundle();
     }

@@ -79,7 +79,7 @@ public class UserConsentActivity extends AppCompatActivity {
         testIDInput = findViewById(R.id.InputTestID);
 
         Log.d("Start", "Hello");
-        String assetName = "video_demo_data23.txt";
+        String assetName = "appliance_test11.txt";
         String filePath = Utilities.assetFilePath(getApplicationContext(), assetName);
         Log.d("1", filePath);
 

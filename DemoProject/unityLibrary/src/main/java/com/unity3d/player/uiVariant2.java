@@ -198,8 +198,10 @@ public class uiVariant2 extends AppCompatActivity {
                 Log.e("1", " value stored");
                 Log.e("inputQuestions_onResults ", String.valueOf(inputQuestions));
                 //load_bundle();
-                utterance = matches.get(0);
+                utterance = matches.get(0).toLowerCase();
                 editText.setText(utterance);
+
+                System.out.println(utterance);
 
                 if (utterance.contains("previous")) {
                     if (index > 0) {

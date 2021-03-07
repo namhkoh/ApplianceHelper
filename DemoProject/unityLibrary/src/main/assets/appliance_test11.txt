@@ -2,7 +2,7 @@
 1	set	microwave	Feature	setFeature:clock								
 2	Step 1: Press the Clock button.	Clock	Step 2: Enter the time.	Number Pad	Step 3: Press on Clock again to modify the changes	Clock						
 1	set	microwave	Feature	setfeature:timer								
-2	Step 1: Press the Timer button	Timer	"Step 2: Enter the amount of time to 3 seconds using the number pad, e.g., 0,0,3,0."	Number Pad	Step 3: Press START.	START	"Step 4: When the set time has elapsed, the oven will beep and the display will show ""End"" until you press the Timer pad. "	Timer				
+2	Step 1: Press the "Timer Set/Off" button	Timer	"Step 2: Enter the amount of time to 3 seconds using the number pad, e.g., 0,0,0,3."	Number Pad	Step 3: Press START.	START	"Step 4: When the set time has elapsed, the oven will beep and the display will show End. Press the "Timer Set/Off" button to end the timer. "	Timer				
 1	cook	microwave	Food	foodtype:popcorn								
 2	Step 1. Press the Popcorn button.	Popcorn	Step 2. Enter a bag size of 4 ounces	Number Pad	Step 3. Press the START button	START	Step 4. Open the oven door and take out the food. 	Open				
 1	use	microwave	Feature	usefeature:reheat								
@@ -14,4 +14,4 @@
 1	on_off	oven	Feature	onofffeature:sound	onoff:off							
 2	Step 1. Press the Settings/Clock	"Settings/Clock,sound"	Step 2. Press 6 on the number pad. 	six	Step 3. Press 2(Off) on the number pad. 	two	Step 4. Press Start to save the changes	START				
 1	cook	oven	Food	foodtype:fries								
-2	Step 1. Select the Bake Button	Bake	Step 2. Use the number pad to set the temperature to 400 F	Number Pad	Step 3. Press the Cook Time button	Cook Time	Step 4. Press 25 for 25 minutes	Number Pad	Step 5. Tap Start	START	"Step 6. When cooking is complete, tap Cancel and take out the food."	Cancel
+2	Step 1. Select the Bake Button	Bake	Step 2. Use the number pad to set the temperature to 400 F	Number Pad	Step 3. Press the Cook Time button	Cook Time	Step 4. Press 2,5,0,0 for 25 minutes	Number Pad	Step 5. Tap Start	START	"Step 6. When cooking is complete, tap Cancel and take out the food."	Cancel

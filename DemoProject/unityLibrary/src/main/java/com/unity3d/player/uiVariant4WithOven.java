@@ -510,7 +510,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
                 userQuestions.putSerializable("questions", (Serializable) inputQuestions);
                 Log.e("1", " value stored");
 
-                utterance = matches.get(0);
+                utterance = matches.get(0).toLowerCase();
                 editText.setText(utterance);
 
                 if (utterance.contains("previous")) {
@@ -800,46 +800,50 @@ public class uiVariant4WithOven extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void openListViewDialog() {
-        inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Button Pressed (Active) Helper Button");
-        //userQuestions.putSerializable("questions", inputQuestions);
-        String[] list_view = new String[index + 1];
-        for (int i = 0; i <= index; i++) {
-            list_view[i] = tmpList_ui1.get(i);
+
+        if(tmpList_ui1.size() != 0) {
+
+            inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Button Pressed (Active) Helper Button");
+            //userQuestions.putSerializable("questions", inputQuestions);
+            String[] list_view = new String[index + 1];
+            for (int i = 0; i <= index; i++) {
+                list_view[i] = tmpList_ui1.get(i);
+            }
+
+            ContextThemeWrapper themedContext = new ContextThemeWrapper(this, android.R.style.Theme_Holo_NoActionBar);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setCancelable(false);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //
+                }
+            });
+
+            final AlertDialog dialog = builder.setTitle("Instructions").setItems(list_view, null).create();
+
+            AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    System.out.println(tmpList_ui1.get(i));
+                    initTTS(tmpList_ui1.get(i - 1));
+                }
+            };
+
+            dialog.getListView().setOnItemClickListener(listener);
+
+            ListView listView = dialog.getListView();
+            listView.addHeaderView(new View(this));
+            //listView.addFooterView(new View(this));
+            //listView.setHeaderDividersEnabled(true);
+            listView.setDivider(new ColorDrawable(Color.BLACK));
+            listView.setDividerHeight(1);
+
+            dialog.show();
+
         }
-
-        ContextThemeWrapper themedContext = new ContextThemeWrapper(this, android.R.style.Theme_Holo_NoActionBar);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        builder.setCancelable(false);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //
-            }
-        });
-
-        final AlertDialog dialog = builder.setTitle("Instructions").setItems(list_view, null).create();
-
-        AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                System.out.println(tmpList_ui1.get(i));
-                initTTS(tmpList_ui1.get(i - 1));
-            }
-        };
-
-        dialog.getListView().setOnItemClickListener(listener);
-
-        ListView listView = dialog.getListView();
-        listView.addHeaderView(new View(this));
-        //listView.addFooterView(new View(this));
-        //listView.setHeaderDividersEnabled(true);
-        listView.setDivider(new ColorDrawable(Color.BLACK));
-        listView.setDividerHeight(1);
-
-        dialog.show();
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

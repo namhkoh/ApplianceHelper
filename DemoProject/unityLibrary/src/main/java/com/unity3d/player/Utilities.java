@@ -14,7 +14,7 @@ import java.io.OutputStream;
 
 public class Utilities {
 
-    private static String appliance_data = "appliance_test10.txt";
+    private static String appliance_data = "appliance_test11.txt";
 
     private static String model_file = "model_tiny_9_5.pt";
 

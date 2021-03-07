@@ -77,6 +77,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
 
     List<String> list;
     Button hint;
+    private Button next;
     Intent intent;
 
     int current_state;
@@ -234,7 +235,7 @@ public class uiVariant6Microwave extends AppCompatActivity {
         });
 
 
-        Button next = findViewById(R.id.Next);
+        next = findViewById(R.id.Next);
         next.setOnClickListener(v -> {
             int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
             tmpQuestions = (Multimap<String, String>) userQuestions.getSerializable("questions");
@@ -383,6 +384,11 @@ public class uiVariant6Microwave extends AppCompatActivity {
         if (Utilities.debug) {
             Log.v("Saved", "Save Bundle");
         }
+        if(next.isEnabled()){
+            uiVariant1.uivariant1Bundle.putBoolean("NextEnabled", true);
+        }else{
+            uiVariant1.uivariant1Bundle.putBoolean("NextEnabled", false);
+        }
     }
 
     /**
@@ -403,11 +409,13 @@ public class uiVariant6Microwave extends AppCompatActivity {
         time_position = uiVariant1.uivariant1Bundle.getInt("timeposition");
         reheat_pressed = uiVariant1.uivariant1Bundle.getBoolean("ReheatPressed");
         reheat_category = uiVariant1.uivariant1Bundle.getInt("ReheatPos");
+        next.setEnabled(uiVariant1.uivariant1Bundle.getBoolean("NextEnabled"));
         lcd.setText(uiVariant1.uivariant1Bundle.getString("OnScreen"));
         uiVariant1.uivariant1Bundle.clear();
         if (Utilities.debug) {
             Log.v("Load", "Loaded Bundle");
         }
+
     }
 
     /**
