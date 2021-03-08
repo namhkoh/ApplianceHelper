@@ -701,33 +701,33 @@ public class uiVariant4WithOven extends AppCompatActivity {
         Log.e("!!!", buttonName);
         // Find the corresponding uiButton for the button name
         if (buttonName.equals("bake")) {
-            bakeBtn.setAlpha(1);
+            bakeBtn.setAlpha((float) 0.4);
         } else if (buttonName.equals("number pad")) {
-            o1.setAlpha(1);
-            o2.setAlpha(1);
-            o3.setAlpha(1);
-            o4.setAlpha(1);
-            o5.setAlpha(1);
-            o6.setAlpha(1);
-            o7.setAlpha(1);
-            o8.setAlpha(1);
-            o9.setAlpha(1);
+            o1.setAlpha((float) 0.4);
+            o2.setAlpha((float) 0.4);
+            o3.setAlpha((float) 0.4);
+            o4.setAlpha((float) 0.4);
+            o5.setAlpha((float) 0.4);
+            o6.setAlpha((float) 0.4);
+            o7.setAlpha((float) 0.4);
+            o8.setAlpha((float) 0.4);
+            o9.setAlpha((float) 0.4);
         } else if (buttonName.equals("start")) {
-            startOvenbtn.setAlpha(1);
+            startOvenbtn.setAlpha((float) 0.4);
         } else if (buttonName.equals("cancel")) {
-            cancelOvenBtn.setAlpha(1);
+            cancelOvenBtn.setAlpha((float) 0.4);
         } else if (buttonName.equals("cook time")) {
-            cookTimeBtn.setAlpha(1);
+            cookTimeBtn.setAlpha((float) 0.4);
         } else if (buttonName.equals("settings/clock,clock") || buttonName.equals("settings/clock,sound")) {
-            settingsBtn.setAlpha(1);
+            settingsBtn.setAlpha((float) 0.4);
         } else if (buttonName.equals("four")) {
-            o4.setAlpha(1);
+            o4.setAlpha((float) 0.4);
         } else if (buttonName.equals("three")) {
-            o3.setAlpha(1);
+            o3.setAlpha((float) 0.4);
         } else if (buttonName.equals("six")) {
-            o6.setAlpha(1);
+            o6.setAlpha((float) 0.4);
         } else if (buttonName.equals("two")) {
-            o2.setAlpha(1);
+            o2.setAlpha((float) 0.4);
         }
     }
 

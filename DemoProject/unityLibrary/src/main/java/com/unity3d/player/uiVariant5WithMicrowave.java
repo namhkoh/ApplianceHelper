@@ -515,24 +515,24 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
         initTTS(instructions.get(ind));
         // Find the corresponding uiButton for the button name
         if (buttonName.equals("clock")) {
-            clock.setAlpha(1);
+            clock.setAlpha((float) 0.4);
         } else if (buttonName.equals("number pad")) {
-            m0.setAlpha(1);
-            m1.setAlpha(1);
-            m2.setAlpha(1);
-            m3.setAlpha(1);
-            m4.setAlpha(1);
-            m5.setAlpha(1);
-            m6.setAlpha(1);
-            m7.setAlpha(1);
-            m8.setAlpha(1);
-            m9.setAlpha(1);
+            m0.setAlpha((float) 0.4);
+            m1.setAlpha((float) 0.4);
+            m2.setAlpha((float) 0.4);
+            m3.setAlpha((float) 0.4);
+            m4.setAlpha((float) 0.4);
+            m5.setAlpha((float) 0.4);
+            m6.setAlpha((float) 0.4);
+            m7.setAlpha((float) 0.4);
+            m8.setAlpha((float) 0.4);
+            m9.setAlpha((float) 0.4);
         } else if (buttonName.equals("timer")) {
-            timer.setAlpha(1);
+            timer.setAlpha((float) 0.4);
         } else if (buttonName.equals("start")) {
-            start.setAlpha(1);
+            start.setAlpha((float) 0.4);
         } else if (buttonName.equals("reheat")) {
-            reheat.setAlpha(1);
+            reheat.setAlpha((float) 0.4);
         }
     }
 
