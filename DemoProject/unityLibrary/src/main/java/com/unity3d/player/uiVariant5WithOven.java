@@ -726,6 +726,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
             bakeBtn.setAlpha((float) 0.4);
             System.out.println("Reached!");
         } else if (buttonName.equals("number pad")) {
+            o0.setAlpha((float) 0.4);
             o1.setAlpha((float) 0.4);
             o2.setAlpha((float) 0.4);
             o3.setAlpha((float) 0.4);

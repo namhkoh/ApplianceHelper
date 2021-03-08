@@ -618,6 +618,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
                     myList = buttonList;
                     // use myList
                     Log.e("TAG -->", String.valueOf(myList));
+                    Log.e("INDEX",String.valueOf(index));
                     showButton(myList.get(index));
                     instructionList = list_ui1;
 
@@ -703,6 +704,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
         if (buttonName.equals("bake")) {
             bakeBtn.setAlpha((float) 0.4);
         } else if (buttonName.equals("number pad")) {
+            o0.setAlpha((float) 0.4);
             o1.setAlpha((float) 0.4);
             o2.setAlpha((float) 0.4);
             o3.setAlpha((float) 0.4);
