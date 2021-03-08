@@ -45,8 +45,8 @@
         android:layout_height="54dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="36dp"
-        android:alpha="1"
-        android:text="@string/microwave_popcorn"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lcd_text" />
 
@@ -54,8 +54,8 @@
         android:id="@+id/microwave_soften"
         android:layout_width="85dp"
         android:layout_height="54dp"
-        android:alpha="1"
-        android:text="@string/microwave_soften"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toEndOf="@+id/microwave_reheat"
         app:layout_constraintTop_toBottomOf="@+id/microwave_pizza" />
 
@@ -64,8 +64,8 @@
         android:layout_width="85dp"
         android:layout_height="54dp"
         android:layout_marginStart="24dp"
-        android:alpha="1"
-        android:text="@string/microwave_cook"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/microwave_popcorn" />
 
@@ -73,8 +73,8 @@
         android:id="@+id/microwave_reheat"
         android:layout_width="85dp"
         android:layout_height="54dp"
-        android:alpha="1"
-        android:text="@string/microwave_reheat"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toEndOf="@+id/microwave_cook"
         app:layout_constraintTop_toBottomOf="@+id/microwave_potato" />
 
@@ -83,8 +83,8 @@
         android:layout_width="85dp"
         android:layout_height="54dp"
         android:layout_marginStart="24dp"
-        android:alpha="1"
-        android:text="@string/microwave_cooktime"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/microwave_cook" />
 
@@ -94,8 +94,8 @@
         android:layout_height="54dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
-        android:alpha="1"
-        android:text="@string/microwave_1"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/microwave_cooktime" />
 
@@ -104,8 +104,8 @@
         android:layout_width="85dp"
         android:layout_height="54dp"
         android:layout_marginStart="24dp"
-        android:alpha="1"
-        android:text="@string/microwave_4"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/microwave_1" />
 
@@ -114,8 +114,8 @@
         android:layout_width="85dp"
         android:layout_height="54dp"
         android:layout_marginStart="24dp"
-        android:alpha="1"
-        android:text="@string/microwave_7"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/microwave_4" />
 
@@ -125,8 +125,8 @@
         android:layout_height="54dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="46dp"
-        android:alpha="1"
-        android:text="@string/microwave_start"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/microwave_timer" />
 
@@ -135,8 +135,8 @@
         android:layout_width="85dp"
         android:layout_height="54dp"
         android:layout_marginTop="46dp"
-        android:alpha="1"
-        android:text="@string/microwave_30sec"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toEndOf="@+id/microwave_start"
         app:layout_constraintTop_toBottomOf="@+id/microwave_0" />
 
@@ -145,8 +145,8 @@
         android:layout_width="85dp"
         android:layout_height="54dp"
         android:layout_marginTop="46dp"
-        android:alpha="1"
-        android:text="@string/microwave_cancel"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toEndOf="@+id/microwave_30sec"
         app:layout_constraintTop_toBottomOf="@+id/microwave_clock" />
 
@@ -155,8 +155,8 @@
         android:layout_width="85dp"
         android:layout_height="54dp"
         android:layout_marginStart="24dp"
-        android:alpha="1"
-        android:text="@string/microwave_timer"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/microwave_7" />
 
@@ -164,8 +164,8 @@
         android:id="@+id/microwave_8"
         android:layout_width="85dp"
         android:layout_height="54dp"
-        android:alpha="1"
-        android:text="@string/microwave_8"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toEndOf="@+id/microwave_7"
         app:layout_constraintTop_toBottomOf="@+id/microwave_5" />
 
@@ -173,8 +173,8 @@
         android:id="@+id/microwave_0"
         android:layout_width="85dp"
         android:layout_height="54dp"
-        android:alpha="1"
-        android:text="@string/microwave_0"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toEndOf="@+id/microwave_7"
         app:layout_constraintTop_toBottomOf="@+id/microwave_8" />
 
@@ -182,8 +182,8 @@
         android:id="@+id/microwave_clock"
         android:layout_width="85dp"
         android:layout_height="54dp"
-        android:alpha="1"
-        android:text="@string/microwave_clock"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toEndOf="@+id/microwave_0"
         app:layout_constraintTop_toBottomOf="@+id/microwave_9" />
 
@@ -191,8 +191,8 @@
         android:id="@+id/microwave_9"
         android:layout_width="85dp"
         android:layout_height="54dp"
-        android:alpha="1"
-        android:text="@string/microwave_9"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toEndOf="@+id/microwave_8"
         app:layout_constraintTop_toBottomOf="@+id/microwave_6" />
 
@@ -200,8 +200,8 @@
         android:id="@+id/microwave_5"
         android:layout_width="85dp"
         android:layout_height="54dp"
-        android:alpha="1"
-        android:text="@string/microwave_5"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toEndOf="@+id/microwave_4"
         app:layout_constraintTop_toBottomOf="@+id/microwave_2" />
 
@@ -209,8 +209,8 @@
         android:id="@+id/microwave_6"
         android:layout_width="85dp"
         android:layout_height="54dp"
-        android:alpha="1"
-        android:text="@string/microwave_6"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toEndOf="@+id/microwave_5"
         app:layout_constraintTop_toBottomOf="@+id/microwave_3" />
 
@@ -219,8 +219,8 @@
         android:layout_width="85dp"
         android:layout_height="54dp"
         android:layout_marginTop="20dp"
-        android:alpha="1"
-        android:text="@string/microwave_2"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toEndOf="@+id/microwave_1"
         app:layout_constraintTop_toBottomOf="@+id/microwave_cookpower" />
 
@@ -229,8 +229,8 @@
         android:layout_width="85dp"
         android:layout_height="54dp"
         android:layout_marginTop="20dp"
-        android:alpha="1"
-        android:text="@string/microwave_3"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toEndOf="@+id/microwave_2"
         app:layout_constraintTop_toBottomOf="@+id/microwave_defrost" />
 
@@ -238,8 +238,8 @@
         android:id="@+id/microwave_cookpower"
         android:layout_width="85dp"
         android:layout_height="54dp"
-        android:alpha="1"
-        android:text="@string/microwave_cookpower"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toEndOf="@+id/microwave_cooktime"
         app:layout_constraintTop_toBottomOf="@+id/microwave_reheat" />
 
@@ -247,8 +247,8 @@
         android:id="@+id/microwave_defrost"
         android:layout_width="85dp"
         android:layout_height="54dp"
-        android:alpha="1"
-        android:text="@string/microwave_defrost"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toEndOf="@+id/microwave_cookpower"
         app:layout_constraintTop_toBottomOf="@+id/microwave_soften" />
 
@@ -257,8 +257,8 @@
         android:layout_width="85dp"
         android:layout_height="54dp"
         android:layout_marginTop="36dp"
-        android:alpha="1"
-        android:text="@string/microwave_potato"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toEndOf="@+id/microwave_popcorn"
         app:layout_constraintTop_toBottomOf="@+id/lcd_text" />
 
@@ -267,8 +267,8 @@
         android:layout_width="85dp"
         android:layout_height="54dp"
         android:layout_marginTop="36dp"
-        android:alpha="1"
-        android:text="@string/microwave_pizza"
+        android:alpha="0.4"
+        android:background="#F34E4E"
         app:layout_constraintStart_toEndOf="@+id/microwave_potato"
         app:layout_constraintTop_toBottomOf="@+id/lcd_text" />
 
