@@ -527,6 +527,8 @@ public class uiVariant4WithOven extends AppCompatActivity {
                         index++;
                         Log.e("next", String.valueOf(index));
                         update_state(tmpList_ui1.get(index));
+                        Log.e("tmpList next", String.valueOf(tmpList_ui1));
+                        showButton(myList.get(index));
                         if (index == max_index - 1) {
                             Toast.makeText(getApplicationContext(), "Last Step", Toast.LENGTH_SHORT).show();
                         }
@@ -551,10 +553,11 @@ public class uiVariant4WithOven extends AppCompatActivity {
                 String incoming_indexString = String.valueOf(incoming_index);
 
                 System.out.println(tmpList_ui1.size());
+                Log.e("tmpList up", String.valueOf(tmpList_ui1));
 
                 //Some sort of error happened in the NLU part
                 if (response.getDialog_command().equals("no_match")) {
-
+                    System.out.println("hello from the other side");
                     buttonList = new ArrayList<>();
                     clear(list_ui1);
                     success = false;
@@ -613,6 +616,9 @@ public class uiVariant4WithOven extends AppCompatActivity {
                     }
 
                     myList = buttonList;
+                    // use myList
+                    Log.e("TAG -->", String.valueOf(myList));
+                    showButton(myList.get(index));
                     instructionList = list_ui1;
 
 
@@ -623,6 +629,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
                     initiate();
                     System.out.println("question! " + question);
                     System.out.println("utterance! " + utterance);
+                    Log.e("tmpList last", String.valueOf(tmpList_ui1));
                     uiVariant4WithMicrowave.userQuestions.putBoolean("Is First", is_first);
                 }
                 next.setEnabled(true);
@@ -648,6 +655,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
                     mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
                     editText.setText("");
                     editText.setHint("Listening...");
+                    setAlphaValue(0, allButtons);
                     break;
             }
             return false;
@@ -678,7 +686,53 @@ public class uiVariant4WithOven extends AppCompatActivity {
                 });
     }
 
+    /**
+     * This function will take the button list as an input and highlight the button at
+     * each increment of current index value
+     */
+    private void showButton(String buttonName) {
+//        ArrayList<Button> ui_buttons = new ArrayList<Button>(Arrays.asList(
+//                frozenBakeBtn, cookTimeBtn, o0, o1, o2, o3, o4, o5, o6, o7, o8, o9, startOvenbtn, cancelOvenBtn,
+//                bakeBtn, broilBtn, convectBtn, keepWarmBtn, selfCleanBtn, delayStartBtn, preheatBtn, settingsBtn,
+//                timerBtn, on_offBtn, confirm
+//        ));
+        System.out.println("curr index : " + index);
+        // get the current button name for task
+        Log.e("!!!", buttonName);
+        // Find the corresponding uiButton for the button name
+        if (buttonName.equals("bake")) {
+            bakeBtn.setAlpha(1);
+        } else if (buttonName.equals("number pad")) {
+            o1.setAlpha(1);
+            o2.setAlpha(1);
+            o3.setAlpha(1);
+            o4.setAlpha(1);
+            o5.setAlpha(1);
+            o6.setAlpha(1);
+            o7.setAlpha(1);
+            o8.setAlpha(1);
+            o9.setAlpha(1);
+        } else if (buttonName.equals("start")) {
+            startOvenbtn.setAlpha(1);
+        } else if (buttonName.equals("cancel")) {
+            cancelOvenBtn.setAlpha(1);
+        } else if (buttonName.equals("cook time")) {
+            cookTimeBtn.setAlpha(1);
+        } else if (buttonName.equals("settings/clock,clock") || buttonName.equals("settings/clock,sound")) {
+            settingsBtn.setAlpha(1);
+        } else if (buttonName.equals("four")) {
+            o4.setAlpha(1);
+        } else if (buttonName.equals("three")) {
+            o3.setAlpha(1);
+        } else if (buttonName.equals("six")) {
+            o6.setAlpha(1);
+        } else if (buttonName.equals("two")) {
+            o2.setAlpha(1);
+        }
+    }
+
     private void next_step(String string_button) {
+        Log.e("TAG", string_button);
 
         Set<String> accept = new HashSet<String>();
         accept.add("settings/clock");
@@ -710,6 +764,8 @@ public class uiVariant4WithOven extends AppCompatActivity {
         //Turn on specific buttons.
         if (string_button.equals("no button")) {
             current_state++;
+            Log.e("curr state", current_task);
+            Log.e("curr state", String.valueOf(current_state));
             string_button = myList.get(current_state);
             next_step(string_button);
             button_active.put(string_button, true);
@@ -739,6 +795,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
     }
 
     private void next_step_helper(String string_button) {
+        Log.e("TAG - helper", string_button);
         next_button.put(string_button, true);
         button_active.put(string_button, true);
         debug_next_step_log(string_button);
@@ -746,6 +803,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
 
     private void debug_next_step_log(String string_button) {
         Log.d("Debug (Next Step)", string_button);
+        Log.e("TAG - debug", string_button);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -961,6 +1019,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
     }
 
     void update_state(String s) {
+        Log.e("update_string",s);
         list_ui1.clear();
         list_ui1.add(s);
         initTTS(s);

@@ -413,14 +413,14 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
                         String button = response.getSteps().get(i).getButton_name();
                         buttonList.add(button);
                         tmpList_ui1.add(data);
-                        initTTS(data);
+                        //initTTS(data);
                     }
 
                     //tmpList.add(data);
                     myList = buttonList;
                     instructionList = list_ui1;
 
-
+                    revealButton(tmpList_ui1, myList);
                     index = 0;
                     max_index = response.getSteps().size();
 
@@ -487,8 +487,56 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
                 });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    /**
+     * This function will highlight the buttons according to the current task.
+     * ArrayList<String> ints
+     */
+    private void revealButton(ArrayList<String> instructions, ArrayList<String> buttons) {
+        ArrayList<Button> allButtons = new ArrayList<Button>(Arrays.asList(clock, start, cancel, soften, m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m0,
+                popcorn, potato, pizza, cook, reheat, cooktime, cookpower, defrost,
+                timer, add30));
+        for (int i = 0; i < buttons.size(); i++) {
+            int finalI = i;
+            new Handler().postDelayed(() -> {
+                setAlphaValue(0, allButtons);
+                showButton(buttons.get(finalI), instructions, finalI);
+            }, i * 5000);
 
+        }
+    }
+
+    /**
+     * This function will take the button list as an input and highlight the button at
+     * each increment of current index value
+     */
+    private void showButton(String buttonName, ArrayList<String> instructions, int ind) {
+        // get the current button name for task
+        Log.e("!!!", buttonName);
+        initTTS(instructions.get(ind));
+        // Find the corresponding uiButton for the button name
+        if (buttonName.equals("clock")) {
+            clock.setAlpha(1);
+        } else if (buttonName.equals("number pad")) {
+            m0.setAlpha(1);
+            m1.setAlpha(1);
+            m2.setAlpha(1);
+            m3.setAlpha(1);
+            m4.setAlpha(1);
+            m5.setAlpha(1);
+            m6.setAlpha(1);
+            m7.setAlpha(1);
+            m8.setAlpha(1);
+            m9.setAlpha(1);
+        } else if (buttonName.equals("timer")) {
+            timer.setAlpha(1);
+        } else if (buttonName.equals("start")) {
+            start.setAlpha(1);
+        } else if (buttonName.equals("reheat")) {
+            reheat.setAlpha(1);
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void addButtons() {
         clock = findViewById(R.id.microwave_clock);
         clock.setOnClickListener(v -> {
@@ -756,6 +804,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
     private void initTTS(String selectedText) {
         //textToSpeech.setSpeechRate(testingVal);
         int speechStatus = textToSpeech.speak(selectedText, TextToSpeech.QUEUE_ADD, null, "1");
+        textToSpeech.playSilentUtterance(1500, TextToSpeech.QUEUE_ADD, null);
         if (speechStatus == TextToSpeech.ERROR) {
             Log.e("TTS", "Error in converting Text to Speech!");
         }
