@@ -227,6 +227,8 @@ public class uiVariant2 extends AppCompatActivity {
                 } else if (utterance.contains("repeat")) {
                     initTTS(tmpList.get(index));
                     return;
+                } else {
+                    initTTS("Please say repeat, next or previous");
                 }
 
                 //Code below is technically an else cause everything above has a return statement.
@@ -247,64 +249,60 @@ public class uiVariant2 extends AppCompatActivity {
                     }
                 }
 
-                //Some sort of error happened in the NLU part
-                if (response.getDialog_command().equals("no_match")) {
-                    buttonList = new ArrayList<>();
-                    clear(list);
-                    success = false;
+                if (!success) {
+                    //Some sort of error happened in the NLU part
+                    if (response.getDialog_command().equals("no_match")) {
+                        buttonList = new ArrayList<>();
+                        clear(list);
+                        success = false;
 
-                    tmpList.add("No Match");
-                    tmpList.add("Try again by pressing the red mike button");
-                    buttonList.add("try_again");
-                    buttonList.add("speech");
+                        list.add("No Match");
+                        list.add("Try again by pressing the red mike button");
+                        initTTS("No Match");
 
-                    index = 0;
-                    max_index = 2;
+                    } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
 
-                    update(tmpList.get(index), true);
+                        clear(list);
 
-                } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
+                        list.add("Wrong Intent. " + "The current intent is " + response.getIntent());
+                        list.add("Try again by pressing the red mike button");
+                        initTTS("Wrong Intent");
 
-                    clear(list);
+                    } else if (!Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains(response.getAppliance_name().toLowerCase())) {
 
-                    list.add("Wrong Intent. " + "The current intent is " + response.getIntent());
-                    list.add("Try again by pressing the red mike button");
-                    initTTS("Wrong Intent");
+                        clear(list);
+                        list.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
+                        list.add("Try again by pressing the red mike button");
+                        initTTS("Wrong appliance");
 
-                } else if (!Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains(response.getAppliance_name().toLowerCase())) {
+                    } else {
+                        clear(list);
+                        success = true;
+                        buttonList = new ArrayList<>();
+                        next.setEnabled(true);
+                        if (list != null) {
+                            list.clear();
+                            tmpList.clear();
+                            buttonList.clear();
+                            adapter.notifyDataSetChanged();
+                        }
 
-                    clear(list);
-                    list.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
-                    list.add("Try again by pressing the red mike button");
-                    initTTS("Wrong appliance");
+                        for (int i = 0; i < response.getSteps().size(); ++i) {
+                            String data = response.getSteps().get(i).getText();
+                            String button = response.getSteps().get(i).getButton_name();
+                            buttonList.add(button);
+                            tmpList.add(data);
+                        }
 
-                } else {
-                    clear(list);
-                    success = true;
-                    buttonList = new ArrayList<>();
-                    next.setEnabled(true);
-                    if (list != null) {
-                        list.clear();
-                        tmpList.clear();
-                        buttonList.clear();
-                        adapter.notifyDataSetChanged();
+                        index = 0;
+                        max_index = response.getSteps().size();
+                        initial_update(tmpList.get(index));
+                        System.out.println("question! " + question);
+                        System.out.println("utterance! " + utterance);
+
                     }
-
-                    for (int i = 0; i < response.getSteps().size(); ++i) {
-                        String data = response.getSteps().get(i).getText();
-                        String button = response.getSteps().get(i).getButton_name();
-                        buttonList.add(button);
-                        tmpList.add(data);
-                    }
-
-                    index = 0;
-                    max_index = response.getSteps().size();
-                    initial_update(tmpList.get(index));
-                    System.out.println("question! " + question);
-                    System.out.println("utterance! " + utterance);
 
                 }
-
             }
 
             @Override
