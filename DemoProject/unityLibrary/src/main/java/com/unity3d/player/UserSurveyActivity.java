@@ -92,8 +92,8 @@ public class UserSurveyActivity extends AppCompatActivity {
         submit.setOnClickListener(v -> {
             String netScore = String.valueOf(nps.getRating());
             String customerScore = String.valueOf(css.getRating());
-            showToast("Net score " + netScore);
-            showToast("Customer score " + customerScore);
+//            showToast("Net score " + netScore);
+//            showToast("Customer score " + customerScore);
             // Store additional feedback here
             Log.e("Additional User Feedback", additionalFeedback.getText().toString());
 
