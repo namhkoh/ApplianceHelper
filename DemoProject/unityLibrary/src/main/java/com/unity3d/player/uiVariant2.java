@@ -227,7 +227,9 @@ public class uiVariant2 extends AppCompatActivity {
                 } else if (utterance.contains("repeat")) {
                     initTTS(tmpList.get(index));
                     return;
-                } else {
+                }
+                // This might be causing some issues
+                else {
                     initTTS("Please say repeat, next or previous");
                 }
 

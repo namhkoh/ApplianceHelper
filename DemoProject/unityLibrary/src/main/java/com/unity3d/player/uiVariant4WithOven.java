@@ -540,6 +540,9 @@ public class uiVariant4WithOven extends AppCompatActivity {
                     initTTS(tmpList_ui1.get(index));
                     return;
                 }
+//                else {
+//                    initTTS("Please say repeat, next or previous");
+//                }
 
                 //Code below is technically an else cause everything above has a return statement.
 
@@ -555,85 +558,70 @@ public class uiVariant4WithOven extends AppCompatActivity {
                 System.out.println(tmpList_ui1.size());
                 Log.e("tmpList up", String.valueOf(tmpList_ui1));
 
-                //Some sort of error happened in the NLU part
-                if (response.getDialog_command().equals("no_match")) {
-                    System.out.println("hello from the other side");
-                    buttonList = new ArrayList<>();
-                    clear(list_ui1);
-                    success = false;
+                if (!success) {
 
-                    tmpList_ui1.add("No Match");
-                    tmpList_ui1.add("Try again by pressing the red mike button");
-                    buttonList.add("try_again");
-                    buttonList.add("speech");
+                    //Some sort of error happened in the NLU part
+                    if (response.getDialog_command().equals("no_match")) {
+                        System.out.println("hello from the other side");
+                        buttonList = new ArrayList<>();
+                        clear(list_ui1);
+                        success = false;
 
-                    index = 0;
-                    max_index = 2;
-
-                    update(tmpList_ui1.get(index), true);
-
-                } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
-
-                    clear(list_ui1);
-
-                    tmpList_ui1.add("Wrong Intent. " + "The current intent is " + response.getIntent());
-                    tmpList_ui1.add("Try again by pressing the red mike button");
-                    buttonList.add("try_again");
-                    buttonList.add("speech");
-
-                    index = 0;
-                    max_index = 2;
-
-                    update(tmpList_ui1.get(index), true);
+                        list_ui1.add("No Match");
+                        list_ui1.add("Try again by pressing the red mike button");
+                        initTTS("No Match");
 
 
-                } else if (!Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains(response.getAppliance_name().toLowerCase())) {
+                    } else if (!response.getIntent().equals(intentList.get(incoming_indexString))) {
 
-                    clear(list_ui1);
-                    buttonList = new ArrayList<>();
+                        clear(list_ui1);
 
-                    tmpList_ui1.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
-                    tmpList_ui1.add("Try again by pressing the red mike button");
-                    buttonList.add("try_again");
-                    buttonList.add("speech");
+                        list_ui1.add("Wrong Intent. " + "The current intent is " + response.getIntent());
+                        list_ui1.add("Try again by pressing the red mike button");
+                        initTTS("Wrong intent");
 
-                    index = 0;
-                    max_index = 2;
+                    } else if (!Objects.requireNonNull(tmpHash.get(incoming_indexString)).toLowerCase().contains(response.getAppliance_name().toLowerCase())) {
 
-                    update(tmpList_ui1.get(index), true);
+                        clear(list_ui1);
+                        buttonList = new ArrayList<>();
 
-                } else {
-                    success = true;
-                    clear(list_ui1);
-                    buttonList = new ArrayList<>();
-                    next.setEnabled(true);
+                        list_ui1.add("Wrong appliance. " + "The current appliance is " + response.getAppliance_name());
+                        list_ui1.add("Try again by pressing the red mike button");
+                        initTTS("Wrong appliance");
 
-                    for (int i = 0; i < response.getSteps().size(); ++i) {
-                        String data = response.getSteps().get(i).getText();
-                        String button = response.getSteps().get(i).getButton_name();
-                        buttonList.add(button);
-                        tmpList_ui1.add(data);
+                    } else {
+                        success = true;
+                        clear(list_ui1);
+                        buttonList = new ArrayList<>();
+                        next.setEnabled(true);
+
+                        for (int i = 0; i < response.getSteps().size(); ++i) {
+                            String data = response.getSteps().get(i).getText();
+                            String button = response.getSteps().get(i).getButton_name();
+                            buttonList.add(button);
+                            tmpList_ui1.add(data);
+                        }
+
+                        myList = buttonList;
+                        // use myList
+                        Log.e("TAG -->", String.valueOf(myList));
+                        Log.e("INDEX", String.valueOf(index));
+                        showButton(myList.get(index));
+                        instructionList = list_ui1;
+
+
+                        index = 0;
+                        max_index = response.getSteps().size();
+                        initial_update(tmpList_ui1.get(index));
+
+                        initiate();
+                        System.out.println("question! " + question);
+                        System.out.println("utterance! " + utterance);
+                        Log.e("tmpList last", String.valueOf(tmpList_ui1));
+                        uiVariant4WithMicrowave.userQuestions.putBoolean("Is First", is_first);
                     }
-
-                    myList = buttonList;
-                    // use myList
-                    Log.e("TAG -->", String.valueOf(myList));
-                    Log.e("INDEX",String.valueOf(index));
-                    showButton(myList.get(index));
-                    instructionList = list_ui1;
-
-
-                    index = 0;
-                    max_index = response.getSteps().size();
-                    initial_update(tmpList_ui1.get(index));
-
-                    initiate();
-                    System.out.println("question! " + question);
-                    System.out.println("utterance! " + utterance);
-                    Log.e("tmpList last", String.valueOf(tmpList_ui1));
-                    uiVariant4WithMicrowave.userQuestions.putBoolean("Is First", is_first);
+                    next.setEnabled(true);
                 }
-                next.setEnabled(true);
             }
 
             @Override
@@ -861,7 +849,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void openListViewDialog() {
 
-        if(tmpList_ui1.size() != 0) {
+        if (tmpList_ui1.size() != 0) {
 
             inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Button Pressed (Active) Helper Button");
             //userQuestions.putSerializable("questions", inputQuestions);
@@ -1021,7 +1009,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
     }
 
     void update_state(String s) {
-        Log.e("update_string",s);
+        Log.e("update_string", s);
         list_ui1.clear();
         list_ui1.add(s);
         initTTS(s);
