@@ -352,10 +352,9 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                 } else if (utterance.contains("repeat")) {
                     initTTS(tmpList_ui1.get(index));
                     return;
+                } else {
+                    initTTS("Please say repeat, next or previous");
                 }
-//                else {
-//                    initTTS("Please say repeat, next or previous");
-//                }
 
                 //Code below is technically an else cause everything above has a return statement.
 
