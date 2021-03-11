@@ -57,6 +57,8 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
     private int max_index;
     //private ArrayAdapter adapter;
 
+    private HashMap<String, String> tmpHash;
+    private String incoming_indexString;
 
     private Button clock, start, cancel, soften, timer, popcorn, pizza, reheat, defrost, open;
     private Button cook, cooktime, cookpower, potato, add30;
@@ -72,7 +74,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     HashMap<String, String> intentList;
     HashMap<String, String> commandList;
-    Button next;
+    private Button next, task_button;
     private boolean success = false;
 
     /**
@@ -145,11 +147,14 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
          */
         next = findViewById(R.id.nextActivity);
         next.setEnabled(false);
-        next.setOnClickListener(v -> {
-            //enterFeedback();
-            nextTask();
-        });
+        next.setOnClickListener(v -> nextTask());
 
+
+        task_button = findViewById(R.id.task);
+
+        task_button.setOnClickListener(v -> {
+            click_task_button();
+        });
 
         /**
          * Initialize the time on the screen with the current time.
@@ -208,11 +213,15 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
             inputQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
         }
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
-        HashMap<String, String> tmpHash = getData();
+        tmpHash = getData();
         inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), tmpHash.get(String.valueOf(incoming_index)));
         userQuestions.putSerializable("questions", (Serializable) inputQuestions);
         Log.e("NEXT ACTIVITY", tmpHash.get(String.valueOf(incoming_index)));
 
+    }
+
+    private void click_task_button() {
+        Toast.makeText(getApplicationContext(), tmpHash.get(incoming_indexString), Toast.LENGTH_SHORT).show();
     }
 
     private void setAlphaValue(int alpha, ArrayList<Button> allButtons) {
@@ -235,7 +244,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
 
         HashMap<String, String> tmpHash = getData();
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
-        String incoming_indexString = String.valueOf(incoming_index);
+        incoming_indexString = String.valueOf(incoming_index);
         String question = commandList.get(incoming_indexString);
         System.out.println(commandList.get(incoming_indexString));
         Log.e("microwave_question", question);
@@ -294,7 +303,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
             success = true;
             clear(list_ui1);
             buttonList = new ArrayList<>();
-            next.setEnabled(true);
+            //next.setEnabled(true);
 
             for (int i = 0; i < response.getSteps().size(); ++i) {
                 String data = response.getSteps().get(i).getText();
@@ -319,7 +328,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
 
         }
         //update(tmpList.get(index), true);
-        next.setEnabled(true);
+        //next.setEnabled(true);
         if (!success & (index < max_index - 1)) {
             index++;
             update(tmpList_ui1.get(index), true);
@@ -937,10 +946,10 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
                 numberpad_toggle();
                 System.out.println(previous_state);
                 if (current_task == "Reheat") {
-                    countdown("10");
+                    countdown("3");
                 }
                 if ((current_task == "Pizza") | (current_task == "Popcorn") | (current_task == "Defrost")) {
-                    countdown("10");
+                    countdown("3");
                 }
                 current_state++;
                 if (working_button.get("timer")) {

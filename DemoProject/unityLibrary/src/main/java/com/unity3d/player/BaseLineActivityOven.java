@@ -68,6 +68,8 @@ public class BaseLineActivityOven extends AppCompatActivity {
     private Button cookTimeBtn, delayStartBtn, preheatBtn; //oven2
     private Button broilBtn, convectBtn, keepWarmBtn, selfCleanBtn, frozenBakeBtn; //oven1
 
+    private HashMap<String, String> tmpHash;
+    private String incoming_indexString;
 
     private int index = 0;
     ArrayList<String> list_ui1 = new ArrayList<>();
@@ -77,7 +79,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     HashMap<String, String> intentList;
     HashMap<String, String> commandList;
-    Button next;
+    private Button next, task_button;
     private boolean success = false;
     private int max_index;
 
@@ -147,6 +149,12 @@ public class BaseLineActivityOven extends AppCompatActivity {
 
         this.addButtons();
 
+        task_button = findViewById(R.id.task);
+
+        task_button.setOnClickListener(v -> {
+                click_task_button();
+        });
+
 
         //Setting alpha value
         allButtons = getAllButtons();
@@ -177,12 +185,17 @@ public class BaseLineActivityOven extends AppCompatActivity {
             inputQuestions = (Multimap<String, String>) getIntent().getSerializableExtra("questions");
         }
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
-        HashMap<String, String> tmpHash = getData();
+        tmpHash = getData();
         inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), tmpHash.get(String.valueOf(incoming_index)));
         userQuestions.putSerializable("questions", (Serializable) inputQuestions);
         Log.e("NEXT ACTIVITY", tmpHash.get(String.valueOf(incoming_index)));
 
     }
+
+    private void click_task_button() {
+        Toast.makeText(getApplicationContext(), tmpHash.get(incoming_indexString), Toast.LENGTH_SHORT).show();
+    }
+
 
     private void initialize_button_list_for_hashmap() {
         button_hashmap_list = Arrays.asList("settings/clock", "six", "one", "two", "three", "four", "five", "nine", "seven", "eight", "zero", "start", "bake",
@@ -458,9 +471,9 @@ public class BaseLineActivityOven extends AppCompatActivity {
 
     private void spawnResponse() {
 
-        HashMap<String, String> tmpHash = getData();
+        tmpHash = getData();
         int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
-        String incoming_indexString = String.valueOf(incoming_index);
+        incoming_indexString = String.valueOf(incoming_index);
         String question = commandList.get(incoming_indexString);
         Log.e("QUESTION_OVEN", question);
 
@@ -518,7 +531,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
             success = true;
             clear(list_ui1);
             buttonList = new ArrayList<>();
-            next.setEnabled(true);
+            //next.setEnabled(true);
 
             for (int i = 0; i < response.getSteps().size(); ++i) {
                 String data = response.getSteps().get(i).getText();
@@ -543,7 +556,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
 
         }
         //update(tmpList.get(index), true);
-        next.setEnabled(true);
+        //next.setEnabled(true);
         if (!success & (index < max_index - 1)) {
             index++;
             update(tmpList_ui1.get(index), true);
@@ -1001,14 +1014,14 @@ public class BaseLineActivityOven extends AppCompatActivity {
             }
 
             if (current_task.equals("keep warm")) {
-                countdown("10");
+                countdown("3");
             }
             if (task.equals("bake")) {
-                countdown("10");
+                countdown("3");
             }
 
             if (current_task.equals("broil") | current_task.equals("broiling")) {
-                countdown("10");
+                countdown("3");
             }
 
             if (current_state >= myList.size()) {
