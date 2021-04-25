@@ -153,7 +153,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
          */
         SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
         final EditText editText = findViewById(R.id.editText);
-        next = findViewById(R.id.nextActivity);
+        next = findViewById(R.id.nextActivity2);
         next.setEnabled(false);
         next.setOnClickListener(v -> {
             //enterFeedback();

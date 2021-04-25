@@ -2,14 +2,12 @@ package com.unity3d.player;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,11 +17,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.util.JsonUtils;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-
-import org.w3c.dom.ls.LSOutput;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,9 +32,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-import java.util.HashMap;
-
-import kotlin.text.UStringsKt;
 
 public class uiVariant6Oven extends AppCompatActivity {
 
@@ -290,7 +282,7 @@ public class uiVariant6Oven extends AppCompatActivity {
             }
         });
 
-        next = findViewById(R.id.next);
+        next = findViewById(R.id.give_up);
         next.setOnClickListener(v -> nextActivity());
 
         Button startOvenbtn = findViewById(R.id.oven_start);
@@ -975,7 +967,7 @@ public class uiVariant6Oven extends AppCompatActivity {
                 lcd.setText(lcdString);
             }, 2000);
         }, 2000);
-        Button next = findViewById(R.id.next);
+        Button next = findViewById(R.id.give_up);
         next.setEnabled(true);
     }
 
@@ -1006,7 +998,7 @@ public class uiVariant6Oven extends AppCompatActivity {
             lcd.clearAnimation();
 
             //Reset
-            Button next = findViewById(R.id.next);
+            Button next = findViewById(R.id.give_up);
             next.setEnabled(false);
             lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
             time = new String[]{" ", " ", " ", " "};

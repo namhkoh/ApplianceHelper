@@ -15,7 +15,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcelable;
 import android.provider.Settings;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
@@ -118,7 +117,7 @@ public class uiVariant2 extends AppCompatActivity {
          */
         SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
         final EditText editText = findViewById(R.id.editText);
-        Button next = findViewById(R.id.next);
+        Button next = findViewById(R.id.give_up);
         next.setOnClickListener(v -> {
             enterFeedback();
         });

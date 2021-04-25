@@ -60,6 +60,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
     private HashMap<String, String> tmpHash;
     private String incoming_indexString;
 
+    private Button giveUpButton;
     private Button clock, start, cancel, soften, timer, popcorn, pizza, reheat, defrost, open;
     private Button cook, cooktime, cookpower, potato, add30;
     private Button m0, m1, m2, m3, m4, m5, m6, m7, m8, m9;
@@ -145,7 +146,7 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
         /**
          * Initializing buttons
          */
-        next = findViewById(R.id.nextActivity);
+        next = findViewById(R.id.nextActivity2);
         next.setEnabled(false);
         next.setOnClickListener(v -> nextTask());
 
@@ -154,6 +155,38 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
 
         task_button.setOnClickListener(v -> {
             click_task_button();
+        });
+
+        giveUpButton = findViewById(R.id.give_up_micro);
+        giveUpButton.setOnClickListener(view -> {
+
+            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+
+            builder.setTitle("Confirm");
+            builder.setMessage("Are you sure you would like to give up?");
+
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int which) {
+                    // Do nothing but close the dialog
+                    nextTask();
+                    dialog.dismiss();
+                }
+            });
+
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    // Do nothing
+                    dialog.dismiss();
+                }
+            });
+
+            android.app.AlertDialog alert = builder.create();
+            alert.show();
+
         });
 
         /**

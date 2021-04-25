@@ -19,7 +19,6 @@ import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -43,9 +42,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
-import java.sql.Time;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,8 +53,6 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class uiVariant5WithOven extends AppCompatActivity {
 
@@ -337,7 +332,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
             }
         });
 
-        next = findViewById(R.id.next);
+        next = findViewById(R.id.give_up);
         next.setOnClickListener(v -> nextActivity());
 
         startOvenbtn = findViewById(R.id.oven_start);
@@ -1283,7 +1278,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
                 lcd.setText(lcdString);
             }, 2000);
         }, 2000);
-        Button next = findViewById(R.id.next);
+        Button next = findViewById(R.id.give_up);
         next.setEnabled(true);
     }
 
@@ -1317,7 +1312,7 @@ public class uiVariant5WithOven extends AppCompatActivity {
                 lcd.clearAnimation();
 
                 //Reset
-                Button next = findViewById(R.id.next);
+                Button next = findViewById(R.id.give_up);
                 next.setEnabled(false);
                 lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
                 time = new String[]{" ", " ", " ", " "};

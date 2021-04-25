@@ -1,39 +1,27 @@
 package com.unity3d.player;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.speech.RecognitionListener;
-import android.speech.RecognizerIntent;
-import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
-import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
-import android.view.ContextThemeWrapper;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aic.libnilu.nlu.ResponseObject;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -50,7 +38,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 
@@ -63,6 +50,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
     private Button settingsBtn;
     private ImageButton SpeechBtn;
     private EditText editText;
+    private Button giveUpButton;
     private Button o1, o2, o3, o4, o5, o6, o7, o8, o9, o0; //Keypad
     private Button open, startOvenbtn, cancelOvenBtn, timerBtn, on_offBtn, confirm; //oven3
     private Button cookTimeBtn, delayStartBtn, preheatBtn; //oven2
@@ -153,6 +141,39 @@ public class BaseLineActivityOven extends AppCompatActivity {
 
         task_button.setOnClickListener(v -> {
                 click_task_button();
+        });
+
+        giveUpButton = findViewById(R.id.give_up);
+        giveUpButton.setEnabled(true);
+        giveUpButton.setOnClickListener(view -> {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setTitle("Confirm");
+            builder.setMessage("Are you sure you would like to give up?");
+
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int which) {
+                    // Do nothing but close the dialog
+                    nextActivity();
+                    dialog.dismiss();
+                }
+            });
+
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    // Do nothing
+                    dialog.dismiss();
+                }
+            });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+
         });
 
 
@@ -330,7 +351,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
             }
         });
 
-        next = findViewById(R.id.next);
+        next = findViewById(R.id.next2);
         next.setOnClickListener(v -> nextActivity());
 
         startOvenbtn = findViewById(R.id.oven_start);
@@ -1071,7 +1092,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
                 lcd.setText(lcdString);
             }, 2000);
         }, 2000);
-        Button next = findViewById(R.id.next);
+        Button next = findViewById(R.id.give_up);
         next.setEnabled(true);
     }
 
@@ -1108,7 +1129,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
             lcd.clearAnimation();
 
             //Reset
-            Button next = findViewById(R.id.next);
+            Button next = findViewById(R.id.give_up);
             next.setEnabled(false);
             lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
             time = new String[]{" ", " ", " ", " "};

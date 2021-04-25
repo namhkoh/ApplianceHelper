@@ -86,7 +86,7 @@
         android:text="@string/ui_type_text4" />
 
     <Button
-        android:id="@+id/next"
+        android:id="@+id/give_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

@@ -110,7 +110,7 @@ public class UnityPlayerActivity extends Activity implements IUnityPlayerLifecyc
 
         Button exit = (Button) findViewById(R.id.exit);
         exit.setOnClickListener(v -> quitUnityActivity());
-        Button next = findViewById(R.id.next);
+        Button next = findViewById(R.id.give_up);
         next.setOnClickListener(v -> enterFeedback());
         SpeechBtn = (ImageButton) findViewById(R.id.speechButton);
         final EditText editText = findViewById(R.id.editText);

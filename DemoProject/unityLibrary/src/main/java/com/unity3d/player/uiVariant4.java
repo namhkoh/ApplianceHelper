@@ -105,7 +105,7 @@ public class uiVariant4 extends Activity implements IUnityPlayerLifecycleEvents 
 
         Button exit = (Button) findViewById(R.id.exit);
         exit.setOnClickListener(v -> quitUnityActivity());
-        Button next = findViewById(R.id.next);
+        Button next = findViewById(R.id.give_up);
         next.setOnClickListener(v -> enterFeedback());
 
         final EditText editText = findViewById(R.id.editText);

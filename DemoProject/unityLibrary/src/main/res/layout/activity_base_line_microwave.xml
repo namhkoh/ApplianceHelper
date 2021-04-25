@@ -283,21 +283,31 @@
         app:layout_constraintTop_toBottomOf="@+id/microwave_start" />
 
     <Button
-        android:id="@+id/nextActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="25dp"
+        android:id="@+id/give_up_micro"
+        android:layout_width="73dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="152dp"
+        android:text="@string/GiveUpButton"
+        app:layout_constraintRight_toRightOf="@id/view"
+        app:layout_constraintTop_toBottomOf="@id/microwave_cancel" />
+
+    <Button
+        android:id="@+id/nextActivity2"
+        android:layout_width="73dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="8dp"
         android:text="@string/nextActivity"
         app:layout_constraintRight_toRightOf="@id/view"
         app:layout_constraintTop_toBottomOf="@id/microwave_cancel" />
 
     <Button
         android:id="@+id/open"
-        android:layout_width="82dp"
-        android:layout_height="47dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="73dp"
+        android:layout_height="52dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="24dp"
         android:gravity="center"
         android:text="@string/openActivity"
         android:textAlignment="center"
@@ -306,10 +316,10 @@
 
     <Button
         android:id="@+id/task"
-        android:layout_width="82dp"
-        android:layout_height="47dp"
-        android:layout_marginLeft="108dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="73dp"
+        android:layout_height="52dp"
+        android:layout_marginLeft="148dp"
+        android:layout_marginTop="24dp"
         android:gravity="center"
         android:text="@string/taskActivity"
         android:textAlignment="center"

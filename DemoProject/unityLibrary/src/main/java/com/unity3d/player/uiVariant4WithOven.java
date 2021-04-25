@@ -5,7 +5,6 @@ import androidx.appcompat.app.AlertDialog;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,7 +13,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.os.Parcelable;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -318,7 +316,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
             }
         });
 
-        next = findViewById(R.id.next);
+        next = findViewById(R.id.give_up);
         next.setOnClickListener(v -> nextActivity());
 
         startOvenbtn = findViewById(R.id.oven_start);
@@ -1236,7 +1234,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
                 lcd.setText(lcdString);
             }, 2000);
         }, 2000);
-        Button next = findViewById(R.id.next);
+        Button next = findViewById(R.id.give_up);
         next.setEnabled(true);
     }
 
@@ -1269,7 +1267,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
                 lcd.clearAnimation();
 
                 //Reset
-                Button next = findViewById(R.id.next);
+                Button next = findViewById(R.id.give_up);
                 next.setEnabled(false);
                 lcd.setText(DateTimeHandler.getCurrentTime("hh:mm"));
                 time = new String[]{" ", " ", " ", " "};

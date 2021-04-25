@@ -315,7 +315,7 @@
         app:layout_constraintTop_toTopOf="@id/view" />
 
     <Button
-        android:id="@+id/nextActivity"
+        android:id="@+id/give_up_micro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
