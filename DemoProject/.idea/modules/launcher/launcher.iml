@@ -134,6 +134,6 @@
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-core:2.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.savedstate:savedstate:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.arch.core:core-runtime:2.1.0@aar" level="project" />
-    <orderEntry type="module" module-name="DemoProject-unityLibrary" />
+    <orderEntry type="module" module-name="ApplianceHelper_5-DemoProject-unityLibrary" />
   </component>
 </module>

@@ -1,9 +1,9 @@
 package com.unity3d.player;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -68,6 +68,7 @@ public class BaseLineActivityOven extends AppCompatActivity {
     private Button cookTimeBtn, delayStartBtn, preheatBtn; //oven2
     private Button broilBtn, convectBtn, keepWarmBtn, selfCleanBtn, frozenBakeBtn; //oven1
 
+    private Button giveUpButton;
     private HashMap<String, String> tmpHash;
     private String incoming_indexString;
 
@@ -153,6 +154,39 @@ public class BaseLineActivityOven extends AppCompatActivity {
 
         task_button.setOnClickListener(v -> {
                 click_task_button();
+        });
+
+        giveUpButton = findViewById(R.id.give_up_oven);
+        giveUpButton.setEnabled(true);
+        giveUpButton.setOnClickListener(view -> {
+
+            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+
+            builder.setTitle("Confirm");
+            builder.setMessage("Are you sure you would like to give up?");
+
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int which) {
+                    // Do nothing but close the dialog
+                    nextActivity();
+                    dialog.dismiss();
+                }
+            });
+
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    // Do nothing
+                    dialog.dismiss();
+                }
+            });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+
         });
 
 
