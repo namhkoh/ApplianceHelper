@@ -159,15 +159,16 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
 
         giveUpButton = findViewById(R.id.give_up_micro);
         giveUpButton.setOnClickListener(view -> {
-
+            tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Give_Up (activated) button pressed (Active) ");
             android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
 
             builder.setTitle("Confirm");
             builder.setMessage("Are you sure you would like to give up?");
 
             builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-
+                //TODO log the event here
                 public void onClick(DialogInterface dialog, int which) {
+                    tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Give_Up (Yes) button pressed (Active) ");
                     // Do nothing but close the dialog
                     nextTask();
                     dialog.dismiss();
@@ -175,10 +176,10 @@ public class BaseLineActivityMicrowave extends AppCompatActivity {
             });
 
             builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-
+                //TODO log the event here
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-
+                    tmpQuestions.put(String.valueOf(Instant.now().getEpochSecond()), " Give_Up (No) Button cancelled (Active) ");
                     // Do nothing
                     dialog.dismiss();
                 }
