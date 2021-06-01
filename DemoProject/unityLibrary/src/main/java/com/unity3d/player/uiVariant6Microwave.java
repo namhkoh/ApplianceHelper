@@ -438,7 +438,6 @@ public class uiVariant6Microwave extends AppCompatActivity {
 //        super.onSaveInstanceState(savedInstanceState);
 //    }
 
-
     private void next_step(String string_button) {
         if (string_button.equals("clock")) {
             active_button.put(string_button, true);
@@ -691,13 +690,18 @@ public class uiVariant6Microwave extends AppCompatActivity {
         toast.show();
     }
 
-    //Disable back button
+
+    /**
+     * Disable back button
+     */
     @Override
     public void onBackPressed() {
         if (false) {
             super.onBackPressed();
         } else {
-            Log.d("Debug", "Back Button Pressed");
+            if (Utilities.debug) {
+                Log.d("Debug", "Back Button Pressed");
+            }
         }
     }
 

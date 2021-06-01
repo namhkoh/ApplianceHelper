@@ -778,6 +778,21 @@ public class uiVariant6Oven extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * Disable back button
+     */
+    @Override
+    public void onBackPressed() {
+        if (false) {
+            super.onBackPressed();
+        } else {
+            if (Utilities.debug) {
+                Log.d("Debug", "Back Button Pressed");
+            }
+        }
+    }
+
     private void hint() {
         Toast toast = Toast.makeText(getApplicationContext(), instructionList.get(current_state), Toast.LENGTH_SHORT);
         toast.show();

@@ -110,7 +110,9 @@ public class uiVariant1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui_variant1);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setHomeButtonEnabled(false);
 
         checkPermission();
         initialize_task();

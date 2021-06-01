@@ -10,6 +10,8 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,12 +25,16 @@ import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -406,7 +412,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
                     success = true;
                     clear(list_ui1);
                     buttonList = new ArrayList<>();
-                    next.setEnabled(true);
+                    //next.setEnabled(true);
 
                     for (int i = 0; i < response.getSteps().size(); ++i) {
                         String data = response.getSteps().get(i).getText();
@@ -434,7 +440,7 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
 
                 }
                 //update(tmpList.get(index), true);
-                next.setEnabled(true);
+                //next.setEnabled(true);
             }
 
             @Override
@@ -715,29 +721,73 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void openDialog() {
-        inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Button Pressed (Active) Helper Button");
-        StringBuilder sb = new StringBuilder();
+        if (tmpList_ui1.size() != 0) {
 
-        for (String instruction : tmpList_ui1) {
-            sb.append(instruction);
-            sb.append("\n");
-        }
+            inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Button Pressed (Active) Helper Button");
+            StringBuilder sb = new StringBuilder();
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        //final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>();
-        builder.setTitle("Instructions");
-        builder.setMessage("Look at this dialog!");
-        builder.setMessage(sb.toString());
-        builder.setCancelable(false);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //
+            for (String instruction : tmpList_ui1) {
+                sb.append(instruction);
+                sb.append("\n");
             }
-        });
-        AlertDialog alert = builder.create();
-        alert.show();
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            //final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>();
+            builder.setTitle("Instructions");
+            builder.setMessage("Look at this dialog!");
+            builder.setMessage(sb.toString());
+            builder.setCancelable(false);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        } else {
+            inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Button Pressed (Active) Helper Button");
+            //userQuestions.putSerializable("questions", inputQuestions);
+            int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+            String[] list_view = new String[1];
+            String incoming_indexString = String.valueOf(incoming_index);
+            HashMap<String, String> tmpHash = getData();
+            list_view[0] = tmpHash.get(incoming_indexString);
+
+            ContextThemeWrapper themedContext = new ContextThemeWrapper(this, android.R.style.Theme_Holo_NoActionBar);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setCancelable(false);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //
+                }
+            });
+
+            final AlertDialog dialog = builder.setTitle("Task").setItems(list_view, null).create();
+
+            AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    System.out.println(tmpList_ui1.get(i));
+                    initTTS(tmpList_ui1.get(i - 1));
+                }
+            };
+
+            dialog.getListView().setOnItemClickListener(listener);
+
+            ListView listView = dialog.getListView();
+            listView.addHeaderView(new View(this));
+            //listView.addFooterView(new View(this));
+            //listView.setHeaderDividersEnabled(true);
+            listView.setDivider(new ColorDrawable(Color.BLACK));
+            listView.setDividerHeight(1);
+
+            dialog.show();
+        }
     }
 
 
@@ -1026,11 +1076,12 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
             lcd.clearAnimation();
             lcdString = "Ready!";
             lcd.setText(lcdString);
+            next.setEnabled(true);
 
             if (working_button.get("clock")) {
                 working_button.put("clock", false);
             }
-            next.setEnabled(true);
+            //next.setEnabled(true);
         } else {
             string_button = myList.get(current_state);
             next_step(string_button);
@@ -1169,10 +1220,10 @@ public class uiVariant5WithMicrowave extends AppCompatActivity {
                     numberpad_toggle();
                     System.out.println(previous_state);
                     if (current_task == "Reheat") {
-                        countdown("10");
+                        countdown("3");
                     }
                     if ((current_task == "Pizza") | (current_task == "Popcorn") | (current_task == "Defrost")) {
-                        countdown("10");
+                        countdown("3");
                     }
                     current_state++;
                     if (working_button.get("timer")) {

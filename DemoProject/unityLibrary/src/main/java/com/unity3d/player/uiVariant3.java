@@ -96,9 +96,10 @@ public class uiVariant3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui_variant3);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        checkPermission();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setHomeButtonEnabled(false);
 
+        checkPermission();
         initialize_task();
 
         /**
@@ -191,6 +192,7 @@ public class uiVariant3 extends AppCompatActivity {
                         update_state(tmpList.get(index));
                     } else {
                         Log.e("previous", "Beginning of the instructions");
+                        Toast.makeText(getApplicationContext(),"This is step 1 - Previous disabled", Toast.LENGTH_SHORT).show();
                     }
                     return;
                 } else if (utterance.toLowerCase().contains("next")) {
@@ -201,6 +203,7 @@ public class uiVariant3 extends AppCompatActivity {
                         update_state(tmpList.get(index));
                     } else {
                         Log.e("next", "End of the instructions");
+                        Toast.makeText(getApplicationContext(), "This is the last step - Next disabled", Toast.LENGTH_SHORT).show();
                     }
                     return;
                 } else if (utterance.contains("repeat")) {
@@ -485,6 +488,20 @@ public class uiVariant3 extends AppCompatActivity {
         tmpHash = getData();
         incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
         incoming_indexString = String.valueOf(incoming_index);
+    }
+
+    /**
+     * Disable back button
+     */
+    @Override
+    public void onBackPressed() {
+        if (false) {
+            super.onBackPressed();
+        } else {
+            if (Utilities.debug) {
+                Log.d("Debug", "Back Button Pressed");
+            }
+        }
     }
 
     /**

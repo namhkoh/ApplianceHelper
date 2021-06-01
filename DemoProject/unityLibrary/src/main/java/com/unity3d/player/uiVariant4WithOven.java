@@ -457,6 +457,16 @@ public class uiVariant4WithOven extends AppCompatActivity {
         next_step(string_button);
     }
 
+    //Disable back button
+    @Override
+    public void onBackPressed() {
+        if (false) {
+            super.onBackPressed();
+        } else {
+            Log.d("Debug", "Back Button Pressed");
+        }
+    }
+
     private void initialize_speaker() {
         // SPEECH TO TEXT START
         final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
@@ -592,7 +602,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
                         success = true;
                         clear(list_ui1);
                         buttonList = new ArrayList<>();
-                        next.setEnabled(true);
+                        //next.setEnabled(true);
 
                         for (int i = 0; i < response.getSteps().size(); ++i) {
                             String data = response.getSteps().get(i).getText();
@@ -619,7 +629,7 @@ public class uiVariant4WithOven extends AppCompatActivity {
                         Log.e("tmpList last", String.valueOf(tmpList_ui1));
                         uiVariant4WithMicrowave.userQuestions.putBoolean("Is First", is_first);
                     }
-                    next.setEnabled(true);
+                    //next.setEnabled(true);
                 }
             }
 
@@ -890,6 +900,48 @@ public class uiVariant4WithOven extends AppCompatActivity {
 
             dialog.show();
 
+        } else{
+
+            inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Button Pressed (Active) Helper Button");
+            //userQuestions.putSerializable("questions", inputQuestions);
+            int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+            String[] list_view = new String[1];
+            String incoming_indexString = String.valueOf(incoming_index);
+            HashMap<String, String> tmpHash = getData();
+            list_view[0] = tmpHash.get(incoming_indexString);
+
+            ContextThemeWrapper themedContext = new ContextThemeWrapper(this, android.R.style.Theme_Holo_NoActionBar);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setCancelable(false);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //
+                }
+            });
+
+            final AlertDialog dialog = builder.setTitle("Task").setItems(list_view, null).create();
+
+            AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    System.out.println(tmpList_ui1.get(i));
+                    initTTS(tmpList_ui1.get(i - 1));
+                }
+            };
+
+            dialog.getListView().setOnItemClickListener(listener);
+
+            ListView listView = dialog.getListView();
+            listView.addHeaderView(new View(this));
+            //listView.addFooterView(new View(this));
+            //listView.setHeaderDividersEnabled(true);
+            listView.setDivider(new ColorDrawable(Color.BLACK));
+            listView.setDividerHeight(1);
+
+            dialog.show();
         }
     }
 

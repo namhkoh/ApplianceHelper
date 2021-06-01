@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.BlendMode;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,14 +24,17 @@ import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -403,7 +408,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
                         success = true;
                         clear(list_ui1);
                         buttonList = new ArrayList<>();
-                        next.setEnabled(true);
+                        //next.setEnabled(true);
 
                         for (int i = 0; i < response.getSteps().size(); ++i) {
                             String data = response.getSteps().get(i).getText();
@@ -428,7 +433,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
 
                     }
                     //update(tmpList.get(index), true);
-                    next.setEnabled(true);
+                    //next.setEnabled(true);
                 }
             }
 
@@ -689,6 +694,48 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
             });
             AlertDialog alert = builder.create();
             alert.show();
+            
+        } else {
+            inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Button Pressed (Active) Helper Button");
+            //userQuestions.putSerializable("questions", inputQuestions);
+            int incoming_index = TaskInstructionActivity.indexBundle.getInt("index");
+            String[] list_view = new String[1];
+            String incoming_indexString = String.valueOf(incoming_index);
+            HashMap<String, String> tmpHash = getData();
+            list_view[0] = tmpHash.get(incoming_indexString);
+
+            ContextThemeWrapper themedContext = new ContextThemeWrapper(this, android.R.style.Theme_Holo_NoActionBar);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setCancelable(false);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //
+                }
+            });
+
+            final AlertDialog dialog = builder.setTitle("Task").setItems(list_view, null).create();
+
+            AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    System.out.println(tmpList_ui1.get(i));
+                    initTTS(tmpList_ui1.get(i - 1));
+                }
+            };
+
+            dialog.getListView().setOnItemClickListener(listener);
+
+            ListView listView = dialog.getListView();
+            listView.addHeaderView(new View(this));
+            //listView.addFooterView(new View(this));
+            //listView.setHeaderDividersEnabled(true);
+            listView.setDivider(new ColorDrawable(Color.BLACK));
+            listView.setDividerHeight(1);
+
+            dialog.show();
         }
     }
 
