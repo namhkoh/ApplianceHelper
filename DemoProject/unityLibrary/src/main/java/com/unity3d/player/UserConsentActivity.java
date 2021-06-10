@@ -1,8 +1,12 @@
 package com.unity3d.player;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -15,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.aic.libnilu.NiluLibProcess;
 import com.google.common.collect.Multimap;
@@ -53,7 +58,6 @@ import okhttp3.ResponseBody;
 import com.google.common.collect.ArrayListMultimap;
 
 
-
 public class UserConsentActivity extends AppCompatActivity {
 
     private String testId;
@@ -76,6 +80,7 @@ public class UserConsentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_consent);
+        checkPermission();
         testIDInput = findViewById(R.id.InputTestID);
 
         Log.d("Start", "Hello");
@@ -204,6 +209,19 @@ public class UserConsentActivity extends AppCompatActivity {
 
     private void showToast(String text) {
         Toast.makeText(UserConsentActivity.this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    private void checkPermission() {
+        Log.e("check permission", "true");
+        if (!(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) &&
+                !(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) &&
+                !(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+        ) {
+            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                    Uri.parse("package:" + getPackageName()));
+            startActivity(intent);
+            finish();
+        }
     }
 
 //    @RequiresApi(api = Build.VERSION_CODES.O)

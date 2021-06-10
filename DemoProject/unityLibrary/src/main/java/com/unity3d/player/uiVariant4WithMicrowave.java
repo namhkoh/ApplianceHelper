@@ -694,7 +694,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
             });
             AlertDialog alert = builder.create();
             alert.show();
-            
+
         } else {
             inputQuestions.put(String.valueOf(Instant.now().getEpochSecond()), "Button Pressed (Active) Helper Button");
             //userQuestions.putSerializable("questions", inputQuestions);
@@ -809,6 +809,7 @@ public class uiVariant4WithMicrowave extends AppCompatActivity {
     }
 
     private void checkPermission() {
+        Log.e("check permission", "true");
         if (!(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) &&
                 !(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) &&
                 !(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
