@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -82,6 +83,7 @@ public class StartScreen extends AppCompatActivity {
         CharSequence instruction4 = "After the replication, head towards the survey and provide feedback and ratings.";
         CharSequence bl = BulletTextUtil.makeBulletList(35, instruction1, instruction2, instruction3, instruction4);
         instructionalText.setText(bl);
+        instructionalText.setMovementMethod(new ScrollingMovementMethod());
 
         nameInput.addTextChangedListener(submitTextWatcher);
     }
